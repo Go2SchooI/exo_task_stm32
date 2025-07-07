@@ -1,0 +1,474 @@
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGkIaTU.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"system_identification.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.FirstOrderSI_Init,"ax",%progbits
+  20              		.align	1
+  21              		.global	FirstOrderSI_Init
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	FirstOrderSI_Init:
+  27              	.LVL0:
+  28              	.LFB163:
+  29              		.file 1 "Components/system_identification.c"
+   1:Components/system_identification.c **** /**
+   2:Components/system_identification.c ****  ******************************************************************************
+   3:Components/system_identification.c ****  * @file    system_identification.c
+   4:Components/system_identification.c ****  * @author  Wang Hongxi
+   5:Components/system_identification.c ****  * @version V1.0.1
+   6:Components/system_identification.c ****  * @date    2021/10/28
+   7:Components/system_identification.c ****  * @brief
+   8:Components/system_identification.c ****  ******************************************************************************
+   9:Components/system_identification.c ****  * @attention
+  10:Components/system_identification.c ****  *
+  11:Components/system_identification.c ****  ******************************************************************************
+  12:Components/system_identification.c ****  */
+  13:Components/system_identification.c **** #include "system_identification.h"
+  14:Components/system_identification.c **** 
+  15:Components/system_identification.c **** void FirstOrderSI_Init(FirstOrderSI_t *sysID_t, float c0, float c1, float Q0, float Q1, float Q2, f
+  16:Components/system_identification.c **** {
+  30              		.loc 1 16 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 16 1 is_stmt 0 view .LVU1
+  35 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 32
+  38              		.cfi_offset 3, -32
+  39              		.cfi_offset 4, -28
+  40              		.cfi_offset 5, -24
+  41              		.cfi_offset 6, -20
+  42              		.cfi_offset 7, -16
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGkIaTU.s 			page 2
+
+
+  43              		.cfi_offset 8, -12
+  44              		.cfi_offset 9, -8
+  45              		.cfi_offset 14, -4
+  46 0004 0446     		mov	r4, r0
+  47 0006 11EE109A 		vmov	r9, s2
+  48 000a 11EE908A 		vmov	r8, s3
+  49 000e 12EE107A 		vmov	r7, s4
+  50 0012 12EE906A 		vmov	r6, s5
+  51 0016 13EE105A 		vmov	r5, s6
+  17:Components/system_identification.c ****     sysID_t->c0 = c0;
+  52              		.loc 1 17 5 is_stmt 1 view .LVU2
+  53              		.loc 1 17 17 is_stmt 0 view .LVU3
+  54 001a 80ED010A 		vstr.32	s0, [r0, #4]
+  18:Components/system_identification.c ****     sysID_t->c1 = c1;
+  55              		.loc 1 18 5 is_stmt 1 view .LVU4
+  56              		.loc 1 18 17 is_stmt 0 view .LVU5
+  57 001e C0ED020A 		vstr.32	s1, [r0, #8]
+  19:Components/system_identification.c **** 
+  20:Components/system_identification.c ****     Kalman_Filter_Init(&sysID_t->SI_EKF, 3, 0, 1);
+  58              		.loc 1 20 5 is_stmt 1 view .LVU6
+  59 0022 0123     		movs	r3, #1
+  60 0024 0022     		movs	r2, #0
+  61 0026 0321     		movs	r1, #3
+  62 0028 1830     		adds	r0, r0, #24
+  63              	.LVL1:
+  64              		.loc 1 20 5 is_stmt 0 view .LVU7
+  65 002a FFF7FEFF 		bl	Kalman_Filter_Init
+  66              	.LVL2:
+  21:Components/system_identification.c **** 
+  22:Components/system_identification.c ****     sysID_t->SI_EKF.SkipEq1 = 1;
+  67              		.loc 1 22 5 is_stmt 1 view .LVU8
+  68              		.loc 1 22 29 is_stmt 0 view .LVU9
+  69 002e 0123     		movs	r3, #1
+  70 0030 84F84030 		strb	r3, [r4, #64]
+  23:Components/system_identification.c **** 
+  24:Components/system_identification.c ****     sysID_t->SI_EKF.F_data[4] = 1;
+  71              		.loc 1 24 5 is_stmt 1 view .LVU10
+  72              		.loc 1 24 20 is_stmt 0 view .LVU11
+  73 0034 D4F81821 		ldr	r2, [r4, #280]
+  74              		.loc 1 24 31 view .LVU12
+  75 0038 4FF07E53 		mov	r3, #1065353216
+  76 003c 1361     		str	r3, [r2, #16]	@ float
+  25:Components/system_identification.c ****     sysID_t->SI_EKF.F_data[8] = 1;
+  77              		.loc 1 25 5 is_stmt 1 view .LVU13
+  78              		.loc 1 25 20 is_stmt 0 view .LVU14
+  79 003e D4F81821 		ldr	r2, [r4, #280]
+  80              		.loc 1 25 31 view .LVU15
+  81 0042 1362     		str	r3, [r2, #32]	@ float
+  26:Components/system_identification.c **** 
+  27:Components/system_identification.c ****     sysID_t->SI_EKF.Q_data[0] = Q0;
+  82              		.loc 1 27 5 is_stmt 1 view .LVU16
+  83              		.loc 1 27 20 is_stmt 0 view .LVU17
+  84 0044 D4F82C21 		ldr	r2, [r4, #300]
+  85              		.loc 1 27 31 view .LVU18
+  86 0048 C2F80090 		str	r9, [r2]	@ float
+  28:Components/system_identification.c ****     sysID_t->SI_EKF.Q_data[4] = Q1;
+  87              		.loc 1 28 5 is_stmt 1 view .LVU19
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGkIaTU.s 			page 3
+
+
+  88              		.loc 1 28 20 is_stmt 0 view .LVU20
+  89 004c D4F82C21 		ldr	r2, [r4, #300]
+  90              		.loc 1 28 31 view .LVU21
+  91 0050 C2F81080 		str	r8, [r2, #16]	@ float
+  29:Components/system_identification.c ****     sysID_t->SI_EKF.Q_data[8] = Q2;
+  92              		.loc 1 29 5 is_stmt 1 view .LVU22
+  93              		.loc 1 29 20 is_stmt 0 view .LVU23
+  94 0054 D4F82C21 		ldr	r2, [r4, #300]
+  95              		.loc 1 29 31 view .LVU24
+  96 0058 1762     		str	r7, [r2, #32]	@ float
+  30:Components/system_identification.c **** 
+  31:Components/system_identification.c ****     sysID_t->SI_EKF.H_data[0] = 1;
+  97              		.loc 1 31 5 is_stmt 1 view .LVU25
+  98              		.loc 1 31 20 is_stmt 0 view .LVU26
+  99 005a D4F82421 		ldr	r2, [r4, #292]
+ 100              		.loc 1 31 31 view .LVU27
+ 101 005e 1360     		str	r3, [r2]	@ float
+  32:Components/system_identification.c **** 
+  33:Components/system_identification.c ****     sysID_t->SI_EKF.R_data[0] = R;
+ 102              		.loc 1 33 5 is_stmt 1 view .LVU28
+ 103              		.loc 1 33 20 is_stmt 0 view .LVU29
+ 104 0060 D4F83031 		ldr	r3, [r4, #304]
+ 105              		.loc 1 33 31 view .LVU30
+ 106 0064 1E60     		str	r6, [r3]	@ float
+  34:Components/system_identification.c **** 
+  35:Components/system_identification.c ****     sysID_t->lambda = lambda;
+ 107              		.loc 1 35 5 is_stmt 1 view .LVU31
+ 108              		.loc 1 35 21 is_stmt 0 view .LVU32
+ 109 0066 6561     		str	r5, [r4, #20]	@ float
+  36:Components/system_identification.c **** 
+  37:Components/system_identification.c ****     sysID_t->SI_EKF.xhat_data[1] = sysID_t->c0;
+ 110              		.loc 1 37 5 is_stmt 1 view .LVU33
+ 111              		.loc 1 37 20 is_stmt 0 view .LVU34
+ 112 0068 D4F80031 		ldr	r3, [r4, #256]
+ 113              		.loc 1 37 43 view .LVU35
+ 114 006c 6268     		ldr	r2, [r4, #4]	@ float
+ 115              		.loc 1 37 34 view .LVU36
+ 116 006e 5A60     		str	r2, [r3, #4]	@ float
+  38:Components/system_identification.c ****     sysID_t->SI_EKF.xhat_data[2] = sysID_t->c1;
+ 117              		.loc 1 38 5 is_stmt 1 view .LVU37
+ 118              		.loc 1 38 20 is_stmt 0 view .LVU38
+ 119 0070 D4F80031 		ldr	r3, [r4, #256]
+ 120              		.loc 1 38 43 view .LVU39
+ 121 0074 A268     		ldr	r2, [r4, #8]	@ float
+ 122              		.loc 1 38 34 view .LVU40
+ 123 0076 9A60     		str	r2, [r3, #8]	@ float
+  39:Components/system_identification.c **** }
+ 124              		.loc 1 39 1 view .LVU41
+ 125 0078 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 126              		.loc 1 39 1 view .LVU42
+ 127              		.cfi_endproc
+ 128              	.LFE163:
+ 130              		.section	.text.FirstOrderSI_Update,"ax",%progbits
+ 131              		.align	1
+ 132              		.global	FirstOrderSI_Update
+ 133              		.syntax unified
+ 134              		.thumb
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGkIaTU.s 			page 4
+
+
+ 135              		.thumb_func
+ 137              	FirstOrderSI_Update:
+ 138              	.LVL3:
+ 139              	.LFB164:
+  40:Components/system_identification.c **** 
+  41:Components/system_identification.c **** void FirstOrderSI_Update(FirstOrderSI_t *sysID_t, float u, float x, float dt)
+  42:Components/system_identification.c **** {
+ 140              		.loc 1 42 1 is_stmt 1 view -0
+ 141              		.cfi_startproc
+ 142              		@ args = 0, pretend = 0, frame = 0
+ 143              		@ frame_needed = 0, uses_anonymous_args = 0
+ 144              		.loc 1 42 1 is_stmt 0 view .LVU44
+ 145 0000 10B5     		push	{r4, lr}
+ 146              	.LCFI1:
+ 147              		.cfi_def_cfa_offset 8
+ 148              		.cfi_offset 4, -8
+ 149              		.cfi_offset 14, -4
+ 150 0002 0446     		mov	r4, r0
+  43:Components/system_identification.c ****     sysID_t->u = u;
+ 151              		.loc 1 43 5 is_stmt 1 view .LVU45
+ 152              		.loc 1 43 16 is_stmt 0 view .LVU46
+ 153 0004 80ED030A 		vstr.32	s0, [r0, #12]
+  44:Components/system_identification.c ****     sysID_t->x = x;
+ 154              		.loc 1 44 5 is_stmt 1 view .LVU47
+ 155              		.loc 1 44 16 is_stmt 0 view .LVU48
+ 156 0008 C0ED040A 		vstr.32	s1, [r0, #16]
+  45:Components/system_identification.c **** 
+  46:Components/system_identification.c ****     sysID_t->SI_EKF.MeasuredVector[0] = x;
+ 157              		.loc 1 46 5 is_stmt 1 view .LVU49
+ 158              		.loc 1 46 20 is_stmt 0 view .LVU50
+ 159 000c C369     		ldr	r3, [r0, #28]
+ 160              		.loc 1 46 39 view .LVU51
+ 161 000e C3ED000A 		vstr.32	s1, [r3]
+  47:Components/system_identification.c **** 
+  48:Components/system_identification.c ****     sysID_t->SI_EKF.xhatminus_data[0] = (1 + sysID_t->SI_EKF.xhat_data[1] * dt) * sysID_t->SI_EKF.x
+ 162              		.loc 1 48 5 is_stmt 1 view .LVU52
+ 163              		.loc 1 48 61 is_stmt 0 view .LVU53
+ 164 0012 D0F80031 		ldr	r3, [r0, #256]
+ 165              		.loc 1 48 71 view .LVU54
+ 166 0016 D3ED017A 		vldr.32	s15, [r3, #4]
+ 167              		.loc 1 48 75 view .LVU55
+ 168 001a 67EE817A 		vmul.f32	s15, s15, s2
+ 169              		.loc 1 48 44 view .LVU56
+ 170 001e F7EE006A 		vmov.f32	s13, #1.0e+0
+ 171 0022 77EEA67A 		vadd.f32	s15, s15, s13
+ 172              		.loc 1 48 108 view .LVU57
+ 173 0026 93ED007A 		vldr.32	s14, [r3]
+ 174              		.loc 1 48 81 view .LVU58
+ 175 002a 67EE877A 		vmul.f32	s15, s15, s14
+  49:Components/system_identification.c ****                                         sysID_t->SI_EKF.xhat_data[2] * u * dt;
+ 176              		.loc 1 49 66 view .LVU59
+ 177 002e 93ED027A 		vldr.32	s14, [r3, #8]
+ 178              		.loc 1 49 70 view .LVU60
+ 179 0032 27EE007A 		vmul.f32	s14, s14, s0
+ 180              		.loc 1 49 74 view .LVU61
+ 181 0036 27EE017A 		vmul.f32	s14, s14, s2
+  48:Components/system_identification.c ****                                         sysID_t->SI_EKF.xhat_data[2] * u * dt;
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGkIaTU.s 			page 5
+
+
+ 182              		.loc 1 48 20 view .LVU62
+ 183 003a D0F80431 		ldr	r3, [r0, #260]
+  48:Components/system_identification.c ****                                         sysID_t->SI_EKF.xhat_data[2] * u * dt;
+ 184              		.loc 1 48 112 view .LVU63
+ 185 003e 77EE877A 		vadd.f32	s15, s15, s14
+  48:Components/system_identification.c ****                                         sysID_t->SI_EKF.xhat_data[2] * u * dt;
+ 186              		.loc 1 48 39 view .LVU64
+ 187 0042 C3ED007A 		vstr.32	s15, [r3]
+  50:Components/system_identification.c ****     sysID_t->SI_EKF.xhatminus_data[1] = sysID_t->SI_EKF.xhat_data[1];
+ 188              		.loc 1 50 5 is_stmt 1 view .LVU65
+ 189              		.loc 1 50 56 is_stmt 0 view .LVU66
+ 190 0046 D0F80021 		ldr	r2, [r0, #256]
+ 191              		.loc 1 50 20 view .LVU67
+ 192 004a D0F80431 		ldr	r3, [r0, #260]
+ 193              		.loc 1 50 39 view .LVU68
+ 194 004e 5268     		ldr	r2, [r2, #4]	@ float
+ 195 0050 5A60     		str	r2, [r3, #4]	@ float
+  51:Components/system_identification.c ****     sysID_t->SI_EKF.xhatminus_data[2] = sysID_t->SI_EKF.xhat_data[2];
+ 196              		.loc 1 51 5 is_stmt 1 view .LVU69
+ 197              		.loc 1 51 56 is_stmt 0 view .LVU70
+ 198 0052 D0F80021 		ldr	r2, [r0, #256]
+ 199              		.loc 1 51 20 view .LVU71
+ 200 0056 D0F80431 		ldr	r3, [r0, #260]
+ 201              		.loc 1 51 39 view .LVU72
+ 202 005a 9268     		ldr	r2, [r2, #8]	@ float
+ 203 005c 9A60     		str	r2, [r3, #8]	@ float
+  52:Components/system_identification.c **** 
+  53:Components/system_identification.c ****     sysID_t->SI_EKF.F_data[0] = 1 + sysID_t->SI_EKF.xhat_data[1] * dt;
+ 204              		.loc 1 53 5 is_stmt 1 view .LVU73
+ 205              		.loc 1 53 52 is_stmt 0 view .LVU74
+ 206 005e D0F80031 		ldr	r3, [r0, #256]
+ 207              		.loc 1 53 62 view .LVU75
+ 208 0062 D3ED017A 		vldr.32	s15, [r3, #4]
+ 209              		.loc 1 53 66 view .LVU76
+ 210 0066 67EE817A 		vmul.f32	s15, s15, s2
+ 211              		.loc 1 53 20 view .LVU77
+ 212 006a D0F81831 		ldr	r3, [r0, #280]
+ 213              		.loc 1 53 35 view .LVU78
+ 214 006e 77EEA67A 		vadd.f32	s15, s15, s13
+ 215              		.loc 1 53 31 view .LVU79
+ 216 0072 C3ED007A 		vstr.32	s15, [r3]
+  54:Components/system_identification.c ****     sysID_t->SI_EKF.F_data[1] = sysID_t->SI_EKF.xhat_data[0] * dt;
+ 217              		.loc 1 54 5 is_stmt 1 view .LVU80
+ 218              		.loc 1 54 48 is_stmt 0 view .LVU81
+ 219 0076 D0F80031 		ldr	r3, [r0, #256]
+ 220              		.loc 1 54 58 view .LVU82
+ 221 007a D3ED007A 		vldr.32	s15, [r3]
+ 222              		.loc 1 54 20 view .LVU83
+ 223 007e D0F81831 		ldr	r3, [r0, #280]
+ 224              		.loc 1 54 62 view .LVU84
+ 225 0082 67EE817A 		vmul.f32	s15, s15, s2
+ 226              		.loc 1 54 31 view .LVU85
+ 227 0086 C3ED017A 		vstr.32	s15, [r3, #4]
+  55:Components/system_identification.c ****     sysID_t->SI_EKF.F_data[2] = u * dt;
+ 228              		.loc 1 55 5 is_stmt 1 view .LVU86
+ 229              		.loc 1 55 20 is_stmt 0 view .LVU87
+ 230 008a D0F81831 		ldr	r3, [r0, #280]
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGkIaTU.s 			page 6
+
+
+ 231              		.loc 1 55 35 view .LVU88
+ 232 008e 20EE010A 		vmul.f32	s0, s0, s2
+ 233              	.LVL4:
+ 234              		.loc 1 55 31 view .LVU89
+ 235 0092 83ED020A 		vstr.32	s0, [r3, #8]
+  56:Components/system_identification.c **** 
+  57:Components/system_identification.c ****     Kalman_Filter_Update(&sysID_t->SI_EKF);
+ 236              		.loc 1 57 5 is_stmt 1 view .LVU90
+ 237 0096 1830     		adds	r0, r0, #24
+ 238              	.LVL5:
+ 239              		.loc 1 57 5 is_stmt 0 view .LVU91
+ 240 0098 FFF7FEFF 		bl	Kalman_Filter_Update
+ 241              	.LVL6:
+  58:Components/system_identification.c **** 
+  59:Components/system_identification.c ****     for (uint8_t i = 0; i < 9; i++)
+ 242              		.loc 1 59 5 is_stmt 1 view .LVU92
+ 243              	.LBB2:
+ 244              		.loc 1 59 10 view .LVU93
+ 245              		.loc 1 59 18 is_stmt 0 view .LVU94
+ 246 009c 0023     		movs	r3, #0
+ 247              		.loc 1 59 5 view .LVU95
+ 248 009e 0DE0     		b	.L4
+ 249              	.LVL7:
+ 250              	.L5:
+  60:Components/system_identification.c ****         sysID_t->SI_EKF.P_data[i] /= sysID_t->lambda;
+ 251              		.loc 1 60 9 is_stmt 1 discriminator 3 view .LVU96
+ 252              		.loc 1 60 24 is_stmt 0 discriminator 3 view .LVU97
+ 253 00a0 D4F81021 		ldr	r2, [r4, #272]
+ 254              		.loc 1 60 35 discriminator 3 view .LVU98
+ 255 00a4 02EB8302 		add	r2, r2, r3, lsl #2
+ 256              		.loc 1 60 45 discriminator 3 view .LVU99
+ 257 00a8 94ED057A 		vldr.32	s14, [r4, #20]
+ 258              		.loc 1 60 35 discriminator 3 view .LVU100
+ 259 00ac D2ED006A 		vldr.32	s13, [r2]
+ 260 00b0 C6EE877A 		vdiv.f32	s15, s13, s14
+ 261 00b4 C2ED007A 		vstr.32	s15, [r2]
+  59:Components/system_identification.c ****         sysID_t->SI_EKF.P_data[i] /= sysID_t->lambda;
+ 262              		.loc 1 59 32 is_stmt 1 discriminator 3 view .LVU101
+  59:Components/system_identification.c ****         sysID_t->SI_EKF.P_data[i] /= sysID_t->lambda;
+ 263              		.loc 1 59 33 is_stmt 0 discriminator 3 view .LVU102
+ 264 00b8 0133     		adds	r3, r3, #1
+ 265              	.LVL8:
+  59:Components/system_identification.c ****         sysID_t->SI_EKF.P_data[i] /= sysID_t->lambda;
+ 266              		.loc 1 59 33 discriminator 3 view .LVU103
+ 267 00ba DBB2     		uxtb	r3, r3
+ 268              	.LVL9:
+ 269              	.L4:
+  59:Components/system_identification.c ****         sysID_t->SI_EKF.P_data[i] /= sysID_t->lambda;
+ 270              		.loc 1 59 25 is_stmt 1 discriminator 1 view .LVU104
+  59:Components/system_identification.c ****         sysID_t->SI_EKF.P_data[i] /= sysID_t->lambda;
+ 271              		.loc 1 59 5 is_stmt 0 discriminator 1 view .LVU105
+ 272 00bc 082B     		cmp	r3, #8
+ 273 00be EFD9     		bls	.L5
+ 274              	.LBE2:
+  61:Components/system_identification.c **** 
+  62:Components/system_identification.c ****     sysID_t->xhat = sysID_t->SI_EKF.FilteredValue[0];
+ 275              		.loc 1 62 5 is_stmt 1 view .LVU106
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGkIaTU.s 			page 7
+
+
+ 276              		.loc 1 62 36 is_stmt 0 view .LVU107
+ 277 00c0 A369     		ldr	r3, [r4, #24]
+ 278              	.LVL10:
+ 279              		.loc 1 62 50 view .LVU108
+ 280 00c2 1A68     		ldr	r2, [r3]	@ float
+ 281              		.loc 1 62 19 view .LVU109
+ 282 00c4 2260     		str	r2, [r4]	@ float
+  63:Components/system_identification.c ****     sysID_t->c0 = -sysID_t->SI_EKF.FilteredValue[1] / sysID_t->SI_EKF.FilteredValue[2];
+ 283              		.loc 1 63 5 is_stmt 1 view .LVU110
+ 284              		.loc 1 63 49 is_stmt 0 view .LVU111
+ 285 00c6 D3ED017A 		vldr.32	s15, [r3, #4]
+ 286              		.loc 1 63 19 view .LVU112
+ 287 00ca F1EE677A 		vneg.f32	s15, s15
+ 288              		.loc 1 63 84 view .LVU113
+ 289 00ce D3ED026A 		vldr.32	s13, [r3, #8]
+ 290              		.loc 1 63 53 view .LVU114
+ 291 00d2 87EEA67A 		vdiv.f32	s14, s15, s13
+ 292              		.loc 1 63 17 view .LVU115
+ 293 00d6 84ED017A 		vstr.32	s14, [r4, #4]
+  64:Components/system_identification.c ****     sysID_t->c1 = 1 / sysID_t->SI_EKF.FilteredValue[2];
+ 294              		.loc 1 64 5 is_stmt 1 view .LVU116
+ 295              		.loc 1 64 52 is_stmt 0 view .LVU117
+ 296 00da 93ED027A 		vldr.32	s14, [r3, #8]
+ 297              		.loc 1 64 21 view .LVU118
+ 298 00de F7EE006A 		vmov.f32	s13, #1.0e+0
+ 299 00e2 C6EE877A 		vdiv.f32	s15, s13, s14
+ 300              		.loc 1 64 17 view .LVU119
+ 301 00e6 C4ED027A 		vstr.32	s15, [r4, #8]
+  65:Components/system_identification.c **** }
+ 302              		.loc 1 65 1 view .LVU120
+ 303 00ea 10BD     		pop	{r4, pc}
+ 304              		.loc 1 65 1 view .LVU121
+ 305              		.cfi_endproc
+ 306              	.LFE164:
+ 308              		.section	.text.FirstOrderSI_EKF_Tuning,"ax",%progbits
+ 309              		.align	1
+ 310              		.global	FirstOrderSI_EKF_Tuning
+ 311              		.syntax unified
+ 312              		.thumb
+ 313              		.thumb_func
+ 315              	FirstOrderSI_EKF_Tuning:
+ 316              	.LVL11:
+ 317              	.LFB165:
+  66:Components/system_identification.c **** 
+  67:Components/system_identification.c **** void FirstOrderSI_EKF_Tuning(FirstOrderSI_t *sysID_t, float Q0, float Q1, float Q2, float R, float 
+  68:Components/system_identification.c **** {
+ 318              		.loc 1 68 1 is_stmt 1 view -0
+ 319              		.cfi_startproc
+ 320              		@ args = 0, pretend = 0, frame = 0
+ 321              		@ frame_needed = 0, uses_anonymous_args = 0
+ 322              		@ link register save eliminated.
+  69:Components/system_identification.c ****     sysID_t->SI_EKF.Q_data[0] = Q0;
+ 323              		.loc 1 69 5 view .LVU123
+ 324              		.loc 1 69 20 is_stmt 0 view .LVU124
+ 325 0000 D0F82C31 		ldr	r3, [r0, #300]
+ 326              		.loc 1 69 31 view .LVU125
+ 327 0004 83ED000A 		vstr.32	s0, [r3]
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGkIaTU.s 			page 8
+
+
+  70:Components/system_identification.c ****     sysID_t->SI_EKF.Q_data[4] = Q1;
+ 328              		.loc 1 70 5 is_stmt 1 view .LVU126
+ 329              		.loc 1 70 20 is_stmt 0 view .LVU127
+ 330 0008 D0F82C31 		ldr	r3, [r0, #300]
+ 331              		.loc 1 70 31 view .LVU128
+ 332 000c C3ED040A 		vstr.32	s1, [r3, #16]
+  71:Components/system_identification.c ****     sysID_t->SI_EKF.Q_data[8] = Q2;
+ 333              		.loc 1 71 5 is_stmt 1 view .LVU129
+ 334              		.loc 1 71 20 is_stmt 0 view .LVU130
+ 335 0010 D0F82C31 		ldr	r3, [r0, #300]
+ 336              		.loc 1 71 31 view .LVU131
+ 337 0014 83ED081A 		vstr.32	s2, [r3, #32]
+  72:Components/system_identification.c **** 
+  73:Components/system_identification.c ****     sysID_t->SI_EKF.R_data[0] = R;
+ 338              		.loc 1 73 5 is_stmt 1 view .LVU132
+ 339              		.loc 1 73 20 is_stmt 0 view .LVU133
+ 340 0018 D0F83031 		ldr	r3, [r0, #304]
+ 341              		.loc 1 73 31 view .LVU134
+ 342 001c C3ED001A 		vstr.32	s3, [r3]
+  74:Components/system_identification.c **** 
+  75:Components/system_identification.c ****     sysID_t->lambda = lambda;
+ 343              		.loc 1 75 5 is_stmt 1 view .LVU135
+ 344              		.loc 1 75 21 is_stmt 0 view .LVU136
+ 345 0020 80ED052A 		vstr.32	s4, [r0, #20]
+  76:Components/system_identification.c **** }
+ 346              		.loc 1 76 1 view .LVU137
+ 347 0024 7047     		bx	lr
+ 348              		.cfi_endproc
+ 349              	.LFE165:
+ 351              		.text
+ 352              	.Letext0:
+ 353              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 354              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 355              		.file 4 "Components/Algorithm/Include/arm_math.h"
+ 356              		.file 5 "Components/kalman_filter.h"
+ 357              		.file 6 "Components/system_identification.h"
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGkIaTU.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 system_identification.c
+C:\Users\86152\AppData\Local\Temp\ccGkIaTU.s:20     .text.FirstOrderSI_Init:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccGkIaTU.s:26     .text.FirstOrderSI_Init:00000000 FirstOrderSI_Init
+C:\Users\86152\AppData\Local\Temp\ccGkIaTU.s:131    .text.FirstOrderSI_Update:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccGkIaTU.s:137    .text.FirstOrderSI_Update:00000000 FirstOrderSI_Update
+C:\Users\86152\AppData\Local\Temp\ccGkIaTU.s:309    .text.FirstOrderSI_EKF_Tuning:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccGkIaTU.s:315    .text.FirstOrderSI_EKF_Tuning:00000000 FirstOrderSI_EKF_Tuning
+
+UNDEFINED SYMBOLS
+Kalman_Filter_Init
+Kalman_Filter_Update

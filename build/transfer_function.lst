@@ -1,0 +1,588 @@
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccCN3ece.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"transfer_function.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_f2d
+  20              		.section	.text.Second_Order_TF_Init,"ax",%progbits
+  21              		.align	1
+  22              		.global	Second_Order_TF_Init
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	Second_Order_TF_Init:
+  28              	.LVL0:
+  29              	.LFB130:
+  30              		.file 1 "Components/Devices/transfer_function.c"
+   1:Components/Devices/transfer_function.c **** /**
+   2:Components/Devices/transfer_function.c ****   ******************************************************************************
+   3:Components/Devices/transfer_function.c ****   * @file    transfer_function.h
+   4:Components/Devices/transfer_function.c ****   * @author  Wang Hongxi
+   5:Components/Devices/transfer_function.c ****   * @version V1.0.0
+   6:Components/Devices/transfer_function.c ****   * @date    2020/5/12
+   7:Components/Devices/transfer_function.c ****   * @brief   
+   8:Components/Devices/transfer_function.c ****   ******************************************************************************
+   9:Components/Devices/transfer_function.c ****   * @attention 
+  10:Components/Devices/transfer_function.c ****   *
+  11:Components/Devices/transfer_function.c ****   ******************************************************************************
+  12:Components/Devices/transfer_function.c ****   */
+  13:Components/Devices/transfer_function.c **** #include "transfer_function.h"
+  14:Components/Devices/transfer_function.c **** 
+  15:Components/Devices/transfer_function.c **** void Second_Order_TF_Init(Second_Order_TF_t *tf, float *c)
+  16:Components/Devices/transfer_function.c **** {
+  31              		.loc 1 16 1 view -0
+  32              		.cfi_startproc
+  33              		@ args = 0, pretend = 0, frame = 0
+  34              		@ frame_needed = 0, uses_anonymous_args = 0
+  35              		.loc 1 16 1 is_stmt 0 view .LVU1
+  36 0000 38B5     		push	{r3, r4, r5, lr}
+  37              	.LCFI0:
+  38              		.cfi_def_cfa_offset 16
+  39              		.cfi_offset 3, -16
+  40              		.cfi_offset 4, -12
+  41              		.cfi_offset 5, -8
+  42              		.cfi_offset 14, -4
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccCN3ece.s 			page 2
+
+
+  43 0002 0446     		mov	r4, r0
+  44 0004 0D46     		mov	r5, r1
+  17:Components/Devices/transfer_function.c ****     tf->c[0] = c[0];
+  45              		.loc 1 17 5 is_stmt 1 view .LVU2
+  46              		.loc 1 17 17 is_stmt 0 view .LVU3
+  47 0006 0868     		ldr	r0, [r1]	@ float
+  48              	.LVL1:
+  49              		.loc 1 17 17 view .LVU4
+  50 0008 FFF7FEFF 		bl	__aeabi_f2d
+  51              	.LVL2:
+  52              		.loc 1 17 14 view .LVU5
+  53 000c C4E90201 		strd	r0, [r4, #8]
+  18:Components/Devices/transfer_function.c ****     tf->c[1] = c[1];
+  54              		.loc 1 18 5 is_stmt 1 view .LVU6
+  55              		.loc 1 18 17 is_stmt 0 view .LVU7
+  56 0010 6868     		ldr	r0, [r5, #4]	@ float
+  57 0012 FFF7FEFF 		bl	__aeabi_f2d
+  58              	.LVL3:
+  59              		.loc 1 18 14 view .LVU8
+  60 0016 C4E90401 		strd	r0, [r4, #16]
+  19:Components/Devices/transfer_function.c ****     tf->c[2] = c[2];
+  61              		.loc 1 19 5 is_stmt 1 view .LVU9
+  62              		.loc 1 19 17 is_stmt 0 view .LVU10
+  63 001a A868     		ldr	r0, [r5, #8]	@ float
+  64 001c FFF7FEFF 		bl	__aeabi_f2d
+  65              	.LVL4:
+  66              		.loc 1 19 14 view .LVU11
+  67 0020 C4E90601 		strd	r0, [r4, #24]
+  20:Components/Devices/transfer_function.c **** 
+  21:Components/Devices/transfer_function.c ****     tf->y = 0;
+  68              		.loc 1 21 5 is_stmt 1 view .LVU12
+  69              		.loc 1 21 11 is_stmt 0 view .LVU13
+  70 0024 0022     		movs	r2, #0
+  71 0026 0023     		movs	r3, #0
+  72 0028 C4E90A23 		strd	r2, [r4, #40]
+  22:Components/Devices/transfer_function.c ****     tf->y_dot = 0;
+  73              		.loc 1 22 5 is_stmt 1 view .LVU14
+  74              		.loc 1 22 15 is_stmt 0 view .LVU15
+  75 002c C4E90C23 		strd	r2, [r4, #48]
+  23:Components/Devices/transfer_function.c ****     tf->y_ddot = 0;
+  76              		.loc 1 23 5 is_stmt 1 view .LVU16
+  77              		.loc 1 23 16 is_stmt 0 view .LVU17
+  78 0030 C4E90E23 		strd	r2, [r4, #56]
+  24:Components/Devices/transfer_function.c ****     tf->Last_y_dot = 0;
+  79              		.loc 1 24 5 is_stmt 1 view .LVU18
+  80              		.loc 1 24 20 is_stmt 0 view .LVU19
+  81 0034 C4E91023 		strd	r2, [r4, #64]
+  25:Components/Devices/transfer_function.c ****     tf->Last_y_ddot = 0;
+  82              		.loc 1 25 5 is_stmt 1 view .LVU20
+  83              		.loc 1 25 21 is_stmt 0 view .LVU21
+  84 0038 C4E91223 		strd	r2, [r4, #72]
+  26:Components/Devices/transfer_function.c **** }
+  85              		.loc 1 26 1 view .LVU22
+  86 003c 38BD     		pop	{r3, r4, r5, pc}
+  87              		.loc 1 26 1 view .LVU23
+  88              		.cfi_endproc
+  89              	.LFE130:
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccCN3ece.s 			page 3
+
+
+  91              		.global	__aeabi_ddiv
+  92              		.global	__aeabi_dmul
+  93              		.global	__aeabi_dsub
+  94              		.global	__aeabi_dadd
+  95              		.section	.text.Second_Order_TF_Calculate,"ax",%progbits
+  96              		.align	1
+  97              		.global	Second_Order_TF_Calculate
+  98              		.syntax unified
+  99              		.thumb
+ 100              		.thumb_func
+ 102              	Second_Order_TF_Calculate:
+ 103              	.LVL5:
+ 104              	.LFB131:
+  27:Components/Devices/transfer_function.c **** 
+  28:Components/Devices/transfer_function.c **** double Second_Order_TF_Calculate(Second_Order_TF_t *tf, double input)
+  29:Components/Devices/transfer_function.c **** {
+ 105              		.loc 1 29 1 is_stmt 1 view -0
+ 106              		.cfi_startproc
+ 107              		@ args = 0, pretend = 0, frame = 0
+ 108              		@ frame_needed = 0, uses_anonymous_args = 0
+ 109              		.loc 1 29 1 is_stmt 0 view .LVU25
+ 110 0000 2DE9D04F 		push	{r4, r6, r7, r8, r9, r10, fp, lr}
+ 111              	.LCFI1:
+ 112              		.cfi_def_cfa_offset 32
+ 113              		.cfi_offset 4, -32
+ 114              		.cfi_offset 6, -28
+ 115              		.cfi_offset 7, -24
+ 116              		.cfi_offset 8, -20
+ 117              		.cfi_offset 9, -16
+ 118              		.cfi_offset 10, -12
+ 119              		.cfi_offset 11, -8
+ 120              		.cfi_offset 14, -4
+ 121 0004 2DED048B 		vpush.64	{d8, d9}
+ 122              	.LCFI2:
+ 123              		.cfi_def_cfa_offset 48
+ 124              		.cfi_offset 80, -48
+ 125              		.cfi_offset 81, -44
+ 126              		.cfi_offset 82, -40
+ 127              		.cfi_offset 83, -36
+ 128 0008 0446     		mov	r4, r0
+ 129 000a 57EC106B 		vmov	r6, r7, d0
+  30:Components/Devices/transfer_function.c ****     tf->dt = DWT_GetDeltaT(&tf->DWT_CNT);
+ 130              		.loc 1 30 5 is_stmt 1 view .LVU26
+ 131              		.loc 1 30 14 is_stmt 0 view .LVU27
+ 132 000e 5030     		adds	r0, r0, #80
+ 133              	.LVL6:
+ 134              		.loc 1 30 14 view .LVU28
+ 135 0010 FFF7FEFF 		bl	DWT_GetDeltaT
+ 136              	.LVL7:
+ 137              		.loc 1 30 14 view .LVU29
+ 138 0014 10EE100A 		vmov	r0, s0
+ 139 0018 FFF7FEFF 		bl	__aeabi_f2d
+ 140              	.LVL8:
+ 141 001c 8246     		mov	r10, r0
+ 142 001e 8B46     		mov	fp, r1
+ 143              		.loc 1 30 12 view .LVU30
+ 144 0020 C4E900AB 		strd	r10, [r4]
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccCN3ece.s 			page 4
+
+
+  31:Components/Devices/transfer_function.c **** 
+  32:Components/Devices/transfer_function.c ****     tf->u = input;
+ 145              		.loc 1 32 5 is_stmt 1 view .LVU31
+ 146              		.loc 1 32 11 is_stmt 0 view .LVU32
+ 147 0024 C4E90867 		strd	r6, [r4, #32]
+  33:Components/Devices/transfer_function.c **** 
+  34:Components/Devices/transfer_function.c ****     tf->y_ddot = tf->u / tf->c[2] - tf->y * tf->c[0] / tf->c[2] - tf->y_dot * tf->c[1] / tf->c[2];
+ 148              		.loc 1 34 5 is_stmt 1 view .LVU33
+ 149              		.loc 1 34 31 is_stmt 0 view .LVU34
+ 150 0028 D4E90689 		ldrd	r8, [r4, #24]
+ 151              		.loc 1 34 24 view .LVU35
+ 152 002c 4246     		mov	r2, r8
+ 153 002e 4B46     		mov	r3, r9
+ 154 0030 3046     		mov	r0, r6
+ 155 0032 3946     		mov	r1, r7
+ 156 0034 FFF7FEFF 		bl	__aeabi_ddiv
+ 157              	.LVL9:
+ 158 0038 0646     		mov	r6, r0
+ 159              	.LVL10:
+ 160              		.loc 1 34 24 view .LVU36
+ 161 003a 0F46     		mov	r7, r1
+ 162              		.loc 1 34 39 view .LVU37
+ 163 003c 94ED0A7B 		vldr.64	d7, [r4, #40]
+ 164 0040 B0EE479A 		vmov.f32	s18, s14
+ 165 0044 F0EE679A 		vmov.f32	s19, s15
+ 166              		.loc 1 34 43 view .LVU38
+ 167 0048 D4E90223 		ldrd	r2, [r4, #8]
+ 168 004c 51EC170B 		vmov	r0, r1, d7
+ 169 0050 FFF7FEFF 		bl	__aeabi_dmul
+ 170              	.LVL11:
+ 171              		.loc 1 34 54 view .LVU39
+ 172 0054 4246     		mov	r2, r8
+ 173 0056 4B46     		mov	r3, r9
+ 174 0058 FFF7FEFF 		bl	__aeabi_ddiv
+ 175              	.LVL12:
+ 176 005c 0246     		mov	r2, r0
+ 177 005e 0B46     		mov	r3, r1
+ 178              		.loc 1 34 35 view .LVU40
+ 179 0060 3046     		mov	r0, r6
+ 180 0062 3946     		mov	r1, r7
+ 181 0064 FFF7FEFF 		bl	__aeabi_dsub
+ 182              	.LVL13:
+ 183 0068 0646     		mov	r6, r0
+ 184 006a 0F46     		mov	r7, r1
+ 185              		.loc 1 34 69 view .LVU41
+ 186 006c 94ED0C6B 		vldr.64	d6, [r4, #48]
+ 187 0070 B0EE468A 		vmov.f32	s16, s12
+ 188 0074 F0EE668A 		vmov.f32	s17, s13
+ 189              		.loc 1 34 77 view .LVU42
+ 190 0078 D4E90423 		ldrd	r2, [r4, #16]
+ 191 007c 51EC160B 		vmov	r0, r1, d6
+ 192 0080 FFF7FEFF 		bl	__aeabi_dmul
+ 193              	.LVL14:
+ 194              		.loc 1 34 88 view .LVU43
+ 195 0084 4246     		mov	r2, r8
+ 196 0086 4B46     		mov	r3, r9
+ 197 0088 FFF7FEFF 		bl	__aeabi_ddiv
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccCN3ece.s 			page 5
+
+
+ 198              	.LVL15:
+ 199 008c 0246     		mov	r2, r0
+ 200 008e 0B46     		mov	r3, r1
+ 201              		.loc 1 34 65 view .LVU44
+ 202 0090 3046     		mov	r0, r6
+ 203 0092 3946     		mov	r1, r7
+ 204 0094 FFF7FEFF 		bl	__aeabi_dsub
+ 205              	.LVL16:
+ 206 0098 0646     		mov	r6, r0
+ 207 009a 0F46     		mov	r7, r1
+ 208              		.loc 1 34 16 view .LVU45
+ 209 009c C4E90E67 		strd	r6, [r4, #56]
+  35:Components/Devices/transfer_function.c **** 
+  36:Components/Devices/transfer_function.c ****     //Trapezoid intergral
+  37:Components/Devices/transfer_function.c ****     tf->y_dot += (tf->Last_y_ddot + tf->y_ddot) * tf->dt / 2;
+ 210              		.loc 1 37 5 is_stmt 1 view .LVU46
+ 211              		.loc 1 37 35 is_stmt 0 view .LVU47
+ 212 00a0 D4E91223 		ldrd	r2, [r4, #72]
+ 213 00a4 FFF7FEFF 		bl	__aeabi_dadd
+ 214              	.LVL17:
+ 215 00a8 0246     		mov	r2, r0
+ 216 00aa 0B46     		mov	r3, r1
+ 217              		.loc 1 37 49 view .LVU48
+ 218 00ac 5046     		mov	r0, r10
+ 219 00ae 5946     		mov	r1, fp
+ 220 00b0 FFF7FEFF 		bl	__aeabi_dmul
+ 221              	.LVL18:
+ 222              		.loc 1 37 58 view .LVU49
+ 223 00b4 0022     		movs	r2, #0
+ 224 00b6 164B     		ldr	r3, .L5
+ 225 00b8 FFF7FEFF 		bl	__aeabi_dmul
+ 226              	.LVL19:
+ 227 00bc 0246     		mov	r2, r0
+ 228 00be 0B46     		mov	r3, r1
+ 229              		.loc 1 37 15 view .LVU50
+ 230 00c0 51EC180B 		vmov	r0, r1, d8
+ 231 00c4 FFF7FEFF 		bl	__aeabi_dadd
+ 232              	.LVL20:
+ 233 00c8 8046     		mov	r8, r0
+ 234 00ca 8946     		mov	r9, r1
+ 235 00cc C4E90C89 		strd	r8, [r4, #48]
+  38:Components/Devices/transfer_function.c ****     tf->y += (tf->Last_y_dot + tf->y_dot) * tf->dt / 2;
+ 236              		.loc 1 38 5 is_stmt 1 view .LVU51
+ 237              		.loc 1 38 30 is_stmt 0 view .LVU52
+ 238 00d0 D4E91023 		ldrd	r2, [r4, #64]
+ 239 00d4 FFF7FEFF 		bl	__aeabi_dadd
+ 240              	.LVL21:
+ 241 00d8 0246     		mov	r2, r0
+ 242 00da 0B46     		mov	r3, r1
+ 243              		.loc 1 38 43 view .LVU53
+ 244 00dc 5046     		mov	r0, r10
+ 245 00de 5946     		mov	r1, fp
+ 246 00e0 FFF7FEFF 		bl	__aeabi_dmul
+ 247              	.LVL22:
+ 248              		.loc 1 38 52 view .LVU54
+ 249 00e4 0022     		movs	r2, #0
+ 250 00e6 0A4B     		ldr	r3, .L5
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccCN3ece.s 			page 6
+
+
+ 251 00e8 FFF7FEFF 		bl	__aeabi_dmul
+ 252              	.LVL23:
+ 253 00ec 0246     		mov	r2, r0
+ 254 00ee 0B46     		mov	r3, r1
+ 255              		.loc 1 38 11 view .LVU55
+ 256 00f0 51EC190B 		vmov	r0, r1, d9
+ 257 00f4 FFF7FEFF 		bl	__aeabi_dadd
+ 258              	.LVL24:
+ 259 00f8 41EC100B 		vmov	d0, r0, r1
+ 260 00fc C4E90A01 		strd	r0, [r4, #40]
+  39:Components/Devices/transfer_function.c **** 
+  40:Components/Devices/transfer_function.c ****     tf->Last_y_dot = tf->y_dot;
+ 261              		.loc 1 40 5 is_stmt 1 view .LVU56
+ 262              		.loc 1 40 20 is_stmt 0 view .LVU57
+ 263 0100 C4E91089 		strd	r8, [r4, #64]
+  41:Components/Devices/transfer_function.c ****     tf->Last_y_ddot = tf->y_ddot;
+ 264              		.loc 1 41 5 is_stmt 1 view .LVU58
+ 265              		.loc 1 41 21 is_stmt 0 view .LVU59
+ 266 0104 C4E91267 		strd	r6, [r4, #72]
+  42:Components/Devices/transfer_function.c ****     return tf->y;
+ 267              		.loc 1 42 5 is_stmt 1 view .LVU60
+  43:Components/Devices/transfer_function.c **** }
+ 268              		.loc 1 43 1 is_stmt 0 view .LVU61
+ 269 0108 BDEC048B 		vldm	sp!, {d8-d9}
+ 270              	.LCFI3:
+ 271              		.cfi_restore 82
+ 272              		.cfi_restore 83
+ 273              		.cfi_restore 80
+ 274              		.cfi_restore 81
+ 275              		.cfi_def_cfa_offset 32
+ 276 010c BDE8D08F 		pop	{r4, r6, r7, r8, r9, r10, fp, pc}
+ 277              	.LVL25:
+ 278              	.L6:
+ 279              		.loc 1 43 1 view .LVU62
+ 280              		.align	2
+ 281              	.L5:
+ 282 0110 0000E03F 		.word	1071644672
+ 283              		.cfi_endproc
+ 284              	.LFE131:
+ 286              		.global	__aeabi_i2d
+ 287              		.section	.text.Gauss_Rand,"ax",%progbits
+ 288              		.align	1
+ 289              		.global	Gauss_Rand
+ 290              		.syntax unified
+ 291              		.thumb
+ 292              		.thumb_func
+ 294              	Gauss_Rand:
+ 295              	.LFB132:
+  44:Components/Devices/transfer_function.c **** 
+  45:Components/Devices/transfer_function.c **** double Gauss_Rand(void)
+  46:Components/Devices/transfer_function.c **** {
+ 296              		.loc 1 46 1 is_stmt 1 view -0
+ 297              		.cfi_startproc
+ 298              		@ args = 0, pretend = 0, frame = 0
+ 299              		@ frame_needed = 0, uses_anonymous_args = 0
+ 300 0000 70B5     		push	{r4, r5, r6, lr}
+ 301              	.LCFI4:
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccCN3ece.s 			page 7
+
+
+ 302              		.cfi_def_cfa_offset 16
+ 303              		.cfi_offset 4, -16
+ 304              		.cfi_offset 5, -12
+ 305              		.cfi_offset 6, -8
+ 306              		.cfi_offset 14, -4
+  47:Components/Devices/transfer_function.c ****     static double U, V;
+ 307              		.loc 1 47 5 view .LVU64
+  48:Components/Devices/transfer_function.c ****     static int phase = 0;
+ 308              		.loc 1 48 5 view .LVU65
+  49:Components/Devices/transfer_function.c ****     double Z;
+ 309              		.loc 1 49 5 view .LVU66
+  50:Components/Devices/transfer_function.c **** 
+  51:Components/Devices/transfer_function.c ****     if (phase == 0)
+ 310              		.loc 1 51 5 view .LVU67
+ 311              		.loc 1 51 15 is_stmt 0 view .LVU68
+ 312 0002 394B     		ldr	r3, .L11+8
+ 313 0004 1B68     		ldr	r3, [r3]
+ 314              		.loc 1 51 8 view .LVU69
+ 315 0006 002B     		cmp	r3, #0
+ 316 0008 41D1     		bne	.L8
+  52:Components/Devices/transfer_function.c ****     {
+  53:Components/Devices/transfer_function.c ****         U = rand() / (RAND_MAX + 1.0);
+ 317              		.loc 1 53 9 is_stmt 1 view .LVU70
+ 318              		.loc 1 53 13 is_stmt 0 view .LVU71
+ 319 000a FFF7FEFF 		bl	rand
+ 320              	.LVL26:
+ 321              		.loc 1 53 20 view .LVU72
+ 322 000e FFF7FEFF 		bl	__aeabi_i2d
+ 323              	.LVL27:
+ 324 0012 0022     		movs	r2, #0
+ 325 0014 4FF07853 		mov	r3, #1040187392
+ 326 0018 FFF7FEFF 		bl	__aeabi_dmul
+ 327              	.LVL28:
+ 328              		.loc 1 53 11 view .LVU73
+ 329 001c 334C     		ldr	r4, .L11+12
+ 330 001e C4E90001 		strd	r0, [r4]
+  54:Components/Devices/transfer_function.c ****         V = rand() / (RAND_MAX + 1.0);
+ 331              		.loc 1 54 9 is_stmt 1 view .LVU74
+ 332              		.loc 1 54 13 is_stmt 0 view .LVU75
+ 333 0022 FFF7FEFF 		bl	rand
+ 334              	.LVL29:
+ 335              		.loc 1 54 20 view .LVU76
+ 336 0026 FFF7FEFF 		bl	__aeabi_i2d
+ 337              	.LVL30:
+ 338 002a 0022     		movs	r2, #0
+ 339 002c 4FF07853 		mov	r3, #1040187392
+ 340 0030 FFF7FEFF 		bl	__aeabi_dmul
+ 341              	.LVL31:
+ 342              		.loc 1 54 11 view .LVU77
+ 343 0034 2E4E     		ldr	r6, .L11+16
+ 344 0036 C6E90001 		strd	r0, [r6]
+  55:Components/Devices/transfer_function.c ****         Z = sqrt(-2.0 * log(U)) * sin(2.0 * 3.1415926535 * V);
+ 345              		.loc 1 55 9 is_stmt 1 view .LVU78
+ 346              		.loc 1 55 25 is_stmt 0 view .LVU79
+ 347 003a 94ED000B 		vldr.64	d0, [r4]
+ 348 003e FFF7FEFF 		bl	log
+ 349              	.LVL32:
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccCN3ece.s 			page 8
+
+
+ 350 0042 51EC100B 		vmov	r0, r1, d0
+ 351              		.loc 1 55 13 view .LVU80
+ 352 0046 0022     		movs	r2, #0
+ 353 0048 4FF04043 		mov	r3, #-1073741824
+ 354 004c FFF7FEFF 		bl	__aeabi_dmul
+ 355              	.LVL33:
+ 356 0050 41EC100B 		vmov	d0, r0, r1
+ 357 0054 FFF7FEFF 		bl	sqrt
+ 358              	.LVL34:
+ 359 0058 55EC104B 		vmov	r4, r5, d0
+ 360              		.loc 1 55 35 view .LVU81
+ 361 005c 20A3     		adr	r3, .L11
+ 362 005e D3E90023 		ldrd	r2, [r3]
+ 363 0062 D6E90001 		ldrd	r0, [r6]
+ 364 0066 FFF7FEFF 		bl	__aeabi_dmul
+ 365              	.LVL35:
+ 366 006a 41EC100B 		vmov	d0, r0, r1
+ 367 006e FFF7FEFF 		bl	sin
+ 368              	.LVL36:
+ 369 0072 53EC102B 		vmov	r2, r3, d0
+ 370              		.loc 1 55 11 view .LVU82
+ 371 0076 2046     		mov	r0, r4
+ 372 0078 2946     		mov	r1, r5
+ 373 007a FFF7FEFF 		bl	__aeabi_dmul
+ 374              	.LVL37:
+ 375 007e 41EC100B 		vmov	d0, r0, r1
+ 376              	.LVL38:
+ 377              	.L9:
+  56:Components/Devices/transfer_function.c ****     }
+  57:Components/Devices/transfer_function.c ****     else
+  58:Components/Devices/transfer_function.c ****     {
+  59:Components/Devices/transfer_function.c ****         Z = sqrt(-2.0 * log(U)) * cos(2.0 * 3.1415926535 * V);
+  60:Components/Devices/transfer_function.c ****     }
+  61:Components/Devices/transfer_function.c **** 
+  62:Components/Devices/transfer_function.c ****     phase = 1 - phase;
+ 378              		.loc 1 62 5 is_stmt 1 view .LVU83
+ 379              		.loc 1 62 15 is_stmt 0 view .LVU84
+ 380 0082 194A     		ldr	r2, .L11+8
+ 381 0084 1368     		ldr	r3, [r2]
+ 382 0086 C3F10103 		rsb	r3, r3, #1
+ 383              		.loc 1 62 11 view .LVU85
+ 384 008a 1360     		str	r3, [r2]
+  63:Components/Devices/transfer_function.c ****     return Z;
+ 385              		.loc 1 63 5 is_stmt 1 view .LVU86
+  64:Components/Devices/transfer_function.c **** }
+ 386              		.loc 1 64 1 is_stmt 0 view .LVU87
+ 387 008c 70BD     		pop	{r4, r5, r6, pc}
+ 388              	.LVL39:
+ 389              	.L8:
+  59:Components/Devices/transfer_function.c ****     }
+ 390              		.loc 1 59 9 is_stmt 1 view .LVU88
+  59:Components/Devices/transfer_function.c ****     }
+ 391              		.loc 1 59 25 is_stmt 0 view .LVU89
+ 392 008e 174B     		ldr	r3, .L11+12
+ 393 0090 93ED000B 		vldr.64	d0, [r3]
+ 394 0094 FFF7FEFF 		bl	log
+ 395              	.LVL40:
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccCN3ece.s 			page 9
+
+
+ 396 0098 51EC100B 		vmov	r0, r1, d0
+  59:Components/Devices/transfer_function.c ****     }
+ 397              		.loc 1 59 13 view .LVU90
+ 398 009c 0022     		movs	r2, #0
+ 399 009e 4FF04043 		mov	r3, #-1073741824
+ 400 00a2 FFF7FEFF 		bl	__aeabi_dmul
+ 401              	.LVL41:
+ 402 00a6 41EC100B 		vmov	d0, r0, r1
+ 403 00aa FFF7FEFF 		bl	sqrt
+ 404              	.LVL42:
+ 405 00ae 55EC104B 		vmov	r4, r5, d0
+  59:Components/Devices/transfer_function.c ****     }
+ 406              		.loc 1 59 35 view .LVU91
+ 407 00b2 0BA3     		adr	r3, .L11
+ 408 00b4 D3E90023 		ldrd	r2, [r3]
+ 409 00b8 0D49     		ldr	r1, .L11+16
+ 410 00ba D1E90001 		ldrd	r0, [r1]
+ 411 00be FFF7FEFF 		bl	__aeabi_dmul
+ 412              	.LVL43:
+ 413 00c2 41EC100B 		vmov	d0, r0, r1
+ 414 00c6 FFF7FEFF 		bl	cos
+ 415              	.LVL44:
+ 416 00ca 53EC102B 		vmov	r2, r3, d0
+  59:Components/Devices/transfer_function.c ****     }
+ 417              		.loc 1 59 11 view .LVU92
+ 418 00ce 2046     		mov	r0, r4
+ 419 00d0 2946     		mov	r1, r5
+ 420 00d2 FFF7FEFF 		bl	__aeabi_dmul
+ 421              	.LVL45:
+ 422 00d6 41EC100B 		vmov	d0, r0, r1
+ 423              	.LVL46:
+  59:Components/Devices/transfer_function.c ****     }
+ 424              		.loc 1 59 11 view .LVU93
+ 425 00da D2E7     		b	.L9
+ 426              	.L12:
+ 427 00dc AFF30080 		.align	3
+ 428              	.L11:
+ 429 00e0 44174154 		.word	1413551940
+ 430 00e4 FB211940 		.word	1075388923
+ 431 00e8 00000000 		.word	.LANCHOR0
+ 432 00ec 00000000 		.word	.LANCHOR1
+ 433 00f0 00000000 		.word	.LANCHOR2
+ 434              		.cfi_endproc
+ 435              	.LFE132:
+ 437              		.section	.bss.U.1,"aw",%nobits
+ 438              		.align	3
+ 439              		.set	.LANCHOR1,. + 0
+ 442              	U.1:
+ 443 0000 00000000 		.space	8
+ 443      00000000 
+ 444              		.section	.bss.V.0,"aw",%nobits
+ 445              		.align	3
+ 446              		.set	.LANCHOR2,. + 0
+ 449              	V.0:
+ 450 0000 00000000 		.space	8
+ 450      00000000 
+ 451              		.section	.bss.phase.2,"aw",%nobits
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccCN3ece.s 			page 10
+
+
+ 452              		.align	2
+ 453              		.set	.LANCHOR0,. + 0
+ 456              	phase.2:
+ 457 0000 00000000 		.space	4
+ 458              		.text
+ 459              	.Letext0:
+ 460              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 461              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 462              		.file 4 "Components/Devices/transfer_function.h"
+ 463              		.file 5 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 464              		.file 6 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 465              		.file 7 "Bsp/bsp_dwt.h"
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccCN3ece.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 transfer_function.c
+C:\Users\86152\AppData\Local\Temp\ccCN3ece.s:21     .text.Second_Order_TF_Init:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccCN3ece.s:27     .text.Second_Order_TF_Init:00000000 Second_Order_TF_Init
+C:\Users\86152\AppData\Local\Temp\ccCN3ece.s:96     .text.Second_Order_TF_Calculate:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccCN3ece.s:102    .text.Second_Order_TF_Calculate:00000000 Second_Order_TF_Calculate
+C:\Users\86152\AppData\Local\Temp\ccCN3ece.s:282    .text.Second_Order_TF_Calculate:00000110 $d
+C:\Users\86152\AppData\Local\Temp\ccCN3ece.s:288    .text.Gauss_Rand:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccCN3ece.s:294    .text.Gauss_Rand:00000000 Gauss_Rand
+C:\Users\86152\AppData\Local\Temp\ccCN3ece.s:429    .text.Gauss_Rand:000000e0 $d
+C:\Users\86152\AppData\Local\Temp\ccCN3ece.s:438    .bss.U.1:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccCN3ece.s:442    .bss.U.1:00000000 U.1
+C:\Users\86152\AppData\Local\Temp\ccCN3ece.s:445    .bss.V.0:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccCN3ece.s:449    .bss.V.0:00000000 V.0
+C:\Users\86152\AppData\Local\Temp\ccCN3ece.s:452    .bss.phase.2:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccCN3ece.s:456    .bss.phase.2:00000000 phase.2
+
+UNDEFINED SYMBOLS
+__aeabi_f2d
+__aeabi_ddiv
+__aeabi_dmul
+__aeabi_dsub
+__aeabi_dadd
+DWT_GetDeltaT
+__aeabi_i2d
+rand
+log
+sqrt
+sin
+cos

@@ -1,0 +1,255 @@
+#include "motor_task.h"
+
+int16_t debugoutput = 0, debugoutput2 = 0;
+
+exo_controller_t exo_controller = {0};
+
+float TargetVelocity = 0, TargetTorque = 0;
+float TargetAngle1 = 0, TargetAngle2 = 0,
+      TargetAngle3 = 0; // 目标角度
+float a = 45.0f, b = 0.5f, c = 45.0f;
+
+static void set_exo_mode(void);
+static void get_exo_ctrl_value(void);
+static void limit_exo_ctrl_value(void);
+static void set_exo_control(void);
+static void send_exo_motor_current(void);
+
+void exo_init(void)
+{
+  // PID初始化
+  PID_Init(&exo_controller.lk_motor.PID_Velocity, 2048, 1000, 0, 1.5, 0.1, 0, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
+  PID_Init(&exo_controller.lk_motor.PID_Angle, 8600, 4000, 0, 30, 1, 1, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
+  exo_controller.lk_motor.zero_offset = MOTOR_ZERO_OFFSET;
+  exo_controller.lk_motor.max_out = 0;
+
+  PID_Init(&exo_controller.dm_motor[0].PID_Velocity, 18, 10, 0, 0.7, 0, 0, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
+  PID_Init(&exo_controller.dm_motor[0].PID_Angle, 50, 5, 0, 0.4, 0.05, 0.01, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
+  exo_controller.dm_motor[0].max_out = 0;
+
+  PID_Init(&exo_controller.dm_motor[1].PID_Velocity, 18, 10, 0, 0.7, 0, 0, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
+  PID_Init(&exo_controller.dm_motor[1].PID_Angle, 50, 5, 0, 0.4, 0.05, 0.01, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
+  exo_controller.dm_motor[1].max_out = 0;
+
+  PID_Init(&exo_controller.dm_motor[2].PID_Velocity, 2048, 1000, 0, 1.5, 0.1, 0, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
+  PID_Init(&exo_controller.dm_motor[2].PID_Angle, 8600, 4000, 0, 30, 1, 1, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
+  exo_controller.dm_motor[2].max_out = 0;
+
+  exo_controller.lk_motor.reduction_ratio = 1.0f;
+  exo_controller.dm_motor[0].reduction_ratio = 1.0f;
+  exo_controller.dm_motor[1].reduction_ratio = 1.0f;
+  exo_controller.dm_motor[2].reduction_ratio = 1.0f;
+
+  DM_CANx_SendStdData(&hcan1, 0x01, ENABLE_MOTOR, 8);
+  HAL_Delay(2);
+  DM_CANx_SendStdData(&hcan1, 0x02, ENABLE_MOTOR, 8);
+  HAL_Delay(2);
+  DM_CANx_SendStdData(&hcan1, 0x03, ENABLE_MOTOR, 8);
+  HAL_Delay(2);
+
+  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3); // 启动PWM
+}
+
+void exo_task(void)
+{
+  exo_controller.dt = DWT_GetDeltaT(&exo_controller.DWT_count);
+  exo_controller.t += exo_controller.dt;
+
+  set_exo_mode();
+  get_exo_ctrl_value();
+
+  send_exo_motor_current();
+}
+
+static void set_exo_mode(void)
+{
+  static uint32_t reset_count = 0;
+  static float reset_timestamp = 0;
+  static uint8_t pin_state = 0, last_pin_state = 0;
+
+  pin_state = HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin);
+  // press the key
+  if (pin_state == GPIO_PIN_RESET)
+  {
+    reset_count++;
+    reset_timestamp = exo_controller.t;
+  }
+
+  if (last_pin_state == GPIO_PIN_SET && pin_state == GPIO_PIN_RESET)
+  {
+    reset_count = 0;
+    exo_controller.mode = SILENCE_MODE;
+  }
+
+  if (reset_count > 1000)
+  {
+    if ((exo_controller.t - reset_timestamp) < 2.0f)
+      TIM_Set_PWM(&htim4, TIM_CHANNEL_3, 2000);
+    else
+      TIM_Set_PWM(&htim4, TIM_CHANNEL_3, 0);
+
+    if ((exo_controller.t - reset_timestamp) > 5.0f)
+      exo_controller.mode = Angle;
+  }
+
+  if (exo_controller.last_mode != exo_controller.mode)
+    exo_controller.mode_change_timestamp = exo_controller.t;
+
+  last_pin_state = pin_state;
+  exo_controller.last_mode = exo_controller.mode;
+}
+
+static void get_exo_ctrl_value(void)
+{
+  switch (exo_controller.mode)
+  {
+  case SILENCE_MODE:
+    exo_controller.lk_motor.Output = 0;
+    exo_controller.dm_motor[0].Output = 0;
+    exo_controller.dm_motor[1].Output = 0;
+    exo_controller.dm_motor[2].Output = 0;
+    TargetAngle1 = exo_controller.dm_motor[0].angle_in_degree;
+    TargetAngle2 = exo_controller.dm_motor[1].angle_in_degree;
+    TargetAngle3 = exo_controller.lk_motor.angle_in_degree;
+    break;
+
+  case Angle:
+    // 角度控制
+    // Motor_Angle_Calculate(&exo_controller.lk_motor, exo_controller.lk_motor.total_angle, exo_controller.lk_motor.velocity_in_rpm, TargetAngle1);
+    if (exo_controller.t - exo_controller.mode_change_timestamp < 1)
+    {
+      TargetAngle1 = exo_controller.dm_motor[0].angle_in_degree;
+      TargetAngle2 = exo_controller.dm_motor[1].angle_in_degree;
+      TargetAngle3 = exo_controller.lk_motor.angle_in_degree;
+    }
+    // else
+    // {
+    //   TargetAngle1 = (MOTOR1_MAX - MOTOR1_MIN) / 2 * sin(b * exo_controller.t) + (MOTOR1_MAX + MOTOR1_MIN) / 2;
+    //   TargetAngle2 = (MOTOR2_MAX - MOTOR2_MIN) / 2 * sin(b * exo_controller.t + PI) + (MOTOR2_MAX + MOTOR2_MIN) / 2;
+    // }
+
+    // TargetAngle1 = float_constrain(TargetAngle1, MOTOR1_MIN, MOTOR1_MAX);
+    // TargetAngle2 = float_constrain(TargetAngle2, MOTOR2_MIN, MOTOR2_MAX);
+
+    /* -------------------------------- lk motor -------------------------------- */
+    PID_Calculate(&exo_controller.lk_motor.PID_Angle, exo_controller.lk_motor.angle_in_degree, TargetAngle3);
+    float VelocityLoopInput = float_constrain(exo_controller.lk_motor.PID_Angle.Output,
+                                              -exo_controller.lk_motor.PID_Angle.MaxOut, exo_controller.lk_motor.PID_Angle.MaxOut);
+    PID_Calculate(&exo_controller.lk_motor.PID_Velocity, exo_controller.lk_motor.velocity_in_rpm, VelocityLoopInput);
+    float TorqueLoopInput = float_constrain(exo_controller.lk_motor.PID_Velocity.Output,
+                                            -exo_controller.lk_motor.PID_Velocity.MaxOut, exo_controller.lk_motor.PID_Velocity.MaxOut);
+    exo_controller.lk_motor.Output = float_constrain(TorqueLoopInput, -exo_controller.lk_motor.max_out, exo_controller.lk_motor.max_out);
+
+    /* --------------------------------- dm motor -------------------------------- */
+    PID_Calculate(&exo_controller.dm_motor[0].PID_Angle, exo_controller.dm_motor[0].angle_in_degree, TargetAngle1);
+    VelocityLoopInput = float_constrain(exo_controller.dm_motor[0].PID_Angle.Output,
+                                        -exo_controller.dm_motor[0].PID_Angle.MaxOut, exo_controller.dm_motor[0].PID_Angle.MaxOut);
+
+    PID_Calculate(&exo_controller.dm_motor[0].PID_Velocity, exo_controller.dm_motor[0].velocity_in_radps, VelocityLoopInput);
+    TorqueLoopInput = float_constrain(exo_controller.dm_motor[0].PID_Velocity.Output,
+                                      -exo_controller.dm_motor[0].PID_Velocity.MaxOut, exo_controller.dm_motor[0].PID_Velocity.MaxOut);
+
+    exo_controller.dm_motor[0].Output = float_constrain(TorqueLoopInput, -exo_controller.dm_motor[0].max_out, exo_controller.dm_motor[0].max_out);
+
+    PID_Calculate(&exo_controller.dm_motor[1].PID_Angle, exo_controller.dm_motor[1].angle_in_degree, TargetAngle2);
+    VelocityLoopInput = float_constrain(exo_controller.dm_motor[1].PID_Angle.Output,
+                                        -exo_controller.dm_motor[1].PID_Angle.MaxOut, exo_controller.dm_motor[1].PID_Angle.MaxOut);
+
+    PID_Calculate(&exo_controller.dm_motor[1].PID_Velocity, exo_controller.dm_motor[1].velocity_in_radps, VelocityLoopInput);
+    TorqueLoopInput = float_constrain(exo_controller.dm_motor[1].PID_Velocity.Output,
+                                      -exo_controller.dm_motor[1].PID_Velocity.MaxOut, exo_controller.dm_motor[1].PID_Velocity.MaxOut);
+
+    exo_controller.dm_motor[1].Output = float_constrain(TorqueLoopInput, -exo_controller.dm_motor[1].max_out, exo_controller.dm_motor[1].max_out);
+
+    Motor_Angle_Calculate(&exo_controller.dm_motor[0], exo_controller.dm_motor[0].angle_in_degree,
+                          exo_controller.dm_motor[0].velocity_in_radps, TargetAngle1);
+
+    break;
+
+  case Velocity:
+    // 速度控制
+    // Motor_Speed_Calculate(&exo_controller.lk_motor, exo_controller.lk_motor.velocity_in_rpm, TargetVelocity);
+
+    // PID_Calculate(&exo_controller.lk_motor.PID_Velocity, exo_controller.lk_motor.velocity_in_rpm, TargetVelocity);
+    // TorqueLoopInput = float_constrain(exo_controller.lk_motor.PID_Velocity.Output,
+    //                                   -exo_controller.lk_motor.PID_Velocity.MaxOut, exo_controller.lk_motor.PID_Velocity.MaxOut);
+
+    // exo_controller.lk_motor.Output = float_constrain(TorqueLoopInput, -exo_controller.lk_motor.max_out, exo_controller.lk_motor.max_out);
+
+    /* --------------------------------- dm motor -------------------------------- */
+    PID_Calculate(&exo_controller.dm_motor[0].PID_Velocity, exo_controller.dm_motor[0].velocity_in_radps, TargetVelocity);
+    TorqueLoopInput = float_constrain(exo_controller.dm_motor[0].PID_Velocity.Output,
+                                      -exo_controller.dm_motor[0].PID_Velocity.MaxOut, exo_controller.dm_motor[0].PID_Velocity.MaxOut);
+
+    exo_controller.dm_motor[0].Output = float_constrain(TorqueLoopInput, -exo_controller.dm_motor[0].max_out, exo_controller.dm_motor[0].max_out);
+
+    // 避免模式切换疯掉
+    TargetAngle1 = exo_controller.dm_motor[0].angle_in_degree;
+    break;
+
+  case Debug:
+    exo_controller.lk_motor.Output = debugoutput;
+    TargetAngle1 = exo_controller.lk_motor.angle_in_degree;
+    break;
+
+  case 5:
+    TargetAngle1 = a * sin(b * exo_controller.t) + c;
+    PID_Calculate(&exo_controller.lk_motor.PID_Angle, exo_controller.lk_motor.angle_in_degree, TargetAngle1);
+    VelocityLoopInput = float_constrain(exo_controller.lk_motor.PID_Angle.Output,
+                                        -exo_controller.lk_motor.PID_Angle.MaxOut, exo_controller.lk_motor.PID_Angle.MaxOut);
+
+    PID_Calculate(&exo_controller.lk_motor.PID_Velocity, exo_controller.lk_motor.velocity_in_rpm, VelocityLoopInput);
+    TorqueLoopInput = float_constrain(exo_controller.lk_motor.PID_Velocity.Output,
+                                      -exo_controller.lk_motor.PID_Velocity.MaxOut, exo_controller.lk_motor.PID_Velocity.MaxOut);
+
+    exo_controller.lk_motor.Output = float_constrain(TorqueLoopInput, -exo_controller.lk_motor.max_out, exo_controller.lk_motor.max_out);
+    break;
+  }
+}
+
+static void limit_exo_ctrl_value(void)
+{
+  ;
+}
+
+static void set_exo_control(void)
+{
+  ;
+}
+
+static void send_exo_motor_current(void)
+{
+  static uint8_t CAN_send_status;
+
+  // Serial_Debug(&huart1, 1, exo_controller.lk_motor.PID_Angle.Ref, exo_controller.lk_motor.PID_Angle.Measure, exo_controller.lk_motor.PID_Angle.Output,
+  //              exo_controller.lk_motor.PID_Angle.Pout, exo_controller.lk_motor.PID_Angle.Iout, exo_controller.lk_motor.PID_Angle.Dout);
+  if (exo_controller.mode == SILENCE_MODE)
+  {
+    // 发送输出
+    CAN_send_status = Send_DM_MIT_Command(&hcan1, 0X01, 0, 0, 0, 0, 0);
+    DWT_Delay(0.0003f);
+    CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X02, 0, 0, 0, 0, 0);
+    DWT_Delay(0.0003f);
+    CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X03, 0, 0, 0, 0, 0);
+    exo_controller.CAN_send_status = CAN_send_status | Send_LK_Current_Single(&hcan1, 1, 0);
+
+    if (exo_controller.CAN_send_status == HAL_OK)
+      ;
+    else
+      exo_controller.CAN_send_error_count++;
+  }
+  else
+  {
+    CAN_send_status = Send_DM_MIT_Command(&hcan1, 0X01, 0, 0, 0, 0, exo_controller.dm_motor[0].Output);
+    DWT_Delay(0.0003f);
+    CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X02, 0, 0, 0, 0, exo_controller.dm_motor[1].Output);
+    DWT_Delay(0.0003f);
+    CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X03, 0, 0, 0, 0, TargetTorque);
+    exo_controller.CAN_send_status = CAN_send_status | Send_LK_Current_Single(&hcan1, 1, exo_controller.lk_motor.Output);
+
+    if (exo_controller.CAN_send_status == HAL_OK)
+      ;
+    else
+      exo_controller.CAN_send_error_count++;
+  }
+}

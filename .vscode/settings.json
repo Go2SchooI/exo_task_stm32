@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+        "cstdint": "c",
+        "cmsis_os.h": "c",
+        "freertos.h": "c",
+        "portable.h": "c",
+        "ins_task.h": "c",
+        "includes.h": "c",
+        "motor_task.h": "c",
+        "serialdebug.h": "c",
+        "bsp_can.h": "c",
+        "main.h": "c",
+        "motor.h": "c",
+        "cmath": "c",
+        "tim.h": "c"
+    }
+}

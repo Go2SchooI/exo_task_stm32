@@ -1,0 +1,621 @@
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"SerialDebug.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Debug_Buf_Send,"ax",%progbits
+  20              		.align	1
+  21              		.global	Debug_Buf_Send
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	Debug_Buf_Send:
+  27              	.LVL0:
+  28              	.LFB131:
+  29              		.file 1 "Application/SerialDebug.c"
+   1:Application/SerialDebug.c **** #include "SerialDebug.h"
+   2:Application/SerialDebug.c **** 
+   3:Application/SerialDebug.c **** uint8_t DebugBuffer[100] = {0};
+   4:Application/SerialDebug.c **** uint8_t position = 0;
+   5:Application/SerialDebug.c **** 
+   6:Application/SerialDebug.c **** uint16_t Debug_Count = 0;
+   7:Application/SerialDebug.c **** uint16_t Debug_Period = 10;
+   8:Application/SerialDebug.c **** 
+   9:Application/SerialDebug.c **** void Serial_Debug(UART_HandleTypeDef *huart, uint16_t debug_period, float a, float b, float c, floa
+  10:Application/SerialDebug.c **** {
+  11:Application/SerialDebug.c ****     if (debug_period == 0)
+  12:Application/SerialDebug.c ****         return;
+  13:Application/SerialDebug.c ****     if (Debug_Count >= debug_period)
+  14:Application/SerialDebug.c ****     {
+  15:Application/SerialDebug.c ****         Debug_Count = 0;
+  16:Application/SerialDebug.c ****         Debug_Buf_Generate(huart, a, b, c, d, e, f, (uint8_t *)DebugBuffer);
+  17:Application/SerialDebug.c ****     }
+  18:Application/SerialDebug.c ****     Debug_Count++;
+  19:Application/SerialDebug.c **** }
+  20:Application/SerialDebug.c **** 
+  21:Application/SerialDebug.c **** void Debug_Buf_Send(UART_HandleTypeDef *huart, uint8_t *data, uint8_t length)
+  22:Application/SerialDebug.c **** {
+  30              		.loc 1 22 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 22 1 is_stmt 0 view .LVU1
+  35 0000 08B5     		push	{r3, lr}
+  36              	.LCFI0:
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s 			page 2
+
+
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 3, -8
+  39              		.cfi_offset 14, -4
+  23:Application/SerialDebug.c ****     HAL_UART_Transmit_DMA(huart, data, length);
+  40              		.loc 1 23 5 is_stmt 1 view .LVU2
+  41 0002 FFF7FEFF 		bl	HAL_UART_Transmit_DMA
+  42              	.LVL1:
+  24:Application/SerialDebug.c **** }
+  43              		.loc 1 24 1 is_stmt 0 view .LVU3
+  44 0006 08BD     		pop	{r3, pc}
+  45              		.cfi_endproc
+  46              	.LFE131:
+  48              		.section	.text.float2char,"ax",%progbits
+  49              		.align	1
+  50              		.global	float2char
+  51              		.syntax unified
+  52              		.thumb
+  53              		.thumb_func
+  55              	float2char:
+  56              	.LVL2:
+  57              	.LFB133:
+  25:Application/SerialDebug.c **** 
+  26:Application/SerialDebug.c **** void Debug_Buf_Generate(UART_HandleTypeDef *huart, float a, float b, float c, float d, float e, flo
+  27:Application/SerialDebug.c **** {
+  28:Application/SerialDebug.c ****     uint8_t position = 0;
+  29:Application/SerialDebug.c ****     float buffer[6] = {a, b, c, d, e, f};
+  30:Application/SerialDebug.c ****     for (uint8_t cnt = 0; cnt < 6; cnt++)
+  31:Application/SerialDebug.c ****     {
+  32:Application/SerialDebug.c ****         float2char(buffer[cnt], data, cnt, &position);
+  33:Application/SerialDebug.c ****     }
+  34:Application/SerialDebug.c ****     data[position - 1] = '\n';
+  35:Application/SerialDebug.c ****     Debug_Buf_Send(huart, (uint8_t *)DebugBuffer, position);
+  36:Application/SerialDebug.c **** }
+  37:Application/SerialDebug.c **** 
+  38:Application/SerialDebug.c **** void float2char(float floatdata, uint8_t *buffer, uint8_t n, uint8_t *position) // ������
+  39:Application/SerialDebug.c **** {
+  58              		.loc 1 39 1 is_stmt 1 view -0
+  59              		.cfi_startproc
+  60              		@ args = 0, pretend = 0, frame = 0
+  61              		@ frame_needed = 0, uses_anonymous_args = 0
+  62              		.loc 1 39 1 is_stmt 0 view .LVU5
+  63 0000 10B5     		push	{r4, lr}
+  64              	.LCFI1:
+  65              		.cfi_def_cfa_offset 8
+  66              		.cfi_offset 4, -8
+  67              		.cfi_offset 14, -4
+  40:Application/SerialDebug.c ****     int32_t slope;
+  68              		.loc 1 40 5 is_stmt 1 view .LVU6
+  41:Application/SerialDebug.c ****     int32_t temp;
+  69              		.loc 1 41 5 view .LVU7
+  42:Application/SerialDebug.c ****     int8_t i, j;
+  70              		.loc 1 42 5 view .LVU8
+  43:Application/SerialDebug.c ****     slope = (int32_t)(floatdata * 100);
+  71              		.loc 1 43 5 view .LVU9
+  72              		.loc 1 43 33 is_stmt 0 view .LVU10
+  73 0002 DFED327A 		vldr.32	s15, .L13
+  74 0006 20EE270A 		vmul.f32	s0, s0, s15
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s 			page 3
+
+
+  75              	.LVL3:
+  76              		.loc 1 43 11 view .LVU11
+  77 000a FDEEC07A 		vcvt.s32.f32	s15, s0
+  78 000e 17EE90EA 		vmov	lr, s15	@ int
+  79              	.LVL4:
+  44:Application/SerialDebug.c ****     buffer[*position] = n + 'a';
+  80              		.loc 1 44 5 is_stmt 1 view .LVU12
+  81              		.loc 1 44 12 is_stmt 0 view .LVU13
+  82 0012 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  83              		.loc 1 44 27 view .LVU14
+  84 0014 6131     		adds	r1, r1, #97
+  85              	.LVL5:
+  86              		.loc 1 44 23 view .LVU15
+  87 0016 C154     		strb	r1, [r0, r3]
+  45:Application/SerialDebug.c ****     *position += 1;
+  88              		.loc 1 45 5 is_stmt 1 view .LVU16
+  89              		.loc 1 45 15 is_stmt 0 view .LVU17
+  90 0018 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  91 001a 0133     		adds	r3, r3, #1
+  92 001c DBB2     		uxtb	r3, r3
+  93 001e 1370     		strb	r3, [r2]
+  46:Application/SerialDebug.c ****     buffer[*position] = '=';
+  94              		.loc 1 46 5 is_stmt 1 view .LVU18
+  95              		.loc 1 46 23 is_stmt 0 view .LVU19
+  96 0020 3D21     		movs	r1, #61
+  97 0022 C154     		strb	r1, [r0, r3]
+  47:Application/SerialDebug.c ****     *position += 1;
+  98              		.loc 1 47 5 is_stmt 1 view .LVU20
+  99              		.loc 1 47 15 is_stmt 0 view .LVU21
+ 100 0024 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 101 0026 0133     		adds	r3, r3, #1
+ 102 0028 DBB2     		uxtb	r3, r3
+ 103 002a 1370     		strb	r3, [r2]
+  48:Application/SerialDebug.c ****     if (slope <= 0) // �ж��Ƿ����0
+ 104              		.loc 1 48 5 is_stmt 1 view .LVU22
+ 105              		.loc 1 48 8 is_stmt 0 view .LVU23
+ 106 002c BEF1000F 		cmp	lr, #0
+ 107 0030 03DD     		ble	.L11
+ 108              	.L4:
+  49:Application/SerialDebug.c ****     {
+  50:Application/SerialDebug.c ****         buffer[*position] = '-';
+  51:Application/SerialDebug.c ****         slope = -slope;
+  52:Application/SerialDebug.c ****         *position += 1;
+  53:Application/SerialDebug.c ****     }
+  54:Application/SerialDebug.c ****     temp = slope;               // ȡ��������
+ 109              		.loc 1 54 5 is_stmt 1 view .LVU24
+ 110              	.LVL6:
+  55:Application/SerialDebug.c ****     for (i = 0; temp != 0; i++) // �����������ֵ�λ��
+ 111              		.loc 1 55 5 view .LVU25
+  54:Application/SerialDebug.c ****     for (i = 0; temp != 0; i++) // �����������ֵ�λ��
+ 112              		.loc 1 54 10 is_stmt 0 view .LVU26
+ 113 0032 7346     		mov	r3, lr
+ 114              		.loc 1 55 12 view .LVU27
+ 115 0034 4FF0000C 		mov	ip, #0
+ 116              		.loc 1 55 5 view .LVU28
+ 117 0038 11E0     		b	.L5
+ 118              	.LVL7:
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s 			page 4
+
+
+ 119              	.L11:
+  50:Application/SerialDebug.c ****         slope = -slope;
+ 120              		.loc 1 50 9 is_stmt 1 view .LVU29
+  50:Application/SerialDebug.c ****         slope = -slope;
+ 121              		.loc 1 50 27 is_stmt 0 view .LVU30
+ 122 003a 2D21     		movs	r1, #45
+ 123 003c C154     		strb	r1, [r0, r3]
+  51:Application/SerialDebug.c ****         *position += 1;
+ 124              		.loc 1 51 9 is_stmt 1 view .LVU31
+  51:Application/SerialDebug.c ****         *position += 1;
+ 125              		.loc 1 51 15 is_stmt 0 view .LVU32
+ 126 003e CEF1000E 		rsb	lr, lr, #0
+ 127              	.LVL8:
+  52:Application/SerialDebug.c ****     }
+ 128              		.loc 1 52 9 is_stmt 1 view .LVU33
+  52:Application/SerialDebug.c ****     }
+ 129              		.loc 1 52 19 is_stmt 0 view .LVU34
+ 130 0042 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 131 0044 0133     		adds	r3, r3, #1
+ 132 0046 1370     		strb	r3, [r2]
+ 133 0048 F3E7     		b	.L4
+ 134              	.LVL9:
+ 135              	.L6:
+  56:Application/SerialDebug.c ****         temp /= 10;
+ 136              		.loc 1 56 9 is_stmt 1 discriminator 3 view .LVU35
+ 137              		.loc 1 56 14 is_stmt 0 discriminator 3 view .LVU36
+ 138 004a 2149     		ldr	r1, .L13+4
+ 139 004c 81FB0341 		smull	r4, r1, r1, r3
+ 140 0050 DB17     		asrs	r3, r3, #31
+ 141              	.LVL10:
+ 142              		.loc 1 56 14 discriminator 3 view .LVU37
+ 143 0052 C3EBA103 		rsb	r3, r3, r1, asr #2
+ 144              	.LVL11:
+  55:Application/SerialDebug.c ****         temp /= 10;
+ 145              		.loc 1 55 28 is_stmt 1 discriminator 3 view .LVU38
+  55:Application/SerialDebug.c ****         temp /= 10;
+ 146              		.loc 1 55 29 is_stmt 0 discriminator 3 view .LVU39
+ 147 0056 0CF1010C 		add	ip, ip, #1
+ 148              	.LVL12:
+  55:Application/SerialDebug.c ****         temp /= 10;
+ 149              		.loc 1 55 29 discriminator 3 view .LVU40
+ 150 005a 4FFA8CFC 		sxtb	ip, ip
+ 151              	.LVL13:
+ 152              	.L5:
+  55:Application/SerialDebug.c ****         temp /= 10;
+ 153              		.loc 1 55 17 is_stmt 1 discriminator 1 view .LVU41
+  55:Application/SerialDebug.c ****         temp /= 10;
+ 154              		.loc 1 55 5 is_stmt 0 discriminator 1 view .LVU42
+ 155 005e 002B     		cmp	r3, #0
+ 156 0060 F3D1     		bne	.L6
+  57:Application/SerialDebug.c ****     temp = slope;
+  58:Application/SerialDebug.c ****     for (j = i; j >= 0; j--) // ����������ת�����ַ�����
+ 157              		.loc 1 58 12 view .LVU43
+ 158 0062 6146     		mov	r1, ip
+ 159 0064 01E0     		b	.L7
+ 160              	.LVL14:
+ 161              	.L8:
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s 			page 5
+
+
+ 162              		.loc 1 58 25 is_stmt 1 discriminator 2 view .LVU44
+ 163              		.loc 1 58 26 is_stmt 0 discriminator 2 view .LVU45
+ 164 0066 0139     		subs	r1, r1, #1
+ 165              	.LVL15:
+ 166              		.loc 1 58 26 discriminator 2 view .LVU46
+ 167 0068 49B2     		sxtb	r1, r1
+ 168              	.LVL16:
+ 169              	.L7:
+ 170              		.loc 1 58 17 is_stmt 1 discriminator 1 view .LVU47
+ 171              		.loc 1 58 5 is_stmt 0 discriminator 1 view .LVU48
+ 172 006a 0029     		cmp	r1, #0
+ 173 006c 1EDB     		blt	.L12
+  59:Application/SerialDebug.c ****     {
+  60:Application/SerialDebug.c ****         buffer[*position + j] = temp % 10 + '0'; // �Ӻ���ǰ
+ 174              		.loc 1 60 9 is_stmt 1 view .LVU49
+ 175              		.loc 1 60 38 is_stmt 0 view .LVU50
+ 176 006e 184C     		ldr	r4, .L13+4
+ 177 0070 84FB0E34 		smull	r3, r4, r4, lr
+ 178 0074 4FEAEE73 		asr	r3, lr, #31
+ 179 0078 C3EBA403 		rsb	r3, r3, r4, asr #2
+ 180 007c 1C46     		mov	r4, r3
+ 181 007e 03EB8303 		add	r3, r3, r3, lsl #2
+ 182 0082 AEEB4303 		sub	r3, lr, r3, lsl #1
+ 183              		.loc 1 60 16 view .LVU51
+ 184 0086 92F800E0 		ldrb	lr, [r2]	@ zero_extendqisi2
+ 185              	.LVL17:
+ 186              		.loc 1 60 26 view .LVU52
+ 187 008a 8E44     		add	lr, lr, r1
+ 188              		.loc 1 60 43 view .LVU53
+ 189 008c 3033     		adds	r3, r3, #48
+ 190              		.loc 1 60 31 view .LVU54
+ 191 008e 00F80E30 		strb	r3, [r0, lr]
+  61:Application/SerialDebug.c ****         temp /= 10;
+ 192              		.loc 1 61 9 is_stmt 1 view .LVU55
+ 193              		.loc 1 61 14 is_stmt 0 view .LVU56
+ 194 0092 A646     		mov	lr, r4
+ 195              	.LVL18:
+  62:Application/SerialDebug.c ****         if ((i - j) == 1)
+ 196              		.loc 1 62 9 is_stmt 1 view .LVU57
+ 197              		.loc 1 62 16 is_stmt 0 view .LVU58
+ 198 0094 ACEB0103 		sub	r3, ip, r1
+ 199              		.loc 1 62 12 view .LVU59
+ 200 0098 012B     		cmp	r3, #1
+ 201 009a E4D1     		bne	.L8
+  63:Application/SerialDebug.c ****         {
+  64:Application/SerialDebug.c ****             buffer[*position + j - 1] = '.'; // ����С����
+ 202              		.loc 1 64 13 is_stmt 1 view .LVU60
+ 203              		.loc 1 64 20 is_stmt 0 view .LVU61
+ 204 009c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 205              		.loc 1 64 30 view .LVU62
+ 206 009e 0B44     		add	r3, r3, r1
+ 207              		.loc 1 64 19 view .LVU63
+ 208 00a0 013B     		subs	r3, r3, #1
+ 209              		.loc 1 64 39 view .LVU64
+ 210 00a2 2E24     		movs	r4, #46
+ 211              	.LVL19:
+ 212              		.loc 1 64 39 view .LVU65
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s 			page 6
+
+
+ 213 00a4 C454     		strb	r4, [r0, r3]
+  65:Application/SerialDebug.c ****             j -= 1;
+ 214              		.loc 1 65 13 is_stmt 1 view .LVU66
+ 215              		.loc 1 65 15 is_stmt 0 view .LVU67
+ 216 00a6 0139     		subs	r1, r1, #1
+ 217              	.LVL20:
+ 218              		.loc 1 65 15 view .LVU68
+ 219 00a8 49B2     		sxtb	r1, r1
+ 220              	.LVL21:
+ 221              		.loc 1 65 15 view .LVU69
+ 222 00aa DCE7     		b	.L8
+ 223              	.L12:
+  66:Application/SerialDebug.c ****         }
+  67:Application/SerialDebug.c ****     }
+  68:Application/SerialDebug.c ****     *position += i + 1;
+ 224              		.loc 1 68 5 is_stmt 1 view .LVU70
+ 225              		.loc 1 68 15 is_stmt 0 view .LVU71
+ 226 00ac 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 227 00ae 9C44     		add	ip, ip, r3
+ 228              	.LVL22:
+ 229              		.loc 1 68 15 view .LVU72
+ 230 00b0 0CF1010C 		add	ip, ip, #1
+ 231 00b4 5FFA8CFC 		uxtb	ip, ip
+ 232 00b8 82F800C0 		strb	ip, [r2]
+  69:Application/SerialDebug.c ****     buffer[*position] = ',';
+ 233              		.loc 1 69 5 is_stmt 1 view .LVU73
+ 234              		.loc 1 69 23 is_stmt 0 view .LVU74
+ 235 00bc 2C23     		movs	r3, #44
+ 236 00be 00F80C30 		strb	r3, [r0, ip]
+  70:Application/SerialDebug.c ****     *position += 1;
+ 237              		.loc 1 70 5 is_stmt 1 view .LVU75
+ 238              		.loc 1 70 15 is_stmt 0 view .LVU76
+ 239 00c2 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 240 00c4 0133     		adds	r3, r3, #1
+ 241 00c6 1370     		strb	r3, [r2]
+  71:Application/SerialDebug.c **** }
+ 242              		.loc 1 71 1 view .LVU77
+ 243 00c8 10BD     		pop	{r4, pc}
+ 244              	.L14:
+ 245 00ca 00BF     		.align	2
+ 246              	.L13:
+ 247 00cc 0000C842 		.word	1120403456
+ 248 00d0 67666666 		.word	1717986919
+ 249              		.cfi_endproc
+ 250              	.LFE133:
+ 252              		.section	.text.Debug_Buf_Generate,"ax",%progbits
+ 253              		.align	1
+ 254              		.global	Debug_Buf_Generate
+ 255              		.syntax unified
+ 256              		.thumb
+ 257              		.thumb_func
+ 259              	Debug_Buf_Generate:
+ 260              	.LVL23:
+ 261              	.LFB132:
+  27:Application/SerialDebug.c ****     uint8_t position = 0;
+ 262              		.loc 1 27 1 is_stmt 1 view -0
+ 263              		.cfi_startproc
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s 			page 7
+
+
+ 264              		@ args = 0, pretend = 0, frame = 32
+ 265              		@ frame_needed = 0, uses_anonymous_args = 0
+  27:Application/SerialDebug.c ****     uint8_t position = 0;
+ 266              		.loc 1 27 1 is_stmt 0 view .LVU79
+ 267 0000 70B5     		push	{r4, r5, r6, lr}
+ 268              	.LCFI2:
+ 269              		.cfi_def_cfa_offset 16
+ 270              		.cfi_offset 4, -16
+ 271              		.cfi_offset 5, -12
+ 272              		.cfi_offset 6, -8
+ 273              		.cfi_offset 14, -4
+ 274 0002 88B0     		sub	sp, sp, #32
+ 275              	.LCFI3:
+ 276              		.cfi_def_cfa_offset 48
+ 277 0004 0646     		mov	r6, r0
+ 278 0006 0D46     		mov	r5, r1
+  28:Application/SerialDebug.c ****     float buffer[6] = {a, b, c, d, e, f};
+ 279              		.loc 1 28 5 is_stmt 1 view .LVU80
+  28:Application/SerialDebug.c ****     float buffer[6] = {a, b, c, d, e, f};
+ 280              		.loc 1 28 13 is_stmt 0 view .LVU81
+ 281 0008 0024     		movs	r4, #0
+ 282 000a 8DF81F40 		strb	r4, [sp, #31]
+  29:Application/SerialDebug.c ****     for (uint8_t cnt = 0; cnt < 6; cnt++)
+ 283              		.loc 1 29 5 is_stmt 1 view .LVU82
+  29:Application/SerialDebug.c ****     for (uint8_t cnt = 0; cnt < 6; cnt++)
+ 284              		.loc 1 29 11 is_stmt 0 view .LVU83
+ 285 000e 8DED010A 		vstr.32	s0, [sp, #4]
+ 286 0012 CDED020A 		vstr.32	s1, [sp, #8]
+ 287 0016 8DED031A 		vstr.32	s2, [sp, #12]
+ 288 001a CDED041A 		vstr.32	s3, [sp, #16]
+ 289 001e 8DED052A 		vstr.32	s4, [sp, #20]
+ 290 0022 CDED062A 		vstr.32	s5, [sp, #24]
+  30:Application/SerialDebug.c ****     {
+ 291              		.loc 1 30 5 is_stmt 1 view .LVU84
+ 292              	.LBB2:
+  30:Application/SerialDebug.c ****     {
+ 293              		.loc 1 30 10 view .LVU85
+ 294              	.LVL24:
+  30:Application/SerialDebug.c ****     {
+ 295              		.loc 1 30 5 is_stmt 0 view .LVU86
+ 296 0026 0CE0     		b	.L16
+ 297              	.LVL25:
+ 298              	.L17:
+  32:Application/SerialDebug.c ****     }
+ 299              		.loc 1 32 9 is_stmt 1 discriminator 3 view .LVU87
+ 300 0028 08AB     		add	r3, sp, #32
+ 301 002a 03EB8403 		add	r3, r3, r4, lsl #2
+ 302 002e 0DF11F02 		add	r2, sp, #31
+ 303 0032 2146     		mov	r1, r4
+ 304 0034 2846     		mov	r0, r5
+ 305 0036 13ED070A 		vldr.32	s0, [r3, #-28]
+ 306 003a FFF7FEFF 		bl	float2char
+ 307              	.LVL26:
+  30:Application/SerialDebug.c ****     {
+ 308              		.loc 1 30 36 discriminator 3 view .LVU88
+  30:Application/SerialDebug.c ****     {
+ 309              		.loc 1 30 39 is_stmt 0 discriminator 3 view .LVU89
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s 			page 8
+
+
+ 310 003e 0134     		adds	r4, r4, #1
+ 311              	.LVL27:
+  30:Application/SerialDebug.c ****     {
+ 312              		.loc 1 30 39 discriminator 3 view .LVU90
+ 313 0040 E4B2     		uxtb	r4, r4
+ 314              	.LVL28:
+ 315              	.L16:
+  30:Application/SerialDebug.c ****     {
+ 316              		.loc 1 30 27 is_stmt 1 discriminator 1 view .LVU91
+  30:Application/SerialDebug.c ****     {
+ 317              		.loc 1 30 5 is_stmt 0 discriminator 1 view .LVU92
+ 318 0042 052C     		cmp	r4, #5
+ 319 0044 F0D9     		bls	.L17
+ 320              	.LBE2:
+  34:Application/SerialDebug.c ****     Debug_Buf_Send(huart, (uint8_t *)DebugBuffer, position);
+ 321              		.loc 1 34 5 is_stmt 1 view .LVU93
+  34:Application/SerialDebug.c ****     Debug_Buf_Send(huart, (uint8_t *)DebugBuffer, position);
+ 322              		.loc 1 34 9 is_stmt 0 view .LVU94
+ 323 0046 9DF81F20 		ldrb	r2, [sp, #31]	@ zero_extendqisi2
+ 324 004a 531E     		subs	r3, r2, #1
+  34:Application/SerialDebug.c ****     Debug_Buf_Send(huart, (uint8_t *)DebugBuffer, position);
+ 325              		.loc 1 34 24 view .LVU95
+ 326 004c 0A21     		movs	r1, #10
+ 327 004e E954     		strb	r1, [r5, r3]
+  35:Application/SerialDebug.c **** }
+ 328              		.loc 1 35 5 is_stmt 1 view .LVU96
+ 329 0050 0249     		ldr	r1, .L19
+ 330 0052 3046     		mov	r0, r6
+ 331 0054 FFF7FEFF 		bl	Debug_Buf_Send
+ 332              	.LVL29:
+  36:Application/SerialDebug.c **** 
+ 333              		.loc 1 36 1 is_stmt 0 view .LVU97
+ 334 0058 08B0     		add	sp, sp, #32
+ 335              	.LCFI4:
+ 336              		.cfi_def_cfa_offset 16
+ 337              		@ sp needed
+ 338 005a 70BD     		pop	{r4, r5, r6, pc}
+ 339              	.LVL30:
+ 340              	.L20:
+  36:Application/SerialDebug.c **** 
+ 341              		.loc 1 36 1 view .LVU98
+ 342              		.align	2
+ 343              	.L19:
+ 344 005c 00000000 		.word	.LANCHOR0
+ 345              		.cfi_endproc
+ 346              	.LFE132:
+ 348              		.section	.text.Serial_Debug,"ax",%progbits
+ 349              		.align	1
+ 350              		.global	Serial_Debug
+ 351              		.syntax unified
+ 352              		.thumb
+ 353              		.thumb_func
+ 355              	Serial_Debug:
+ 356              	.LVL31:
+ 357              	.LFB130:
+  10:Application/SerialDebug.c ****     if (debug_period == 0)
+ 358              		.loc 1 10 1 is_stmt 1 view -0
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s 			page 9
+
+
+ 359              		.cfi_startproc
+ 360              		@ args = 0, pretend = 0, frame = 0
+ 361              		@ frame_needed = 0, uses_anonymous_args = 0
+  11:Application/SerialDebug.c ****         return;
+ 362              		.loc 1 11 5 view .LVU100
+  11:Application/SerialDebug.c ****         return;
+ 363              		.loc 1 11 8 is_stmt 0 view .LVU101
+ 364 0000 81B1     		cbz	r1, .L25
+  10:Application/SerialDebug.c ****     if (debug_period == 0)
+ 365              		.loc 1 10 1 view .LVU102
+ 366 0002 08B5     		push	{r3, lr}
+ 367              	.LCFI5:
+ 368              		.cfi_def_cfa_offset 8
+ 369              		.cfi_offset 3, -8
+ 370              		.cfi_offset 14, -4
+  13:Application/SerialDebug.c ****     {
+ 371              		.loc 1 13 5 is_stmt 1 view .LVU103
+  13:Application/SerialDebug.c ****     {
+ 372              		.loc 1 13 21 is_stmt 0 view .LVU104
+ 373 0004 084A     		ldr	r2, .L29
+ 374 0006 1288     		ldrh	r2, [r2]
+  13:Application/SerialDebug.c ****     {
+ 375              		.loc 1 13 8 view .LVU105
+ 376 0008 8A42     		cmp	r2, r1
+ 377 000a 04D2     		bcs	.L28
+ 378              	.LVL32:
+ 379              	.L23:
+  18:Application/SerialDebug.c **** }
+ 380              		.loc 1 18 5 is_stmt 1 view .LVU106
+  18:Application/SerialDebug.c **** }
+ 381              		.loc 1 18 16 is_stmt 0 view .LVU107
+ 382 000c 064A     		ldr	r2, .L29
+ 383 000e 1388     		ldrh	r3, [r2]
+ 384 0010 0133     		adds	r3, r3, #1
+ 385 0012 1380     		strh	r3, [r2]	@ movhi
+  19:Application/SerialDebug.c **** 
+ 386              		.loc 1 19 1 view .LVU108
+ 387 0014 08BD     		pop	{r3, pc}
+ 388              	.LVL33:
+ 389              	.L28:
+  15:Application/SerialDebug.c ****         Debug_Buf_Generate(huart, a, b, c, d, e, f, (uint8_t *)DebugBuffer);
+ 390              		.loc 1 15 9 is_stmt 1 view .LVU109
+  15:Application/SerialDebug.c ****         Debug_Buf_Generate(huart, a, b, c, d, e, f, (uint8_t *)DebugBuffer);
+ 391              		.loc 1 15 21 is_stmt 0 view .LVU110
+ 392 0016 044B     		ldr	r3, .L29
+ 393 0018 0022     		movs	r2, #0
+ 394 001a 1A80     		strh	r2, [r3]	@ movhi
+  16:Application/SerialDebug.c ****     }
+ 395              		.loc 1 16 9 is_stmt 1 view .LVU111
+ 396 001c 0349     		ldr	r1, .L29+4
+ 397              	.LVL34:
+  16:Application/SerialDebug.c ****     }
+ 398              		.loc 1 16 9 is_stmt 0 view .LVU112
+ 399 001e FFF7FEFF 		bl	Debug_Buf_Generate
+ 400              	.LVL35:
+  16:Application/SerialDebug.c ****     }
+ 401              		.loc 1 16 9 view .LVU113
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s 			page 10
+
+
+ 402 0022 F3E7     		b	.L23
+ 403              	.LVL36:
+ 404              	.L25:
+ 405              	.LCFI6:
+ 406              		.cfi_def_cfa_offset 0
+ 407              		.cfi_restore 3
+ 408              		.cfi_restore 14
+  16:Application/SerialDebug.c ****     }
+ 409              		.loc 1 16 9 view .LVU114
+ 410 0024 7047     		bx	lr
+ 411              	.L30:
+ 412 0026 00BF     		.align	2
+ 413              	.L29:
+ 414 0028 00000000 		.word	.LANCHOR1
+ 415 002c 00000000 		.word	.LANCHOR0
+ 416              		.cfi_endproc
+ 417              	.LFE130:
+ 419              		.global	Debug_Period
+ 420              		.global	Debug_Count
+ 421              		.global	position
+ 422              		.global	DebugBuffer
+ 423              		.section	.bss.DebugBuffer,"aw",%nobits
+ 424              		.align	2
+ 425              		.set	.LANCHOR0,. + 0
+ 428              	DebugBuffer:
+ 429 0000 00000000 		.space	100
+ 429      00000000 
+ 429      00000000 
+ 429      00000000 
+ 429      00000000 
+ 430              		.section	.bss.Debug_Count,"aw",%nobits
+ 431              		.align	1
+ 432              		.set	.LANCHOR1,. + 0
+ 435              	Debug_Count:
+ 436 0000 0000     		.space	2
+ 437              		.section	.bss.position,"aw",%nobits
+ 440              	position:
+ 441 0000 00       		.space	1
+ 442              		.section	.data.Debug_Period,"aw"
+ 443              		.align	1
+ 446              	Debug_Period:
+ 447 0000 0A00     		.short	10
+ 448              		.text
+ 449              	.Letext0:
+ 450              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 451              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 452              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 453              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 454              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 455              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+ 456              		.file 8 "Application/SerialDebug.h"
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 SerialDebug.c
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:20     .text.Debug_Buf_Send:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:26     .text.Debug_Buf_Send:00000000 Debug_Buf_Send
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:49     .text.float2char:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:55     .text.float2char:00000000 float2char
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:247    .text.float2char:000000cc $d
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:253    .text.Debug_Buf_Generate:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:259    .text.Debug_Buf_Generate:00000000 Debug_Buf_Generate
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:344    .text.Debug_Buf_Generate:0000005c $d
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:349    .text.Serial_Debug:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:355    .text.Serial_Debug:00000000 Serial_Debug
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:414    .text.Serial_Debug:00000028 $d
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:446    .data.Debug_Period:00000000 Debug_Period
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:435    .bss.Debug_Count:00000000 Debug_Count
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:440    .bss.position:00000000 position
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:428    .bss.DebugBuffer:00000000 DebugBuffer
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:424    .bss.DebugBuffer:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:431    .bss.Debug_Count:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:441    .bss.position:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccIhL67Z.s:443    .data.Debug_Period:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_UART_Transmit_DMA

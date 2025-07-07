@@ -1,0 +1,1126 @@
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"remote_control.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Callback_RC_Handle,"ax",%progbits
+  20              		.align	1
+  21              		.global	Callback_RC_Handle
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	Callback_RC_Handle:
+  27              	.LVL0:
+  28              	.LFB136:
+  29              		.file 1 "Application/remote_control.c"
+   1:Application/remote_control.c **** #include "remote_control.h"
+   2:Application/remote_control.c **** #include "user_lib.h"
+   3:Application/remote_control.c **** #include "bsp_dwt.h"
+   4:Application/remote_control.c **** 
+   5:Application/remote_control.c **** RC_Type remote_control;
+   6:Application/remote_control.c **** 
+   7:Application/remote_control.c **** uint8_t sbus_rx_buf[2][SBUS_RX_BUF_NUM];
+   8:Application/remote_control.c **** 
+   9:Application/remote_control.c **** uint8_t RC_Data_Buffer[16] = {0};
+  10:Application/remote_control.c **** 
+  11:Application/remote_control.c **** static uint32_t DWT_RC_Count = 0;
+  12:Application/remote_control.c **** 
+  13:Application/remote_control.c **** void Remote_Control_Init(UART_HandleTypeDef *huart, uint8_t length)
+  14:Application/remote_control.c **** {
+  15:Application/remote_control.c ****     remote_control.RC_USART = huart;
+  16:Application/remote_control.c ****     // ң��������ƽ���˲�����ʼ��
+  17:Application/remote_control.c ****     // RC_Smooth_Filter_Init(filter_period, filter_num);
+  18:Application/remote_control.c ****     // ң����������Ϣ��ʼ�� �����
+  19:Application/remote_control.c ****     RC_USART_init(huart, sbus_rx_buf[0], sbus_rx_buf[1], length);
+  20:Application/remote_control.c **** }
+  21:Application/remote_control.c **** 
+  22:Application/remote_control.c **** /**
+  23:Application/remote_control.c ****  * @Func		void Callback_RC_Handle(RC_Type* rc, uint8_t* buff)
+  24:Application/remote_control.c ****  * @Brief  	DR16���ջ�Э�������� ���DT7��ң��������
+  25:Application/remote_control.c ****  * @Param		RC_Type* rc���洢ң�������ݵĽṹ�塡��uint8_t* buff����
+  26:Application/remote_control.c ****  * @Retval		None
+  27:Application/remote_control.c ****  * @Date
+  28:Application/remote_control.c ****  */
+  29:Application/remote_control.c **** void Callback_RC_Handle(RC_Type *rc, uint8_t *buff)
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 2
+
+
+  30:Application/remote_control.c **** {
+  30              		.loc 1 30 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  31:Application/remote_control.c ****     if (buff == NULL || rc == NULL)
+  35              		.loc 1 31 5 view .LVU1
+  36              		.loc 1 31 8 is_stmt 0 view .LVU2
+  37 0000 0029     		cmp	r1, #0
+  38 0002 00F08D80 		beq	.L4
+  30:Application/remote_control.c ****     if (buff == NULL || rc == NULL)
+  39              		.loc 1 30 1 discriminator 1 view .LVU3
+  40 0006 30B4     		push	{r4, r5}
+  41              	.LCFI0:
+  42              		.cfi_def_cfa_offset 8
+  43              		.cfi_offset 4, -8
+  44              		.cfi_offset 5, -4
+  45 0008 0446     		mov	r4, r0
+  46 000a 8C46     		mov	ip, r1
+  47              		.loc 1 31 22 discriminator 1 view .LVU4
+  48 000c 0028     		cmp	r0, #0
+  49 000e 00F08580 		beq	.L1
+  32:Application/remote_control.c ****     {
+  33:Application/remote_control.c ****         return;
+  34:Application/remote_control.c ****     }
+  35:Application/remote_control.c ****     memcpy(RC_Data_Buffer, buff, 16);
+  50              		.loc 1 35 5 is_stmt 1 view .LVU5
+  51 0012 444D     		ldr	r5, .L7
+  52 0014 0868     		ldr	r0, [r1]	@ unaligned
+  53              	.LVL1:
+  54              		.loc 1 35 5 is_stmt 0 view .LVU6
+  55 0016 4968     		ldr	r1, [r1, #4]	@ unaligned
+  56              	.LVL2:
+  57              		.loc 1 35 5 view .LVU7
+  58 0018 DCF80820 		ldr	r2, [ip, #8]	@ unaligned
+  59 001c DCF80C30 		ldr	r3, [ip, #12]	@ unaligned
+  60 0020 0FC5     		stmia	r5!, {r0, r1, r2, r3}
+  36:Application/remote_control.c **** 
+  37:Application/remote_control.c ****     rc->ch1_origin = (buff[0] | buff[1] << 8) & 0x07FF;
+  61              		.loc 1 37 5 is_stmt 1 view .LVU8
+  62              		.loc 1 37 27 is_stmt 0 view .LVU9
+  63 0022 9CF80030 		ldrb	r3, [ip]	@ zero_extendqisi2
+  64              		.loc 1 37 37 view .LVU10
+  65 0026 9CF80120 		ldrb	r2, [ip, #1]	@ zero_extendqisi2
+  66              		.loc 1 37 31 view .LVU11
+  67 002a 43EA0223 		orr	r3, r3, r2, lsl #8
+  68              		.loc 1 37 47 view .LVU12
+  69 002e C3F30A03 		ubfx	r3, r3, #0, #11
+  70              		.loc 1 37 20 view .LVU13
+  71 0032 A380     		strh	r3, [r4, #4]	@ movhi
+  38:Application/remote_control.c ****     rc->ch1_origin -= RC_CH_VALUE_OFFSET;
+  72              		.loc 1 38 5 is_stmt 1 view .LVU14
+  73              		.loc 1 38 20 is_stmt 0 view .LVU15
+  74 0034 A3F58063 		sub	r3, r3, #1024
+  75 0038 A380     		strh	r3, [r4, #4]	@ movhi
+  39:Application/remote_control.c ****     rc->ch2_origin = (buff[1] >> 3 | buff[2] << 5) & 0x07FF;
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 3
+
+
+  76              		.loc 1 39 5 is_stmt 1 view .LVU16
+  77              		.loc 1 39 27 is_stmt 0 view .LVU17
+  78 003a 9CF80130 		ldrb	r3, [ip, #1]	@ zero_extendqisi2
+  79              		.loc 1 39 42 view .LVU18
+  80 003e 9CF80220 		ldrb	r2, [ip, #2]	@ zero_extendqisi2
+  81              		.loc 1 39 36 view .LVU19
+  82 0042 DB08     		lsrs	r3, r3, #3
+  83 0044 43EA4213 		orr	r3, r3, r2, lsl #5
+  84              		.loc 1 39 52 view .LVU20
+  85 0048 C3F30A03 		ubfx	r3, r3, #0, #11
+  86              		.loc 1 39 20 view .LVU21
+  87 004c E380     		strh	r3, [r4, #6]	@ movhi
+  40:Application/remote_control.c ****     rc->ch2_origin -= RC_CH_VALUE_OFFSET;
+  88              		.loc 1 40 5 is_stmt 1 view .LVU22
+  89              		.loc 1 40 20 is_stmt 0 view .LVU23
+  90 004e A3F58063 		sub	r3, r3, #1024
+  91 0052 E380     		strh	r3, [r4, #6]	@ movhi
+  41:Application/remote_control.c ****     rc->ch3_origin = (buff[2] >> 6 | buff[3] << 2 | buff[4] << 10) & 0x07FF;
+  92              		.loc 1 41 5 is_stmt 1 view .LVU24
+  93              		.loc 1 41 27 is_stmt 0 view .LVU25
+  94 0054 9CF80230 		ldrb	r3, [ip, #2]	@ zero_extendqisi2
+  95              		.loc 1 41 42 view .LVU26
+  96 0058 9CF80320 		ldrb	r2, [ip, #3]	@ zero_extendqisi2
+  97              		.loc 1 41 36 view .LVU27
+  98 005c 9B09     		lsrs	r3, r3, #6
+  99 005e 43EA8203 		orr	r3, r3, r2, lsl #2
+ 100              		.loc 1 41 57 view .LVU28
+ 101 0062 9CF80420 		ldrb	r2, [ip, #4]	@ zero_extendqisi2
+ 102              		.loc 1 41 51 view .LVU29
+ 103 0066 43EA8223 		orr	r3, r3, r2, lsl #10
+ 104              		.loc 1 41 68 view .LVU30
+ 105 006a C3F30A03 		ubfx	r3, r3, #0, #11
+ 106              		.loc 1 41 20 view .LVU31
+ 107 006e 2381     		strh	r3, [r4, #8]	@ movhi
+  42:Application/remote_control.c ****     rc->ch3_origin -= RC_CH_VALUE_OFFSET;
+ 108              		.loc 1 42 5 is_stmt 1 view .LVU32
+ 109              		.loc 1 42 20 is_stmt 0 view .LVU33
+ 110 0070 A3F58063 		sub	r3, r3, #1024
+ 111 0074 2381     		strh	r3, [r4, #8]	@ movhi
+  43:Application/remote_control.c ****     rc->ch4_origin = (buff[4] >> 1 | buff[5] << 7) & 0x07FF;
+ 112              		.loc 1 43 5 is_stmt 1 view .LVU34
+ 113              		.loc 1 43 27 is_stmt 0 view .LVU35
+ 114 0076 9CF80430 		ldrb	r3, [ip, #4]	@ zero_extendqisi2
+ 115              		.loc 1 43 42 view .LVU36
+ 116 007a 9CF80520 		ldrb	r2, [ip, #5]	@ zero_extendqisi2
+ 117              		.loc 1 43 36 view .LVU37
+ 118 007e 5B08     		lsrs	r3, r3, #1
+ 119 0080 43EAC213 		orr	r3, r3, r2, lsl #7
+ 120              		.loc 1 43 52 view .LVU38
+ 121 0084 C3F30A03 		ubfx	r3, r3, #0, #11
+ 122              		.loc 1 43 20 view .LVU39
+ 123 0088 6381     		strh	r3, [r4, #10]	@ movhi
+  44:Application/remote_control.c ****     rc->ch4_origin -= RC_CH_VALUE_OFFSET;
+ 124              		.loc 1 44 5 is_stmt 1 view .LVU40
+ 125              		.loc 1 44 20 is_stmt 0 view .LVU41
+ 126 008a A3F58063 		sub	r3, r3, #1024
+ 127 008e 6381     		strh	r3, [r4, #10]	@ movhi
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 4
+
+
+  45:Application/remote_control.c **** 
+  46:Application/remote_control.c ****     rc->switch_left = ((buff[5] >> 4) & 0x000C) >> 2;
+ 128              		.loc 1 46 5 is_stmt 1 view .LVU42
+ 129              		.loc 1 46 29 is_stmt 0 view .LVU43
+ 130 0090 9CF80530 		ldrb	r3, [ip, #5]	@ zero_extendqisi2
+ 131              		.loc 1 46 49 view .LVU44
+ 132 0094 9B09     		lsrs	r3, r3, #6
+ 133              		.loc 1 46 21 view .LVU45
+ 134 0096 84F82430 		strb	r3, [r4, #36]
+  47:Application/remote_control.c ****     rc->switch_right = (buff[5] >> 4) & 0x0003;
+ 135              		.loc 1 47 5 is_stmt 1 view .LVU46
+ 136              		.loc 1 47 29 is_stmt 0 view .LVU47
+ 137 009a 9CF80520 		ldrb	r2, [ip, #5]	@ zero_extendqisi2
+ 138              		.loc 1 47 39 view .LVU48
+ 139 009e C2F30112 		ubfx	r2, r2, #4, #2
+ 140              		.loc 1 47 22 view .LVU49
+ 141 00a2 84F82520 		strb	r2, [r4, #37]
+  48:Application/remote_control.c **** 
+  49:Application/remote_control.c ****     rc->mouse.x_origin = buff[6] | (buff[7] << 8); // x axis
+ 142              		.loc 1 49 5 is_stmt 1 view .LVU50
+ 143              		.loc 1 49 30 is_stmt 0 view .LVU51
+ 144 00a6 9CF80620 		ldrb	r2, [ip, #6]	@ zero_extendqisi2
+ 145              		.loc 1 49 41 view .LVU52
+ 146 00aa 9CF80710 		ldrb	r1, [ip, #7]	@ zero_extendqisi2
+ 147              		.loc 1 49 34 view .LVU53
+ 148 00ae 42EA0122 		orr	r2, r2, r1, lsl #8
+ 149              		.loc 1 49 24 view .LVU54
+ 150 00b2 2285     		strh	r2, [r4, #40]	@ movhi
+  50:Application/remote_control.c ****     rc->mouse.y_origin = buff[8] | (buff[9] << 8);
+ 151              		.loc 1 50 5 is_stmt 1 view .LVU55
+ 152              		.loc 1 50 30 is_stmt 0 view .LVU56
+ 153 00b4 9CF80820 		ldrb	r2, [ip, #8]	@ zero_extendqisi2
+ 154              		.loc 1 50 41 view .LVU57
+ 155 00b8 9CF80910 		ldrb	r1, [ip, #9]	@ zero_extendqisi2
+ 156              		.loc 1 50 34 view .LVU58
+ 157 00bc 42EA0122 		orr	r2, r2, r1, lsl #8
+ 158              		.loc 1 50 24 view .LVU59
+ 159 00c0 6285     		strh	r2, [r4, #42]	@ movhi
+  51:Application/remote_control.c ****     rc->mouse.z_origin = buff[10] | (buff[11] << 8);
+ 160              		.loc 1 51 5 is_stmt 1 view .LVU60
+ 161              		.loc 1 51 30 is_stmt 0 view .LVU61
+ 162 00c2 9CF80A20 		ldrb	r2, [ip, #10]	@ zero_extendqisi2
+ 163              		.loc 1 51 42 view .LVU62
+ 164 00c6 9CF80B10 		ldrb	r1, [ip, #11]	@ zero_extendqisi2
+ 165              		.loc 1 51 35 view .LVU63
+ 166 00ca 42EA0122 		orr	r2, r2, r1, lsl #8
+ 167              		.loc 1 51 24 view .LVU64
+ 168 00ce A285     		strh	r2, [r4, #44]	@ movhi
+  52:Application/remote_control.c **** 
+  53:Application/remote_control.c ****     rc->mouse.press_left = buff[12]; // is pressed?
+ 169              		.loc 1 53 5 is_stmt 1 view .LVU65
+ 170              		.loc 1 53 26 is_stmt 0 view .LVU66
+ 171 00d0 9CF80C20 		ldrb	r2, [ip, #12]	@ zero_extendqisi2
+ 172 00d4 84F83C20 		strb	r2, [r4, #60]
+  54:Application/remote_control.c ****     rc->mouse.press_right = buff[13];
+ 173              		.loc 1 54 5 is_stmt 1 view .LVU67
+ 174              		.loc 1 54 27 is_stmt 0 view .LVU68
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 5
+
+
+ 175 00d8 9CF80D20 		ldrb	r2, [ip, #13]	@ zero_extendqisi2
+ 176 00dc 84F83D20 		strb	r2, [r4, #61]
+  55:Application/remote_control.c **** 
+  56:Application/remote_control.c ****     rc->key_code = buff[14] | buff[15] << 8; // key borad code
+ 177              		.loc 1 56 5 is_stmt 1 view .LVU69
+ 178              		.loc 1 56 24 is_stmt 0 view .LVU70
+ 179 00e0 9CF80E20 		ldrb	r2, [ip, #14]	@ zero_extendqisi2
+ 180              		.loc 1 56 35 view .LVU71
+ 181 00e4 9CF80F10 		ldrb	r1, [ip, #15]	@ zero_extendqisi2
+ 182              		.loc 1 56 29 view .LVU72
+ 183 00e8 42EA0122 		orr	r2, r2, r1, lsl #8
+ 184              		.loc 1 56 18 view .LVU73
+ 185 00ec A4F84020 		strh	r2, [r4, #64]	@ movhi
+  57:Application/remote_control.c **** 
+  58:Application/remote_control.c ****     if (rc->switch_left != 1 && rc->switch_left != 2 && rc->switch_left != 3)
+ 186              		.loc 1 58 5 is_stmt 1 view .LVU74
+ 187              		.loc 1 58 54 is_stmt 0 view .LVU75
+ 188 00f0 013B     		subs	r3, r3, #1
+ 189 00f2 DBB2     		uxtb	r3, r3
+ 190              		.loc 1 58 8 view .LVU76
+ 191 00f4 022B     		cmp	r3, #2
+ 192 00f6 11D9     		bls	.L1
+  59:Application/remote_control.c ****     {
+  60:Application/remote_control.c ****         rc->ch1_origin = 0;
+ 193              		.loc 1 60 9 is_stmt 1 view .LVU77
+ 194              		.loc 1 60 24 is_stmt 0 view .LVU78
+ 195 00f8 0023     		movs	r3, #0
+ 196 00fa A380     		strh	r3, [r4, #4]	@ movhi
+  61:Application/remote_control.c ****         rc->ch2_origin = 0;
+ 197              		.loc 1 61 9 is_stmt 1 view .LVU79
+ 198              		.loc 1 61 24 is_stmt 0 view .LVU80
+ 199 00fc E380     		strh	r3, [r4, #6]	@ movhi
+  62:Application/remote_control.c ****         rc->ch3_origin = 0;
+ 200              		.loc 1 62 9 is_stmt 1 view .LVU81
+ 201              		.loc 1 62 24 is_stmt 0 view .LVU82
+ 202 00fe 2381     		strh	r3, [r4, #8]	@ movhi
+  63:Application/remote_control.c ****         rc->ch4_origin = 0;
+ 203              		.loc 1 63 9 is_stmt 1 view .LVU83
+ 204              		.loc 1 63 24 is_stmt 0 view .LVU84
+ 205 0100 6381     		strh	r3, [r4, #10]	@ movhi
+  64:Application/remote_control.c ****         rc->switch_left = 0;
+ 206              		.loc 1 64 9 is_stmt 1 view .LVU85
+ 207              		.loc 1 64 25 is_stmt 0 view .LVU86
+ 208 0102 84F82430 		strb	r3, [r4, #36]
+  65:Application/remote_control.c ****         rc->switch_right = 0;
+ 209              		.loc 1 65 9 is_stmt 1 view .LVU87
+ 210              		.loc 1 65 26 is_stmt 0 view .LVU88
+ 211 0106 84F82530 		strb	r3, [r4, #37]
+  66:Application/remote_control.c **** 
+  67:Application/remote_control.c ****         rc->mouse.x_origin = 0; // x axis
+ 212              		.loc 1 67 9 is_stmt 1 view .LVU89
+ 213              		.loc 1 67 28 is_stmt 0 view .LVU90
+ 214 010a 2385     		strh	r3, [r4, #40]	@ movhi
+  68:Application/remote_control.c ****         rc->mouse.y_origin = 0;
+ 215              		.loc 1 68 9 is_stmt 1 view .LVU91
+ 216              		.loc 1 68 28 is_stmt 0 view .LVU92
+ 217 010c 6385     		strh	r3, [r4, #42]	@ movhi
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 6
+
+
+  69:Application/remote_control.c ****         rc->mouse.z_origin = 0;
+ 218              		.loc 1 69 9 is_stmt 1 view .LVU93
+ 219              		.loc 1 69 28 is_stmt 0 view .LVU94
+ 220 010e A385     		strh	r3, [r4, #44]	@ movhi
+  70:Application/remote_control.c **** 
+  71:Application/remote_control.c ****         rc->mouse.press_left = 0; // is pressed?
+ 221              		.loc 1 71 9 is_stmt 1 view .LVU95
+ 222              		.loc 1 71 30 is_stmt 0 view .LVU96
+ 223 0110 84F83C30 		strb	r3, [r4, #60]
+  72:Application/remote_control.c ****         rc->mouse.press_right = 0;
+ 224              		.loc 1 72 9 is_stmt 1 view .LVU97
+ 225              		.loc 1 72 31 is_stmt 0 view .LVU98
+ 226 0114 84F83D30 		strb	r3, [r4, #61]
+  73:Application/remote_control.c **** 
+  74:Application/remote_control.c ****         rc->key_code = 0; // key borad code
+ 227              		.loc 1 74 9 is_stmt 1 view .LVU99
+ 228              		.loc 1 74 22 is_stmt 0 view .LVU100
+ 229 0118 A4F84030 		strh	r3, [r4, #64]	@ movhi
+ 230              	.L1:
+  75:Application/remote_control.c ****     }
+  76:Application/remote_control.c **** }
+ 231              		.loc 1 76 1 view .LVU101
+ 232 011c 30BC     		pop	{r4, r5}
+ 233              	.LCFI1:
+ 234              		.cfi_restore 5
+ 235              		.cfi_restore 4
+ 236              		.cfi_def_cfa_offset 0
+ 237              	.LVL3:
+ 238              		.loc 1 76 1 view .LVU102
+ 239 011e 7047     		bx	lr
+ 240              	.LVL4:
+ 241              	.L4:
+ 242              		.loc 1 76 1 view .LVU103
+ 243 0120 7047     		bx	lr
+ 244              	.L8:
+ 245 0122 00BF     		.align	2
+ 246              	.L7:
+ 247 0124 00000000 		.word	.LANCHOR0
+ 248              		.cfi_endproc
+ 249              	.LFE136:
+ 251              		.section	.text.RC_USART_init,"ax",%progbits
+ 252              		.align	1
+ 253              		.global	RC_USART_init
+ 254              		.syntax unified
+ 255              		.thumb
+ 256              		.thumb_func
+ 258              	RC_USART_init:
+ 259              	.LVL5:
+ 260              	.LFB137:
+  77:Application/remote_control.c **** 
+  78:Application/remote_control.c **** void RC_USART_init(UART_HandleTypeDef *huart, uint8_t *rx1_buf, uint8_t *rx2_buf, uint16_t dma_buf_
+  79:Application/remote_control.c **** {
+ 261              		.loc 1 79 1 is_stmt 1 view -0
+ 262              		.cfi_startproc
+ 263              		@ args = 0, pretend = 0, frame = 0
+ 264              		@ frame_needed = 0, uses_anonymous_args = 0
+ 265              		@ link register save eliminated.
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 7
+
+
+ 266              		.loc 1 79 1 is_stmt 0 view .LVU105
+ 267 0000 30B4     		push	{r4, r5}
+ 268              	.LCFI2:
+ 269              		.cfi_def_cfa_offset 8
+ 270              		.cfi_offset 4, -8
+ 271              		.cfi_offset 5, -4
+  80:Application/remote_control.c ****     // enable the DMA transfer for the receiver request
+  81:Application/remote_control.c ****     // ʹ��DMA���ڽ���
+  82:Application/remote_control.c ****     SET_BIT(huart->Instance->CR3, USART_CR3_DMAR);
+ 272              		.loc 1 82 5 is_stmt 1 view .LVU106
+ 273 0002 0568     		ldr	r5, [r0]
+ 274 0004 6C69     		ldr	r4, [r5, #20]
+ 275 0006 44F04004 		orr	r4, r4, #64
+ 276 000a 6C61     		str	r4, [r5, #20]
+  83:Application/remote_control.c **** 
+  84:Application/remote_control.c ****     // enalbe idle interrupt
+  85:Application/remote_control.c ****     // ʹ�ܿ����ж�
+  86:Application/remote_control.c ****     __HAL_UART_ENABLE_IT(huart, UART_IT_IDLE);
+ 277              		.loc 1 86 5 view .LVU107
+ 278 000c 0568     		ldr	r5, [r0]
+ 279 000e EC68     		ldr	r4, [r5, #12]
+ 280 0010 44F01004 		orr	r4, r4, #16
+ 281 0014 EC60     		str	r4, [r5, #12]
+  87:Application/remote_control.c **** 
+  88:Application/remote_control.c ****     // disable DMA
+  89:Application/remote_control.c ****     // ʧЧDMA
+  90:Application/remote_control.c ****     __HAL_DMA_DISABLE(huart->hdmarx);
+ 282              		.loc 1 90 5 view .LVU108
+ 283 0016 446B     		ldr	r4, [r0, #52]
+ 284 0018 2568     		ldr	r5, [r4]
+ 285 001a 2C68     		ldr	r4, [r5]
+ 286 001c 24F00104 		bic	r4, r4, #1
+ 287 0020 2C60     		str	r4, [r5]
+  91:Application/remote_control.c ****     while (huart->hdmarx->Instance->CR & DMA_SxCR_EN)
+ 288              		.loc 1 91 5 view .LVU109
+ 289              		.loc 1 91 11 is_stmt 0 view .LVU110
+ 290 0022 03E0     		b	.L10
+ 291              	.L11:
+  92:Application/remote_control.c ****     {
+  93:Application/remote_control.c ****         __HAL_DMA_DISABLE(huart->hdmarx);
+ 292              		.loc 1 93 9 is_stmt 1 view .LVU111
+ 293 0024 2568     		ldr	r5, [r4]
+ 294 0026 25F00105 		bic	r5, r5, #1
+ 295 002a 2560     		str	r5, [r4]
+ 296              	.L10:
+  91:Application/remote_control.c ****     while (huart->hdmarx->Instance->CR & DMA_SxCR_EN)
+ 297              		.loc 1 91 11 view .LVU112
+  91:Application/remote_control.c ****     while (huart->hdmarx->Instance->CR & DMA_SxCR_EN)
+ 298              		.loc 1 91 17 is_stmt 0 view .LVU113
+ 299 002c 446B     		ldr	r4, [r0, #52]
+  91:Application/remote_control.c ****     while (huart->hdmarx->Instance->CR & DMA_SxCR_EN)
+ 300              		.loc 1 91 25 view .LVU114
+ 301 002e 2468     		ldr	r4, [r4]
+  91:Application/remote_control.c ****     while (huart->hdmarx->Instance->CR & DMA_SxCR_EN)
+ 302              		.loc 1 91 35 view .LVU115
+ 303 0030 2568     		ldr	r5, [r4]
+  91:Application/remote_control.c ****     while (huart->hdmarx->Instance->CR & DMA_SxCR_EN)
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 8
+
+
+ 304              		.loc 1 91 11 view .LVU116
+ 305 0032 15F0010F 		tst	r5, #1
+ 306 0036 F5D1     		bne	.L11
+  94:Application/remote_control.c ****     }
+  95:Application/remote_control.c **** 
+  96:Application/remote_control.c ****     huart->hdmarx->Instance->PAR = (uint32_t)&(USART1->DR);
+ 307              		.loc 1 96 5 is_stmt 1 view .LVU117
+ 308              		.loc 1 96 34 is_stmt 0 view .LVU118
+ 309 0038 0C4D     		ldr	r5, .L13
+ 310 003a A560     		str	r5, [r4, #8]
+  97:Application/remote_control.c ****     // memory buffer 1
+  98:Application/remote_control.c ****     // �ڴ滺����1
+  99:Application/remote_control.c ****     huart->hdmarx->Instance->M0AR = (uint32_t)(rx1_buf);
+ 311              		.loc 1 99 5 is_stmt 1 view .LVU119
+ 312              		.loc 1 99 10 is_stmt 0 view .LVU120
+ 313 003c 446B     		ldr	r4, [r0, #52]
+ 314              		.loc 1 99 18 view .LVU121
+ 315 003e 2468     		ldr	r4, [r4]
+ 316              		.loc 1 99 35 view .LVU122
+ 317 0040 E160     		str	r1, [r4, #12]
+ 100:Application/remote_control.c ****     // memory buffer 2
+ 101:Application/remote_control.c ****     // �ڴ滺����2
+ 102:Application/remote_control.c ****     huart->hdmarx->Instance->M1AR = (uint32_t)(rx2_buf);
+ 318              		.loc 1 102 5 is_stmt 1 view .LVU123
+ 319              		.loc 1 102 10 is_stmt 0 view .LVU124
+ 320 0042 416B     		ldr	r1, [r0, #52]
+ 321              	.LVL6:
+ 322              		.loc 1 102 18 view .LVU125
+ 323 0044 0968     		ldr	r1, [r1]
+ 324              		.loc 1 102 35 view .LVU126
+ 325 0046 0A61     		str	r2, [r1, #16]
+ 326              	.LVL7:
+ 103:Application/remote_control.c ****     // data length
+ 104:Application/remote_control.c ****     // ���ݳ���
+ 105:Application/remote_control.c ****     huart->hdmarx->Instance->NDTR = dma_buf_num;
+ 327              		.loc 1 105 5 is_stmt 1 view .LVU127
+ 328              		.loc 1 105 10 is_stmt 0 view .LVU128
+ 329 0048 426B     		ldr	r2, [r0, #52]
+ 330              	.LVL8:
+ 331              		.loc 1 105 18 view .LVU129
+ 332 004a 1268     		ldr	r2, [r2]
+ 333              		.loc 1 105 35 view .LVU130
+ 334 004c 5360     		str	r3, [r2, #4]
+ 335              	.LVL9:
+ 106:Application/remote_control.c ****     // enable double memory buffer
+ 107:Application/remote_control.c ****     // ʹ��˫������
+ 108:Application/remote_control.c ****     SET_BIT(huart->hdmarx->Instance->CR, DMA_SxCR_DBM);
+ 336              		.loc 1 108 5 is_stmt 1 view .LVU131
+ 337 004e 436B     		ldr	r3, [r0, #52]
+ 338              	.LVL10:
+ 339              		.loc 1 108 5 is_stmt 0 view .LVU132
+ 340 0050 1A68     		ldr	r2, [r3]
+ 341 0052 1368     		ldr	r3, [r2]
+ 342 0054 43F48023 		orr	r3, r3, #262144
+ 343 0058 1360     		str	r3, [r2]
+ 109:Application/remote_control.c **** 
+ 110:Application/remote_control.c ****     // enable DMA
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 9
+
+
+ 111:Application/remote_control.c ****     // ʹ��DMA
+ 112:Application/remote_control.c ****     __HAL_DMA_ENABLE(huart->hdmarx);
+ 344              		.loc 1 112 5 is_stmt 1 view .LVU133
+ 345 005a 436B     		ldr	r3, [r0, #52]
+ 346 005c 1A68     		ldr	r2, [r3]
+ 347 005e 1368     		ldr	r3, [r2]
+ 348 0060 43F00103 		orr	r3, r3, #1
+ 349 0064 1360     		str	r3, [r2]
+ 113:Application/remote_control.c **** }
+ 350              		.loc 1 113 1 is_stmt 0 view .LVU134
+ 351 0066 30BC     		pop	{r4, r5}
+ 352              	.LCFI3:
+ 353              		.cfi_restore 5
+ 354              		.cfi_restore 4
+ 355              		.cfi_def_cfa_offset 0
+ 356 0068 7047     		bx	lr
+ 357              	.L14:
+ 358 006a 00BF     		.align	2
+ 359              	.L13:
+ 360 006c 04100140 		.word	1073811460
+ 361              		.cfi_endproc
+ 362              	.LFE137:
+ 364              		.section	.text.Remote_Control_Init,"ax",%progbits
+ 365              		.align	1
+ 366              		.global	Remote_Control_Init
+ 367              		.syntax unified
+ 368              		.thumb
+ 369              		.thumb_func
+ 371              	Remote_Control_Init:
+ 372              	.LVL11:
+ 373              	.LFB135:
+  14:Application/remote_control.c ****     remote_control.RC_USART = huart;
+ 374              		.loc 1 14 1 is_stmt 1 view -0
+ 375              		.cfi_startproc
+ 376              		@ args = 0, pretend = 0, frame = 0
+ 377              		@ frame_needed = 0, uses_anonymous_args = 0
+  14:Application/remote_control.c ****     remote_control.RC_USART = huart;
+ 378              		.loc 1 14 1 is_stmt 0 view .LVU136
+ 379 0000 08B5     		push	{r3, lr}
+ 380              	.LCFI4:
+ 381              		.cfi_def_cfa_offset 8
+ 382              		.cfi_offset 3, -8
+ 383              		.cfi_offset 14, -4
+ 384 0002 0B46     		mov	r3, r1
+  15:Application/remote_control.c ****     // ң��������ƽ���˲�����ʼ��
+ 385              		.loc 1 15 5 is_stmt 1 view .LVU137
+  15:Application/remote_control.c ****     // ң��������ƽ���˲�����ʼ��
+ 386              		.loc 1 15 29 is_stmt 0 view .LVU138
+ 387 0004 034A     		ldr	r2, .L17
+ 388 0006 1060     		str	r0, [r2]
+  19:Application/remote_control.c **** }
+ 389              		.loc 1 19 5 is_stmt 1 view .LVU139
+ 390 0008 0349     		ldr	r1, .L17+4
+ 391              	.LVL12:
+  19:Application/remote_control.c **** }
+ 392              		.loc 1 19 5 is_stmt 0 view .LVU140
+ 393 000a 01F12402 		add	r2, r1, #36
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 10
+
+
+ 394 000e FFF7FEFF 		bl	RC_USART_init
+ 395              	.LVL13:
+  20:Application/remote_control.c **** 
+ 396              		.loc 1 20 1 view .LVU141
+ 397 0012 08BD     		pop	{r3, pc}
+ 398              	.L18:
+ 399              		.align	2
+ 400              	.L17:
+ 401 0014 00000000 		.word	.LANCHOR1
+ 402 0018 00000000 		.word	.LANCHOR2
+ 403              		.cfi_endproc
+ 404              	.LFE135:
+ 406              		.section	.text.RC_UART_IRQHandler,"ax",%progbits
+ 407              		.align	1
+ 408              		.global	RC_UART_IRQHandler
+ 409              		.syntax unified
+ 410              		.thumb
+ 411              		.thumb_func
+ 413              	RC_UART_IRQHandler:
+ 414              	.LVL14:
+ 415              	.LFB138:
+ 114:Application/remote_control.c **** 
+ 115:Application/remote_control.c **** void RC_UART_IRQHandler(UART_HandleTypeDef *huart)
+ 116:Application/remote_control.c **** {
+ 416              		.loc 1 116 1 is_stmt 1 view -0
+ 417              		.cfi_startproc
+ 418              		@ args = 0, pretend = 0, frame = 16
+ 419              		@ frame_needed = 0, uses_anonymous_args = 0
+ 420              		.loc 1 116 1 is_stmt 0 view .LVU143
+ 421 0000 70B5     		push	{r4, r5, r6, lr}
+ 422              	.LCFI5:
+ 423              		.cfi_def_cfa_offset 16
+ 424              		.cfi_offset 4, -16
+ 425              		.cfi_offset 5, -12
+ 426              		.cfi_offset 6, -8
+ 427              		.cfi_offset 14, -4
+ 428 0002 84B0     		sub	sp, sp, #16
+ 429              	.LCFI6:
+ 430              		.cfi_def_cfa_offset 32
+ 431 0004 0446     		mov	r4, r0
+ 117:Application/remote_control.c ****     // �����
+ 118:Application/remote_control.c ****     uint32_t isrflags = READ_REG(huart->Instance->SR);
+ 432              		.loc 1 118 5 is_stmt 1 view .LVU144
+ 433              		.loc 1 118 25 is_stmt 0 view .LVU145
+ 434 0006 0368     		ldr	r3, [r0]
+ 435              		.loc 1 118 14 view .LVU146
+ 436 0008 1D68     		ldr	r5, [r3]
+ 437              	.LVL15:
+ 119:Application/remote_control.c ****     uint32_t cr1its = READ_REG(huart->Instance->CR1);
+ 438              		.loc 1 119 5 is_stmt 1 view .LVU147
+ 439              		.loc 1 119 14 is_stmt 0 view .LVU148
+ 440 000a DE68     		ldr	r6, [r3, #12]
+ 441              	.LVL16:
+ 120:Application/remote_control.c ****     uint32_t cr3its = READ_REG(huart->Instance->CR3);
+ 442              		.loc 1 120 5 is_stmt 1 view .LVU149
+ 443              		.loc 1 120 14 is_stmt 0 view .LVU150
+ 444 000c 5A69     		ldr	r2, [r3, #20]
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 11
+
+
+ 121:Application/remote_control.c **** 
+ 122:Application/remote_control.c ****     if (huart->Instance->SR & UART_FLAG_RXNE) // ���յ�����
+ 445              		.loc 1 122 5 is_stmt 1 view .LVU151
+ 446              		.loc 1 122 24 is_stmt 0 view .LVU152
+ 447 000e 1A68     		ldr	r2, [r3]
+ 448              		.loc 1 122 8 view .LVU153
+ 449 0010 12F0200F 		tst	r2, #32
+ 450 0014 0ED0     		beq	.L20
+ 123:Application/remote_control.c ****     {
+ 124:Application/remote_control.c ****         __HAL_UART_CLEAR_PEFLAG(huart);
+ 451              		.loc 1 124 9 is_stmt 1 view .LVU154
+ 452              	.LBB2:
+ 453              		.loc 1 124 9 view .LVU155
+ 454 0016 0022     		movs	r2, #0
+ 455 0018 0192     		str	r2, [sp, #4]
+ 456              		.loc 1 124 9 view .LVU156
+ 457 001a 1A68     		ldr	r2, [r3]
+ 458 001c 0192     		str	r2, [sp, #4]
+ 459              		.loc 1 124 9 view .LVU157
+ 460 001e 5B68     		ldr	r3, [r3, #4]
+ 461 0020 0193     		str	r3, [sp, #4]
+ 462              		.loc 1 124 9 view .LVU158
+ 463 0022 019B     		ldr	r3, [sp, #4]
+ 464              	.LBE2:
+ 465              		.loc 1 124 9 view .LVU159
+ 466              	.LVL17:
+ 467              	.L21:
+ 125:Application/remote_control.c ****     }
+ 126:Application/remote_control.c ****     else if (huart->Instance->SR & UART_FLAG_IDLE)
+ 127:Application/remote_control.c ****     {
+ 128:Application/remote_control.c ****         static uint16_t this_time_rx_len = 0;
+ 129:Application/remote_control.c **** 
+ 130:Application/remote_control.c ****         __HAL_UART_CLEAR_PEFLAG(huart);
+ 131:Application/remote_control.c ****         __HAL_UART_CLEAR_IDLEFLAG(huart);
+ 132:Application/remote_control.c **** 
+ 133:Application/remote_control.c ****         if ((huart->hdmarx->Instance->CR & DMA_SxCR_CT) == RESET) // CT => Current target
+ 134:Application/remote_control.c ****         {
+ 135:Application/remote_control.c ****             /* Current memory buffer used is Memory 0 */
+ 136:Application/remote_control.c **** 
+ 137:Application/remote_control.c ****             // disable DMA
+ 138:Application/remote_control.c ****             // ʧЧDMA
+ 139:Application/remote_control.c ****             __HAL_DMA_DISABLE(huart->hdmarx);
+ 140:Application/remote_control.c **** 
+ 141:Application/remote_control.c ****             // get receive data length, length = set_data_length - remain_length
+ 142:Application/remote_control.c ****             // ��ȡ�������ݳ���,���� = �趨���� - ʣ��
+ 143:Application/remote_control.c ****             this_time_rx_len = SBUS_RX_BUF_NUM - huart->hdmarx->Instance->NDTR;
+ 144:Application/remote_control.c **** 
+ 145:Application/remote_control.c ****             // reset set_data_lenght
+ 146:Application/remote_control.c ****             // �����趨���ݳ���
+ 147:Application/remote_control.c ****             huart->hdmarx->Instance->NDTR = SBUS_RX_BUF_NUM;
+ 148:Application/remote_control.c **** 
+ 149:Application/remote_control.c ****             // set memory buffer 1
+ 150:Application/remote_control.c ****             // �趨������1
+ 151:Application/remote_control.c ****             huart->hdmarx->Instance->CR |= DMA_SxCR_CT;
+ 152:Application/remote_control.c **** 
+ 153:Application/remote_control.c ****             // enable DMA
+ 154:Application/remote_control.c ****             // ʹ��DMA
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 12
+
+
+ 155:Application/remote_control.c ****             __HAL_DMA_ENABLE(huart->hdmarx);
+ 156:Application/remote_control.c **** 
+ 157:Application/remote_control.c ****             if (this_time_rx_len == RC_FRAME_LENGTH)
+ 158:Application/remote_control.c ****             {
+ 159:Application/remote_control.c ****                 Callback_RC_Handle(&remote_control, sbus_rx_buf[0]);
+ 160:Application/remote_control.c ****             }
+ 161:Application/remote_control.c ****         }
+ 162:Application/remote_control.c ****         else
+ 163:Application/remote_control.c ****         {
+ 164:Application/remote_control.c ****             /* Current memory buffer used is Memory 1 */
+ 165:Application/remote_control.c ****             // disable DMA
+ 166:Application/remote_control.c ****             // ʧЧDMA
+ 167:Application/remote_control.c ****             __HAL_DMA_DISABLE(huart->hdmarx);
+ 168:Application/remote_control.c **** 
+ 169:Application/remote_control.c ****             // get receive data length, length = set_data_length - remain_length
+ 170:Application/remote_control.c ****             // ��ȡ�������ݳ���,���� = �趨���� - ʣ��
+ 171:Application/remote_control.c ****             this_time_rx_len = SBUS_RX_BUF_NUM - huart->hdmarx->Instance->NDTR;
+ 172:Application/remote_control.c **** 
+ 173:Application/remote_control.c ****             // reset set_data_lenght
+ 174:Application/remote_control.c ****             // �����趨���ݳ���
+ 175:Application/remote_control.c ****             huart->hdmarx->Instance->NDTR = SBUS_RX_BUF_NUM;
+ 176:Application/remote_control.c **** 
+ 177:Application/remote_control.c ****             // set memory buffer 0
+ 178:Application/remote_control.c ****             // �趨������0
+ 179:Application/remote_control.c ****             DMA1_Stream1->CR &= ~(DMA_SxCR_CT);
+ 180:Application/remote_control.c **** 
+ 181:Application/remote_control.c ****             // enable DMA
+ 182:Application/remote_control.c ****             // ʹ��DMA
+ 183:Application/remote_control.c ****             __HAL_DMA_ENABLE(huart->hdmarx);
+ 184:Application/remote_control.c **** 
+ 185:Application/remote_control.c ****             if (this_time_rx_len == RC_FRAME_LENGTH)
+ 186:Application/remote_control.c ****             {
+ 187:Application/remote_control.c ****                 // ����ң��������
+ 188:Application/remote_control.c ****                 Callback_RC_Handle(&remote_control, sbus_rx_buf[1]);
+ 189:Application/remote_control.c ****             }
+ 190:Application/remote_control.c ****         }
+ 191:Application/remote_control.c ****     }
+ 192:Application/remote_control.c **** 
+ 193:Application/remote_control.c ****     // �öδ�������������޹أ����ڱ�֤DMA�������
+ 194:Application/remote_control.c ****     if (((isrflags & USART_SR_TC) != RESET) && ((cr1its & USART_CR1_TCIE) != RESET))
+ 468              		.loc 1 194 5 view .LVU160
+ 469              		.loc 1 194 8 is_stmt 0 view .LVU161
+ 470 0024 15F0400F 		tst	r5, #64
+ 471 0028 02D0     		beq	.L19
+ 472              		.loc 1 194 45 discriminator 1 view .LVU162
+ 473 002a 16F0400F 		tst	r6, #64
+ 474 002e 59D1     		bne	.L25
+ 475              	.L19:
+ 195:Application/remote_control.c ****     {
+ 196:Application/remote_control.c ****         /* Disable the UART Transmit Complete Interrupt */
+ 197:Application/remote_control.c ****         __HAL_UART_DISABLE_IT(huart, UART_IT_TC);
+ 198:Application/remote_control.c **** 
+ 199:Application/remote_control.c ****         /* Tx process is ended, restore huart->gState to Ready */
+ 200:Application/remote_control.c ****         huart->gState = HAL_UART_STATE_READY;
+ 201:Application/remote_control.c **** 
+ 202:Application/remote_control.c **** #if (USE_HAL_UART_REGISTER_CALLBACKS == 1)
+ 203:Application/remote_control.c ****         /*Call registered Tx complete callback*/
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 13
+
+
+ 204:Application/remote_control.c ****         huart->TxCpltCallback(huart);
+ 205:Application/remote_control.c **** #else
+ 206:Application/remote_control.c ****         /*Call legacy weak Tx complete callback*/
+ 207:Application/remote_control.c ****         HAL_UART_TxCpltCallback(huart);
+ 208:Application/remote_control.c **** #endif /* USE_HAL_UART_REGISTER_CALLBACKS */
+ 209:Application/remote_control.c ****     }
+ 210:Application/remote_control.c **** }
+ 476              		.loc 1 210 1 view .LVU163
+ 477 0030 04B0     		add	sp, sp, #16
+ 478              	.LCFI7:
+ 479              		.cfi_remember_state
+ 480              		.cfi_def_cfa_offset 16
+ 481              		@ sp needed
+ 482 0032 70BD     		pop	{r4, r5, r6, pc}
+ 483              	.LVL18:
+ 484              	.L20:
+ 485              	.LCFI8:
+ 486              		.cfi_restore_state
+ 126:Application/remote_control.c ****     {
+ 487              		.loc 1 126 10 is_stmt 1 view .LVU164
+ 126:Application/remote_control.c ****     {
+ 488              		.loc 1 126 29 is_stmt 0 view .LVU165
+ 489 0034 1A68     		ldr	r2, [r3]
+ 126:Application/remote_control.c ****     {
+ 490              		.loc 1 126 13 view .LVU166
+ 491 0036 12F0100F 		tst	r2, #16
+ 492 003a F3D0     		beq	.L21
+ 493              	.LBB3:
+ 128:Application/remote_control.c **** 
+ 494              		.loc 1 128 9 is_stmt 1 view .LVU167
+ 130:Application/remote_control.c ****         __HAL_UART_CLEAR_IDLEFLAG(huart);
+ 495              		.loc 1 130 9 view .LVU168
+ 496              	.LBB4:
+ 130:Application/remote_control.c ****         __HAL_UART_CLEAR_IDLEFLAG(huart);
+ 497              		.loc 1 130 9 view .LVU169
+ 498 003c 0022     		movs	r2, #0
+ 499 003e 0292     		str	r2, [sp, #8]
+ 130:Application/remote_control.c ****         __HAL_UART_CLEAR_IDLEFLAG(huart);
+ 500              		.loc 1 130 9 view .LVU170
+ 501 0040 1968     		ldr	r1, [r3]
+ 502 0042 0291     		str	r1, [sp, #8]
+ 130:Application/remote_control.c ****         __HAL_UART_CLEAR_IDLEFLAG(huart);
+ 503              		.loc 1 130 9 view .LVU171
+ 504 0044 5968     		ldr	r1, [r3, #4]
+ 505 0046 0291     		str	r1, [sp, #8]
+ 130:Application/remote_control.c ****         __HAL_UART_CLEAR_IDLEFLAG(huart);
+ 506              		.loc 1 130 9 view .LVU172
+ 507 0048 0299     		ldr	r1, [sp, #8]
+ 508              	.LBE4:
+ 130:Application/remote_control.c ****         __HAL_UART_CLEAR_IDLEFLAG(huart);
+ 509              		.loc 1 130 9 view .LVU173
+ 131:Application/remote_control.c **** 
+ 510              		.loc 1 131 9 view .LVU174
+ 511              	.LBB5:
+ 131:Application/remote_control.c **** 
+ 512              		.loc 1 131 9 view .LVU175
+ 513 004a 0392     		str	r2, [sp, #12]
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 14
+
+
+ 131:Application/remote_control.c **** 
+ 514              		.loc 1 131 9 view .LVU176
+ 515 004c 1A68     		ldr	r2, [r3]
+ 516 004e 0392     		str	r2, [sp, #12]
+ 131:Application/remote_control.c **** 
+ 517              		.loc 1 131 9 view .LVU177
+ 518 0050 5B68     		ldr	r3, [r3, #4]
+ 519 0052 0393     		str	r3, [sp, #12]
+ 131:Application/remote_control.c **** 
+ 520              		.loc 1 131 9 view .LVU178
+ 521 0054 039B     		ldr	r3, [sp, #12]
+ 522              	.LBE5:
+ 131:Application/remote_control.c **** 
+ 523              		.loc 1 131 9 view .LVU179
+ 133:Application/remote_control.c ****         {
+ 524              		.loc 1 133 9 view .LVU180
+ 133:Application/remote_control.c ****         {
+ 525              		.loc 1 133 19 is_stmt 0 view .LVU181
+ 526 0056 436B     		ldr	r3, [r0, #52]
+ 133:Application/remote_control.c ****         {
+ 527              		.loc 1 133 27 view .LVU182
+ 528 0058 1B68     		ldr	r3, [r3]
+ 133:Application/remote_control.c ****         {
+ 529              		.loc 1 133 37 view .LVU183
+ 530 005a 1A68     		ldr	r2, [r3]
+ 133:Application/remote_control.c ****         {
+ 531              		.loc 1 133 12 view .LVU184
+ 532 005c 12F4002F 		tst	r2, #524288
+ 533 0060 20D1     		bne	.L22
+ 139:Application/remote_control.c **** 
+ 534              		.loc 1 139 13 is_stmt 1 view .LVU185
+ 535 0062 1A68     		ldr	r2, [r3]
+ 536 0064 22F00102 		bic	r2, r2, #1
+ 537 0068 1A60     		str	r2, [r3]
+ 143:Application/remote_control.c **** 
+ 538              		.loc 1 143 13 view .LVU186
+ 143:Application/remote_control.c **** 
+ 539              		.loc 1 143 55 is_stmt 0 view .LVU187
+ 540 006a 436B     		ldr	r3, [r0, #52]
+ 143:Application/remote_control.c **** 
+ 541              		.loc 1 143 63 view .LVU188
+ 542 006c 1A68     		ldr	r2, [r3]
+ 143:Application/remote_control.c **** 
+ 543              		.loc 1 143 73 view .LVU189
+ 544 006e 5368     		ldr	r3, [r2, #4]
+ 143:Application/remote_control.c **** 
+ 545              		.loc 1 143 48 view .LVU190
+ 546 0070 C3F12403 		rsb	r3, r3, #36
+ 547 0074 9BB2     		uxth	r3, r3
+ 143:Application/remote_control.c **** 
+ 548              		.loc 1 143 30 view .LVU191
+ 549 0076 2149     		ldr	r1, .L26
+ 550 0078 0B80     		strh	r3, [r1]	@ movhi
+ 147:Application/remote_control.c **** 
+ 551              		.loc 1 147 13 is_stmt 1 view .LVU192
+ 147:Application/remote_control.c **** 
+ 552              		.loc 1 147 43 is_stmt 0 view .LVU193
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 15
+
+
+ 553 007a 2421     		movs	r1, #36
+ 554 007c 5160     		str	r1, [r2, #4]
+ 151:Application/remote_control.c **** 
+ 555              		.loc 1 151 13 is_stmt 1 view .LVU194
+ 151:Application/remote_control.c **** 
+ 556              		.loc 1 151 18 is_stmt 0 view .LVU195
+ 557 007e 426B     		ldr	r2, [r0, #52]
+ 151:Application/remote_control.c **** 
+ 558              		.loc 1 151 26 view .LVU196
+ 559 0080 1168     		ldr	r1, [r2]
+ 151:Application/remote_control.c **** 
+ 560              		.loc 1 151 41 view .LVU197
+ 561 0082 0A68     		ldr	r2, [r1]
+ 562 0084 42F40022 		orr	r2, r2, #524288
+ 563 0088 0A60     		str	r2, [r1]
+ 155:Application/remote_control.c **** 
+ 564              		.loc 1 155 13 is_stmt 1 view .LVU198
+ 565 008a 426B     		ldr	r2, [r0, #52]
+ 566 008c 1168     		ldr	r1, [r2]
+ 567 008e 0A68     		ldr	r2, [r1]
+ 568 0090 42F00102 		orr	r2, r2, #1
+ 569 0094 0A60     		str	r2, [r1]
+ 157:Application/remote_control.c ****             {
+ 570              		.loc 1 157 13 view .LVU199
+ 157:Application/remote_control.c ****             {
+ 571              		.loc 1 157 16 is_stmt 0 view .LVU200
+ 572 0096 122B     		cmp	r3, #18
+ 573 0098 C4D1     		bne	.L21
+ 159:Application/remote_control.c ****             }
+ 574              		.loc 1 159 17 is_stmt 1 view .LVU201
+ 575 009a 1949     		ldr	r1, .L26+4
+ 576 009c 1948     		ldr	r0, .L26+8
+ 577              	.LVL19:
+ 159:Application/remote_control.c ****             }
+ 578              		.loc 1 159 17 is_stmt 0 view .LVU202
+ 579 009e FFF7FEFF 		bl	Callback_RC_Handle
+ 580              	.LVL20:
+ 581 00a2 BFE7     		b	.L21
+ 582              	.LVL21:
+ 583              	.L22:
+ 167:Application/remote_control.c **** 
+ 584              		.loc 1 167 13 is_stmt 1 view .LVU203
+ 585 00a4 1A68     		ldr	r2, [r3]
+ 586 00a6 22F00102 		bic	r2, r2, #1
+ 587 00aa 1A60     		str	r2, [r3]
+ 171:Application/remote_control.c **** 
+ 588              		.loc 1 171 13 view .LVU204
+ 171:Application/remote_control.c **** 
+ 589              		.loc 1 171 55 is_stmt 0 view .LVU205
+ 590 00ac 436B     		ldr	r3, [r0, #52]
+ 171:Application/remote_control.c **** 
+ 591              		.loc 1 171 63 view .LVU206
+ 592 00ae 1968     		ldr	r1, [r3]
+ 171:Application/remote_control.c **** 
+ 593              		.loc 1 171 73 view .LVU207
+ 594 00b0 4B68     		ldr	r3, [r1, #4]
+ 171:Application/remote_control.c **** 
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 16
+
+
+ 595              		.loc 1 171 48 view .LVU208
+ 596 00b2 C3F12403 		rsb	r3, r3, #36
+ 171:Application/remote_control.c **** 
+ 597              		.loc 1 171 30 view .LVU209
+ 598 00b6 114A     		ldr	r2, .L26
+ 599 00b8 1380     		strh	r3, [r2]	@ movhi
+ 175:Application/remote_control.c **** 
+ 600              		.loc 1 175 13 is_stmt 1 view .LVU210
+ 175:Application/remote_control.c **** 
+ 601              		.loc 1 175 43 is_stmt 0 view .LVU211
+ 602 00ba 2423     		movs	r3, #36
+ 603 00bc 4B60     		str	r3, [r1, #4]
+ 179:Application/remote_control.c **** 
+ 604              		.loc 1 179 13 is_stmt 1 view .LVU212
+ 179:Application/remote_control.c **** 
+ 605              		.loc 1 179 30 is_stmt 0 view .LVU213
+ 606 00be 1249     		ldr	r1, .L26+12
+ 607 00c0 8B6A     		ldr	r3, [r1, #40]
+ 608 00c2 23F40023 		bic	r3, r3, #524288
+ 609 00c6 8B62     		str	r3, [r1, #40]
+ 183:Application/remote_control.c **** 
+ 610              		.loc 1 183 13 is_stmt 1 view .LVU214
+ 611 00c8 436B     		ldr	r3, [r0, #52]
+ 612 00ca 1968     		ldr	r1, [r3]
+ 613 00cc 0B68     		ldr	r3, [r1]
+ 614 00ce 43F00103 		orr	r3, r3, #1
+ 615 00d2 0B60     		str	r3, [r1]
+ 185:Application/remote_control.c ****             {
+ 616              		.loc 1 185 13 view .LVU215
+ 185:Application/remote_control.c ****             {
+ 617              		.loc 1 185 34 is_stmt 0 view .LVU216
+ 618 00d4 1388     		ldrh	r3, [r2]
+ 185:Application/remote_control.c ****             {
+ 619              		.loc 1 185 16 view .LVU217
+ 620 00d6 122B     		cmp	r3, #18
+ 621 00d8 A4D1     		bne	.L21
+ 188:Application/remote_control.c ****             }
+ 622              		.loc 1 188 17 is_stmt 1 view .LVU218
+ 623 00da 0C49     		ldr	r1, .L26+16
+ 624 00dc 0948     		ldr	r0, .L26+8
+ 625              	.LVL22:
+ 188:Application/remote_control.c ****             }
+ 626              		.loc 1 188 17 is_stmt 0 view .LVU219
+ 627 00de FFF7FEFF 		bl	Callback_RC_Handle
+ 628              	.LVL23:
+ 629 00e2 9FE7     		b	.L21
+ 630              	.L25:
+ 188:Application/remote_control.c ****             }
+ 631              		.loc 1 188 17 view .LVU220
+ 632              	.LBE3:
+ 197:Application/remote_control.c **** 
+ 633              		.loc 1 197 9 is_stmt 1 view .LVU221
+ 634 00e4 2268     		ldr	r2, [r4]
+ 635 00e6 D368     		ldr	r3, [r2, #12]
+ 636 00e8 23F04003 		bic	r3, r3, #64
+ 637 00ec D360     		str	r3, [r2, #12]
+ 200:Application/remote_control.c **** 
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 17
+
+
+ 638              		.loc 1 200 9 view .LVU222
+ 200:Application/remote_control.c **** 
+ 639              		.loc 1 200 23 is_stmt 0 view .LVU223
+ 640 00ee 2023     		movs	r3, #32
+ 641 00f0 84F83930 		strb	r3, [r4, #57]
+ 207:Application/remote_control.c **** #endif /* USE_HAL_UART_REGISTER_CALLBACKS */
+ 642              		.loc 1 207 9 is_stmt 1 view .LVU224
+ 643 00f4 2046     		mov	r0, r4
+ 644 00f6 FFF7FEFF 		bl	HAL_UART_TxCpltCallback
+ 645              	.LVL24:
+ 646              		.loc 1 210 1 is_stmt 0 view .LVU225
+ 647 00fa 99E7     		b	.L19
+ 648              	.L27:
+ 649              		.align	2
+ 650              	.L26:
+ 651 00fc 00000000 		.word	.LANCHOR3
+ 652 0100 00000000 		.word	.LANCHOR2
+ 653 0104 00000000 		.word	.LANCHOR1
+ 654 0108 00600240 		.word	1073897472
+ 655 010c 24000000 		.word	.LANCHOR2+36
+ 656              		.cfi_endproc
+ 657              	.LFE138:
+ 659              		.section	.text.HAL_USART_ErrorCallback,"ax",%progbits
+ 660              		.align	1
+ 661              		.global	HAL_USART_ErrorCallback
+ 662              		.syntax unified
+ 663              		.thumb
+ 664              		.thumb_func
+ 666              	HAL_USART_ErrorCallback:
+ 667              	.LVL25:
+ 668              	.LFB139:
+ 211:Application/remote_control.c **** 
+ 212:Application/remote_control.c **** void HAL_USART_ErrorCallback(UART_HandleTypeDef *huart)
+ 213:Application/remote_control.c **** {
+ 669              		.loc 1 213 1 is_stmt 1 view -0
+ 670              		.cfi_startproc
+ 671              		@ args = 0, pretend = 0, frame = 0
+ 672              		@ frame_needed = 0, uses_anonymous_args = 0
+ 673              		.loc 1 213 1 is_stmt 0 view .LVU227
+ 674 0000 10B5     		push	{r4, lr}
+ 675              	.LCFI9:
+ 676              		.cfi_def_cfa_offset 8
+ 677              		.cfi_offset 4, -8
+ 678              		.cfi_offset 14, -4
+ 214:Application/remote_control.c ****     if (huart == remote_control.RC_USART)
+ 679              		.loc 1 214 5 is_stmt 1 view .LVU228
+ 680              		.loc 1 214 32 is_stmt 0 view .LVU229
+ 681 0002 064B     		ldr	r3, .L32
+ 682 0004 1C68     		ldr	r4, [r3]
+ 683              		.loc 1 214 8 view .LVU230
+ 684 0006 8442     		cmp	r4, r0
+ 685 0008 00D0     		beq	.L31
+ 686              	.LVL26:
+ 687              	.L28:
+ 215:Application/remote_control.c ****         RC_USART_init(remote_control.RC_USART, sbus_rx_buf[0], sbus_rx_buf[1], SBUS_RX_BUF_NUM);
+ 216:Application/remote_control.c ****     // else
+ 217:Application/remote_control.c ****     //     AutoAim_USART_Init(huart, AutoAim_RX_Buf[0], AutoAim_RX_Buf[1], AutoAim_RX_BUF_NUM);
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 18
+
+
+ 218:Application/remote_control.c **** }
+ 688              		.loc 1 218 1 view .LVU231
+ 689 000a 10BD     		pop	{r4, pc}
+ 690              	.LVL27:
+ 691              	.L31:
+ 215:Application/remote_control.c ****         RC_USART_init(remote_control.RC_USART, sbus_rx_buf[0], sbus_rx_buf[1], SBUS_RX_BUF_NUM);
+ 692              		.loc 1 215 9 is_stmt 1 view .LVU232
+ 693 000c 0449     		ldr	r1, .L32+4
+ 694 000e 2423     		movs	r3, #36
+ 695 0010 CA18     		adds	r2, r1, r3
+ 696 0012 2046     		mov	r0, r4
+ 697              	.LVL28:
+ 215:Application/remote_control.c ****         RC_USART_init(remote_control.RC_USART, sbus_rx_buf[0], sbus_rx_buf[1], SBUS_RX_BUF_NUM);
+ 698              		.loc 1 215 9 is_stmt 0 view .LVU233
+ 699 0014 FFF7FEFF 		bl	RC_USART_init
+ 700              	.LVL29:
+ 701              		.loc 1 218 1 view .LVU234
+ 702 0018 F7E7     		b	.L28
+ 703              	.L33:
+ 704 001a 00BF     		.align	2
+ 705              	.L32:
+ 706 001c 00000000 		.word	.LANCHOR1
+ 707 0020 00000000 		.word	.LANCHOR2
+ 708              		.cfi_endproc
+ 709              	.LFE139:
+ 711              		.global	RC_Data_Buffer
+ 712              		.global	sbus_rx_buf
+ 713              		.global	remote_control
+ 714              		.section	.bss.RC_Data_Buffer,"aw",%nobits
+ 715              		.align	2
+ 716              		.set	.LANCHOR0,. + 0
+ 719              	RC_Data_Buffer:
+ 720 0000 00000000 		.space	16
+ 720      00000000 
+ 720      00000000 
+ 720      00000000 
+ 721              		.section	.bss.remote_control,"aw",%nobits
+ 722              		.align	2
+ 723              		.set	.LANCHOR1,. + 0
+ 726              	remote_control:
+ 727 0000 00000000 		.space	68
+ 727      00000000 
+ 727      00000000 
+ 727      00000000 
+ 727      00000000 
+ 728              		.section	.bss.sbus_rx_buf,"aw",%nobits
+ 729              		.align	2
+ 730              		.set	.LANCHOR2,. + 0
+ 733              	sbus_rx_buf:
+ 734 0000 00000000 		.space	72
+ 734      00000000 
+ 734      00000000 
+ 734      00000000 
+ 734      00000000 
+ 735              		.section	.bss.this_time_rx_len.0,"aw",%nobits
+ 736              		.align	1
+ 737              		.set	.LANCHOR3,. + 0
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 19
+
+
+ 740              	this_time_rx_len.0:
+ 741 0000 0000     		.space	2
+ 742              		.text
+ 743              	.Letext0:
+ 744              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 745              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 746              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 747              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
+ 748              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 749              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 750              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+ 751              		.file 9 "Application/remote_control.h"
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cc6nw5td.s 			page 20
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 remote_control.c
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:20     .text.Callback_RC_Handle:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:26     .text.Callback_RC_Handle:00000000 Callback_RC_Handle
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:247    .text.Callback_RC_Handle:00000124 $d
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:252    .text.RC_USART_init:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:258    .text.RC_USART_init:00000000 RC_USART_init
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:360    .text.RC_USART_init:0000006c $d
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:365    .text.Remote_Control_Init:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:371    .text.Remote_Control_Init:00000000 Remote_Control_Init
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:401    .text.Remote_Control_Init:00000014 $d
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:407    .text.RC_UART_IRQHandler:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:413    .text.RC_UART_IRQHandler:00000000 RC_UART_IRQHandler
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:651    .text.RC_UART_IRQHandler:000000fc $d
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:660    .text.HAL_USART_ErrorCallback:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:666    .text.HAL_USART_ErrorCallback:00000000 HAL_USART_ErrorCallback
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:706    .text.HAL_USART_ErrorCallback:0000001c $d
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:719    .bss.RC_Data_Buffer:00000000 RC_Data_Buffer
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:733    .bss.sbus_rx_buf:00000000 sbus_rx_buf
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:726    .bss.remote_control:00000000 remote_control
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:715    .bss.RC_Data_Buffer:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:722    .bss.remote_control:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:729    .bss.sbus_rx_buf:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:736    .bss.this_time_rx_len.0:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cc6nw5td.s:740    .bss.this_time_rx_len.0:00000000 this_time_rx_len.0
+
+UNDEFINED SYMBOLS
+HAL_UART_TxCpltCallback

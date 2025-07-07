@@ -1,0 +1,1849 @@
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"motor_task.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.set_exo_mode,"ax",%progbits
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	set_exo_mode:
+  26              	.LFB173:
+  27              		.file 1 "Application/motor_task.c"
+   1:Application/motor_task.c **** #include "motor_task.h"
+   2:Application/motor_task.c **** 
+   3:Application/motor_task.c **** int16_t debugoutput = 0, debugoutput2 = 0;
+   4:Application/motor_task.c **** 
+   5:Application/motor_task.c **** exo_controller_t exo_controller = {0};
+   6:Application/motor_task.c **** 
+   7:Application/motor_task.c **** float TargetVelocity = 0, TargetTorque = 0;
+   8:Application/motor_task.c **** float TargetAngle1 = 0, TargetAngle2 = 0,
+   9:Application/motor_task.c ****       TargetAngle3 = 0; // 目标角度
+  10:Application/motor_task.c **** float a = 45.0f, b = 0.5f, c = 45.0f;
+  11:Application/motor_task.c **** 
+  12:Application/motor_task.c **** static void set_exo_mode(void);
+  13:Application/motor_task.c **** static void get_exo_ctrl_value(void);
+  14:Application/motor_task.c **** static void limit_exo_ctrl_value(void);
+  15:Application/motor_task.c **** static void set_exo_control(void);
+  16:Application/motor_task.c **** static void send_exo_motor_current(void);
+  17:Application/motor_task.c **** 
+  18:Application/motor_task.c **** void exo_init(void)
+  19:Application/motor_task.c **** {
+  20:Application/motor_task.c ****   // PID初始化
+  21:Application/motor_task.c ****   PID_Init(&exo_controller.lk_motor.PID_Velocity, 2048, 1000, 0, 1.5, 0.1, 0, 0, 0, 0, 0, 0, Integr
+  22:Application/motor_task.c ****   PID_Init(&exo_controller.lk_motor.PID_Angle, 8600, 4000, 0, 30, 1, 1, 0, 0, 0, 0, 0, Integral_Lim
+  23:Application/motor_task.c ****   exo_controller.lk_motor.zero_offset = MOTOR_ZERO_OFFSET;
+  24:Application/motor_task.c ****   exo_controller.lk_motor.max_out = 0;
+  25:Application/motor_task.c **** 
+  26:Application/motor_task.c ****   PID_Init(&exo_controller.dm_motor[0].PID_Velocity, 18, 10, 0, 0.7, 0, 0, 0, 0, 0, 0, 0, Integral_
+  27:Application/motor_task.c ****   PID_Init(&exo_controller.dm_motor[0].PID_Angle, 50, 5, 0, 0.4, 0.05, 0.01, 0, 0, 0, 0, 0, Integra
+  28:Application/motor_task.c ****   exo_controller.dm_motor[0].max_out = 0;
+  29:Application/motor_task.c **** 
+  30:Application/motor_task.c ****   PID_Init(&exo_controller.dm_motor[1].PID_Velocity, 18, 10, 0, 0.7, 0, 0, 0, 0, 0, 0, 0, Integral_
+  31:Application/motor_task.c ****   PID_Init(&exo_controller.dm_motor[1].PID_Angle, 50, 5, 0, 0.4, 0.05, 0.01, 0, 0, 0, 0, 0, Integra
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 2
+
+
+  32:Application/motor_task.c ****   exo_controller.dm_motor[1].max_out = 0;
+  33:Application/motor_task.c **** 
+  34:Application/motor_task.c ****   PID_Init(&exo_controller.dm_motor[2].PID_Velocity, 2048, 1000, 0, 1.5, 0.1, 0, 0, 0, 0, 0, 0, Int
+  35:Application/motor_task.c ****   PID_Init(&exo_controller.dm_motor[2].PID_Angle, 8600, 4000, 0, 30, 1, 1, 0, 0, 0, 0, 0, Integral_
+  36:Application/motor_task.c ****   exo_controller.dm_motor[2].max_out = 0;
+  37:Application/motor_task.c **** 
+  38:Application/motor_task.c ****   exo_controller.lk_motor.reduction_ratio = 1.0f;
+  39:Application/motor_task.c ****   exo_controller.dm_motor[0].reduction_ratio = 1.0f;
+  40:Application/motor_task.c ****   exo_controller.dm_motor[1].reduction_ratio = 1.0f;
+  41:Application/motor_task.c ****   exo_controller.dm_motor[2].reduction_ratio = 1.0f;
+  42:Application/motor_task.c **** 
+  43:Application/motor_task.c ****   DM_CANx_SendStdData(&hcan1, 0x01, ENABLE_MOTOR, 8);
+  44:Application/motor_task.c ****   HAL_Delay(2);
+  45:Application/motor_task.c ****   DM_CANx_SendStdData(&hcan1, 0x02, ENABLE_MOTOR, 8);
+  46:Application/motor_task.c ****   HAL_Delay(2);
+  47:Application/motor_task.c ****   DM_CANx_SendStdData(&hcan1, 0x03, ENABLE_MOTOR, 8);
+  48:Application/motor_task.c ****   HAL_Delay(2);
+  49:Application/motor_task.c **** 
+  50:Application/motor_task.c ****   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3); // 启动PWM
+  51:Application/motor_task.c **** }
+  52:Application/motor_task.c **** 
+  53:Application/motor_task.c **** void exo_task(void)
+  54:Application/motor_task.c **** {
+  55:Application/motor_task.c ****   exo_controller.dt = DWT_GetDeltaT(&exo_controller.DWT_count);
+  56:Application/motor_task.c ****   exo_controller.t += exo_controller.dt;
+  57:Application/motor_task.c **** 
+  58:Application/motor_task.c ****   set_exo_mode();
+  59:Application/motor_task.c ****   get_exo_ctrl_value();
+  60:Application/motor_task.c **** 
+  61:Application/motor_task.c ****   send_exo_motor_current();
+  62:Application/motor_task.c **** }
+  63:Application/motor_task.c **** 
+  64:Application/motor_task.c **** static void set_exo_mode(void)
+  65:Application/motor_task.c **** {
+  28              		.loc 1 65 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 08B5     		push	{r3, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 3, -8
+  36              		.cfi_offset 14, -4
+  66:Application/motor_task.c ****   static uint32_t reset_count = 0;
+  37              		.loc 1 66 3 view .LVU1
+  67:Application/motor_task.c ****   static float reset_timestamp = 0;
+  38              		.loc 1 67 3 view .LVU2
+  68:Application/motor_task.c ****   static uint8_t pin_state = 0, last_pin_state = 0;
+  39              		.loc 1 68 3 view .LVU3
+  69:Application/motor_task.c **** 
+  70:Application/motor_task.c ****   pin_state = HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin);
+  40              		.loc 1 70 3 view .LVU4
+  41              		.loc 1 70 15 is_stmt 0 view .LVU5
+  42 0002 0121     		movs	r1, #1
+  43 0004 2D48     		ldr	r0, .L15
+  44 0006 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+  45              	.LVL0:
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 3
+
+
+  46              		.loc 1 70 13 view .LVU6
+  47 000a 2D4B     		ldr	r3, .L15+4
+  48 000c 1870     		strb	r0, [r3]
+  71:Application/motor_task.c ****   // press the key
+  72:Application/motor_task.c ****   if (pin_state == GPIO_PIN_RESET)
+  49              		.loc 1 72 3 is_stmt 1 view .LVU7
+  50              		.loc 1 72 6 is_stmt 0 view .LVU8
+  51 000e 38B9     		cbnz	r0, .L2
+  73:Application/motor_task.c ****   {
+  74:Application/motor_task.c ****     reset_count++;
+  52              		.loc 1 74 5 is_stmt 1 view .LVU9
+  53              		.loc 1 74 16 is_stmt 0 view .LVU10
+  54 0010 2C4A     		ldr	r2, .L15+8
+  55 0012 1368     		ldr	r3, [r2]
+  56 0014 0133     		adds	r3, r3, #1
+  57 0016 1360     		str	r3, [r2]
+  75:Application/motor_task.c ****     reset_timestamp = exo_controller.t;
+  58              		.loc 1 75 5 is_stmt 1 view .LVU11
+  59              		.loc 1 75 37 is_stmt 0 view .LVU12
+  60 0018 2B4B     		ldr	r3, .L15+12
+  61 001a 1A69     		ldr	r2, [r3, #16]	@ float
+  62              		.loc 1 75 21 view .LVU13
+  63 001c 2B4B     		ldr	r3, .L15+16
+  64 001e 1A60     		str	r2, [r3]	@ float
+  65              	.L2:
+  76:Application/motor_task.c ****   }
+  77:Application/motor_task.c **** 
+  78:Application/motor_task.c ****   if (last_pin_state == GPIO_PIN_SET && pin_state == GPIO_PIN_RESET)
+  66              		.loc 1 78 3 is_stmt 1 view .LVU14
+  67              		.loc 1 78 22 is_stmt 0 view .LVU15
+  68 0020 2B4B     		ldr	r3, .L15+20
+  69 0022 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  70              		.loc 1 78 6 view .LVU16
+  71 0024 012B     		cmp	r3, #1
+  72 0026 3AD0     		beq	.L14
+  73              	.L3:
+  79:Application/motor_task.c ****   {
+  80:Application/motor_task.c ****     reset_count = 0;
+  81:Application/motor_task.c ****     exo_controller.mode = SILENCE_MODE;
+  82:Application/motor_task.c ****   }
+  83:Application/motor_task.c **** 
+  84:Application/motor_task.c ****   if (reset_count > 1000)
+  74              		.loc 1 84 3 is_stmt 1 view .LVU17
+  75              		.loc 1 84 19 is_stmt 0 view .LVU18
+  76 0028 264B     		ldr	r3, .L15+8
+  77 002a 1B68     		ldr	r3, [r3]
+  78              		.loc 1 84 6 view .LVU19
+  79 002c B3F57A7F 		cmp	r3, #1000
+  80 0030 26D9     		bls	.L4
+  85:Application/motor_task.c ****   {
+  86:Application/motor_task.c ****     if ((exo_controller.t - reset_timestamp) < 2.0f)
+  81              		.loc 1 86 5 is_stmt 1 view .LVU20
+  82              		.loc 1 86 24 is_stmt 0 view .LVU21
+  83 0032 254B     		ldr	r3, .L15+12
+  84 0034 D3ED047A 		vldr.32	s15, [r3, #16]
+  85              		.loc 1 86 27 view .LVU22
+  86 0038 244B     		ldr	r3, .L15+16
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 4
+
+
+  87 003a 93ED007A 		vldr.32	s14, [r3]
+  88 003e 77EEC77A 		vsub.f32	s15, s15, s14
+  89              		.loc 1 86 8 view .LVU23
+  90 0042 B0EE007A 		vmov.f32	s14, #2.0e+0
+  91 0046 F4EEC77A 		vcmpe.f32	s15, s14
+  92 004a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  93 004e 2ED5     		bpl	.L12
+  87:Application/motor_task.c ****       TIM_Set_PWM(&htim4, TIM_CHANNEL_3, 2000);
+  94              		.loc 1 87 7 is_stmt 1 view .LVU24
+  95 0050 4FF4FA62 		mov	r2, #2000
+  96 0054 0821     		movs	r1, #8
+  97 0056 1F48     		ldr	r0, .L15+24
+  98 0058 FFF7FEFF 		bl	TIM_Set_PWM
+  99              	.LVL1:
+ 100              	.L7:
+  88:Application/motor_task.c ****     else
+  89:Application/motor_task.c ****       TIM_Set_PWM(&htim4, TIM_CHANNEL_3, 0);
+  90:Application/motor_task.c **** 
+  91:Application/motor_task.c ****     if ((exo_controller.t - reset_timestamp) > 5.0f)
+ 101              		.loc 1 91 5 view .LVU25
+ 102              		.loc 1 91 24 is_stmt 0 view .LVU26
+ 103 005c 1A4B     		ldr	r3, .L15+12
+ 104 005e D3ED047A 		vldr.32	s15, [r3, #16]
+ 105              		.loc 1 91 27 view .LVU27
+ 106 0062 1A4B     		ldr	r3, .L15+16
+ 107 0064 93ED007A 		vldr.32	s14, [r3]
+ 108 0068 77EEC77A 		vsub.f32	s15, s15, s14
+ 109              		.loc 1 91 8 view .LVU28
+ 110 006c B1EE047A 		vmov.f32	s14, #5.0e+0
+ 111 0070 F4EEC77A 		vcmpe.f32	s15, s14
+ 112 0074 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 113 0078 02DD     		ble	.L4
+  92:Application/motor_task.c ****       exo_controller.mode = Angle;
+ 114              		.loc 1 92 7 is_stmt 1 view .LVU29
+ 115              		.loc 1 92 27 is_stmt 0 view .LVU30
+ 116 007a 134B     		ldr	r3, .L15+12
+ 117 007c 0122     		movs	r2, #1
+ 118 007e 1A70     		strb	r2, [r3]
+ 119              	.L4:
+  93:Application/motor_task.c ****   }
+  94:Application/motor_task.c **** 
+  95:Application/motor_task.c ****   if (exo_controller.last_mode != exo_controller.mode)
+ 120              		.loc 1 95 3 is_stmt 1 view .LVU31
+ 121              		.loc 1 95 21 is_stmt 0 view .LVU32
+ 122 0080 114B     		ldr	r3, .L15+12
+ 123 0082 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
+ 124              		.loc 1 95 49 view .LVU33
+ 125 0084 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 126              		.loc 1 95 6 view .LVU34
+ 127 0086 9A42     		cmp	r2, r3
+ 128 0088 02D0     		beq	.L9
+  96:Application/motor_task.c ****     exo_controller.mode_change_timestamp = exo_controller.t;
+ 129              		.loc 1 96 5 is_stmt 1 view .LVU35
+ 130              		.loc 1 96 58 is_stmt 0 view .LVU36
+ 131 008a 0F4A     		ldr	r2, .L15+12
+ 132 008c 1169     		ldr	r1, [r2, #16]	@ float
+ 133              		.loc 1 96 42 view .LVU37
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 5
+
+
+ 134 008e 9160     		str	r1, [r2, #8]	@ float
+ 135              	.L9:
+  97:Application/motor_task.c **** 
+  98:Application/motor_task.c ****   last_pin_state = pin_state;
+ 136              		.loc 1 98 3 is_stmt 1 view .LVU38
+ 137              		.loc 1 98 18 is_stmt 0 view .LVU39
+ 138 0090 0B4A     		ldr	r2, .L15+4
+ 139 0092 1178     		ldrb	r1, [r2]	@ zero_extendqisi2
+ 140 0094 0E4A     		ldr	r2, .L15+20
+ 141 0096 1170     		strb	r1, [r2]
+  99:Application/motor_task.c ****   exo_controller.last_mode = exo_controller.mode;
+ 142              		.loc 1 99 3 is_stmt 1 view .LVU40
+ 143              		.loc 1 99 28 is_stmt 0 view .LVU41
+ 144 0098 0B4A     		ldr	r2, .L15+12
+ 145 009a 5370     		strb	r3, [r2, #1]
+ 100:Application/motor_task.c **** }
+ 146              		.loc 1 100 1 view .LVU42
+ 147 009c 08BD     		pop	{r3, pc}
+ 148              	.L14:
+  78:Application/motor_task.c ****   {
+ 149              		.loc 1 78 38 discriminator 1 view .LVU43
+ 150 009e 0028     		cmp	r0, #0
+ 151 00a0 C2D1     		bne	.L3
+  80:Application/motor_task.c ****     exo_controller.mode = SILENCE_MODE;
+ 152              		.loc 1 80 5 is_stmt 1 view .LVU44
+  80:Application/motor_task.c ****     exo_controller.mode = SILENCE_MODE;
+ 153              		.loc 1 80 17 is_stmt 0 view .LVU45
+ 154 00a2 0023     		movs	r3, #0
+ 155 00a4 074A     		ldr	r2, .L15+8
+ 156 00a6 1360     		str	r3, [r2]
+  81:Application/motor_task.c ****   }
+ 157              		.loc 1 81 5 is_stmt 1 view .LVU46
+  81:Application/motor_task.c ****   }
+ 158              		.loc 1 81 25 is_stmt 0 view .LVU47
+ 159 00a8 074A     		ldr	r2, .L15+12
+ 160 00aa 1370     		strb	r3, [r2]
+ 161 00ac BCE7     		b	.L3
+ 162              	.L12:
+  89:Application/motor_task.c **** 
+ 163              		.loc 1 89 7 is_stmt 1 view .LVU48
+ 164 00ae 0022     		movs	r2, #0
+ 165 00b0 0821     		movs	r1, #8
+ 166 00b2 0848     		ldr	r0, .L15+24
+ 167 00b4 FFF7FEFF 		bl	TIM_Set_PWM
+ 168              	.LVL2:
+ 169 00b8 D0E7     		b	.L7
+ 170              	.L16:
+ 171 00ba 00BF     		.align	2
+ 172              	.L15:
+ 173 00bc 00000240 		.word	1073872896
+ 174 00c0 00000000 		.word	.LANCHOR0
+ 175 00c4 00000000 		.word	.LANCHOR1
+ 176 00c8 00000000 		.word	.LANCHOR2
+ 177 00cc 00000000 		.word	.LANCHOR3
+ 178 00d0 00000000 		.word	.LANCHOR4
+ 179 00d4 00000000 		.word	htim4
+ 180              		.cfi_endproc
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 6
+
+
+ 181              	.LFE173:
+ 183              		.global	__aeabi_f2d
+ 184              		.global	__aeabi_dmul
+ 185              		.global	__aeabi_dadd
+ 186              		.global	__aeabi_d2f
+ 187              		.section	.text.get_exo_ctrl_value,"ax",%progbits
+ 188              		.align	1
+ 189              		.syntax unified
+ 190              		.thumb
+ 191              		.thumb_func
+ 193              	get_exo_ctrl_value:
+ 194              	.LFB174:
+ 101:Application/motor_task.c **** 
+ 102:Application/motor_task.c **** static void get_exo_ctrl_value(void)
+ 103:Application/motor_task.c **** {
+ 195              		.loc 1 103 1 view -0
+ 196              		.cfi_startproc
+ 197              		@ args = 0, pretend = 0, frame = 0
+ 198              		@ frame_needed = 0, uses_anonymous_args = 0
+ 199 0000 D0B5     		push	{r4, r6, r7, lr}
+ 200              	.LCFI1:
+ 201              		.cfi_def_cfa_offset 16
+ 202              		.cfi_offset 4, -16
+ 203              		.cfi_offset 6, -12
+ 204              		.cfi_offset 7, -8
+ 205              		.cfi_offset 14, -4
+ 104:Application/motor_task.c ****   switch (exo_controller.mode)
+ 206              		.loc 1 104 3 view .LVU50
+ 207              		.loc 1 104 25 is_stmt 0 view .LVU51
+ 208 0002 B54B     		ldr	r3, .L30
+ 209 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 210              		.loc 1 104 3 view .LVU52
+ 211 0006 052B     		cmp	r3, #5
+ 212 0008 1FD8     		bhi	.L17
+ 213 000a DFE813F0 		tbh	[pc, r3, lsl #1]
+ 214              	.L20:
+ 215 000e 0600     		.2byte	(.L24-.L20)/2
+ 216 0010 1F00     		.2byte	(.L23-.L20)/2
+ 217 0012 DE00     		.2byte	(.L22-.L20)/2
+ 218 0014 0101     		.2byte	(.L21-.L20)/2
+ 219 0016 1E00     		.2byte	(.L17-.L20)/2
+ 220 0018 0F01     		.2byte	(.L19-.L20)/2
+ 221              		.p2align 1
+ 222              	.L24:
+ 223              	.LBB2:
+ 105:Application/motor_task.c ****   {
+ 106:Application/motor_task.c ****   case SILENCE_MODE:
+ 107:Application/motor_task.c ****     exo_controller.lk_motor.Output = 0;
+ 224              		.loc 1 107 5 is_stmt 1 view .LVU53
+ 225              		.loc 1 107 36 is_stmt 0 view .LVU54
+ 226 001a AF4B     		ldr	r3, .L30
+ 227 001c 0022     		movs	r2, #0
+ 228 001e C3F88420 		str	r2, [r3, #132]	@ float
+ 108:Application/motor_task.c ****     exo_controller.dm_motor[0].Output = 0;
+ 229              		.loc 1 108 5 is_stmt 1 view .LVU55
+ 230              		.loc 1 108 39 is_stmt 0 view .LVU56
+ 231 0022 C3F81C23 		str	r2, [r3, #796]	@ float
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 7
+
+
+ 109:Application/motor_task.c ****     exo_controller.dm_motor[1].Output = 0;
+ 232              		.loc 1 109 5 is_stmt 1 view .LVU57
+ 233              		.loc 1 109 39 is_stmt 0 view .LVU58
+ 234 0026 03F2B451 		addw	r1, r3, #1460
+ 235 002a 0A60     		str	r2, [r1]	@ float
+ 110:Application/motor_task.c ****     exo_controller.dm_motor[2].Output = 0;
+ 236              		.loc 1 110 5 is_stmt 1 view .LVU59
+ 237              		.loc 1 110 39 is_stmt 0 view .LVU60
+ 238 002c 03F64C01 		addw	r1, r3, #2124
+ 239 0030 0A60     		str	r2, [r1]	@ float
+ 111:Application/motor_task.c ****     TargetAngle1 = exo_controller.dm_motor[0].angle_in_degree;
+ 240              		.loc 1 111 5 is_stmt 1 view .LVU61
+ 241              		.loc 1 111 46 is_stmt 0 view .LVU62
+ 242 0032 D3F8E012 		ldr	r1, [r3, #736]	@ float
+ 243              		.loc 1 111 18 view .LVU63
+ 244 0036 A94A     		ldr	r2, .L30+4
+ 245 0038 1160     		str	r1, [r2]	@ float
+ 112:Application/motor_task.c ****     TargetAngle2 = exo_controller.dm_motor[1].angle_in_degree;
+ 246              		.loc 1 112 5 is_stmt 1 view .LVU64
+ 247              		.loc 1 112 46 is_stmt 0 view .LVU65
+ 248 003a 03F5AF62 		add	r2, r3, #1400
+ 249 003e 1168     		ldr	r1, [r2]	@ float
+ 250              		.loc 1 112 18 view .LVU66
+ 251 0040 A74A     		ldr	r2, .L30+8
+ 252 0042 1160     		str	r1, [r2]	@ float
+ 113:Application/motor_task.c ****     TargetAngle3 = exo_controller.lk_motor.angle_in_degree;
+ 253              		.loc 1 113 5 is_stmt 1 view .LVU67
+ 254              		.loc 1 113 43 is_stmt 0 view .LVU68
+ 255 0044 9A6C     		ldr	r2, [r3, #72]	@ float
+ 256              		.loc 1 113 18 view .LVU69
+ 257 0046 A74B     		ldr	r3, .L30+12
+ 258 0048 1A60     		str	r2, [r3]	@ float
+ 114:Application/motor_task.c ****     break;
+ 259              		.loc 1 114 5 is_stmt 1 view .LVU70
+ 260              	.L17:
+ 261              	.LBE2:
+ 115:Application/motor_task.c **** 
+ 116:Application/motor_task.c ****   case Angle:
+ 117:Application/motor_task.c ****     // 角度控制
+ 118:Application/motor_task.c ****     // Motor_Angle_Calculate(&exo_controller.lk_motor, exo_controller.lk_motor.total_angle, exo_con
+ 119:Application/motor_task.c ****     if (exo_controller.t - exo_controller.mode_change_timestamp < 1)
+ 120:Application/motor_task.c ****     {
+ 121:Application/motor_task.c ****       TargetAngle1 = exo_controller.dm_motor[0].angle_in_degree;
+ 122:Application/motor_task.c ****       TargetAngle2 = exo_controller.dm_motor[1].angle_in_degree;
+ 123:Application/motor_task.c ****       TargetAngle3 = exo_controller.lk_motor.angle_in_degree;
+ 124:Application/motor_task.c ****     }
+ 125:Application/motor_task.c ****     // else
+ 126:Application/motor_task.c ****     // {
+ 127:Application/motor_task.c ****     //   TargetAngle1 = (MOTOR1_MAX - MOTOR1_MIN) / 2 * sin(b * exo_controller.t) + (MOTOR1_MAX + M
+ 128:Application/motor_task.c ****     //   TargetAngle2 = (MOTOR2_MAX - MOTOR2_MIN) / 2 * sin(b * exo_controller.t + PI) + (MOTOR2_MA
+ 129:Application/motor_task.c ****     // }
+ 130:Application/motor_task.c **** 
+ 131:Application/motor_task.c ****     // TargetAngle1 = float_constrain(TargetAngle1, MOTOR1_MIN, MOTOR1_MAX);
+ 132:Application/motor_task.c ****     // TargetAngle2 = float_constrain(TargetAngle2, MOTOR2_MIN, MOTOR2_MAX);
+ 133:Application/motor_task.c **** 
+ 134:Application/motor_task.c ****     /* -------------------------------- lk motor -------------------------------- */
+ 135:Application/motor_task.c ****     PID_Calculate(&exo_controller.lk_motor.PID_Angle, exo_controller.lk_motor.angle_in_degree, Targ
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 8
+
+
+ 136:Application/motor_task.c ****     float VelocityLoopInput = float_constrain(exo_controller.lk_motor.PID_Angle.Output,
+ 137:Application/motor_task.c ****                                               -exo_controller.lk_motor.PID_Angle.MaxOut, exo_contro
+ 138:Application/motor_task.c ****     PID_Calculate(&exo_controller.lk_motor.PID_Velocity, exo_controller.lk_motor.velocity_in_rpm, V
+ 139:Application/motor_task.c ****     float TorqueLoopInput = float_constrain(exo_controller.lk_motor.PID_Velocity.Output,
+ 140:Application/motor_task.c ****                                             -exo_controller.lk_motor.PID_Velocity.MaxOut, exo_contr
+ 141:Application/motor_task.c ****     exo_controller.lk_motor.Output = float_constrain(TorqueLoopInput, -exo_controller.lk_motor.max_
+ 142:Application/motor_task.c **** 
+ 143:Application/motor_task.c ****     /* --------------------------------- dm motor -------------------------------- */
+ 144:Application/motor_task.c ****     PID_Calculate(&exo_controller.dm_motor[0].PID_Angle, exo_controller.dm_motor[0].angle_in_degree
+ 145:Application/motor_task.c ****     VelocityLoopInput = float_constrain(exo_controller.dm_motor[0].PID_Angle.Output,
+ 146:Application/motor_task.c ****                                         -exo_controller.dm_motor[0].PID_Angle.MaxOut, exo_controlle
+ 147:Application/motor_task.c **** 
+ 148:Application/motor_task.c ****     PID_Calculate(&exo_controller.dm_motor[0].PID_Velocity, exo_controller.dm_motor[0].velocity_in_
+ 149:Application/motor_task.c ****     TorqueLoopInput = float_constrain(exo_controller.dm_motor[0].PID_Velocity.Output,
+ 150:Application/motor_task.c ****                                       -exo_controller.dm_motor[0].PID_Velocity.MaxOut, exo_controll
+ 151:Application/motor_task.c **** 
+ 152:Application/motor_task.c ****     exo_controller.dm_motor[0].Output = float_constrain(TorqueLoopInput, -exo_controller.dm_motor[0
+ 153:Application/motor_task.c **** 
+ 154:Application/motor_task.c ****     PID_Calculate(&exo_controller.dm_motor[1].PID_Angle, exo_controller.dm_motor[1].angle_in_degree
+ 155:Application/motor_task.c ****     VelocityLoopInput = float_constrain(exo_controller.dm_motor[1].PID_Angle.Output,
+ 156:Application/motor_task.c ****                                         -exo_controller.dm_motor[1].PID_Angle.MaxOut, exo_controlle
+ 157:Application/motor_task.c **** 
+ 158:Application/motor_task.c ****     PID_Calculate(&exo_controller.dm_motor[1].PID_Velocity, exo_controller.dm_motor[1].velocity_in_
+ 159:Application/motor_task.c ****     TorqueLoopInput = float_constrain(exo_controller.dm_motor[1].PID_Velocity.Output,
+ 160:Application/motor_task.c ****                                       -exo_controller.dm_motor[1].PID_Velocity.MaxOut, exo_controll
+ 161:Application/motor_task.c **** 
+ 162:Application/motor_task.c ****     exo_controller.dm_motor[1].Output = float_constrain(TorqueLoopInput, -exo_controller.dm_motor[1
+ 163:Application/motor_task.c **** 
+ 164:Application/motor_task.c ****     Motor_Angle_Calculate(&exo_controller.dm_motor[0], exo_controller.dm_motor[0].angle_in_degree,
+ 165:Application/motor_task.c ****                           exo_controller.dm_motor[0].velocity_in_radps, TargetAngle1);
+ 166:Application/motor_task.c **** 
+ 167:Application/motor_task.c ****     break;
+ 168:Application/motor_task.c **** 
+ 169:Application/motor_task.c ****   case Velocity:
+ 170:Application/motor_task.c ****     // 速度控制
+ 171:Application/motor_task.c ****     // Motor_Speed_Calculate(&exo_controller.lk_motor, exo_controller.lk_motor.velocity_in_rpm, Tar
+ 172:Application/motor_task.c **** 
+ 173:Application/motor_task.c ****     // PID_Calculate(&exo_controller.lk_motor.PID_Velocity, exo_controller.lk_motor.velocity_in_rpm
+ 174:Application/motor_task.c ****     // TorqueLoopInput = float_constrain(exo_controller.lk_motor.PID_Velocity.Output,
+ 175:Application/motor_task.c ****     //                                   -exo_controller.lk_motor.PID_Velocity.MaxOut, exo_controll
+ 176:Application/motor_task.c **** 
+ 177:Application/motor_task.c ****     // exo_controller.lk_motor.Output = float_constrain(TorqueLoopInput, -exo_controller.lk_motor.m
+ 178:Application/motor_task.c **** 
+ 179:Application/motor_task.c ****     /* --------------------------------- dm motor -------------------------------- */
+ 180:Application/motor_task.c ****     PID_Calculate(&exo_controller.dm_motor[0].PID_Velocity, exo_controller.dm_motor[0].velocity_in_
+ 181:Application/motor_task.c ****     TorqueLoopInput = float_constrain(exo_controller.dm_motor[0].PID_Velocity.Output,
+ 182:Application/motor_task.c ****                                       -exo_controller.dm_motor[0].PID_Velocity.MaxOut, exo_controll
+ 183:Application/motor_task.c **** 
+ 184:Application/motor_task.c ****     exo_controller.dm_motor[0].Output = float_constrain(TorqueLoopInput, -exo_controller.dm_motor[0
+ 185:Application/motor_task.c **** 
+ 186:Application/motor_task.c ****     // 避免模式切换疯掉
+ 187:Application/motor_task.c ****     TargetAngle1 = exo_controller.dm_motor[0].angle_in_degree;
+ 188:Application/motor_task.c ****     break;
+ 189:Application/motor_task.c **** 
+ 190:Application/motor_task.c ****   case Debug:
+ 191:Application/motor_task.c ****     exo_controller.lk_motor.Output = debugoutput;
+ 192:Application/motor_task.c ****     TargetAngle1 = exo_controller.lk_motor.angle_in_degree;
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 9
+
+
+ 193:Application/motor_task.c ****     break;
+ 194:Application/motor_task.c **** 
+ 195:Application/motor_task.c ****   case 5:
+ 196:Application/motor_task.c ****     TargetAngle1 = a * sin(b * exo_controller.t) + c;
+ 197:Application/motor_task.c ****     PID_Calculate(&exo_controller.lk_motor.PID_Angle, exo_controller.lk_motor.angle_in_degree, Targ
+ 198:Application/motor_task.c ****     VelocityLoopInput = float_constrain(exo_controller.lk_motor.PID_Angle.Output,
+ 199:Application/motor_task.c ****                                         -exo_controller.lk_motor.PID_Angle.MaxOut, exo_controller.l
+ 200:Application/motor_task.c **** 
+ 201:Application/motor_task.c ****     PID_Calculate(&exo_controller.lk_motor.PID_Velocity, exo_controller.lk_motor.velocity_in_rpm, V
+ 202:Application/motor_task.c ****     TorqueLoopInput = float_constrain(exo_controller.lk_motor.PID_Velocity.Output,
+ 203:Application/motor_task.c ****                                       -exo_controller.lk_motor.PID_Velocity.MaxOut, exo_controller.
+ 204:Application/motor_task.c **** 
+ 205:Application/motor_task.c ****     exo_controller.lk_motor.Output = float_constrain(TorqueLoopInput, -exo_controller.lk_motor.max_
+ 206:Application/motor_task.c ****     break;
+ 207:Application/motor_task.c ****   }
+ 208:Application/motor_task.c **** }
+ 262              		.loc 1 208 1 is_stmt 0 view .LVU71
+ 263 004a D0BD     		pop	{r4, r6, r7, pc}
+ 264              	.L23:
+ 265              	.LBB3:
+ 119:Application/motor_task.c ****     {
+ 266              		.loc 1 119 5 is_stmt 1 view .LVU72
+ 119:Application/motor_task.c ****     {
+ 267              		.loc 1 119 23 is_stmt 0 view .LVU73
+ 268 004c A24B     		ldr	r3, .L30
+ 269 004e D3ED047A 		vldr.32	s15, [r3, #16]
+ 119:Application/motor_task.c ****     {
+ 270              		.loc 1 119 42 view .LVU74
+ 271 0052 93ED027A 		vldr.32	s14, [r3, #8]
+ 119:Application/motor_task.c ****     {
+ 272              		.loc 1 119 26 view .LVU75
+ 273 0056 77EEC77A 		vsub.f32	s15, s15, s14
+ 119:Application/motor_task.c ****     {
+ 274              		.loc 1 119 8 view .LVU76
+ 275 005a B7EE007A 		vmov.f32	s14, #1.0e+0
+ 276 005e F4EEC77A 		vcmpe.f32	s15, s14
+ 277 0062 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 278 0066 00F1A380 		bmi	.L29
+ 279              	.L25:
+ 135:Application/motor_task.c ****     float VelocityLoopInput = float_constrain(exo_controller.lk_motor.PID_Angle.Output,
+ 280              		.loc 1 135 5 is_stmt 1 view .LVU77
+ 281 006a 9B4C     		ldr	r4, .L30
+ 282 006c 9D4B     		ldr	r3, .L30+12
+ 283 006e D3ED000A 		vldr.32	s1, [r3]
+ 284 0072 94ED120A 		vldr.32	s0, [r4, #72]
+ 285 0076 04F50070 		add	r0, r4, #512
+ 286 007a FFF7FEFF 		bl	PID_Calculate
+ 287              	.LVL3:
+ 136:Application/motor_task.c ****                                               -exo_controller.lk_motor.PID_Angle.MaxOut, exo_contro
+ 288              		.loc 1 136 5 view .LVU78
+ 137:Application/motor_task.c ****     PID_Calculate(&exo_controller.lk_motor.PID_Velocity, exo_controller.lk_motor.velocity_in_rpm, V
+ 289              		.loc 1 137 81 is_stmt 0 view .LVU79
+ 290 007e 94ED901A 		vldr.32	s2, [r4, #576]
+ 136:Application/motor_task.c ****                                               -exo_controller.lk_motor.PID_Angle.MaxOut, exo_contro
+ 291              		.loc 1 136 31 view .LVU80
+ 292 0082 F1EE410A 		vneg.f32	s1, s2
+ 293 0086 94ED8D0A 		vldr.32	s0, [r4, #564]
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 10
+
+
+ 294 008a FFF7FEFF 		bl	float_constrain
+ 295              	.LVL4:
+ 296 008e F0EE400A 		vmov.f32	s1, s0
+ 297              	.LVL5:
+ 138:Application/motor_task.c ****     float TorqueLoopInput = float_constrain(exo_controller.lk_motor.PID_Velocity.Output,
+ 298              		.loc 1 138 5 is_stmt 1 view .LVU81
+ 138:Application/motor_task.c ****     float TorqueLoopInput = float_constrain(exo_controller.lk_motor.PID_Velocity.Output,
+ 299              		.loc 1 138 81 is_stmt 0 view .LVU82
+ 300 0092 B4F92C30 		ldrsh	r3, [r4, #44]
+ 301 0096 00EE103A 		vmov	s0, r3	@ int
+ 302              	.LVL6:
+ 138:Application/motor_task.c ****     float TorqueLoopInput = float_constrain(exo_controller.lk_motor.PID_Velocity.Output,
+ 303              		.loc 1 138 5 view .LVU83
+ 304 009a B8EEC00A 		vcvt.f32.s32	s0, s0
+ 305 009e 04F5A470 		add	r0, r4, #328
+ 306 00a2 FFF7FEFF 		bl	PID_Calculate
+ 307              	.LVL7:
+ 139:Application/motor_task.c ****                                             -exo_controller.lk_motor.PID_Velocity.MaxOut, exo_contr
+ 308              		.loc 1 139 5 is_stmt 1 view .LVU84
+ 140:Application/motor_task.c ****     exo_controller.lk_motor.Output = float_constrain(TorqueLoopInput, -exo_controller.lk_motor.max_
+ 309              		.loc 1 140 82 is_stmt 0 view .LVU85
+ 310 00a6 94ED621A 		vldr.32	s2, [r4, #392]
+ 139:Application/motor_task.c ****                                             -exo_controller.lk_motor.PID_Velocity.MaxOut, exo_contr
+ 311              		.loc 1 139 29 view .LVU86
+ 312 00aa F1EE410A 		vneg.f32	s1, s2
+ 313 00ae 94ED5F0A 		vldr.32	s0, [r4, #380]
+ 314 00b2 FFF7FEFF 		bl	float_constrain
+ 315              	.LVL8:
+ 141:Application/motor_task.c **** 
+ 316              		.loc 1 141 5 is_stmt 1 view .LVU87
+ 141:Application/motor_task.c **** 
+ 317              		.loc 1 141 95 is_stmt 0 view .LVU88
+ 318 00b6 94ED221A 		vldr.32	s2, [r4, #136]
+ 141:Application/motor_task.c **** 
+ 319              		.loc 1 141 38 view .LVU89
+ 320 00ba F1EE410A 		vneg.f32	s1, s2
+ 321 00be FFF7FEFF 		bl	float_constrain
+ 322              	.LVL9:
+ 141:Application/motor_task.c **** 
+ 323              		.loc 1 141 36 view .LVU90
+ 324 00c2 84ED210A 		vstr.32	s0, [r4, #132]
+ 144:Application/motor_task.c ****     VelocityLoopInput = float_constrain(exo_controller.dm_motor[0].PID_Angle.Output,
+ 325              		.loc 1 144 5 is_stmt 1 view .LVU91
+ 326 00c6 854E     		ldr	r6, .L30+4
+ 327 00c8 D6ED000A 		vldr.32	s1, [r6]
+ 328 00cc 94EDB80A 		vldr.32	s0, [r4, #736]
+ 329 00d0 04F59360 		add	r0, r4, #1176
+ 330 00d4 FFF7FEFF 		bl	PID_Calculate
+ 331              	.LVL10:
+ 145:Application/motor_task.c ****                                         -exo_controller.dm_motor[0].PID_Angle.MaxOut, exo_controlle
+ 332              		.loc 1 145 5 view .LVU92
+ 146:Application/motor_task.c **** 
+ 333              		.loc 1 146 78 is_stmt 0 view .LVU93
+ 334 00d8 04F59B63 		add	r3, r4, #1240
+ 335 00dc 93ED001A 		vldr.32	s2, [r3]
+ 145:Application/motor_task.c ****                                         -exo_controller.dm_motor[0].PID_Angle.MaxOut, exo_controlle
+ 336              		.loc 1 145 25 view .LVU94
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 11
+
+
+ 337 00e0 04F2CC43 		addw	r3, r4, #1228
+ 338 00e4 F1EE410A 		vneg.f32	s1, s2
+ 339 00e8 93ED000A 		vldr.32	s0, [r3]
+ 340 00ec FFF7FEFF 		bl	float_constrain
+ 341              	.LVL11:
+ 342 00f0 F0EE400A 		vmov.f32	s1, s0
+ 343              	.LVL12:
+ 148:Application/motor_task.c ****     TorqueLoopInput = float_constrain(exo_controller.dm_motor[0].PID_Velocity.Output,
+ 344              		.loc 1 148 5 is_stmt 1 view .LVU95
+ 345 00f4 94EDAF0A 		vldr.32	s0, [r4, #700]
+ 346              	.LVL13:
+ 148:Application/motor_task.c ****     TorqueLoopInput = float_constrain(exo_controller.dm_motor[0].PID_Velocity.Output,
+ 347              		.loc 1 148 5 is_stmt 0 view .LVU96
+ 348 00f8 04F57870 		add	r0, r4, #992
+ 349 00fc FFF7FEFF 		bl	PID_Calculate
+ 350              	.LVL14:
+ 149:Application/motor_task.c ****                                       -exo_controller.dm_motor[0].PID_Velocity.MaxOut, exo_controll
+ 351              		.loc 1 149 5 is_stmt 1 view .LVU97
+ 150:Application/motor_task.c **** 
+ 352              		.loc 1 150 79 is_stmt 0 view .LVU98
+ 353 0100 04F58463 		add	r3, r4, #1056
+ 354 0104 93ED001A 		vldr.32	s2, [r3]
+ 149:Application/motor_task.c ****                                       -exo_controller.dm_motor[0].PID_Velocity.MaxOut, exo_controll
+ 355              		.loc 1 149 23 view .LVU99
+ 356 0108 04F21443 		addw	r3, r4, #1044
+ 357 010c F1EE410A 		vneg.f32	s1, s2
+ 358 0110 93ED000A 		vldr.32	s0, [r3]
+ 359 0114 FFF7FEFF 		bl	float_constrain
+ 360              	.LVL15:
+ 152:Application/motor_task.c **** 
+ 361              		.loc 1 152 5 is_stmt 1 view .LVU100
+ 152:Application/motor_task.c **** 
+ 362              		.loc 1 152 101 is_stmt 0 view .LVU101
+ 363 0118 94EDC81A 		vldr.32	s2, [r4, #800]
+ 152:Application/motor_task.c **** 
+ 364              		.loc 1 152 41 view .LVU102
+ 365 011c F1EE410A 		vneg.f32	s1, s2
+ 366 0120 FFF7FEFF 		bl	float_constrain
+ 367              	.LVL16:
+ 152:Application/motor_task.c **** 
+ 368              		.loc 1 152 39 view .LVU103
+ 369 0124 84EDC70A 		vstr.32	s0, [r4, #796]
+ 154:Application/motor_task.c ****     VelocityLoopInput = float_constrain(exo_controller.dm_motor[1].PID_Angle.Output,
+ 370              		.loc 1 154 5 is_stmt 1 view .LVU104
+ 371 0128 04F5AF63 		add	r3, r4, #1400
+ 372 012c 6C4A     		ldr	r2, .L30+8
+ 373 012e D2ED000A 		vldr.32	s1, [r2]
+ 374 0132 93ED000A 		vldr.32	s0, [r3]
+ 375 0136 04F5E660 		add	r0, r4, #1840
+ 376 013a FFF7FEFF 		bl	PID_Calculate
+ 377              	.LVL17:
+ 155:Application/motor_task.c ****                                         -exo_controller.dm_motor[1].PID_Angle.MaxOut, exo_controlle
+ 378              		.loc 1 155 5 view .LVU105
+ 156:Application/motor_task.c **** 
+ 379              		.loc 1 156 78 is_stmt 0 view .LVU106
+ 380 013e 04F5EE63 		add	r3, r4, #1904
+ 381 0142 93ED001A 		vldr.32	s2, [r3]
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 12
+
+
+ 155:Application/motor_task.c ****                                         -exo_controller.dm_motor[1].PID_Angle.MaxOut, exo_controlle
+ 382              		.loc 1 155 25 view .LVU107
+ 383 0146 04F26473 		addw	r3, r4, #1892
+ 384 014a F1EE410A 		vneg.f32	s1, s2
+ 385 014e 93ED000A 		vldr.32	s0, [r3]
+ 386 0152 FFF7FEFF 		bl	float_constrain
+ 387              	.LVL18:
+ 388 0156 F0EE400A 		vmov.f32	s1, s0
+ 389              	.LVL19:
+ 158:Application/motor_task.c ****     TorqueLoopInput = float_constrain(exo_controller.dm_motor[1].PID_Velocity.Output,
+ 390              		.loc 1 158 5 is_stmt 1 view .LVU108
+ 391 015a 04F25453 		addw	r3, r4, #1364
+ 392 015e 93ED000A 		vldr.32	s0, [r3]
+ 393              	.LVL20:
+ 158:Application/motor_task.c ****     TorqueLoopInput = float_constrain(exo_controller.dm_motor[1].PID_Velocity.Output,
+ 394              		.loc 1 158 5 is_stmt 0 view .LVU109
+ 395 0162 04F5CF60 		add	r0, r4, #1656
+ 396 0166 FFF7FEFF 		bl	PID_Calculate
+ 397              	.LVL21:
+ 159:Application/motor_task.c ****                                       -exo_controller.dm_motor[1].PID_Velocity.MaxOut, exo_controll
+ 398              		.loc 1 159 5 is_stmt 1 view .LVU110
+ 160:Application/motor_task.c **** 
+ 399              		.loc 1 160 79 is_stmt 0 view .LVU111
+ 400 016a 04F5D763 		add	r3, r4, #1720
+ 401 016e 93ED001A 		vldr.32	s2, [r3]
+ 159:Application/motor_task.c ****                                       -exo_controller.dm_motor[1].PID_Velocity.MaxOut, exo_controll
+ 402              		.loc 1 159 23 view .LVU112
+ 403 0172 04F2AC63 		addw	r3, r4, #1708
+ 404 0176 F1EE410A 		vneg.f32	s1, s2
+ 405 017a 93ED000A 		vldr.32	s0, [r3]
+ 406 017e FFF7FEFF 		bl	float_constrain
+ 407              	.LVL22:
+ 162:Application/motor_task.c **** 
+ 408              		.loc 1 162 5 is_stmt 1 view .LVU113
+ 162:Application/motor_task.c **** 
+ 409              		.loc 1 162 101 is_stmt 0 view .LVU114
+ 410 0182 04F5B763 		add	r3, r4, #1464
+ 411 0186 93ED001A 		vldr.32	s2, [r3]
+ 162:Application/motor_task.c **** 
+ 412              		.loc 1 162 41 view .LVU115
+ 413 018a F1EE410A 		vneg.f32	s1, s2
+ 414 018e FFF7FEFF 		bl	float_constrain
+ 415              	.LVL23:
+ 162:Application/motor_task.c **** 
+ 416              		.loc 1 162 39 view .LVU116
+ 417 0192 04F2B453 		addw	r3, r4, #1460
+ 418 0196 83ED000A 		vstr.32	s0, [r3]
+ 164:Application/motor_task.c ****                           exo_controller.dm_motor[0].velocity_in_radps, TargetAngle1);
+ 419              		.loc 1 164 5 is_stmt 1 view .LVU117
+ 420 019a 96ED001A 		vldr.32	s2, [r6]
+ 421 019e D4EDAF0A 		vldr.32	s1, [r4, #700]
+ 422 01a2 94EDB80A 		vldr.32	s0, [r4, #736]
+ 423 01a6 04F52E70 		add	r0, r4, #696
+ 424 01aa FFF7FEFF 		bl	Motor_Angle_Calculate
+ 425              	.LVL24:
+ 167:Application/motor_task.c **** 
+ 426              		.loc 1 167 5 view .LVU118
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 13
+
+
+ 427 01ae 4CE7     		b	.L17
+ 428              	.L29:
+ 121:Application/motor_task.c ****       TargetAngle2 = exo_controller.dm_motor[1].angle_in_degree;
+ 429              		.loc 1 121 7 view .LVU119
+ 121:Application/motor_task.c ****       TargetAngle2 = exo_controller.dm_motor[1].angle_in_degree;
+ 430              		.loc 1 121 48 is_stmt 0 view .LVU120
+ 431 01b0 D3F8E012 		ldr	r1, [r3, #736]	@ float
+ 121:Application/motor_task.c ****       TargetAngle2 = exo_controller.dm_motor[1].angle_in_degree;
+ 432              		.loc 1 121 20 view .LVU121
+ 433 01b4 494A     		ldr	r2, .L30+4
+ 434 01b6 1160     		str	r1, [r2]	@ float
+ 122:Application/motor_task.c ****       TargetAngle3 = exo_controller.lk_motor.angle_in_degree;
+ 435              		.loc 1 122 7 is_stmt 1 view .LVU122
+ 122:Application/motor_task.c ****       TargetAngle3 = exo_controller.lk_motor.angle_in_degree;
+ 436              		.loc 1 122 48 is_stmt 0 view .LVU123
+ 437 01b8 03F5AF62 		add	r2, r3, #1400
+ 438 01bc 1168     		ldr	r1, [r2]	@ float
+ 122:Application/motor_task.c ****       TargetAngle3 = exo_controller.lk_motor.angle_in_degree;
+ 439              		.loc 1 122 20 view .LVU124
+ 440 01be 484A     		ldr	r2, .L30+8
+ 441 01c0 1160     		str	r1, [r2]	@ float
+ 123:Application/motor_task.c ****     }
+ 442              		.loc 1 123 7 is_stmt 1 view .LVU125
+ 123:Application/motor_task.c ****     }
+ 443              		.loc 1 123 45 is_stmt 0 view .LVU126
+ 444 01c2 9A6C     		ldr	r2, [r3, #72]	@ float
+ 123:Application/motor_task.c ****     }
+ 445              		.loc 1 123 20 view .LVU127
+ 446 01c4 474B     		ldr	r3, .L30+12
+ 447 01c6 1A60     		str	r2, [r3]	@ float
+ 448 01c8 4FE7     		b	.L25
+ 449              	.L22:
+ 180:Application/motor_task.c ****     TorqueLoopInput = float_constrain(exo_controller.dm_motor[0].PID_Velocity.Output,
+ 450              		.loc 1 180 5 is_stmt 1 view .LVU128
+ 451 01ca 434C     		ldr	r4, .L30
+ 452 01cc 464B     		ldr	r3, .L30+16
+ 453 01ce D3ED000A 		vldr.32	s1, [r3]
+ 454 01d2 94EDAF0A 		vldr.32	s0, [r4, #700]
+ 455 01d6 04F57870 		add	r0, r4, #992
+ 456 01da FFF7FEFF 		bl	PID_Calculate
+ 457              	.LVL25:
+ 181:Application/motor_task.c ****                                       -exo_controller.dm_motor[0].PID_Velocity.MaxOut, exo_controll
+ 458              		.loc 1 181 5 view .LVU129
+ 182:Application/motor_task.c **** 
+ 459              		.loc 1 182 79 is_stmt 0 view .LVU130
+ 460 01de 04F58463 		add	r3, r4, #1056
+ 461 01e2 93ED001A 		vldr.32	s2, [r3]
+ 181:Application/motor_task.c ****                                       -exo_controller.dm_motor[0].PID_Velocity.MaxOut, exo_controll
+ 462              		.loc 1 181 23 view .LVU131
+ 463 01e6 04F21443 		addw	r3, r4, #1044
+ 464 01ea F1EE410A 		vneg.f32	s1, s2
+ 465 01ee 93ED000A 		vldr.32	s0, [r3]
+ 466 01f2 FFF7FEFF 		bl	float_constrain
+ 467              	.LVL26:
+ 184:Application/motor_task.c **** 
+ 468              		.loc 1 184 5 is_stmt 1 view .LVU132
+ 184:Application/motor_task.c **** 
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 14
+
+
+ 469              		.loc 1 184 101 is_stmt 0 view .LVU133
+ 470 01f6 94EDC81A 		vldr.32	s2, [r4, #800]
+ 184:Application/motor_task.c **** 
+ 471              		.loc 1 184 41 view .LVU134
+ 472 01fa F1EE410A 		vneg.f32	s1, s2
+ 473 01fe FFF7FEFF 		bl	float_constrain
+ 474              	.LVL27:
+ 184:Application/motor_task.c **** 
+ 475              		.loc 1 184 39 view .LVU135
+ 476 0202 84EDC70A 		vstr.32	s0, [r4, #796]
+ 187:Application/motor_task.c ****     break;
+ 477              		.loc 1 187 5 is_stmt 1 view .LVU136
+ 187:Application/motor_task.c ****     break;
+ 478              		.loc 1 187 46 is_stmt 0 view .LVU137
+ 479 0206 D4F8E022 		ldr	r2, [r4, #736]	@ float
+ 187:Application/motor_task.c ****     break;
+ 480              		.loc 1 187 18 view .LVU138
+ 481 020a 344B     		ldr	r3, .L30+4
+ 482 020c 1A60     		str	r2, [r3]	@ float
+ 188:Application/motor_task.c **** 
+ 483              		.loc 1 188 5 is_stmt 1 view .LVU139
+ 484 020e 1CE7     		b	.L17
+ 485              	.L21:
+ 191:Application/motor_task.c ****     TargetAngle1 = exo_controller.lk_motor.angle_in_degree;
+ 486              		.loc 1 191 5 view .LVU140
+ 191:Application/motor_task.c ****     TargetAngle1 = exo_controller.lk_motor.angle_in_degree;
+ 487              		.loc 1 191 36 is_stmt 0 view .LVU141
+ 488 0210 314B     		ldr	r3, .L30
+ 489 0212 364A     		ldr	r2, .L30+20
+ 490 0214 B2F90020 		ldrsh	r2, [r2]
+ 491 0218 07EE902A 		vmov	s15, r2	@ int
+ 492 021c F8EEE77A 		vcvt.f32.s32	s15, s15
+ 493 0220 C3ED217A 		vstr.32	s15, [r3, #132]
+ 192:Application/motor_task.c ****     break;
+ 494              		.loc 1 192 5 is_stmt 1 view .LVU142
+ 192:Application/motor_task.c ****     break;
+ 495              		.loc 1 192 43 is_stmt 0 view .LVU143
+ 496 0224 9A6C     		ldr	r2, [r3, #72]	@ float
+ 192:Application/motor_task.c ****     break;
+ 497              		.loc 1 192 18 view .LVU144
+ 498 0226 2D4B     		ldr	r3, .L30+4
+ 499 0228 1A60     		str	r2, [r3]	@ float
+ 193:Application/motor_task.c **** 
+ 500              		.loc 1 193 5 is_stmt 1 view .LVU145
+ 501 022a 0EE7     		b	.L17
+ 502              	.L19:
+ 196:Application/motor_task.c ****     PID_Calculate(&exo_controller.lk_motor.PID_Angle, exo_controller.lk_motor.angle_in_degree, Targ
+ 503              		.loc 1 196 5 view .LVU146
+ 196:Application/motor_task.c ****     PID_Calculate(&exo_controller.lk_motor.PID_Angle, exo_controller.lk_motor.angle_in_degree, Targ
+ 504              		.loc 1 196 46 is_stmt 0 view .LVU147
+ 505 022c 2A4C     		ldr	r4, .L30
+ 506 022e 94ED047A 		vldr.32	s14, [r4, #16]
+ 196:Application/motor_task.c ****     PID_Calculate(&exo_controller.lk_motor.PID_Angle, exo_controller.lk_motor.angle_in_degree, Targ
+ 507              		.loc 1 196 30 view .LVU148
+ 508 0232 2F4B     		ldr	r3, .L30+24
+ 509 0234 D3ED007A 		vldr.32	s15, [r3]
+ 196:Application/motor_task.c ****     PID_Calculate(&exo_controller.lk_motor.PID_Angle, exo_controller.lk_motor.angle_in_degree, Targ
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 15
+
+
+ 510              		.loc 1 196 24 view .LVU149
+ 511 0238 67EE277A 		vmul.f32	s15, s14, s15
+ 512 023c 17EE900A 		vmov	r0, s15
+ 513 0240 FFF7FEFF 		bl	__aeabi_f2d
+ 514              	.LVL28:
+ 515 0244 41EC100B 		vmov	d0, r0, r1
+ 516 0248 FFF7FEFF 		bl	sin
+ 517              	.LVL29:
+ 518 024c 57EC106B 		vmov	r6, r7, d0
+ 196:Application/motor_task.c ****     PID_Calculate(&exo_controller.lk_motor.PID_Angle, exo_controller.lk_motor.angle_in_degree, Targ
+ 519              		.loc 1 196 22 view .LVU150
+ 520 0250 284B     		ldr	r3, .L30+28
+ 521 0252 1868     		ldr	r0, [r3]	@ float
+ 522 0254 FFF7FEFF 		bl	__aeabi_f2d
+ 523              	.LVL30:
+ 524 0258 3246     		mov	r2, r6
+ 525 025a 3B46     		mov	r3, r7
+ 526 025c FFF7FEFF 		bl	__aeabi_dmul
+ 527              	.LVL31:
+ 528 0260 0646     		mov	r6, r0
+ 529 0262 0F46     		mov	r7, r1
+ 196:Application/motor_task.c ****     PID_Calculate(&exo_controller.lk_motor.PID_Angle, exo_controller.lk_motor.angle_in_degree, Targ
+ 530              		.loc 1 196 50 view .LVU151
+ 531 0264 244B     		ldr	r3, .L30+32
+ 532 0266 1868     		ldr	r0, [r3]	@ float
+ 533 0268 FFF7FEFF 		bl	__aeabi_f2d
+ 534              	.LVL32:
+ 535 026c 3246     		mov	r2, r6
+ 536 026e 3B46     		mov	r3, r7
+ 537 0270 FFF7FEFF 		bl	__aeabi_dadd
+ 538              	.LVL33:
+ 539 0274 FFF7FEFF 		bl	__aeabi_d2f
+ 540              	.LVL34:
+ 541 0278 00EE900A 		vmov	s1, r0
+ 196:Application/motor_task.c ****     PID_Calculate(&exo_controller.lk_motor.PID_Angle, exo_controller.lk_motor.angle_in_degree, Targ
+ 542              		.loc 1 196 18 view .LVU152
+ 543 027c 174B     		ldr	r3, .L30+4
+ 544 027e 1860     		str	r0, [r3]	@ float
+ 197:Application/motor_task.c ****     VelocityLoopInput = float_constrain(exo_controller.lk_motor.PID_Angle.Output,
+ 545              		.loc 1 197 5 is_stmt 1 view .LVU153
+ 546 0280 94ED120A 		vldr.32	s0, [r4, #72]
+ 547 0284 04F50070 		add	r0, r4, #512
+ 548 0288 FFF7FEFF 		bl	PID_Calculate
+ 549              	.LVL35:
+ 198:Application/motor_task.c ****                                         -exo_controller.lk_motor.PID_Angle.MaxOut, exo_controller.l
+ 550              		.loc 1 198 5 view .LVU154
+ 199:Application/motor_task.c **** 
+ 551              		.loc 1 199 75 is_stmt 0 view .LVU155
+ 552 028c 94ED901A 		vldr.32	s2, [r4, #576]
+ 198:Application/motor_task.c ****                                         -exo_controller.lk_motor.PID_Angle.MaxOut, exo_controller.l
+ 553              		.loc 1 198 25 view .LVU156
+ 554 0290 F1EE410A 		vneg.f32	s1, s2
+ 555 0294 94ED8D0A 		vldr.32	s0, [r4, #564]
+ 556 0298 FFF7FEFF 		bl	float_constrain
+ 557              	.LVL36:
+ 558 029c F0EE400A 		vmov.f32	s1, s0
+ 559              	.LVL37:
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 16
+
+
+ 201:Application/motor_task.c ****     TorqueLoopInput = float_constrain(exo_controller.lk_motor.PID_Velocity.Output,
+ 560              		.loc 1 201 5 is_stmt 1 view .LVU157
+ 201:Application/motor_task.c ****     TorqueLoopInput = float_constrain(exo_controller.lk_motor.PID_Velocity.Output,
+ 561              		.loc 1 201 81 is_stmt 0 view .LVU158
+ 562 02a0 B4F92C30 		ldrsh	r3, [r4, #44]
+ 563 02a4 00EE103A 		vmov	s0, r3	@ int
+ 564              	.LVL38:
+ 201:Application/motor_task.c ****     TorqueLoopInput = float_constrain(exo_controller.lk_motor.PID_Velocity.Output,
+ 565              		.loc 1 201 5 view .LVU159
+ 566 02a8 B8EEC00A 		vcvt.f32.s32	s0, s0
+ 567 02ac 04F5A470 		add	r0, r4, #328
+ 568 02b0 FFF7FEFF 		bl	PID_Calculate
+ 569              	.LVL39:
+ 202:Application/motor_task.c ****                                       -exo_controller.lk_motor.PID_Velocity.MaxOut, exo_controller.
+ 570              		.loc 1 202 5 is_stmt 1 view .LVU160
+ 203:Application/motor_task.c **** 
+ 571              		.loc 1 203 76 is_stmt 0 view .LVU161
+ 572 02b4 94ED621A 		vldr.32	s2, [r4, #392]
+ 202:Application/motor_task.c ****                                       -exo_controller.lk_motor.PID_Velocity.MaxOut, exo_controller.
+ 573              		.loc 1 202 23 view .LVU162
+ 574 02b8 F1EE410A 		vneg.f32	s1, s2
+ 575 02bc 94ED5F0A 		vldr.32	s0, [r4, #380]
+ 576 02c0 FFF7FEFF 		bl	float_constrain
+ 577              	.LVL40:
+ 205:Application/motor_task.c ****     break;
+ 578              		.loc 1 205 5 is_stmt 1 view .LVU163
+ 205:Application/motor_task.c ****     break;
+ 579              		.loc 1 205 95 is_stmt 0 view .LVU164
+ 580 02c4 94ED221A 		vldr.32	s2, [r4, #136]
+ 205:Application/motor_task.c ****     break;
+ 581              		.loc 1 205 38 view .LVU165
+ 582 02c8 F1EE410A 		vneg.f32	s1, s2
+ 583 02cc FFF7FEFF 		bl	float_constrain
+ 584              	.LVL41:
+ 205:Application/motor_task.c ****     break;
+ 585              		.loc 1 205 36 view .LVU166
+ 586 02d0 84ED210A 		vstr.32	s0, [r4, #132]
+ 206:Application/motor_task.c ****   }
+ 587              		.loc 1 206 5 is_stmt 1 view .LVU167
+ 588              	.LBE3:
+ 589              		.loc 1 208 1 is_stmt 0 view .LVU168
+ 590 02d4 B9E6     		b	.L17
+ 591              	.L31:
+ 592 02d6 00BF     		.align	2
+ 593              	.L30:
+ 594 02d8 00000000 		.word	.LANCHOR2
+ 595 02dc 00000000 		.word	.LANCHOR5
+ 596 02e0 00000000 		.word	.LANCHOR6
+ 597 02e4 00000000 		.word	.LANCHOR7
+ 598 02e8 00000000 		.word	.LANCHOR8
+ 599 02ec 00000000 		.word	.LANCHOR9
+ 600 02f0 00000000 		.word	.LANCHOR10
+ 601 02f4 00000000 		.word	.LANCHOR11
+ 602 02f8 00000000 		.word	.LANCHOR12
+ 603              		.cfi_endproc
+ 604              	.LFE174:
+ 606              		.section	.text.send_exo_motor_current,"ax",%progbits
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 17
+
+
+ 607              		.align	1
+ 608              		.syntax unified
+ 609              		.thumb
+ 610              		.thumb_func
+ 612              	send_exo_motor_current:
+ 613              	.LFB177:
+ 209:Application/motor_task.c **** 
+ 210:Application/motor_task.c **** static void limit_exo_ctrl_value(void)
+ 211:Application/motor_task.c **** {
+ 212:Application/motor_task.c ****   ;
+ 213:Application/motor_task.c **** }
+ 214:Application/motor_task.c **** 
+ 215:Application/motor_task.c **** static void set_exo_control(void)
+ 216:Application/motor_task.c **** {
+ 217:Application/motor_task.c ****   ;
+ 218:Application/motor_task.c **** }
+ 219:Application/motor_task.c **** 
+ 220:Application/motor_task.c **** static void send_exo_motor_current(void)
+ 221:Application/motor_task.c **** {
+ 614              		.loc 1 221 1 is_stmt 1 view -0
+ 615              		.cfi_startproc
+ 616              		@ args = 0, pretend = 0, frame = 0
+ 617              		@ frame_needed = 0, uses_anonymous_args = 0
+ 618 0000 70B5     		push	{r4, r5, r6, lr}
+ 619              	.LCFI2:
+ 620              		.cfi_def_cfa_offset 16
+ 621              		.cfi_offset 4, -16
+ 622              		.cfi_offset 5, -12
+ 623              		.cfi_offset 6, -8
+ 624              		.cfi_offset 14, -4
+ 625 0002 2DED028B 		vpush.64	{d8}
+ 626              	.LCFI3:
+ 627              		.cfi_def_cfa_offset 24
+ 628              		.cfi_offset 80, -24
+ 629              		.cfi_offset 81, -20
+ 222:Application/motor_task.c ****   static uint8_t CAN_send_status;
+ 630              		.loc 1 222 3 view .LVU170
+ 223:Application/motor_task.c **** 
+ 224:Application/motor_task.c ****   // Serial_Debug(&huart1, 1, exo_controller.lk_motor.PID_Angle.Ref, exo_controller.lk_motor.PID_An
+ 225:Application/motor_task.c ****   //              exo_controller.lk_motor.PID_Angle.Pout, exo_controller.lk_motor.PID_Angle.Iout, e
+ 226:Application/motor_task.c ****   if (exo_controller.mode == SILENCE_MODE)
+ 631              		.loc 1 226 3 view .LVU171
+ 632              		.loc 1 226 21 is_stmt 0 view .LVU172
+ 633 0006 564B     		ldr	r3, .L36
+ 634 0008 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 635              		.loc 1 226 6 view .LVU173
+ 636 000a 002B     		cmp	r3, #0
+ 637 000c 50D1     		bne	.L33
+ 227:Application/motor_task.c ****   {
+ 228:Application/motor_task.c ****     // 发送输出
+ 229:Application/motor_task.c ****     CAN_send_status = Send_DM_MIT_Command(&hcan1, 0X01, 0, 0, 0, 0, 0);
+ 638              		.loc 1 229 5 is_stmt 1 view .LVU174
+ 639              		.loc 1 229 23 is_stmt 0 view .LVU175
+ 640 000e 9FED558A 		vldr.32	s16, .L36+4
+ 641 0012 554D     		ldr	r5, .L36+8
+ 642 0014 B0EE482A 		vmov.f32	s4, s16
+ 643 0018 F0EE481A 		vmov.f32	s3, s16
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 18
+
+
+ 644 001c B0EE481A 		vmov.f32	s2, s16
+ 645 0020 F0EE480A 		vmov.f32	s1, s16
+ 646 0024 B0EE480A 		vmov.f32	s0, s16
+ 647 0028 0121     		movs	r1, #1
+ 648 002a 2846     		mov	r0, r5
+ 649 002c FFF7FEFF 		bl	Send_DM_MIT_Command
+ 650              	.LVL42:
+ 651              		.loc 1 229 21 view .LVU176
+ 652 0030 4E4C     		ldr	r4, .L36+12
+ 653 0032 2070     		strb	r0, [r4]
+ 230:Application/motor_task.c ****     DWT_Delay(0.0003f);
+ 654              		.loc 1 230 5 is_stmt 1 view .LVU177
+ 655 0034 DFED4E8A 		vldr.32	s17, .L36+16
+ 656 0038 B0EE680A 		vmov.f32	s0, s17
+ 657 003c FFF7FEFF 		bl	DWT_Delay
+ 658              	.LVL43:
+ 231:Application/motor_task.c ****     CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X02, 0, 0, 0, 0, 0);
+ 659              		.loc 1 231 5 view .LVU178
+ 660              		.loc 1 231 41 is_stmt 0 view .LVU179
+ 661 0040 B0EE482A 		vmov.f32	s4, s16
+ 662 0044 F0EE481A 		vmov.f32	s3, s16
+ 663 0048 B0EE481A 		vmov.f32	s2, s16
+ 664 004c F0EE480A 		vmov.f32	s1, s16
+ 665 0050 B0EE480A 		vmov.f32	s0, s16
+ 666 0054 0221     		movs	r1, #2
+ 667 0056 2846     		mov	r0, r5
+ 668 0058 FFF7FEFF 		bl	Send_DM_MIT_Command
+ 669              	.LVL44:
+ 670              		.loc 1 231 21 view .LVU180
+ 671 005c 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 672 005e 1843     		orrs	r0, r0, r3
+ 673 0060 2070     		strb	r0, [r4]
+ 232:Application/motor_task.c ****     DWT_Delay(0.0003f);
+ 674              		.loc 1 232 5 is_stmt 1 view .LVU181
+ 675 0062 B0EE680A 		vmov.f32	s0, s17
+ 676 0066 FFF7FEFF 		bl	DWT_Delay
+ 677              	.LVL45:
+ 233:Application/motor_task.c ****     CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X03, 0, 0, 0, 0, 0);
+ 678              		.loc 1 233 5 view .LVU182
+ 679              		.loc 1 233 41 is_stmt 0 view .LVU183
+ 680 006a B0EE482A 		vmov.f32	s4, s16
+ 681 006e F0EE481A 		vmov.f32	s3, s16
+ 682 0072 B0EE481A 		vmov.f32	s2, s16
+ 683 0076 F0EE480A 		vmov.f32	s1, s16
+ 684 007a B0EE480A 		vmov.f32	s0, s16
+ 685 007e 0321     		movs	r1, #3
+ 686 0080 2846     		mov	r0, r5
+ 687 0082 FFF7FEFF 		bl	Send_DM_MIT_Command
+ 688              	.LVL46:
+ 689              		.loc 1 233 21 view .LVU184
+ 690 0086 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 691 0088 1843     		orrs	r0, r0, r3
+ 692 008a 2070     		strb	r0, [r4]
+ 234:Application/motor_task.c ****     exo_controller.CAN_send_status = CAN_send_status | Send_LK_Current_Single(&hcan1, 1, 0);
+ 693              		.loc 1 234 5 is_stmt 1 view .LVU185
+ 694              		.loc 1 234 56 is_stmt 0 view .LVU186
+ 695 008c 0022     		movs	r2, #0
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 19
+
+
+ 696 008e 0121     		movs	r1, #1
+ 697 0090 2846     		mov	r0, r5
+ 698 0092 FFF7FEFF 		bl	Send_LK_Current_Single
+ 699              	.LVL47:
+ 700              		.loc 1 234 36 view .LVU187
+ 701 0096 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 702 0098 1843     		orrs	r0, r0, r3
+ 703 009a C0B2     		uxtb	r0, r0
+ 704 009c 304B     		ldr	r3, .L36
+ 705 009e 1876     		strb	r0, [r3, #24]
+ 235:Application/motor_task.c **** 
+ 236:Application/motor_task.c ****     if (exo_controller.CAN_send_status == HAL_OK)
+ 706              		.loc 1 236 5 is_stmt 1 view .LVU188
+ 707              		.loc 1 236 8 is_stmt 0 view .LVU189
+ 708 00a0 18B1     		cbz	r0, .L32
+ 237:Application/motor_task.c ****       ;
+ 238:Application/motor_task.c ****     else
+ 239:Application/motor_task.c ****       exo_controller.CAN_send_error_count++;
+ 709              		.loc 1 239 7 is_stmt 1 view .LVU190
+ 710              		.loc 1 239 21 is_stmt 0 view .LVU191
+ 711 00a2 1A46     		mov	r2, r3
+ 712 00a4 5B69     		ldr	r3, [r3, #20]
+ 713              		.loc 1 239 42 view .LVU192
+ 714 00a6 0133     		adds	r3, r3, #1
+ 715 00a8 5361     		str	r3, [r2, #20]
+ 716              	.L32:
+ 240:Application/motor_task.c ****   }
+ 241:Application/motor_task.c ****   else
+ 242:Application/motor_task.c ****   {
+ 243:Application/motor_task.c ****     CAN_send_status = Send_DM_MIT_Command(&hcan1, 0X01, 0, 0, 0, 0, exo_controller.dm_motor[0].Outp
+ 244:Application/motor_task.c ****     DWT_Delay(0.0003f);
+ 245:Application/motor_task.c ****     CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X02, 0, 0, 0, 0, exo_controlle
+ 246:Application/motor_task.c ****     DWT_Delay(0.0003f);
+ 247:Application/motor_task.c ****     CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X03, 0, 0, 0, 0, TargetTorque)
+ 248:Application/motor_task.c ****     exo_controller.CAN_send_status = CAN_send_status | Send_LK_Current_Single(&hcan1, 1, exo_contro
+ 249:Application/motor_task.c **** 
+ 250:Application/motor_task.c ****     if (exo_controller.CAN_send_status == HAL_OK)
+ 251:Application/motor_task.c ****       ;
+ 252:Application/motor_task.c ****     else
+ 253:Application/motor_task.c ****       exo_controller.CAN_send_error_count++;
+ 254:Application/motor_task.c ****   }
+ 255:Application/motor_task.c **** }
+ 717              		.loc 1 255 1 view .LVU193
+ 718 00aa BDEC028B 		vldm	sp!, {d8}
+ 719              	.LCFI4:
+ 720              		.cfi_remember_state
+ 721              		.cfi_restore 80
+ 722              		.cfi_restore 81
+ 723              		.cfi_def_cfa_offset 16
+ 724 00ae 70BD     		pop	{r4, r5, r6, pc}
+ 725              	.L33:
+ 726              	.LCFI5:
+ 727              		.cfi_restore_state
+ 243:Application/motor_task.c ****     DWT_Delay(0.0003f);
+ 728              		.loc 1 243 5 is_stmt 1 view .LVU194
+ 243:Application/motor_task.c ****     DWT_Delay(0.0003f);
+ 729              		.loc 1 243 23 is_stmt 0 view .LVU195
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 20
+
+
+ 730 00b0 2B4D     		ldr	r5, .L36
+ 731 00b2 9FED2C8A 		vldr.32	s16, .L36+4
+ 732 00b6 2C4E     		ldr	r6, .L36+8
+ 733 00b8 95EDC72A 		vldr.32	s4, [r5, #796]
+ 734 00bc F0EE481A 		vmov.f32	s3, s16
+ 735 00c0 B0EE481A 		vmov.f32	s2, s16
+ 736 00c4 F0EE480A 		vmov.f32	s1, s16
+ 737 00c8 B0EE480A 		vmov.f32	s0, s16
+ 738 00cc 0121     		movs	r1, #1
+ 739 00ce 3046     		mov	r0, r6
+ 740 00d0 FFF7FEFF 		bl	Send_DM_MIT_Command
+ 741              	.LVL48:
+ 243:Application/motor_task.c ****     DWT_Delay(0.0003f);
+ 742              		.loc 1 243 21 view .LVU196
+ 743 00d4 254C     		ldr	r4, .L36+12
+ 744 00d6 2070     		strb	r0, [r4]
+ 244:Application/motor_task.c ****     CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X02, 0, 0, 0, 0, exo_controlle
+ 745              		.loc 1 244 5 is_stmt 1 view .LVU197
+ 746 00d8 DFED258A 		vldr.32	s17, .L36+16
+ 747 00dc B0EE680A 		vmov.f32	s0, s17
+ 748 00e0 FFF7FEFF 		bl	DWT_Delay
+ 749              	.LVL49:
+ 245:Application/motor_task.c ****     DWT_Delay(0.0003f);
+ 750              		.loc 1 245 5 view .LVU198
+ 245:Application/motor_task.c ****     DWT_Delay(0.0003f);
+ 751              		.loc 1 245 41 is_stmt 0 view .LVU199
+ 752 00e4 05F2B453 		addw	r3, r5, #1460
+ 753 00e8 93ED002A 		vldr.32	s4, [r3]
+ 754 00ec F0EE481A 		vmov.f32	s3, s16
+ 755 00f0 B0EE481A 		vmov.f32	s2, s16
+ 756 00f4 F0EE480A 		vmov.f32	s1, s16
+ 757 00f8 B0EE480A 		vmov.f32	s0, s16
+ 758 00fc 0221     		movs	r1, #2
+ 759 00fe 3046     		mov	r0, r6
+ 760 0100 FFF7FEFF 		bl	Send_DM_MIT_Command
+ 761              	.LVL50:
+ 245:Application/motor_task.c ****     DWT_Delay(0.0003f);
+ 762              		.loc 1 245 21 view .LVU200
+ 763 0104 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 764 0106 1843     		orrs	r0, r0, r3
+ 765 0108 2070     		strb	r0, [r4]
+ 246:Application/motor_task.c ****     CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X03, 0, 0, 0, 0, TargetTorque)
+ 766              		.loc 1 246 5 is_stmt 1 view .LVU201
+ 767 010a B0EE680A 		vmov.f32	s0, s17
+ 768 010e FFF7FEFF 		bl	DWT_Delay
+ 769              	.LVL51:
+ 247:Application/motor_task.c ****     exo_controller.CAN_send_status = CAN_send_status | Send_LK_Current_Single(&hcan1, 1, exo_contro
+ 770              		.loc 1 247 5 view .LVU202
+ 247:Application/motor_task.c ****     exo_controller.CAN_send_status = CAN_send_status | Send_LK_Current_Single(&hcan1, 1, exo_contro
+ 771              		.loc 1 247 41 is_stmt 0 view .LVU203
+ 772 0112 184B     		ldr	r3, .L36+20
+ 773 0114 93ED002A 		vldr.32	s4, [r3]
+ 774 0118 F0EE481A 		vmov.f32	s3, s16
+ 775 011c B0EE481A 		vmov.f32	s2, s16
+ 776 0120 F0EE480A 		vmov.f32	s1, s16
+ 777 0124 B0EE480A 		vmov.f32	s0, s16
+ 778 0128 0321     		movs	r1, #3
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 21
+
+
+ 779 012a 3046     		mov	r0, r6
+ 780 012c FFF7FEFF 		bl	Send_DM_MIT_Command
+ 781              	.LVL52:
+ 247:Application/motor_task.c ****     exo_controller.CAN_send_status = CAN_send_status | Send_LK_Current_Single(&hcan1, 1, exo_contro
+ 782              		.loc 1 247 21 view .LVU204
+ 783 0130 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 784 0132 1843     		orrs	r0, r0, r3
+ 785 0134 2070     		strb	r0, [r4]
+ 248:Application/motor_task.c **** 
+ 786              		.loc 1 248 5 is_stmt 1 view .LVU205
+ 248:Application/motor_task.c **** 
+ 787              		.loc 1 248 113 is_stmt 0 view .LVU206
+ 788 0136 D5ED217A 		vldr.32	s15, [r5, #132]
+ 248:Application/motor_task.c **** 
+ 789              		.loc 1 248 56 view .LVU207
+ 790 013a FDEEE77A 		vcvt.s32.f32	s15, s15
+ 791 013e 17EE903A 		vmov	r3, s15	@ int
+ 792 0142 1AB2     		sxth	r2, r3
+ 793 0144 0121     		movs	r1, #1
+ 794 0146 3046     		mov	r0, r6
+ 795 0148 FFF7FEFF 		bl	Send_LK_Current_Single
+ 796              	.LVL53:
+ 248:Application/motor_task.c **** 
+ 797              		.loc 1 248 36 view .LVU208
+ 798 014c 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 799 014e 1843     		orrs	r0, r0, r3
+ 800 0150 C0B2     		uxtb	r0, r0
+ 801 0152 2876     		strb	r0, [r5, #24]
+ 250:Application/motor_task.c ****       ;
+ 802              		.loc 1 250 5 is_stmt 1 view .LVU209
+ 250:Application/motor_task.c ****       ;
+ 803              		.loc 1 250 8 is_stmt 0 view .LVU210
+ 804 0154 0028     		cmp	r0, #0
+ 805 0156 A8D0     		beq	.L32
+ 253:Application/motor_task.c ****   }
+ 806              		.loc 1 253 7 is_stmt 1 view .LVU211
+ 253:Application/motor_task.c ****   }
+ 807              		.loc 1 253 21 is_stmt 0 view .LVU212
+ 808 0158 6B69     		ldr	r3, [r5, #20]
+ 253:Application/motor_task.c ****   }
+ 809              		.loc 1 253 42 view .LVU213
+ 810 015a 0133     		adds	r3, r3, #1
+ 811 015c 6B61     		str	r3, [r5, #20]
+ 812              		.loc 1 255 1 view .LVU214
+ 813 015e A4E7     		b	.L32
+ 814              	.L37:
+ 815              		.align	2
+ 816              	.L36:
+ 817 0160 00000000 		.word	.LANCHOR2
+ 818 0164 00000000 		.word	0
+ 819 0168 00000000 		.word	hcan1
+ 820 016c 00000000 		.word	.LANCHOR13
+ 821 0170 52499D39 		.word	966609234
+ 822 0174 00000000 		.word	.LANCHOR14
+ 823              		.cfi_endproc
+ 824              	.LFE177:
+ 826              		.section	.text.exo_init,"ax",%progbits
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 22
+
+
+ 827              		.align	1
+ 828              		.global	exo_init
+ 829              		.syntax unified
+ 830              		.thumb
+ 831              		.thumb_func
+ 833              	exo_init:
+ 834              	.LFB171:
+  19:Application/motor_task.c ****   // PID初始化
+ 835              		.loc 1 19 1 is_stmt 1 view -0
+ 836              		.cfi_startproc
+ 837              		@ args = 0, pretend = 0, frame = 0
+ 838              		@ frame_needed = 0, uses_anonymous_args = 0
+ 839 0000 10B5     		push	{r4, lr}
+ 840              	.LCFI6:
+ 841              		.cfi_def_cfa_offset 8
+ 842              		.cfi_offset 4, -8
+ 843              		.cfi_offset 14, -4
+ 844 0002 2DED0C8B 		vpush.64	{d8, d9, d10, d11, d12, d13}
+ 845              	.LCFI7:
+ 846              		.cfi_def_cfa_offset 56
+ 847              		.cfi_offset 80, -56
+ 848              		.cfi_offset 81, -52
+ 849              		.cfi_offset 82, -48
+ 850              		.cfi_offset 83, -44
+ 851              		.cfi_offset 84, -40
+ 852              		.cfi_offset 85, -36
+ 853              		.cfi_offset 86, -32
+ 854              		.cfi_offset 87, -28
+ 855              		.cfi_offset 88, -24
+ 856              		.cfi_offset 89, -20
+ 857              		.cfi_offset 90, -16
+ 858              		.cfi_offset 91, -12
+  21:Application/motor_task.c ****   PID_Init(&exo_controller.lk_motor.PID_Angle, 8600, 4000, 0, 30, 1, 1, 0, 0, 0, 0, 0, Integral_Lim
+ 859              		.loc 1 21 3 view .LVU216
+ 860 0006 9FED928A 		vldr.32	s16, .L40
+ 861 000a DFED92AA 		vldr.32	s21, .L40+4
+ 862 000e 9FED92AA 		vldr.32	s20, .L40+8
+ 863 0012 DFED929A 		vldr.32	s19, .L40+12
+ 864 0016 924C     		ldr	r4, .L40+16
+ 865 0018 1522     		movs	r2, #21
+ 866 001a 0021     		movs	r1, #0
+ 867 001c F0EE484A 		vmov.f32	s9, s16
+ 868 0020 B0EE484A 		vmov.f32	s8, s16
+ 869 0024 F0EE483A 		vmov.f32	s7, s16
+ 870 0028 B0EE483A 		vmov.f32	s6, s16
+ 871 002c F0EE482A 		vmov.f32	s5, s16
+ 872 0030 B0EE6A2A 		vmov.f32	s4, s21
+ 873 0034 F7EE081A 		vmov.f32	s3, #1.5e+0
+ 874 0038 B0EE481A 		vmov.f32	s2, s16
+ 875 003c F0EE4A0A 		vmov.f32	s1, s20
+ 876 0040 B0EE690A 		vmov.f32	s0, s19
+ 877 0044 04F5A470 		add	r0, r4, #328
+ 878 0048 FFF7FEFF 		bl	PID_Init
+ 879              	.LVL54:
+  22:Application/motor_task.c ****   exo_controller.lk_motor.zero_offset = MOTOR_ZERO_OFFSET;
+ 880              		.loc 1 22 3 view .LVU217
+ 881 004c 9FED859A 		vldr.32	s18, .L40+20
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 23
+
+
+ 882 0050 DFED858A 		vldr.32	s17, .L40+24
+ 883 0054 1522     		movs	r2, #21
+ 884 0056 0021     		movs	r1, #0
+ 885 0058 F0EE484A 		vmov.f32	s9, s16
+ 886 005c B0EE484A 		vmov.f32	s8, s16
+ 887 0060 F0EE483A 		vmov.f32	s7, s16
+ 888 0064 B0EE483A 		vmov.f32	s6, s16
+ 889 0068 F7EE002A 		vmov.f32	s5, #1.0e+0
+ 890 006c B0EE622A 		vmov.f32	s4, s5
+ 891 0070 F3EE0E1A 		vmov.f32	s3, #3.0e+1
+ 892 0074 B0EE481A 		vmov.f32	s2, s16
+ 893 0078 F0EE490A 		vmov.f32	s1, s18
+ 894 007c B0EE680A 		vmov.f32	s0, s17
+ 895 0080 04F50070 		add	r0, r4, #512
+ 896 0084 FFF7FEFF 		bl	PID_Init
+ 897              	.LVL55:
+  23:Application/motor_task.c ****   exo_controller.lk_motor.max_out = 0;
+ 898              		.loc 1 23 3 view .LVU218
+  23:Application/motor_task.c ****   exo_controller.lk_motor.max_out = 0;
+ 899              		.loc 1 23 39 is_stmt 0 view .LVU219
+ 900 0088 4BF2F613 		movw	r3, #45558
+ 901 008c A4F85C30 		strh	r3, [r4, #92]	@ movhi
+  24:Application/motor_task.c **** 
+ 902              		.loc 1 24 3 is_stmt 1 view .LVU220
+  24:Application/motor_task.c **** 
+ 903              		.loc 1 24 35 is_stmt 0 view .LVU221
+ 904 0090 84ED228A 		vstr.32	s16, [r4, #136]
+  26:Application/motor_task.c ****   PID_Init(&exo_controller.dm_motor[0].PID_Angle, 50, 5, 0, 0.4, 0.05, 0.01, 0, 0, 0, 0, 0, Integra
+ 905              		.loc 1 26 3 is_stmt 1 view .LVU222
+ 906 0094 9FED75DA 		vldr.32	s26, .L40+28
+ 907 0098 1522     		movs	r2, #21
+ 908 009a 0021     		movs	r1, #0
+ 909 009c F0EE484A 		vmov.f32	s9, s16
+ 910 00a0 B0EE484A 		vmov.f32	s8, s16
+ 911 00a4 F0EE483A 		vmov.f32	s7, s16
+ 912 00a8 B0EE483A 		vmov.f32	s6, s16
+ 913 00ac F0EE482A 		vmov.f32	s5, s16
+ 914 00b0 B0EE482A 		vmov.f32	s4, s16
+ 915 00b4 F0EE4D1A 		vmov.f32	s3, s26
+ 916 00b8 B0EE481A 		vmov.f32	s2, s16
+ 917 00bc F2EE040A 		vmov.f32	s1, #1.0e+1
+ 918 00c0 B3EE020A 		vmov.f32	s0, #1.8e+1
+ 919 00c4 04F57870 		add	r0, r4, #992
+ 920 00c8 FFF7FEFF 		bl	PID_Init
+ 921              	.LVL56:
+  27:Application/motor_task.c ****   exo_controller.dm_motor[0].max_out = 0;
+ 922              		.loc 1 27 3 view .LVU223
+ 923 00cc DFED68CA 		vldr.32	s25, .L40+32
+ 924 00d0 9FED68CA 		vldr.32	s24, .L40+36
+ 925 00d4 DFED68BA 		vldr.32	s23, .L40+40
+ 926 00d8 9FED68BA 		vldr.32	s22, .L40+44
+ 927 00dc 1522     		movs	r2, #21
+ 928 00de 0021     		movs	r1, #0
+ 929 00e0 F0EE484A 		vmov.f32	s9, s16
+ 930 00e4 B0EE484A 		vmov.f32	s8, s16
+ 931 00e8 F0EE483A 		vmov.f32	s7, s16
+ 932 00ec B0EE483A 		vmov.f32	s6, s16
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 24
+
+
+ 933 00f0 F0EE6C2A 		vmov.f32	s5, s25
+ 934 00f4 B0EE4C2A 		vmov.f32	s4, s24
+ 935 00f8 F0EE6B1A 		vmov.f32	s3, s23
+ 936 00fc B0EE481A 		vmov.f32	s2, s16
+ 937 0100 F1EE040A 		vmov.f32	s1, #5.0e+0
+ 938 0104 B0EE4B0A 		vmov.f32	s0, s22
+ 939 0108 04F59360 		add	r0, r4, #1176
+ 940 010c FFF7FEFF 		bl	PID_Init
+ 941              	.LVL57:
+  28:Application/motor_task.c **** 
+ 942              		.loc 1 28 3 view .LVU224
+  28:Application/motor_task.c **** 
+ 943              		.loc 1 28 38 is_stmt 0 view .LVU225
+ 944 0110 84EDC88A 		vstr.32	s16, [r4, #800]
+  30:Application/motor_task.c ****   PID_Init(&exo_controller.dm_motor[1].PID_Angle, 50, 5, 0, 0.4, 0.05, 0.01, 0, 0, 0, 0, 0, Integra
+ 945              		.loc 1 30 3 is_stmt 1 view .LVU226
+ 946 0114 1522     		movs	r2, #21
+ 947 0116 0021     		movs	r1, #0
+ 948 0118 F0EE484A 		vmov.f32	s9, s16
+ 949 011c B0EE484A 		vmov.f32	s8, s16
+ 950 0120 F0EE483A 		vmov.f32	s7, s16
+ 951 0124 B0EE483A 		vmov.f32	s6, s16
+ 952 0128 F0EE482A 		vmov.f32	s5, s16
+ 953 012c B0EE482A 		vmov.f32	s4, s16
+ 954 0130 F0EE4D1A 		vmov.f32	s3, s26
+ 955 0134 B0EE481A 		vmov.f32	s2, s16
+ 956 0138 F2EE040A 		vmov.f32	s1, #1.0e+1
+ 957 013c B3EE020A 		vmov.f32	s0, #1.8e+1
+ 958 0140 04F5CF60 		add	r0, r4, #1656
+ 959 0144 FFF7FEFF 		bl	PID_Init
+ 960              	.LVL58:
+  31:Application/motor_task.c ****   exo_controller.dm_motor[1].max_out = 0;
+ 961              		.loc 1 31 3 view .LVU227
+ 962 0148 1522     		movs	r2, #21
+ 963 014a 0021     		movs	r1, #0
+ 964 014c F0EE484A 		vmov.f32	s9, s16
+ 965 0150 B0EE484A 		vmov.f32	s8, s16
+ 966 0154 F0EE483A 		vmov.f32	s7, s16
+ 967 0158 B0EE483A 		vmov.f32	s6, s16
+ 968 015c F0EE6C2A 		vmov.f32	s5, s25
+ 969 0160 B0EE4C2A 		vmov.f32	s4, s24
+ 970 0164 F0EE6B1A 		vmov.f32	s3, s23
+ 971 0168 B0EE481A 		vmov.f32	s2, s16
+ 972 016c F1EE040A 		vmov.f32	s1, #5.0e+0
+ 973 0170 B0EE4B0A 		vmov.f32	s0, s22
+ 974 0174 04F5E660 		add	r0, r4, #1840
+ 975 0178 FFF7FEFF 		bl	PID_Init
+ 976              	.LVL59:
+  32:Application/motor_task.c **** 
+ 977              		.loc 1 32 3 view .LVU228
+  32:Application/motor_task.c **** 
+ 978              		.loc 1 32 38 is_stmt 0 view .LVU229
+ 979 017c 04F5B763 		add	r3, r4, #1464
+ 980 0180 83ED008A 		vstr.32	s16, [r3]
+  34:Application/motor_task.c ****   PID_Init(&exo_controller.dm_motor[2].PID_Angle, 8600, 4000, 0, 30, 1, 1, 0, 0, 0, 0, 0, Integral_
+ 981              		.loc 1 34 3 is_stmt 1 view .LVU230
+ 982 0184 1522     		movs	r2, #21
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 25
+
+
+ 983 0186 0021     		movs	r1, #0
+ 984 0188 F0EE484A 		vmov.f32	s9, s16
+ 985 018c B0EE484A 		vmov.f32	s8, s16
+ 986 0190 F0EE483A 		vmov.f32	s7, s16
+ 987 0194 B0EE483A 		vmov.f32	s6, s16
+ 988 0198 F0EE482A 		vmov.f32	s5, s16
+ 989 019c B0EE6A2A 		vmov.f32	s4, s21
+ 990 01a0 F7EE081A 		vmov.f32	s3, #1.5e+0
+ 991 01a4 B0EE481A 		vmov.f32	s2, s16
+ 992 01a8 F0EE4A0A 		vmov.f32	s1, s20
+ 993 01ac B0EE690A 		vmov.f32	s0, s19
+ 994 01b0 04F51160 		add	r0, r4, #2320
+ 995 01b4 FFF7FEFF 		bl	PID_Init
+ 996              	.LVL60:
+  35:Application/motor_task.c ****   exo_controller.dm_motor[2].max_out = 0;
+ 997              		.loc 1 35 3 view .LVU231
+ 998 01b8 1522     		movs	r2, #21
+ 999 01ba 0021     		movs	r1, #0
+ 1000 01bc F0EE484A 		vmov.f32	s9, s16
+ 1001 01c0 B0EE484A 		vmov.f32	s8, s16
+ 1002 01c4 F0EE483A 		vmov.f32	s7, s16
+ 1003 01c8 B0EE483A 		vmov.f32	s6, s16
+ 1004 01cc F7EE002A 		vmov.f32	s5, #1.0e+0
+ 1005 01d0 B0EE622A 		vmov.f32	s4, s5
+ 1006 01d4 F3EE0E1A 		vmov.f32	s3, #3.0e+1
+ 1007 01d8 B0EE481A 		vmov.f32	s2, s16
+ 1008 01dc F0EE490A 		vmov.f32	s1, s18
+ 1009 01e0 B0EE680A 		vmov.f32	s0, s17
+ 1010 01e4 04F6C810 		addw	r0, r4, #2504
+ 1011 01e8 FFF7FEFF 		bl	PID_Init
+ 1012              	.LVL61:
+  36:Application/motor_task.c **** 
+ 1013              		.loc 1 36 3 view .LVU232
+  36:Application/motor_task.c **** 
+ 1014              		.loc 1 36 38 is_stmt 0 view .LVU233
+ 1015 01ec 04F50563 		add	r3, r4, #2128
+ 1016 01f0 83ED008A 		vstr.32	s16, [r3]
+  38:Application/motor_task.c ****   exo_controller.dm_motor[0].reduction_ratio = 1.0f;
+ 1017              		.loc 1 38 3 is_stmt 1 view .LVU234
+  38:Application/motor_task.c ****   exo_controller.dm_motor[0].reduction_ratio = 1.0f;
+ 1018              		.loc 1 38 43 is_stmt 0 view .LVU235
+ 1019 01f4 4FF07E53 		mov	r3, #1065353216
+ 1020 01f8 2362     		str	r3, [r4, #32]	@ float
+  39:Application/motor_task.c ****   exo_controller.dm_motor[1].reduction_ratio = 1.0f;
+ 1021              		.loc 1 39 3 is_stmt 1 view .LVU236
+  39:Application/motor_task.c ****   exo_controller.dm_motor[1].reduction_ratio = 1.0f;
+ 1022              		.loc 1 39 46 is_stmt 0 view .LVU237
+ 1023 01fa C4F8B832 		str	r3, [r4, #696]	@ float
+  40:Application/motor_task.c ****   exo_controller.dm_motor[2].reduction_ratio = 1.0f;
+ 1024              		.loc 1 40 3 is_stmt 1 view .LVU238
+  40:Application/motor_task.c ****   exo_controller.dm_motor[2].reduction_ratio = 1.0f;
+ 1025              		.loc 1 40 46 is_stmt 0 view .LVU239
+ 1026 01fe 04F5AA62 		add	r2, r4, #1360
+ 1027 0202 1360     		str	r3, [r2]	@ float
+  41:Application/motor_task.c **** 
+ 1028              		.loc 1 41 3 is_stmt 1 view .LVU240
+  41:Application/motor_task.c **** 
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 26
+
+
+ 1029              		.loc 1 41 46 is_stmt 0 view .LVU241
+ 1030 0204 04F5FD64 		add	r4, r4, #2024
+ 1031 0208 2360     		str	r3, [r4]	@ float
+  43:Application/motor_task.c ****   HAL_Delay(2);
+ 1032              		.loc 1 43 3 is_stmt 1 view .LVU242
+ 1033 020a 1D4C     		ldr	r4, .L40+48
+ 1034 020c 0823     		movs	r3, #8
+ 1035 020e 0122     		movs	r2, #1
+ 1036 0210 1146     		mov	r1, r2
+ 1037 0212 2046     		mov	r0, r4
+ 1038 0214 FFF7FEFF 		bl	DM_CANx_SendStdData
+ 1039              	.LVL62:
+  44:Application/motor_task.c ****   DM_CANx_SendStdData(&hcan1, 0x02, ENABLE_MOTOR, 8);
+ 1040              		.loc 1 44 3 view .LVU243
+ 1041 0218 0220     		movs	r0, #2
+ 1042 021a FFF7FEFF 		bl	HAL_Delay
+ 1043              	.LVL63:
+  45:Application/motor_task.c ****   HAL_Delay(2);
+ 1044              		.loc 1 45 3 view .LVU244
+ 1045 021e 0823     		movs	r3, #8
+ 1046 0220 0122     		movs	r2, #1
+ 1047 0222 0221     		movs	r1, #2
+ 1048 0224 2046     		mov	r0, r4
+ 1049 0226 FFF7FEFF 		bl	DM_CANx_SendStdData
+ 1050              	.LVL64:
+  46:Application/motor_task.c ****   DM_CANx_SendStdData(&hcan1, 0x03, ENABLE_MOTOR, 8);
+ 1051              		.loc 1 46 3 view .LVU245
+ 1052 022a 0220     		movs	r0, #2
+ 1053 022c FFF7FEFF 		bl	HAL_Delay
+ 1054              	.LVL65:
+  47:Application/motor_task.c ****   HAL_Delay(2);
+ 1055              		.loc 1 47 3 view .LVU246
+ 1056 0230 0823     		movs	r3, #8
+ 1057 0232 0122     		movs	r2, #1
+ 1058 0234 0321     		movs	r1, #3
+ 1059 0236 2046     		mov	r0, r4
+ 1060 0238 FFF7FEFF 		bl	DM_CANx_SendStdData
+ 1061              	.LVL66:
+  48:Application/motor_task.c **** 
+ 1062              		.loc 1 48 3 view .LVU247
+ 1063 023c 0220     		movs	r0, #2
+ 1064 023e FFF7FEFF 		bl	HAL_Delay
+ 1065              	.LVL67:
+  50:Application/motor_task.c **** }
+ 1066              		.loc 1 50 3 view .LVU248
+ 1067 0242 0821     		movs	r1, #8
+ 1068 0244 0F48     		ldr	r0, .L40+52
+ 1069 0246 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 1070              	.LVL68:
+  51:Application/motor_task.c **** 
+ 1071              		.loc 1 51 1 is_stmt 0 view .LVU249
+ 1072 024a BDEC0C8B 		vldm	sp!, {d8-d13}
+ 1073              	.LCFI8:
+ 1074              		.cfi_restore 90
+ 1075              		.cfi_restore 91
+ 1076              		.cfi_restore 88
+ 1077              		.cfi_restore 89
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 27
+
+
+ 1078              		.cfi_restore 86
+ 1079              		.cfi_restore 87
+ 1080              		.cfi_restore 84
+ 1081              		.cfi_restore 85
+ 1082              		.cfi_restore 82
+ 1083              		.cfi_restore 83
+ 1084              		.cfi_restore 80
+ 1085              		.cfi_restore 81
+ 1086              		.cfi_def_cfa_offset 8
+ 1087 024e 10BD     		pop	{r4, pc}
+ 1088              	.L41:
+ 1089              		.align	2
+ 1090              	.L40:
+ 1091 0250 00000000 		.word	0
+ 1092 0254 CDCCCC3D 		.word	1036831949
+ 1093 0258 00007A44 		.word	1148846080
+ 1094 025c 00000045 		.word	1157627904
+ 1095 0260 00000000 		.word	.LANCHOR2
+ 1096 0264 00007A45 		.word	1165623296
+ 1097 0268 00600646 		.word	1174822912
+ 1098 026c 3333333F 		.word	1060320051
+ 1099 0270 0AD7233C 		.word	1008981770
+ 1100 0274 CDCC4C3D 		.word	1028443341
+ 1101 0278 CDCCCC3E 		.word	1053609165
+ 1102 027c 00004842 		.word	1112014848
+ 1103 0280 00000000 		.word	hcan1
+ 1104 0284 00000000 		.word	htim4
+ 1105              		.cfi_endproc
+ 1106              	.LFE171:
+ 1108              		.section	.text.exo_task,"ax",%progbits
+ 1109              		.align	1
+ 1110              		.global	exo_task
+ 1111              		.syntax unified
+ 1112              		.thumb
+ 1113              		.thumb_func
+ 1115              	exo_task:
+ 1116              	.LFB172:
+  54:Application/motor_task.c ****   exo_controller.dt = DWT_GetDeltaT(&exo_controller.DWT_count);
+ 1117              		.loc 1 54 1 is_stmt 1 view -0
+ 1118              		.cfi_startproc
+ 1119              		@ args = 0, pretend = 0, frame = 0
+ 1120              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1121 0000 10B5     		push	{r4, lr}
+ 1122              	.LCFI9:
+ 1123              		.cfi_def_cfa_offset 8
+ 1124              		.cfi_offset 4, -8
+ 1125              		.cfi_offset 14, -4
+  55:Application/motor_task.c ****   exo_controller.t += exo_controller.dt;
+ 1126              		.loc 1 55 3 view .LVU251
+  55:Application/motor_task.c ****   exo_controller.t += exo_controller.dt;
+ 1127              		.loc 1 55 23 is_stmt 0 view .LVU252
+ 1128 0002 094C     		ldr	r4, .L44
+ 1129 0004 201D     		adds	r0, r4, #4
+ 1130 0006 FFF7FEFF 		bl	DWT_GetDeltaT
+ 1131              	.LVL69:
+  55:Application/motor_task.c ****   exo_controller.t += exo_controller.dt;
+ 1132              		.loc 1 55 21 view .LVU253
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 28
+
+
+ 1133 000a 84ED030A 		vstr.32	s0, [r4, #12]
+  56:Application/motor_task.c **** 
+ 1134              		.loc 1 56 3 is_stmt 1 view .LVU254
+  56:Application/motor_task.c **** 
+ 1135              		.loc 1 56 20 is_stmt 0 view .LVU255
+ 1136 000e D4ED047A 		vldr.32	s15, [r4, #16]
+ 1137 0012 37EE800A 		vadd.f32	s0, s15, s0
+ 1138 0016 84ED040A 		vstr.32	s0, [r4, #16]
+  58:Application/motor_task.c ****   get_exo_ctrl_value();
+ 1139              		.loc 1 58 3 is_stmt 1 view .LVU256
+ 1140 001a FFF7FEFF 		bl	set_exo_mode
+ 1141              	.LVL70:
+  59:Application/motor_task.c **** 
+ 1142              		.loc 1 59 3 view .LVU257
+ 1143 001e FFF7FEFF 		bl	get_exo_ctrl_value
+ 1144              	.LVL71:
+  61:Application/motor_task.c **** }
+ 1145              		.loc 1 61 3 view .LVU258
+ 1146 0022 FFF7FEFF 		bl	send_exo_motor_current
+ 1147              	.LVL72:
+  62:Application/motor_task.c **** 
+ 1148              		.loc 1 62 1 is_stmt 0 view .LVU259
+ 1149 0026 10BD     		pop	{r4, pc}
+ 1150              	.L45:
+ 1151              		.align	2
+ 1152              	.L44:
+ 1153 0028 00000000 		.word	.LANCHOR2
+ 1154              		.cfi_endproc
+ 1155              	.LFE172:
+ 1157              		.global	c
+ 1158              		.global	b
+ 1159              		.global	a
+ 1160              		.global	TargetAngle3
+ 1161              		.global	TargetAngle2
+ 1162              		.global	TargetAngle1
+ 1163              		.global	TargetTorque
+ 1164              		.global	TargetVelocity
+ 1165              		.global	exo_controller
+ 1166              		.global	debugoutput2
+ 1167              		.global	debugoutput
+ 1168              		.section	.bss.CAN_send_status.0,"aw",%nobits
+ 1169              		.set	.LANCHOR13,. + 0
+ 1172              	CAN_send_status.0:
+ 1173 0000 00       		.space	1
+ 1174              		.section	.bss.TargetAngle1,"aw",%nobits
+ 1175              		.align	2
+ 1176              		.set	.LANCHOR5,. + 0
+ 1179              	TargetAngle1:
+ 1180 0000 00000000 		.space	4
+ 1181              		.section	.bss.TargetAngle2,"aw",%nobits
+ 1182              		.align	2
+ 1183              		.set	.LANCHOR6,. + 0
+ 1186              	TargetAngle2:
+ 1187 0000 00000000 		.space	4
+ 1188              		.section	.bss.TargetAngle3,"aw",%nobits
+ 1189              		.align	2
+ 1190              		.set	.LANCHOR7,. + 0
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 29
+
+
+ 1193              	TargetAngle3:
+ 1194 0000 00000000 		.space	4
+ 1195              		.section	.bss.TargetTorque,"aw",%nobits
+ 1196              		.align	2
+ 1197              		.set	.LANCHOR14,. + 0
+ 1200              	TargetTorque:
+ 1201 0000 00000000 		.space	4
+ 1202              		.section	.bss.TargetVelocity,"aw",%nobits
+ 1203              		.align	2
+ 1204              		.set	.LANCHOR8,. + 0
+ 1207              	TargetVelocity:
+ 1208 0000 00000000 		.space	4
+ 1209              		.section	.bss.debugoutput,"aw",%nobits
+ 1210              		.align	1
+ 1211              		.set	.LANCHOR9,. + 0
+ 1214              	debugoutput:
+ 1215 0000 0000     		.space	2
+ 1216              		.section	.bss.debugoutput2,"aw",%nobits
+ 1217              		.align	1
+ 1220              	debugoutput2:
+ 1221 0000 0000     		.space	2
+ 1222              		.section	.bss.exo_controller,"aw",%nobits
+ 1223              		.align	3
+ 1224              		.set	.LANCHOR2,. + 0
+ 1227              	exo_controller:
+ 1228 0000 00000000 		.space	2688
+ 1228      00000000 
+ 1228      00000000 
+ 1228      00000000 
+ 1228      00000000 
+ 1229              		.section	.bss.last_pin_state.1,"aw",%nobits
+ 1230              		.set	.LANCHOR4,. + 0
+ 1233              	last_pin_state.1:
+ 1234 0000 00       		.space	1
+ 1235              		.section	.bss.pin_state.4,"aw",%nobits
+ 1236              		.set	.LANCHOR0,. + 0
+ 1239              	pin_state.4:
+ 1240 0000 00       		.space	1
+ 1241              		.section	.bss.reset_count.3,"aw",%nobits
+ 1242              		.align	2
+ 1243              		.set	.LANCHOR1,. + 0
+ 1246              	reset_count.3:
+ 1247 0000 00000000 		.space	4
+ 1248              		.section	.bss.reset_timestamp.2,"aw",%nobits
+ 1249              		.align	2
+ 1250              		.set	.LANCHOR3,. + 0
+ 1253              	reset_timestamp.2:
+ 1254 0000 00000000 		.space	4
+ 1255              		.section	.data.a,"aw"
+ 1256              		.align	2
+ 1257              		.set	.LANCHOR11,. + 0
+ 1260              	a:
+ 1261 0000 00003442 		.word	1110704128
+ 1262              		.section	.data.b,"aw"
+ 1263              		.align	2
+ 1264              		.set	.LANCHOR10,. + 0
+ 1267              	b:
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 30
+
+
+ 1268 0000 0000003F 		.word	1056964608
+ 1269              		.section	.data.c,"aw"
+ 1270              		.align	2
+ 1271              		.set	.LANCHOR12,. + 0
+ 1274              	c:
+ 1275 0000 00003442 		.word	1110704128
+ 1276              		.text
+ 1277              	.Letext0:
+ 1278              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 1279              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 1280              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 1281              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
+ 1282              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 1283              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 1284              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 1285              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h"
+ 1286              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 1287              		.file 11 "Core/Inc/can.h"
+ 1288              		.file 12 "Core/Inc/tim.h"
+ 1289              		.file 13 "Components/user_lib.h"
+ 1290              		.file 14 "Components/Controller/controller.h"
+ 1291              		.file 15 "Application/motor.h"
+ 1292              		.file 16 "Application/motor_task.h"
+ 1293              		.file 17 "Bsp/bsp_dwt.h"
+ 1294              		.file 18 "Bsp/bsp_PWM.h"
+ 1295              		.file 19 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 1296              		.file 20 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 31
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 motor_task.c
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:20     .text.set_exo_mode:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:25     .text.set_exo_mode:00000000 set_exo_mode
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:173    .text.set_exo_mode:000000bc $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:188    .text.get_exo_ctrl_value:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:193    .text.get_exo_ctrl_value:00000000 get_exo_ctrl_value
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:215    .text.get_exo_ctrl_value:0000000e $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:221    .text.get_exo_ctrl_value:0000001a $t
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:594    .text.get_exo_ctrl_value:000002d8 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:607    .text.send_exo_motor_current:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:612    .text.send_exo_motor_current:00000000 send_exo_motor_current
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:817    .text.send_exo_motor_current:00000160 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:827    .text.exo_init:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:833    .text.exo_init:00000000 exo_init
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1091   .text.exo_init:00000250 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1109   .text.exo_task:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1115   .text.exo_task:00000000 exo_task
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1153   .text.exo_task:00000028 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1274   .data.c:00000000 c
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1267   .data.b:00000000 b
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1260   .data.a:00000000 a
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1193   .bss.TargetAngle3:00000000 TargetAngle3
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1186   .bss.TargetAngle2:00000000 TargetAngle2
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1179   .bss.TargetAngle1:00000000 TargetAngle1
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1200   .bss.TargetTorque:00000000 TargetTorque
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1207   .bss.TargetVelocity:00000000 TargetVelocity
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1227   .bss.exo_controller:00000000 exo_controller
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1220   .bss.debugoutput2:00000000 debugoutput2
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1214   .bss.debugoutput:00000000 debugoutput
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1172   .bss.CAN_send_status.0:00000000 CAN_send_status.0
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1173   .bss.CAN_send_status.0:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1175   .bss.TargetAngle1:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1182   .bss.TargetAngle2:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1189   .bss.TargetAngle3:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1196   .bss.TargetTorque:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1203   .bss.TargetVelocity:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1210   .bss.debugoutput:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1217   .bss.debugoutput2:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1223   .bss.exo_controller:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1233   .bss.last_pin_state.1:00000000 last_pin_state.1
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1234   .bss.last_pin_state.1:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1239   .bss.pin_state.4:00000000 pin_state.4
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1240   .bss.pin_state.4:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1242   .bss.reset_count.3:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1246   .bss.reset_count.3:00000000 reset_count.3
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1249   .bss.reset_timestamp.2:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1253   .bss.reset_timestamp.2:00000000 reset_timestamp.2
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1256   .data.a:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1263   .data.b:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccI661s2.s:1270   .data.c:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_ReadPin
+TIM_Set_PWM
+htim4
+__aeabi_f2d
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccI661s2.s 			page 32
+
+
+__aeabi_dmul
+__aeabi_dadd
+__aeabi_d2f
+PID_Calculate
+float_constrain
+Motor_Angle_Calculate
+sin
+Send_DM_MIT_Command
+DWT_Delay
+Send_LK_Current_Single
+hcan1
+PID_Init
+DM_CANx_SendStdData
+HAL_Delay
+HAL_TIM_PWM_Start
+DWT_GetDeltaT
