@@ -2,6 +2,7 @@
 #define __MOTOR_TASK_H
 
 #include "includes.h"
+#include "dm_imu.h"
 
 #define MOTOR_ZERO_OFFSET 45558
 
@@ -14,6 +15,7 @@
 typedef struct
 {
     uint8_t mode, last_mode;
+    uint8_t debug_mode;
 
     uint32_t DWT_count;
     float mode_change_timestamp;
@@ -21,7 +23,9 @@ typedef struct
 
     uint32_t CAN_send_error_count;
     uint8_t CAN_send_status;
+
     motor_info lk_motor, dm_motor[3];
+    dm_imu_t dm_imu;
 } exo_controller_t;
 
 enum

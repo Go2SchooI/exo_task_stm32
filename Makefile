@@ -97,6 +97,7 @@ Components/Algorithm/QuaternionEKF.c \
 Components/Controller/controller.c \
 Components/Devices/BMI088driver.c \
 Components/Devices/BMI088Middleware.c \
+Components/Devices/dm_imu.c \
 Components/Devices/transfer_function.c
 
 # ASM sources

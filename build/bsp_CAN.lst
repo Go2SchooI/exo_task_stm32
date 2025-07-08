@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s 			page 1
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGptw8W.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s 			page 1
   39              		.cfi_def_cfa_offset 48
   18:Bsp/bsp_CAN.c ****     // ��ʼ��CAN������Ϊ������״̬ ��Ϊ��������
   19:Bsp/bsp_CAN.c ****     CAN_FilterTypeDef can_filter_st;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s 			page 2
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGptw8W.s 			page 2
 
 
   40              		.loc 1 19 5 view .LVU1
@@ -112,20 +112,20 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s 			page 1
   30:Bsp/bsp_CAN.c ****     {
   74              		.loc 1 30 12 is_stmt 0 discriminator 1 view .LVU23
   75 001a 6946     		mov	r1, sp
-  76 001c 0E48     		ldr	r0, .L6
+  76 001c 1848     		ldr	r0, .L9
   77 001e FFF7FEFF 		bl	HAL_CAN_ConfigFilter
   78              	.LVL0:
   30:Bsp/bsp_CAN.c ****     {
   79              		.loc 1 30 11 discriminator 1 view .LVU24
   80 0022 0028     		cmp	r0, #0
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s 			page 3
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGptw8W.s 			page 3
 
 
   81 0024 F9D1     		bne	.L2
   33:Bsp/bsp_CAN.c ****     HAL_CAN_ConfigFilter(&hcan1, &can_filter_st);
   82              		.loc 1 33 5 is_stmt 1 view .LVU25
   83 0026 6946     		mov	r1, sp
-  84 0028 0B48     		ldr	r0, .L6
+  84 0028 1548     		ldr	r0, .L9
   85 002a FFF7FEFF 		bl	HAL_CAN_ConfigFilter
   86              	.LVL1:
   34:Bsp/bsp_CAN.c ****     // ����CAN
@@ -139,7 +139,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s 			page 1
   90              		.loc 1 35 11 discriminator 1 view .LVU28
   35:Bsp/bsp_CAN.c ****     {
   91              		.loc 1 35 12 is_stmt 0 discriminator 1 view .LVU29
-  92 002e 0A48     		ldr	r0, .L6
+  92 002e 1448     		ldr	r0, .L9
   93 0030 FFF7FEFF 		bl	HAL_CAN_Start
   94              	.LVL2:
   35:Bsp/bsp_CAN.c ****     {
@@ -148,7 +148,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s 			page 1
   97 0036 FAD1     		bne	.L3
   38:Bsp/bsp_CAN.c ****     HAL_CAN_Start(&hcan1);
   98              		.loc 1 38 5 is_stmt 1 view .LVU31
-  99 0038 0748     		ldr	r0, .L6
+  99 0038 1148     		ldr	r0, .L9
  100 003a FFF7FEFF 		bl	HAL_CAN_Start
  101              	.LVL3:
   39:Bsp/bsp_CAN.c ****     // ����֪ͨ
@@ -163,7 +163,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s 			page 1
   40:Bsp/bsp_CAN.c ****     {
  106              		.loc 1 40 12 is_stmt 0 discriminator 1 view .LVU35
  107 003e 0221     		movs	r1, #2
- 108 0040 0548     		ldr	r0, .L6
+ 108 0040 0F48     		ldr	r0, .L9
  109 0042 FFF7FEFF 		bl	HAL_CAN_ActivateNotification
  110              	.LVL4:
   40:Bsp/bsp_CAN.c ****     {
@@ -173,371 +173,505 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s 			page 1
   43:Bsp/bsp_CAN.c ****     HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
  114              		.loc 1 43 5 is_stmt 1 view .LVU37
  115 004a 0221     		movs	r1, #2
- 116 004c 0248     		ldr	r0, .L6
+ 116 004c 0C48     		ldr	r0, .L9
  117 004e FFF7FEFF 		bl	HAL_CAN_ActivateNotification
  118              	.LVL5:
-  44:Bsp/bsp_CAN.c **** }
- 119              		.loc 1 44 1 is_stmt 0 view .LVU38
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s 			page 4
+  44:Bsp/bsp_CAN.c **** 
+  45:Bsp/bsp_CAN.c ****     can_filter_st.SlaveStartFilterBank = 14;
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGptw8W.s 			page 4
 
 
- 120 0052 0BB0     		add	sp, sp, #44
- 121              	.LCFI2:
- 122              		.cfi_def_cfa_offset 4
- 123              		@ sp needed
- 124 0054 5DF804FB 		ldr	pc, [sp], #4
- 125              	.L7:
- 126              		.align	2
- 127              	.L6:
- 128 0058 00000000 		.word	hcan1
- 129              		.cfi_endproc
- 130              	.LFE171:
- 132              		.section	.text.HAL_CAN_RxFifo0MsgPendingCallback,"ax",%progbits
- 133              		.align	1
- 134              		.global	HAL_CAN_RxFifo0MsgPendingCallback
- 135              		.syntax unified
- 136              		.thumb
- 137              		.thumb_func
- 139              	HAL_CAN_RxFifo0MsgPendingCallback:
- 140              	.LVL6:
- 141              	.LFB172:
-  45:Bsp/bsp_CAN.c **** 
-  46:Bsp/bsp_CAN.c **** /**
-  47:Bsp/bsp_CAN.c ****  * @Func	    void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* _hcan)
-  48:Bsp/bsp_CAN.c ****  * @Brief       This function is called when a message is pending in the Rx FIFO 0.
-  49:Bsp/bsp_CAN.c ****  * @Param	    CAN_HandleTypeDef* _hcan
-  50:Bsp/bsp_CAN.c ****  * @Retval	    None
-  51:Bsp/bsp_CAN.c ****  * @Date       2019/11/4
-  52:Bsp/bsp_CAN.c ****  **/
-  53:Bsp/bsp_CAN.c **** void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *_hcan)
-  54:Bsp/bsp_CAN.c **** {
- 142              		.loc 1 54 1 is_stmt 1 view -0
- 143              		.cfi_startproc
- 144              		@ args = 0, pretend = 0, frame = 40
- 145              		@ frame_needed = 0, uses_anonymous_args = 0
- 146              		.loc 1 54 1 is_stmt 0 view .LVU40
- 147 0000 30B5     		push	{r4, r5, lr}
- 148              	.LCFI3:
- 149              		.cfi_def_cfa_offset 12
- 150              		.cfi_offset 4, -12
- 151              		.cfi_offset 5, -8
- 152              		.cfi_offset 14, -4
- 153 0002 8BB0     		sub	sp, sp, #44
- 154              	.LCFI4:
- 155              		.cfi_def_cfa_offset 56
- 156 0004 0446     		mov	r4, r0
-  55:Bsp/bsp_CAN.c ****     CAN_RxHeaderTypeDef rx_header;
- 157              		.loc 1 55 5 is_stmt 1 view .LVU41
-  56:Bsp/bsp_CAN.c ****     uint8_t rx_data[8];
- 158              		.loc 1 56 5 view .LVU42
-  57:Bsp/bsp_CAN.c **** 
-  58:Bsp/bsp_CAN.c ****     HAL_CAN_GetRxMessage(_hcan, CAN_RX_FIFO0, &rx_header, rx_data);
- 159              		.loc 1 58 5 view .LVU43
- 160 0006 01AD     		add	r5, sp, #4
- 161 0008 2B46     		mov	r3, r5
- 162 000a 03AA     		add	r2, sp, #12
- 163 000c 0021     		movs	r1, #0
- 164 000e FFF7FEFF 		bl	HAL_CAN_GetRxMessage
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s 			page 5
+ 119              		.loc 1 45 5 view .LVU38
+ 120              		.loc 1 45 40 is_stmt 0 view .LVU39
+ 121 0052 0E23     		movs	r3, #14
+ 122 0054 0993     		str	r3, [sp, #36]
+  46:Bsp/bsp_CAN.c ****     can_filter_st.FilterBank = 14;
+ 123              		.loc 1 46 5 is_stmt 1 view .LVU40
+ 124              		.loc 1 46 30 is_stmt 0 view .LVU41
+ 125 0056 0593     		str	r3, [sp, #20]
+  47:Bsp/bsp_CAN.c ****     // CAN ��������ʼ��
+  48:Bsp/bsp_CAN.c ****     while (HAL_CAN_ConfigFilter(&hcan2, &can_filter_st) != HAL_OK)
+ 126              		.loc 1 48 5 is_stmt 1 view .LVU42
+ 127              	.L5:
+  49:Bsp/bsp_CAN.c ****     {
+  50:Bsp/bsp_CAN.c ****     }
+ 128              		.loc 1 50 5 discriminator 1 view .LVU43
+  48:Bsp/bsp_CAN.c ****     {
+ 129              		.loc 1 48 11 discriminator 1 view .LVU44
+  48:Bsp/bsp_CAN.c ****     {
+ 130              		.loc 1 48 12 is_stmt 0 discriminator 1 view .LVU45
+ 131 0058 6946     		mov	r1, sp
+ 132 005a 0A48     		ldr	r0, .L9+4
+ 133 005c FFF7FEFF 		bl	HAL_CAN_ConfigFilter
+ 134              	.LVL6:
+  48:Bsp/bsp_CAN.c ****     {
+ 135              		.loc 1 48 11 discriminator 1 view .LVU46
+ 136 0060 0028     		cmp	r0, #0
+ 137 0062 F9D1     		bne	.L5
+ 138              	.L6:
+  51:Bsp/bsp_CAN.c ****     // ����CAN
+  52:Bsp/bsp_CAN.c ****     while (HAL_CAN_Start(&hcan2) != HAL_OK)
+  53:Bsp/bsp_CAN.c ****     {
+  54:Bsp/bsp_CAN.c ****     }
+ 139              		.loc 1 54 5 is_stmt 1 discriminator 1 view .LVU47
+  52:Bsp/bsp_CAN.c ****     {
+ 140              		.loc 1 52 11 discriminator 1 view .LVU48
+  52:Bsp/bsp_CAN.c ****     {
+ 141              		.loc 1 52 12 is_stmt 0 discriminator 1 view .LVU49
+ 142 0064 0748     		ldr	r0, .L9+4
+ 143 0066 FFF7FEFF 		bl	HAL_CAN_Start
+ 144              	.LVL7:
+  52:Bsp/bsp_CAN.c ****     {
+ 145              		.loc 1 52 11 discriminator 1 view .LVU50
+ 146 006a 0028     		cmp	r0, #0
+ 147 006c FAD1     		bne	.L6
+ 148              	.L7:
+  55:Bsp/bsp_CAN.c ****     // ����֪ͨ
+  56:Bsp/bsp_CAN.c ****     while (HAL_CAN_ActivateNotification(&hcan2, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK)
+  57:Bsp/bsp_CAN.c ****     {
+  58:Bsp/bsp_CAN.c ****     }
+ 149              		.loc 1 58 5 is_stmt 1 discriminator 1 view .LVU51
+  56:Bsp/bsp_CAN.c ****     {
+ 150              		.loc 1 56 11 discriminator 1 view .LVU52
+  56:Bsp/bsp_CAN.c ****     {
+ 151              		.loc 1 56 12 is_stmt 0 discriminator 1 view .LVU53
+ 152 006e 0221     		movs	r1, #2
+ 153 0070 0448     		ldr	r0, .L9+4
+ 154 0072 FFF7FEFF 		bl	HAL_CAN_ActivateNotification
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGptw8W.s 			page 5
 
 
- 165              	.LVL7:
-  59:Bsp/bsp_CAN.c ****     memcpy(rdata, rx_data, 8);
- 166              		.loc 1 59 5 view .LVU44
- 167 0012 304B     		ldr	r3, .L20
- 168 0014 95E80300 		ldm	r5, {r0, r1}
- 169 0018 83E80300 		stm	r3, {r0, r1}
+ 155              	.LVL8:
+  56:Bsp/bsp_CAN.c ****     {
+ 156              		.loc 1 56 11 discriminator 1 view .LVU54
+ 157 0076 0028     		cmp	r0, #0
+ 158 0078 F9D1     		bne	.L7
+  59:Bsp/bsp_CAN.c **** }
+ 159              		.loc 1 59 1 view .LVU55
+ 160 007a 0BB0     		add	sp, sp, #44
+ 161              	.LCFI2:
+ 162              		.cfi_def_cfa_offset 4
+ 163              		@ sp needed
+ 164 007c 5DF804FB 		ldr	pc, [sp], #4
+ 165              	.L10:
+ 166              		.align	2
+ 167              	.L9:
+ 168 0080 00000000 		.word	hcan1
+ 169 0084 00000000 		.word	hcan2
+ 170              		.cfi_endproc
+ 171              	.LFE171:
+ 173              		.section	.text.HAL_CAN_RxFifo0MsgPendingCallback,"ax",%progbits
+ 174              		.align	1
+ 175              		.global	HAL_CAN_RxFifo0MsgPendingCallback
+ 176              		.syntax unified
+ 177              		.thumb
+ 178              		.thumb_func
+ 180              	HAL_CAN_RxFifo0MsgPendingCallback:
+ 181              	.LVL9:
+ 182              	.LFB172:
   60:Bsp/bsp_CAN.c **** 
-  61:Bsp/bsp_CAN.c ****     if (_hcan == &hcan1)
- 170              		.loc 1 61 5 view .LVU45
- 171              		.loc 1 61 8 is_stmt 0 view .LVU46
- 172 001c 2E4B     		ldr	r3, .L20+4
- 173 001e 9C42     		cmp	r4, r3
- 174 0020 01D0     		beq	.L19
- 175              	.L8:
-  62:Bsp/bsp_CAN.c ****     {
-  63:Bsp/bsp_CAN.c ****         switch (rx_header.StdId)
-  64:Bsp/bsp_CAN.c ****         {
-  65:Bsp/bsp_CAN.c ****         case LK_DEVICE_STD_ID + 1:
-  66:Bsp/bsp_CAN.c ****             if (exo_controller.lk_motor.msg_cnt++ <= 50)
-  67:Bsp/bsp_CAN.c ****                 Get_LK_Offset(&exo_controller.lk_motor, rx_data);
-  68:Bsp/bsp_CAN.c ****             else
-  69:Bsp/bsp_CAN.c ****                 Get_LK_Info(&exo_controller.lk_motor, rx_data);
-  70:Bsp/bsp_CAN.c ****             break;
-  71:Bsp/bsp_CAN.c ****         case DM_DEVICE_STD_ID + 1:
-  72:Bsp/bsp_CAN.c ****             if (exo_controller.dm_motor[0].msg_cnt++ <= 50)
-  73:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[0], rx_data);
-  74:Bsp/bsp_CAN.c ****             else
-  75:Bsp/bsp_CAN.c ****                 Get_DM_Info(&exo_controller.dm_motor[0], rx_data);
-  76:Bsp/bsp_CAN.c ****             break;
-  77:Bsp/bsp_CAN.c ****         case DM_DEVICE_STD_ID + 2:
-  78:Bsp/bsp_CAN.c ****             if (exo_controller.dm_motor[1].msg_cnt++ <= 50)
-  79:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[1], rx_data);
-  80:Bsp/bsp_CAN.c ****             else
-  81:Bsp/bsp_CAN.c ****                 Get_DM_Info(&exo_controller.dm_motor[1], rx_data);
-  82:Bsp/bsp_CAN.c ****             break;
-  83:Bsp/bsp_CAN.c ****         case DM_DEVICE_STD_ID + 3:
-  84:Bsp/bsp_CAN.c ****             if (exo_controller.dm_motor[2].msg_cnt++ <= 50)
-  85:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[2], rx_data);
-  86:Bsp/bsp_CAN.c ****             else
-  87:Bsp/bsp_CAN.c ****                 Get_DM_Info(&exo_controller.dm_motor[2], rx_data);
-  88:Bsp/bsp_CAN.c ****             break;
-  89:Bsp/bsp_CAN.c ****         }
-  90:Bsp/bsp_CAN.c ****     }
-  91:Bsp/bsp_CAN.c **** 
-  92:Bsp/bsp_CAN.c ****     // if (_hcan == &hcan2)
-  93:Bsp/bsp_CAN.c ****     // {
-  94:Bsp/bsp_CAN.c ****     //     switch (rx_header.StdId)
-  95:Bsp/bsp_CAN.c ****     //     {
-  96:Bsp/bsp_CAN.c ****     //     case DM_DEVICE_STD_ID + 1:
-  97:Bsp/bsp_CAN.c ****     //         if (exo_controller.dm_motor[0].msg_cnt++ <= 50)
-  98:Bsp/bsp_CAN.c ****     //             Get_DM_Offset(&exo_controller.dm_motor[0], rx_data);
-  99:Bsp/bsp_CAN.c ****     //         else
- 100:Bsp/bsp_CAN.c ****     //             Get_DM_Info(&exo_controller.dm_motor[0], rx_data);
- 101:Bsp/bsp_CAN.c ****     //         break;
- 102:Bsp/bsp_CAN.c ****     //     }
- 103:Bsp/bsp_CAN.c ****     // }
- 104:Bsp/bsp_CAN.c **** }
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s 			page 6
+  61:Bsp/bsp_CAN.c **** /**
+  62:Bsp/bsp_CAN.c ****  * @Func	    void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* _hcan)
+  63:Bsp/bsp_CAN.c ****  * @Brief       This function is called when a message is pending in the Rx FIFO 0.
+  64:Bsp/bsp_CAN.c ****  * @Param	    CAN_HandleTypeDef* _hcan
+  65:Bsp/bsp_CAN.c ****  * @Retval	    None
+  66:Bsp/bsp_CAN.c ****  * @Date       2019/11/4
+  67:Bsp/bsp_CAN.c ****  **/
+  68:Bsp/bsp_CAN.c **** void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *_hcan)
+  69:Bsp/bsp_CAN.c **** {
+ 183              		.loc 1 69 1 is_stmt 1 view -0
+ 184              		.cfi_startproc
+ 185              		@ args = 0, pretend = 0, frame = 40
+ 186              		@ frame_needed = 0, uses_anonymous_args = 0
+ 187              		.loc 1 69 1 is_stmt 0 view .LVU57
+ 188 0000 30B5     		push	{r4, r5, lr}
+ 189              	.LCFI3:
+ 190              		.cfi_def_cfa_offset 12
+ 191              		.cfi_offset 4, -12
+ 192              		.cfi_offset 5, -8
+ 193              		.cfi_offset 14, -4
+ 194 0002 8BB0     		sub	sp, sp, #44
+ 195              	.LCFI4:
+ 196              		.cfi_def_cfa_offset 56
+ 197 0004 0446     		mov	r4, r0
+  70:Bsp/bsp_CAN.c ****     CAN_RxHeaderTypeDef rx_header;
+ 198              		.loc 1 70 5 is_stmt 1 view .LVU58
+  71:Bsp/bsp_CAN.c ****     uint8_t rx_data[8];
+ 199              		.loc 1 71 5 view .LVU59
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGptw8W.s 			page 6
 
 
- 176              		.loc 1 104 1 view .LVU47
- 177 0022 0BB0     		add	sp, sp, #44
- 178              	.LCFI5:
- 179              		.cfi_remember_state
- 180              		.cfi_def_cfa_offset 12
- 181              		@ sp needed
- 182 0024 30BD     		pop	{r4, r5, pc}
- 183              	.LVL8:
- 184              	.L19:
- 185              	.LCFI6:
- 186              		.cfi_restore_state
-  63:Bsp/bsp_CAN.c ****         {
- 187              		.loc 1 63 9 is_stmt 1 view .LVU48
-  63:Bsp/bsp_CAN.c ****         {
- 188              		.loc 1 63 26 is_stmt 0 view .LVU49
- 189 0026 039B     		ldr	r3, [sp, #12]
-  63:Bsp/bsp_CAN.c ****         {
- 190              		.loc 1 63 9 view .LVU50
- 191 0028 132B     		cmp	r3, #19
- 192 002a 3FD0     		beq	.L10
- 193 002c 11D8     		bhi	.L11
- 194 002e 112B     		cmp	r3, #17
- 195 0030 24D0     		beq	.L12
- 196 0032 122B     		cmp	r3, #18
- 197 0034 F5D1     		bne	.L8
-  78:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[1], rx_data);
- 198              		.loc 1 78 13 is_stmt 1 view .LVU51
-  78:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[1], rx_data);
- 199              		.loc 1 78 43 is_stmt 0 view .LVU52
- 200 0036 294A     		ldr	r2, .L20+8
- 201 0038 D2F8AC35 		ldr	r3, [r2, #1452]
-  78:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[1], rx_data);
- 202              		.loc 1 78 51 view .LVU53
- 203 003c 591C     		adds	r1, r3, #1
- 204 003e C2F8AC15 		str	r1, [r2, #1452]
-  78:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[1], rx_data);
- 205              		.loc 1 78 16 view .LVU54
- 206 0042 322B     		cmp	r3, #50
- 207 0044 2DDC     		bgt	.L16
-  79:Bsp/bsp_CAN.c ****             else
- 208              		.loc 1 79 17 is_stmt 1 view .LVU55
- 209 0046 01A9     		add	r1, sp, #4
- 210 0048 02F5AA60 		add	r0, r2, #1360
- 211 004c FFF7FEFF 		bl	Get_DM_Offset
- 212              	.LVL9:
- 213 0050 E7E7     		b	.L8
- 214              	.L11:
-  63:Bsp/bsp_CAN.c ****         {
- 215              		.loc 1 63 9 is_stmt 0 view .LVU56
- 216 0052 40F24112 		movw	r2, #321
- 217 0056 9342     		cmp	r3, r2
- 218 0058 E3D1     		bne	.L8
-  66:Bsp/bsp_CAN.c ****                 Get_LK_Offset(&exo_controller.lk_motor, rx_data);
- 219              		.loc 1 66 13 is_stmt 1 view .LVU57
-  66:Bsp/bsp_CAN.c ****                 Get_LK_Offset(&exo_controller.lk_motor, rx_data);
- 220              		.loc 1 66 40 is_stmt 0 view .LVU58
- 221 005a 204A     		ldr	r2, .L20+8
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s 			page 7
+  72:Bsp/bsp_CAN.c **** 
+  73:Bsp/bsp_CAN.c ****     HAL_CAN_GetRxMessage(_hcan, CAN_RX_FIFO0, &rx_header, rx_data);
+ 200              		.loc 1 73 5 view .LVU60
+ 201 0006 01AD     		add	r5, sp, #4
+ 202 0008 2B46     		mov	r3, r5
+ 203 000a 03AA     		add	r2, sp, #12
+ 204 000c 0021     		movs	r1, #0
+ 205 000e FFF7FEFF 		bl	HAL_CAN_GetRxMessage
+ 206              	.LVL10:
+  74:Bsp/bsp_CAN.c ****     memcpy(rdata, rx_data, 8);
+ 207              		.loc 1 74 5 view .LVU61
+ 208 0012 404B     		ldr	r3, .L27
+ 209 0014 95E80300 		ldm	r5, {r0, r1}
+ 210 0018 83E80300 		stm	r3, {r0, r1}
+  75:Bsp/bsp_CAN.c **** 
+  76:Bsp/bsp_CAN.c ****     if (_hcan == &hcan1)
+ 211              		.loc 1 76 5 view .LVU62
+ 212              		.loc 1 76 8 is_stmt 0 view .LVU63
+ 213 001c 3E4B     		ldr	r3, .L27+4
+ 214 001e 9C42     		cmp	r4, r3
+ 215 0020 04D0     		beq	.L25
+ 216              	.L12:
+  77:Bsp/bsp_CAN.c ****     {
+  78:Bsp/bsp_CAN.c ****         switch (rx_header.StdId)
+  79:Bsp/bsp_CAN.c ****         {
+  80:Bsp/bsp_CAN.c ****         case LK_DEVICE_STD_ID + 1:
+  81:Bsp/bsp_CAN.c ****             if (exo_controller.lk_motor.msg_cnt++ <= 50)
+  82:Bsp/bsp_CAN.c ****                 Get_LK_Offset(&exo_controller.lk_motor, rx_data);
+  83:Bsp/bsp_CAN.c ****             else
+  84:Bsp/bsp_CAN.c ****                 Get_LK_Info(&exo_controller.lk_motor, rx_data);
+  85:Bsp/bsp_CAN.c ****             break;
+  86:Bsp/bsp_CAN.c ****         case DM_DEVICE_STD_ID + 1:
+  87:Bsp/bsp_CAN.c ****             if (exo_controller.dm_motor[0].msg_cnt++ <= 50)
+  88:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[0], rx_data);
+  89:Bsp/bsp_CAN.c ****             else
+  90:Bsp/bsp_CAN.c ****                 Get_DM_Info(&exo_controller.dm_motor[0], rx_data);
+  91:Bsp/bsp_CAN.c ****             break;
+  92:Bsp/bsp_CAN.c ****         case DM_DEVICE_STD_ID + 2:
+  93:Bsp/bsp_CAN.c ****             if (exo_controller.dm_motor[1].msg_cnt++ <= 50)
+  94:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[1], rx_data);
+  95:Bsp/bsp_CAN.c ****             else
+  96:Bsp/bsp_CAN.c ****                 Get_DM_Info(&exo_controller.dm_motor[1], rx_data);
+  97:Bsp/bsp_CAN.c ****             break;
+  98:Bsp/bsp_CAN.c ****         case DM_DEVICE_STD_ID + 3:
+  99:Bsp/bsp_CAN.c ****             if (exo_controller.dm_motor[2].msg_cnt++ <= 50)
+ 100:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[2], rx_data);
+ 101:Bsp/bsp_CAN.c ****             else
+ 102:Bsp/bsp_CAN.c ****                 Get_DM_Info(&exo_controller.dm_motor[2], rx_data);
+ 103:Bsp/bsp_CAN.c ****             break;
+ 104:Bsp/bsp_CAN.c ****         }
+ 105:Bsp/bsp_CAN.c ****     }
+ 106:Bsp/bsp_CAN.c **** 
+ 107:Bsp/bsp_CAN.c ****     if (_hcan == &hcan2)
+ 217              		.loc 1 107 5 is_stmt 1 view .LVU64
+ 218              		.loc 1 107 8 is_stmt 0 view .LVU65
+ 219 0022 3E4B     		ldr	r3, .L27+8
+ 220 0024 9C42     		cmp	r4, r3
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGptw8W.s 			page 7
 
 
- 222 005c D36F     		ldr	r3, [r2, #124]
-  66:Bsp/bsp_CAN.c ****                 Get_LK_Offset(&exo_controller.lk_motor, rx_data);
- 223              		.loc 1 66 48 view .LVU59
- 224 005e 591C     		adds	r1, r3, #1
- 225 0060 D167     		str	r1, [r2, #124]
-  66:Bsp/bsp_CAN.c ****                 Get_LK_Offset(&exo_controller.lk_motor, rx_data);
- 226              		.loc 1 66 16 view .LVU60
- 227 0062 322B     		cmp	r3, #50
- 228 0064 05DC     		bgt	.L14
-  67:Bsp/bsp_CAN.c ****             else
- 229              		.loc 1 67 17 is_stmt 1 view .LVU61
- 230 0066 01A9     		add	r1, sp, #4
- 231 0068 02F12000 		add	r0, r2, #32
- 232 006c FFF7FEFF 		bl	Get_LK_Offset
- 233              	.LVL10:
- 234 0070 D7E7     		b	.L8
- 235              	.L14:
-  69:Bsp/bsp_CAN.c ****             break;
- 236              		.loc 1 69 17 view .LVU62
- 237 0072 01A9     		add	r1, sp, #4
- 238 0074 1A48     		ldr	r0, .L20+12
- 239 0076 FFF7FEFF 		bl	Get_LK_Info
- 240              	.LVL11:
- 241 007a D2E7     		b	.L8
- 242              	.L12:
-  72:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[0], rx_data);
- 243              		.loc 1 72 13 view .LVU63
-  72:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[0], rx_data);
- 244              		.loc 1 72 43 is_stmt 0 view .LVU64
- 245 007c 174A     		ldr	r2, .L20+8
- 246 007e D2F81433 		ldr	r3, [r2, #788]
-  72:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[0], rx_data);
- 247              		.loc 1 72 51 view .LVU65
- 248 0082 591C     		adds	r1, r3, #1
- 249 0084 C2F81413 		str	r1, [r2, #788]
-  72:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[0], rx_data);
- 250              		.loc 1 72 16 view .LVU66
- 251 0088 322B     		cmp	r3, #50
- 252 008a 05DC     		bgt	.L15
-  73:Bsp/bsp_CAN.c ****             else
- 253              		.loc 1 73 17 is_stmt 1 view .LVU67
- 254 008c 01A9     		add	r1, sp, #4
- 255 008e 02F52E70 		add	r0, r2, #696
- 256 0092 FFF7FEFF 		bl	Get_DM_Offset
- 257              	.LVL12:
- 258 0096 C4E7     		b	.L8
- 259              	.L15:
-  75:Bsp/bsp_CAN.c ****             break;
- 260              		.loc 1 75 17 view .LVU68
- 261 0098 01A9     		add	r1, sp, #4
- 262 009a 1248     		ldr	r0, .L20+16
- 263 009c FFF7FEFF 		bl	Get_DM_Info
- 264              	.LVL13:
- 265 00a0 BFE7     		b	.L8
- 266              	.L16:
-  81:Bsp/bsp_CAN.c ****             break;
- 267              		.loc 1 81 17 view .LVU69
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s 			page 8
+ 221 0026 57D0     		beq	.L26
+ 222              	.L11:
+ 108:Bsp/bsp_CAN.c ****     {
+ 109:Bsp/bsp_CAN.c ****         switch (rx_header.StdId)
+ 110:Bsp/bsp_CAN.c ****         {
+ 111:Bsp/bsp_CAN.c ****         case LK_DEVICE_STD_ID + 1:
+ 112:Bsp/bsp_CAN.c ****             if (exo_controller.lk_motor.msg_cnt++ <= 50)
+ 113:Bsp/bsp_CAN.c ****                 Get_LK_Offset(&exo_controller.lk_motor, rx_data);
+ 114:Bsp/bsp_CAN.c ****             else
+ 115:Bsp/bsp_CAN.c ****                 Get_LK_Info(&exo_controller.lk_motor, rx_data);
+ 116:Bsp/bsp_CAN.c ****             break;
+ 117:Bsp/bsp_CAN.c ****         case 0x11:
+ 118:Bsp/bsp_CAN.c ****             IMU_UpdateData(&exo_controller.dm_imu, rx_data);
+ 119:Bsp/bsp_CAN.c ****         }
+ 120:Bsp/bsp_CAN.c ****     }
+ 121:Bsp/bsp_CAN.c **** }
+ 223              		.loc 1 121 1 view .LVU66
+ 224 0028 0BB0     		add	sp, sp, #44
+ 225              	.LCFI5:
+ 226              		.cfi_remember_state
+ 227              		.cfi_def_cfa_offset 12
+ 228              		@ sp needed
+ 229 002a 30BD     		pop	{r4, r5, pc}
+ 230              	.LVL11:
+ 231              	.L25:
+ 232              	.LCFI6:
+ 233              		.cfi_restore_state
+  78:Bsp/bsp_CAN.c ****         {
+ 234              		.loc 1 78 9 is_stmt 1 view .LVU67
+  78:Bsp/bsp_CAN.c ****         {
+ 235              		.loc 1 78 26 is_stmt 0 view .LVU68
+ 236 002c 039B     		ldr	r3, [sp, #12]
+  78:Bsp/bsp_CAN.c ****         {
+ 237              		.loc 1 78 9 view .LVU69
+ 238 002e 132B     		cmp	r3, #19
+ 239 0030 3FD0     		beq	.L13
+ 240 0032 11D8     		bhi	.L14
+ 241 0034 112B     		cmp	r3, #17
+ 242 0036 24D0     		beq	.L15
+ 243 0038 122B     		cmp	r3, #18
+ 244 003a F2D1     		bne	.L12
+  93:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[1], rx_data);
+ 245              		.loc 1 93 13 is_stmt 1 view .LVU70
+  93:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[1], rx_data);
+ 246              		.loc 1 93 43 is_stmt 0 view .LVU71
+ 247 003c 384A     		ldr	r2, .L27+12
+ 248 003e D2F8AC35 		ldr	r3, [r2, #1452]
+  93:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[1], rx_data);
+ 249              		.loc 1 93 51 view .LVU72
+ 250 0042 591C     		adds	r1, r3, #1
+ 251 0044 C2F8AC15 		str	r1, [r2, #1452]
+  93:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[1], rx_data);
+ 252              		.loc 1 93 16 view .LVU73
+ 253 0048 322B     		cmp	r3, #50
+ 254 004a 2DDC     		bgt	.L19
+  94:Bsp/bsp_CAN.c ****             else
+ 255              		.loc 1 94 17 is_stmt 1 view .LVU74
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGptw8W.s 			page 8
 
 
- 268 00a2 01A9     		add	r1, sp, #4
- 269 00a4 1048     		ldr	r0, .L20+20
- 270 00a6 FFF7FEFF 		bl	Get_DM_Info
- 271              	.LVL14:
- 272 00aa BAE7     		b	.L8
- 273              	.L10:
-  84:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[2], rx_data);
- 274              		.loc 1 84 13 view .LVU70
-  84:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[2], rx_data);
- 275              		.loc 1 84 43 is_stmt 0 view .LVU71
- 276 00ac 0B4A     		ldr	r2, .L20+8
- 277 00ae D2F84438 		ldr	r3, [r2, #2116]
-  84:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[2], rx_data);
- 278              		.loc 1 84 51 view .LVU72
- 279 00b2 591C     		adds	r1, r3, #1
- 280 00b4 C2F84418 		str	r1, [r2, #2116]
-  84:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[2], rx_data);
- 281              		.loc 1 84 16 view .LVU73
- 282 00b8 322B     		cmp	r3, #50
- 283 00ba 05DC     		bgt	.L17
-  85:Bsp/bsp_CAN.c ****             else
- 284              		.loc 1 85 17 is_stmt 1 view .LVU74
- 285 00bc 01A9     		add	r1, sp, #4
- 286 00be 02F5FD60 		add	r0, r2, #2024
- 287 00c2 FFF7FEFF 		bl	Get_DM_Offset
- 288              	.LVL15:
- 289 00c6 ACE7     		b	.L8
- 290              	.L17:
-  87:Bsp/bsp_CAN.c ****             break;
- 291              		.loc 1 87 17 view .LVU75
- 292 00c8 01A9     		add	r1, sp, #4
- 293 00ca 0848     		ldr	r0, .L20+24
- 294 00cc FFF7FEFF 		bl	Get_DM_Info
- 295              	.LVL16:
- 296              		.loc 1 104 1 is_stmt 0 view .LVU76
- 297 00d0 A7E7     		b	.L8
- 298              	.L21:
- 299 00d2 00BF     		.align	2
- 300              	.L20:
- 301 00d4 00000000 		.word	.LANCHOR0
- 302 00d8 00000000 		.word	hcan1
- 303 00dc 00000000 		.word	exo_controller
- 304 00e0 20000000 		.word	exo_controller+32
- 305 00e4 B8020000 		.word	exo_controller+696
- 306 00e8 50050000 		.word	exo_controller+1360
- 307 00ec E8070000 		.word	exo_controller+2024
- 308              		.cfi_endproc
- 309              	.LFE172:
- 311              		.global	rdata
- 312              		.global	RM_CAN_Msg_0x2FF
- 313              		.global	RM_CAN_Msg_0x1FF
- 314              		.global	RM_CAN_Msg_0x200
- 315              		.section	.bss.RM_CAN_Msg_0x1FF,"aw",%nobits
- 316              		.align	2
- 319              	RM_CAN_Msg_0x1FF:
- 320 0000 00000000 		.space	8
- 320      00000000 
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s 			page 9
+ 256 004c 01A9     		add	r1, sp, #4
+ 257 004e 02F5AA60 		add	r0, r2, #1360
+ 258 0052 FFF7FEFF 		bl	Get_DM_Offset
+ 259              	.LVL12:
+ 260 0056 E4E7     		b	.L12
+ 261              	.L14:
+  78:Bsp/bsp_CAN.c ****         {
+ 262              		.loc 1 78 9 is_stmt 0 view .LVU75
+ 263 0058 40F24112 		movw	r2, #321
+ 264 005c 9342     		cmp	r3, r2
+ 265 005e E0D1     		bne	.L12
+  81:Bsp/bsp_CAN.c ****                 Get_LK_Offset(&exo_controller.lk_motor, rx_data);
+ 266              		.loc 1 81 13 is_stmt 1 view .LVU76
+  81:Bsp/bsp_CAN.c ****                 Get_LK_Offset(&exo_controller.lk_motor, rx_data);
+ 267              		.loc 1 81 40 is_stmt 0 view .LVU77
+ 268 0060 2F4A     		ldr	r2, .L27+12
+ 269 0062 D36F     		ldr	r3, [r2, #124]
+  81:Bsp/bsp_CAN.c ****                 Get_LK_Offset(&exo_controller.lk_motor, rx_data);
+ 270              		.loc 1 81 48 view .LVU78
+ 271 0064 591C     		adds	r1, r3, #1
+ 272 0066 D167     		str	r1, [r2, #124]
+  81:Bsp/bsp_CAN.c ****                 Get_LK_Offset(&exo_controller.lk_motor, rx_data);
+ 273              		.loc 1 81 16 view .LVU79
+ 274 0068 322B     		cmp	r3, #50
+ 275 006a 05DC     		bgt	.L17
+  82:Bsp/bsp_CAN.c ****             else
+ 276              		.loc 1 82 17 is_stmt 1 view .LVU80
+ 277 006c 01A9     		add	r1, sp, #4
+ 278 006e 02F12000 		add	r0, r2, #32
+ 279 0072 FFF7FEFF 		bl	Get_LK_Offset
+ 280              	.LVL13:
+ 281 0076 D4E7     		b	.L12
+ 282              	.L17:
+  84:Bsp/bsp_CAN.c ****             break;
+ 283              		.loc 1 84 17 view .LVU81
+ 284 0078 01A9     		add	r1, sp, #4
+ 285 007a 2A48     		ldr	r0, .L27+16
+ 286 007c FFF7FEFF 		bl	Get_LK_Info
+ 287              	.LVL14:
+ 288 0080 CFE7     		b	.L12
+ 289              	.L15:
+  87:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[0], rx_data);
+ 290              		.loc 1 87 13 view .LVU82
+  87:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[0], rx_data);
+ 291              		.loc 1 87 43 is_stmt 0 view .LVU83
+ 292 0082 274A     		ldr	r2, .L27+12
+ 293 0084 D2F81433 		ldr	r3, [r2, #788]
+  87:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[0], rx_data);
+ 294              		.loc 1 87 51 view .LVU84
+ 295 0088 591C     		adds	r1, r3, #1
+ 296 008a C2F81413 		str	r1, [r2, #788]
+  87:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[0], rx_data);
+ 297              		.loc 1 87 16 view .LVU85
+ 298 008e 322B     		cmp	r3, #50
+ 299 0090 05DC     		bgt	.L18
+  88:Bsp/bsp_CAN.c ****             else
+ 300              		.loc 1 88 17 is_stmt 1 view .LVU86
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGptw8W.s 			page 9
 
 
- 321              		.section	.bss.RM_CAN_Msg_0x200,"aw",%nobits
- 322              		.align	2
- 325              	RM_CAN_Msg_0x200:
- 326 0000 00000000 		.space	8
- 326      00000000 
- 327              		.section	.bss.RM_CAN_Msg_0x2FF,"aw",%nobits
- 328              		.align	2
- 331              	RM_CAN_Msg_0x2FF:
- 332 0000 00000000 		.space	6
- 332      0000
- 333              		.section	.bss.rdata,"aw",%nobits
- 334              		.align	2
- 335              		.set	.LANCHOR0,. + 0
- 338              	rdata:
- 339 0000 00000000 		.space	8
- 339      00000000 
- 340              		.text
- 341              	.Letext0:
- 342              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 343              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 344              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
- 345              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
- 346              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 347              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h"
- 348              		.file 8 "Components/user_lib.h"
- 349              		.file 9 "Components/Controller/controller.h"
- 350              		.file 10 "Application/motor.h"
- 351              		.file 11 "Application/motor_task.h"
- 352              		.file 12 "Core/Inc/can.h"
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s 			page 10
+ 301 0092 01A9     		add	r1, sp, #4
+ 302 0094 02F52E70 		add	r0, r2, #696
+ 303 0098 FFF7FEFF 		bl	Get_DM_Offset
+ 304              	.LVL15:
+ 305 009c C1E7     		b	.L12
+ 306              	.L18:
+  90:Bsp/bsp_CAN.c ****             break;
+ 307              		.loc 1 90 17 view .LVU87
+ 308 009e 01A9     		add	r1, sp, #4
+ 309 00a0 2148     		ldr	r0, .L27+20
+ 310 00a2 FFF7FEFF 		bl	Get_DM_Info
+ 311              	.LVL16:
+ 312 00a6 BCE7     		b	.L12
+ 313              	.L19:
+  96:Bsp/bsp_CAN.c ****             break;
+ 314              		.loc 1 96 17 view .LVU88
+ 315 00a8 01A9     		add	r1, sp, #4
+ 316 00aa 2048     		ldr	r0, .L27+24
+ 317 00ac FFF7FEFF 		bl	Get_DM_Info
+ 318              	.LVL17:
+ 319 00b0 B7E7     		b	.L12
+ 320              	.L13:
+  99:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[2], rx_data);
+ 321              		.loc 1 99 13 view .LVU89
+  99:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[2], rx_data);
+ 322              		.loc 1 99 43 is_stmt 0 view .LVU90
+ 323 00b2 1B4A     		ldr	r2, .L27+12
+ 324 00b4 D2F84438 		ldr	r3, [r2, #2116]
+  99:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[2], rx_data);
+ 325              		.loc 1 99 51 view .LVU91
+ 326 00b8 591C     		adds	r1, r3, #1
+ 327 00ba C2F84418 		str	r1, [r2, #2116]
+  99:Bsp/bsp_CAN.c ****                 Get_DM_Offset(&exo_controller.dm_motor[2], rx_data);
+ 328              		.loc 1 99 16 view .LVU92
+ 329 00be 322B     		cmp	r3, #50
+ 330 00c0 05DC     		bgt	.L20
+ 100:Bsp/bsp_CAN.c ****             else
+ 331              		.loc 1 100 17 is_stmt 1 view .LVU93
+ 332 00c2 01A9     		add	r1, sp, #4
+ 333 00c4 02F5FD60 		add	r0, r2, #2024
+ 334 00c8 FFF7FEFF 		bl	Get_DM_Offset
+ 335              	.LVL18:
+ 336 00cc A9E7     		b	.L12
+ 337              	.L20:
+ 102:Bsp/bsp_CAN.c ****             break;
+ 338              		.loc 1 102 17 view .LVU94
+ 339 00ce 01A9     		add	r1, sp, #4
+ 340 00d0 1748     		ldr	r0, .L27+28
+ 341 00d2 FFF7FEFF 		bl	Get_DM_Info
+ 342              	.LVL19:
+ 343 00d6 A4E7     		b	.L12
+ 344              	.L26:
+ 109:Bsp/bsp_CAN.c ****         {
+ 345              		.loc 1 109 9 view .LVU95
+ 109:Bsp/bsp_CAN.c ****         {
+ 346              		.loc 1 109 26 is_stmt 0 view .LVU96
+ 347 00d8 039B     		ldr	r3, [sp, #12]
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGptw8W.s 			page 10
+
+
+ 109:Bsp/bsp_CAN.c ****         {
+ 348              		.loc 1 109 9 view .LVU97
+ 349 00da 112B     		cmp	r3, #17
+ 350 00dc 14D0     		beq	.L22
+ 351 00de 40F24112 		movw	r2, #321
+ 352 00e2 9342     		cmp	r3, r2
+ 353 00e4 A0D1     		bne	.L11
+ 112:Bsp/bsp_CAN.c ****                 Get_LK_Offset(&exo_controller.lk_motor, rx_data);
+ 354              		.loc 1 112 13 is_stmt 1 view .LVU98
+ 112:Bsp/bsp_CAN.c ****                 Get_LK_Offset(&exo_controller.lk_motor, rx_data);
+ 355              		.loc 1 112 40 is_stmt 0 view .LVU99
+ 356 00e6 0E4A     		ldr	r2, .L27+12
+ 357 00e8 D36F     		ldr	r3, [r2, #124]
+ 112:Bsp/bsp_CAN.c ****                 Get_LK_Offset(&exo_controller.lk_motor, rx_data);
+ 358              		.loc 1 112 48 view .LVU100
+ 359 00ea 591C     		adds	r1, r3, #1
+ 360 00ec D167     		str	r1, [r2, #124]
+ 112:Bsp/bsp_CAN.c ****                 Get_LK_Offset(&exo_controller.lk_motor, rx_data);
+ 361              		.loc 1 112 16 view .LVU101
+ 362 00ee 322B     		cmp	r3, #50
+ 363 00f0 05DC     		bgt	.L23
+ 113:Bsp/bsp_CAN.c ****             else
+ 364              		.loc 1 113 17 is_stmt 1 view .LVU102
+ 365 00f2 01A9     		add	r1, sp, #4
+ 366 00f4 02F12000 		add	r0, r2, #32
+ 367 00f8 FFF7FEFF 		bl	Get_LK_Offset
+ 368              	.LVL20:
+ 369 00fc 94E7     		b	.L11
+ 370              	.L23:
+ 115:Bsp/bsp_CAN.c ****             break;
+ 371              		.loc 1 115 17 view .LVU103
+ 372 00fe 01A9     		add	r1, sp, #4
+ 373 0100 0848     		ldr	r0, .L27+16
+ 374 0102 FFF7FEFF 		bl	Get_LK_Info
+ 375              	.LVL21:
+ 376 0106 8FE7     		b	.L11
+ 377              	.L22:
+ 118:Bsp/bsp_CAN.c ****         }
+ 378              		.loc 1 118 13 view .LVU104
+ 379 0108 01A9     		add	r1, sp, #4
+ 380 010a 0A48     		ldr	r0, .L27+32
+ 381 010c FFF7FEFF 		bl	IMU_UpdateData
+ 382              	.LVL22:
+ 383              		.loc 1 121 1 is_stmt 0 view .LVU105
+ 384 0110 8AE7     		b	.L11
+ 385              	.L28:
+ 386 0112 00BF     		.align	2
+ 387              	.L27:
+ 388 0114 00000000 		.word	.LANCHOR0
+ 389 0118 00000000 		.word	hcan1
+ 390 011c 00000000 		.word	hcan2
+ 391 0120 00000000 		.word	exo_controller
+ 392 0124 20000000 		.word	exo_controller+32
+ 393 0128 B8020000 		.word	exo_controller+696
+ 394 012c 50050000 		.word	exo_controller+1360
+ 395 0130 E8070000 		.word	exo_controller+2024
+ 396 0134 800A0000 		.word	exo_controller+2688
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGptw8W.s 			page 11
+
+
+ 397              		.cfi_endproc
+ 398              	.LFE172:
+ 400              		.global	rdata
+ 401              		.global	RM_CAN_Msg_0x2FF
+ 402              		.global	RM_CAN_Msg_0x1FF
+ 403              		.global	RM_CAN_Msg_0x200
+ 404              		.section	.bss.RM_CAN_Msg_0x1FF,"aw",%nobits
+ 405              		.align	2
+ 408              	RM_CAN_Msg_0x1FF:
+ 409 0000 00000000 		.space	8
+ 409      00000000 
+ 410              		.section	.bss.RM_CAN_Msg_0x200,"aw",%nobits
+ 411              		.align	2
+ 414              	RM_CAN_Msg_0x200:
+ 415 0000 00000000 		.space	8
+ 415      00000000 
+ 416              		.section	.bss.RM_CAN_Msg_0x2FF,"aw",%nobits
+ 417              		.align	2
+ 420              	RM_CAN_Msg_0x2FF:
+ 421 0000 00000000 		.space	6
+ 421      0000
+ 422              		.section	.bss.rdata,"aw",%nobits
+ 423              		.align	2
+ 424              		.set	.LANCHOR0,. + 0
+ 427              	rdata:
+ 428 0000 00000000 		.space	8
+ 428      00000000 
+ 429              		.text
+ 430              	.Letext0:
+ 431              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 432              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 433              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 434              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
+ 435              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 436              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h"
+ 437              		.file 8 "Core/Inc/can.h"
+ 438              		.file 9 "Components/user_lib.h"
+ 439              		.file 10 "Components/Controller/controller.h"
+ 440              		.file 11 "Application/motor.h"
+ 441              		.file 12 "Components/Devices/dm_imu.h"
+ 442              		.file 13 "Application/motor_task.h"
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGptw8W.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 bsp_CAN.c
-C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s:20     .text.CAN_Device_Init:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s:26     .text.CAN_Device_Init:00000000 CAN_Device_Init
-C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s:128    .text.CAN_Device_Init:00000058 $d
-C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s:133    .text.HAL_CAN_RxFifo0MsgPendingCallback:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s:139    .text.HAL_CAN_RxFifo0MsgPendingCallback:00000000 HAL_CAN_RxFifo0MsgPendingCallback
-C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s:301    .text.HAL_CAN_RxFifo0MsgPendingCallback:000000d4 $d
-C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s:338    .bss.rdata:00000000 rdata
-C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s:331    .bss.RM_CAN_Msg_0x2FF:00000000 RM_CAN_Msg_0x2FF
-C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s:319    .bss.RM_CAN_Msg_0x1FF:00000000 RM_CAN_Msg_0x1FF
-C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s:325    .bss.RM_CAN_Msg_0x200:00000000 RM_CAN_Msg_0x200
-C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s:316    .bss.RM_CAN_Msg_0x1FF:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s:322    .bss.RM_CAN_Msg_0x200:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s:328    .bss.RM_CAN_Msg_0x2FF:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccQaoPTh.s:334    .bss.rdata:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccGptw8W.s:20     .text.CAN_Device_Init:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccGptw8W.s:26     .text.CAN_Device_Init:00000000 CAN_Device_Init
+C:\Users\86152\AppData\Local\Temp\ccGptw8W.s:168    .text.CAN_Device_Init:00000080 $d
+C:\Users\86152\AppData\Local\Temp\ccGptw8W.s:174    .text.HAL_CAN_RxFifo0MsgPendingCallback:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccGptw8W.s:180    .text.HAL_CAN_RxFifo0MsgPendingCallback:00000000 HAL_CAN_RxFifo0MsgPendingCallback
+C:\Users\86152\AppData\Local\Temp\ccGptw8W.s:388    .text.HAL_CAN_RxFifo0MsgPendingCallback:00000114 $d
+C:\Users\86152\AppData\Local\Temp\ccGptw8W.s:427    .bss.rdata:00000000 rdata
+C:\Users\86152\AppData\Local\Temp\ccGptw8W.s:420    .bss.RM_CAN_Msg_0x2FF:00000000 RM_CAN_Msg_0x2FF
+C:\Users\86152\AppData\Local\Temp\ccGptw8W.s:408    .bss.RM_CAN_Msg_0x1FF:00000000 RM_CAN_Msg_0x1FF
+C:\Users\86152\AppData\Local\Temp\ccGptw8W.s:414    .bss.RM_CAN_Msg_0x200:00000000 RM_CAN_Msg_0x200
+C:\Users\86152\AppData\Local\Temp\ccGptw8W.s:405    .bss.RM_CAN_Msg_0x1FF:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccGptw8W.s:411    .bss.RM_CAN_Msg_0x200:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccGptw8W.s:417    .bss.RM_CAN_Msg_0x2FF:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccGptw8W.s:423    .bss.rdata:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_CAN_ConfigFilter
 HAL_CAN_Start
 HAL_CAN_ActivateNotification
 hcan1
+hcan2
 HAL_CAN_GetRxMessage
 Get_DM_Offset
 Get_LK_Offset
 Get_LK_Info
 Get_DM_Info
+IMU_UpdateData
 exo_controller

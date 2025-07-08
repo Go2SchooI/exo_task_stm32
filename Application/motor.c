@@ -1,7 +1,7 @@
 #include "motor.h"
 #include "includes.h"
 
-float debugNum[5] = {0, 0, 0, 0, 0}; // debugÓÃ
+float debugNum[5] = {0, 0, 0, 0, 0}; // debugï¿½ï¿½
 
 float Motor_Torque_Calculate(motor_info *motor, float torque, float target_torque)
 {
@@ -12,7 +12,7 @@ float Motor_Torque_Calculate(motor_info *motor, float torque, float target_torqu
         motor->Output = motor->PID_Torque.Output + motor->Ke * motor->velocity_in_rpm;
     else
         motor->Output = motor->PID_Torque.Output - motor->Ke * motor->velocity_in_rpm;
-    // ï¿½ï¿½ï¿½ï¿½Þ·ï¿?
+    // ï¿½ï¿½ï¿½ï¿½Þ·ï¿½?
     motor->Output = float_constrain(motor->Output, -motor->max_out, motor->max_out);
 
     return motor->Output;
@@ -46,7 +46,7 @@ float Motor_Angle_Calculate(motor_info *motor, float angle, float velocity, floa
  **/
 void Get_Motor_Info(motor_info *ptr, uint8_t *aData)
 {
-    // ï¿½ï¿½ï¿½C620ï¿½ï¿½ï¿½ï¿½Ö²ï¿?
+    // ï¿½ï¿½ï¿½C620ï¿½ï¿½ï¿½ï¿½Ö²ï¿½?
     if (ptr->Direction != NEGATIVE)
     {
         ptr->RawAngle = (uint16_t)(aData[0] << 8 | aData[1]);
@@ -67,7 +67,7 @@ void Get_Motor_Info(motor_info *ptr, uint8_t *aData)
     else if (ptr->RawAngle - ptr->last_angle < -4096)
         ptr->round_cnt++;
 
-    // ×ªï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿?
+    // ×ªï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½?
     ptr->Angle = loop_float_constrain(ptr->RawAngle + ptr->zero_offset, -4095.5, 4095.5);
 
     // ×ªï¿½ï¿½ï¿½Ç¶Èµï¿½Î»Îªï¿½ï¿½
@@ -101,13 +101,13 @@ HAL_StatusTypeDef Send_Motor_Current_1_4(CAN_HandleTypeDef *_hcan,
     static uint8_t CAN_Send_Data[8];
     uint32_t send_mail_box;
 
-    // ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½IDÎªï¿½Ø¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î?Ä¬ï¿½Ï£ï¿½Í¨ï¿½Ã£ï¿½ï¿½ï¿½ï¿?
+    // ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½IDÎªï¿½Ø¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?Ä¬ï¿½Ï£ï¿½Í¨ï¿½Ã£ï¿½ï¿½ï¿½ï¿½?
     TX_MSG.StdId = CAN_Transmit_1_4_ID;
     TX_MSG.IDE = CAN_ID_STD;
     TX_MSG.RTR = CAN_RTR_DATA;
     TX_MSG.DLC = 0x08;
 
-    // ï¿½ï¿½ï¿½ï¿½C620ï¿½ï¿½ï¿½Ð?ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö?
+    // ï¿½ï¿½ï¿½ï¿½C620ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
     CAN_Send_Data[0] = (c1 >> 8);
     CAN_Send_Data[1] = c1;
     CAN_Send_Data[2] = (c2 >> 8);
@@ -198,13 +198,13 @@ HAL_StatusTypeDef Send_LK_Current(CAN_HandleTypeDef *_hcan,
     static uint8_t CAN_Send_Data[8];
     uint32_t send_mail_box;
 
-    // ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½IDÎªï¿½Ø¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î?Ä¬ï¿½Ï£ï¿½Í¨ï¿½Ã£ï¿½ï¿½ï¿½ï¿?
+    // ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½IDÎªï¿½Ø¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?Ä¬ï¿½Ï£ï¿½Í¨ï¿½Ã£ï¿½ï¿½ï¿½ï¿½?
     TX_MSG.StdId = 0x280;
     TX_MSG.IDE = CAN_ID_STD;
     TX_MSG.RTR = CAN_RTR_DATA;
     TX_MSG.DLC = 0x08;
 
-    // ï¿½ï¿½ï¿½ï¿½C620ï¿½ï¿½ï¿½Ð?ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö?
+    // ï¿½ï¿½ï¿½ï¿½C620ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
     CAN_Send_Data[0] = c1;
     CAN_Send_Data[1] = (c1 >> 8);
     CAN_Send_Data[2] = c2;
@@ -222,7 +222,7 @@ HAL_StatusTypeDef Send_LK_Current(CAN_HandleTypeDef *_hcan,
             break;
     }
     count = 0;
-    while (HAL_CAN_GetTxMailboxesFreeLevel(_hcan) == 0) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä¶¼ï¿½ï¿½ï¿½ï¿½ï¿½Ë¾Íµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?
+    while (HAL_CAN_GetTxMailboxesFreeLevel(_hcan) == 0) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä¶¼ï¿½ï¿½ï¿½ï¿½ï¿½Ë¾Íµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
     {
         count++;
         if (count > 10000)
@@ -315,16 +315,16 @@ int16_t LK8008_Current_Solver(float torque)
 }
 
 /* -------------------------------- dm motor -------------------------------- */
-uint8_t Data_Enable[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC};    // µç»úÊ¹ÄÜÃüÁî
-uint8_t Data_Failure[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD};   // µç»úÊ§ÄÜÃüÁî
-uint8_t Data_Save_zero[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE}; // µç»ú±£´æÁãµãÃüÁî
+uint8_t Data_Enable[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC};    // ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+uint8_t Data_Failure[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD};   // ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+uint8_t Data_Save_zero[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE}; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 /**
- * @brief  ·¢ËÍ±ê×¼IDµÄÊý¾ÝÖ¡
- * @param  hcan     CANµÄ¾ä±ú
- * @param  ID       Êý¾ÝÖ¡ID
- * @param  pData    Êý×éÖ¸Õë
- * @param  Len      ×Ö½ÚÊý0~8
+ * @brief  ï¿½ï¿½ï¿½Í±ï¿½×¼IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¡
+ * @param  hcan     CANï¿½Ä¾ï¿½ï¿½
+ * @param  ID       ï¿½ï¿½ï¿½ï¿½Ö¡ID
+ * @param  pData    ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½
+ * @param  Len      ï¿½Ö½ï¿½ï¿½ï¿½0~8
  */
 uint8_t DM_CANx_SendStdData(CAN_HandleTypeDef *_hcan, uint16_t id, uint8_t cmd, uint16_t len)
 {
@@ -343,9 +343,9 @@ uint8_t DM_CANx_SendStdData(CAN_HandleTypeDef *_hcan, uint16_t id, uint8_t cmd, 
     else if (cmd == SAVE_ZERO_MOTOR)
         memcpy(CAN_Send_Data, Data_Save_zero, len);
     else
-        return 1; // ´íÎóµÄÃüÁî
+        return 1; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    /*ÕÒµ½¿ÕµÄ·¢ËÍÓÊÏä£¬°ÑÊý¾Ý·¢ËÍ³öÈ¥*/
+    /*ï¿½Òµï¿½ï¿½ÕµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½Ý·ï¿½ï¿½Í³ï¿½È¥*/
     if (HAL_CAN_AddTxMessage(_hcan, &TX_MSG, CAN_Send_Data, (uint32_t *)CAN_TX_MAILBOX0) != HAL_OK) //
     {
         if (HAL_CAN_AddTxMessage(_hcan, &TX_MSG, CAN_Send_Data, (uint32_t *)CAN_TX_MAILBOX1) != HAL_OK)
@@ -357,38 +357,26 @@ uint8_t DM_CANx_SendStdData(CAN_HandleTypeDef *_hcan, uint16_t id, uint8_t cmd, 
 }
 
 /**
- * @brief  ²ÉÓÃ¸¡µãÊý¾ÝµÈ±ÈÀý×ª»»³ÉÕûÊý
- * @param  x_int     	Òª×ª»»µÄÎÞ·ûºÅÕûÊý
- * @param  x_min      Ä¿±ê¸¡µãÊýµÄ×îÐ¡Öµ
- * @param  x_max    	Ä¿±ê¸¡µãÊýµÄ×î´óÖµ
- * @param  bits      	ÎÞ·ûºÅÕûÊýµÄÎ»Êý
+ * @brief  ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÝµÈ±ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param  x_int     	Òª×ªï¿½ï¿½ï¿½ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param  x_min      Ä¿ï¿½ê¸¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Öµ
+ * @param  x_max    	Ä¿ï¿½ê¸¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+ * @param  bits      	ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
  */
 float uint_to_float(int x_int, float x_min, float x_max, int bits)
 {
     /// converts unsigned int to float, given range and number of bits ///
-    debugNum[0] = (float)x_int;
-    debugNum[1] = (float)((1 << bits) - 1);
-    float span = x_max - x_min;
-    float offset = x_min;
-    return ((float)x_int) * span / ((float)((1 << bits) - 1)) + offset;
-}
-
-float uint_to_float1(int x_int, float x_min, float x_max, int bits)
-{
-    /// converts unsigned int to float, given range and number of bits ///
-    debugNum[2] = (float)x_int;
-    debugNum[3] = (float)((1 << bits) - 1);
     float span = x_max - x_min;
     float offset = x_min;
     return ((float)x_int) * span / ((float)((1 << bits) - 1)) + offset;
 }
 
 /**
- * @brief  ½«¸¡µãÊý×ª»»ÎªÎÞ·ûºÅÕûÊý
- * @param  x     			Òª×ª»»µÄ¸¡µãÊý
- * @param  x_min      ¸¡µãÊýµÄ×îÐ¡Öµ
- * @param  x_max    	¸¡µãÊýµÄ×î´óÖµ
- * @param  bits      	ÎÞ·ûºÅÕûÊýµÄÎ»Êý
+ * @brief  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½Îªï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param  x     			Òª×ªï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param  x_min      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Öµ
+ * @param  x_max    	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+ * @param  bits      	ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
  */
 
 int float_to_uint(float x, float x_min, float x_max, int bits)
@@ -400,14 +388,14 @@ int float_to_uint(float x, float x_min, float x_max, int bits)
 }
 
 /**
- * @brief  MITÄ£Ê½¿ØÏÂ¿ØÖÆÖ¡
- * @param  hcan   CANµÄ¾ä±ú
- * @param  ID     Êý¾ÝÖ¡µÄID
- * @param  _pos   Î»ÖÃ¸ø¶¨
- * @param  _vel   ËÙ¶È¸ø¶¨
- * @param  _KP    Î»ÖÃ±ÈÀýÏµÊý
- * @param  _KD    Î»ÖÃÎ¢·ÖÏµÊý
- * @param  _torq  ×ª¾Ø¸ø¶¨Öµ
+ * @brief  MITÄ£Ê½ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½Ö¡
+ * @param  hcan   CANï¿½Ä¾ï¿½ï¿½
+ * @param  ID     ï¿½ï¿½ï¿½ï¿½Ö¡ï¿½ï¿½ID
+ * @param  _pos   Î»ï¿½Ã¸ï¿½ï¿½ï¿½
+ * @param  _vel   ï¿½Ù¶È¸ï¿½ï¿½ï¿½
+ * @param  _KP    Î»ï¿½Ã±ï¿½ï¿½ï¿½Ïµï¿½ï¿½
+ * @param  _KD    Î»ï¿½ï¿½Î¢ï¿½ï¿½Ïµï¿½ï¿½
+ * @param  _torq  ×ªï¿½Ø¸ï¿½ï¿½ï¿½Öµ
  */
 HAL_StatusTypeDef Send_DM_MIT_Command(CAN_HandleTypeDef *_hcan, uint16_t id, float _pos, float _vel,
                                       float _KP, float _KD, float _torq)

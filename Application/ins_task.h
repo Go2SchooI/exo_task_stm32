@@ -34,6 +34,8 @@ typedef struct
     float Pitch;
     float Yaw;
     float YawTotalAngle;
+
+    float xzy_order_angle[3]; // xzy order angle
 } INS_t;
 
 typedef struct

@@ -2,6 +2,7 @@
 #include "QuaternionAHRS.h"
 #include "includes.h"
 #include "QuaternionEKF.h"
+#include "dm_imu.h"
 #include "tim.h"
 
 INS_t INS;
@@ -27,31 +28,20 @@ void INS_Init(void)
     BMI088_Read(&BMI088);
     INS.AccelLPF = 0.0085;
 
-    if (fabsf(sqrtf(BMI088.Accel[0] * BMI088.Accel[0] +
-                    BMI088.Accel[1] * BMI088.Accel[1] +
-                    BMI088.Accel[2] * BMI088.Accel[2]) -
-              BMI088.gNorm) < 1)
-//        Quaternion_AHRS_InitIMU(-BMI088.Accel[X], -BMI088.Accel[Y], BMI088.Accel[Z], BMI088.gNorm);
-//
-#if HERO == ONE
-        IMU_Param.scale[X] = 0.99;
+    // if (fabsf(sqrtf(BMI088.Accel[0] * BMI088.Accel[0] +
+    //                 BMI088.Accel[1] * BMI088.Accel[1] +
+    //                 BMI088.Accel[2] * BMI088.Accel[2]) -
+    //           BMI088.gNorm) < 1)
+    //        Quaternion_AHRS_InitIMU(-BMI088.Accel[X], -BMI088.Accel[Y], BMI088.Accel[Z], BMI088.gNorm);
+    //
+    IMU_Param.scale[X] = 0.99;
     IMU_Param.scale[Y] = 0.99;
     IMU_Param.scale[Z] = 1;
 
-    IMU_Param.Yaw = -0.32;
-    IMU_Param.Pitch = 0.1;
-    IMU_Param.Roll = 1.2;
+    IMU_Param.Yaw = 0;
+    IMU_Param.Pitch = 0;
+    IMU_Param.Roll = 0;
     IMU_Param.flag = 1;
-#else
-        IMU_Param.scale[X] = 0.99;
-    IMU_Param.scale[Y] = 0.99;
-    IMU_Param.scale[Z] = 1;
-
-    IMU_Param.Yaw = -1.2f;
-    IMU_Param.Pitch = 0.19;
-    IMU_Param.Roll = 0.3;
-    IMU_Param.flag = 1;
-#endif
 
     IMU_QuaternionEKF_Init(10, 0.001, 1000000 * 10, 0.9996 * 0 + 1, 0);
     // imu heat init
@@ -70,21 +60,18 @@ void INS_Task(void)
     if ((count % 1) == 0)
     {
         BMI088_Read(&BMI088);
-#if HERO == ONE
-        INS.Accel[X] = -BMI088.Accel[Y];
-        INS.Accel[Y] = BMI088.Accel[X];
-        INS.Accel[Z] = BMI088.Accel[Z];
-        INS.Gyro[X] = -BMI088.Gyro[Y];
-        INS.Gyro[Y] = BMI088.Gyro[X];
-        INS.Gyro[Z] = BMI088.Gyro[Z];
-#else
-        INS.Accel[X] = -BMI088.Accel[Y];
-        INS.Accel[Y] = BMI088.Accel[X];
-        INS.Accel[Z] = BMI088.Accel[Z];
-        INS.Gyro[X] = -BMI088.Gyro[Y];
-        INS.Gyro[Y] = BMI088.Gyro[X];
-        INS.Gyro[Z] = BMI088.Gyro[Z];
-#endif
+        // INS.Accel[X] = -BMI088.Accel[Y];
+        // INS.Accel[Y] = -BMI088.Accel[Z];
+        // INS.Accel[Z] = BMI088.Accel[X];
+        // INS.Gyro[X] = -BMI088.Gyro[Y];
+        // INS.Gyro[Y] = -BMI088.Gyro[Z];
+        // INS.Gyro[Z] = BMI088.Gyro[X];
+        INS.Accel[X] = -exo_controller.dm_imu.accel[Y];
+        INS.Accel[Y] = -exo_controller.dm_imu.accel[Z];
+        INS.Accel[Z] = exo_controller.dm_imu.accel[X];
+        INS.Gyro[X] = -exo_controller.dm_imu.gyro[Y];
+        INS.Gyro[Y] = -exo_controller.dm_imu.gyro[Z];
+        INS.Gyro[Z] = exo_controller.dm_imu.gyro[X];
 
         IMU_Param_Correction(&IMU_Param, INS.Gyro, INS.Accel);
         INS.atanxz = -atan2f(INS.Accel[X], INS.Accel[Z]) * 180 / PI;
@@ -94,6 +81,11 @@ void INS_Task(void)
         Quaternion_AHRS_UpdateIMU(INS.Gyro[X], INS.Gyro[Y], INS.Gyro[Z], INS.Accel[X], INS.Accel[Y], INS.Accel[Z], 0, 0, 0, dt);
         // QEKF_INS.ChiSquareThresholdDelta = float_constrain(Shoot.FricSpeed, 0, 10000) * 0.00001f; //摩擦轮震动应提高卡方检验阈值
         IMU_QuaternionEKF_Update(INS.Gyro[X], INS.Gyro[Y], INS.Gyro[Z], INS.Accel[X], INS.Accel[Y], INS.Accel[Z], dt);
+
+        float *q = QEKF_INS.q;
+        INS.xzy_order_angle[1] = -asinf(2 * (q[1] * q[2] - q[0] * q[3])) * 57.295779513f;
+        INS.xzy_order_angle[2] = atan2f(2.0f * (q[1] * q[3] + q[0] * q[2]), 1 - 2.0f * (q[2] * q[2] + q[3] * q[3])) * 57.295779513f;
+        INS.xzy_order_angle[0] = atan2f(2.0f * (q[0] * q[1] + q[2] * q[3]), 1 - 2.0f * (q[1] * q[1] - q[3] * q[3])) * 57.295779513f;
 
         BodyFrameToEarthFrame(xb, INS.xn, INS.q);
         BodyFrameToEarthFrame(yb, INS.yn, INS.q);

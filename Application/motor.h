@@ -106,4 +106,7 @@ uint8_t DM_CANx_SendStdData(CAN_HandleTypeDef *_hcan, uint16_t id, uint8_t cmd, 
 
 int16_t LK8008_Current_Solver(float torque);
 
+float uint_to_float(int x_int, float x_min, float x_max, int bits);
+int float_to_uint(float x, float x_min, float x_max, int bits);
+
 #endif

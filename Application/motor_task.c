@@ -1,13 +1,14 @@
 #include "motor_task.h"
 
 int16_t debugoutput = 0, debugoutput2 = 0;
+uint8_t reg = 0x01; // 0x01:accel, 0x02:gyro, 0x03:euler, 0x04:quaternion
 
 exo_controller_t exo_controller = {0};
 
 float TargetVelocity = 0, TargetTorque = 0;
 float TargetAngle1 = 0, TargetAngle2 = 0,
       TargetAngle3 = 0; // 目标角度
-float a = 45.0f, b = 0.5f, c = 45.0f;
+float a = 45.0f, b = 0.5f, c = 0.0f;
 
 static void set_exo_mode(void);
 static void get_exo_ctrl_value(void);
@@ -18,7 +19,7 @@ static void send_exo_motor_current(void);
 void exo_init(void)
 {
   // PID初始化
-  PID_Init(&exo_controller.lk_motor.PID_Velocity, 2048, 1000, 0, 1.5, 0.1, 0, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
+  PID_Init(&exo_controller.lk_motor.PID_Velocity, 2000, 1000, 0, 1.5, 0.1, 0, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
   PID_Init(&exo_controller.lk_motor.PID_Angle, 8600, 4000, 0, 30, 1, 1, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
   exo_controller.lk_motor.zero_offset = MOTOR_ZERO_OFFSET;
   exo_controller.lk_motor.max_out = 0;
@@ -122,17 +123,19 @@ static void get_exo_ctrl_value(void)
       TargetAngle2 = exo_controller.dm_motor[1].angle_in_degree;
       TargetAngle3 = exo_controller.lk_motor.angle_in_degree;
     }
-    // else
-    // {
-    //   TargetAngle1 = (MOTOR1_MAX - MOTOR1_MIN) / 2 * sin(b * exo_controller.t) + (MOTOR1_MAX + MOTOR1_MIN) / 2;
-    //   TargetAngle2 = (MOTOR2_MAX - MOTOR2_MIN) / 2 * sin(b * exo_controller.t + PI) + (MOTOR2_MAX + MOTOR2_MIN) / 2;
-    // }
+    else if (exo_controller.debug_mode == 6)
+    {
+      TargetAngle3 = a * sin(b * exo_controller.t + PI) + c;
+    }
 
     // TargetAngle1 = float_constrain(TargetAngle1, MOTOR1_MIN, MOTOR1_MAX);
     // TargetAngle2 = float_constrain(TargetAngle2, MOTOR2_MIN, MOTOR2_MAX);
 
     /* -------------------------------- lk motor -------------------------------- */
-    PID_Calculate(&exo_controller.lk_motor.PID_Angle, exo_controller.lk_motor.angle_in_degree, TargetAngle3);
+    if (exo_controller.debug_mode == 6)
+      PID_Calculate(&exo_controller.lk_motor.PID_Angle, -INS.xzy_order_angle[2], TargetAngle3);
+    else
+      PID_Calculate(&exo_controller.lk_motor.PID_Angle, exo_controller.lk_motor.angle_in_degree, TargetAngle3);
     float VelocityLoopInput = float_constrain(exo_controller.lk_motor.PID_Angle.Output,
                                               -exo_controller.lk_motor.PID_Angle.MaxOut, exo_controller.lk_motor.PID_Angle.MaxOut);
     PID_Calculate(&exo_controller.lk_motor.PID_Velocity, exo_controller.lk_motor.velocity_in_rpm, VelocityLoopInput);
@@ -226,12 +229,18 @@ static void send_exo_motor_current(void)
   if (exo_controller.mode == SILENCE_MODE)
   {
     // 发送输出
+    IMU_RequestData(&hcan2, 0x01, reg);
+    if (reg == 0x01)
+      reg = 0x02; // 0x01:accel, 0x02:gyro, 0x03:euler, 0x04:quaternion
+    else if (reg == 0x02)
+      reg = 0x01;
+
     CAN_send_status = Send_DM_MIT_Command(&hcan1, 0X01, 0, 0, 0, 0, 0);
     DWT_Delay(0.0003f);
     CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X02, 0, 0, 0, 0, 0);
     DWT_Delay(0.0003f);
     CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X03, 0, 0, 0, 0, 0);
-    exo_controller.CAN_send_status = CAN_send_status | Send_LK_Current_Single(&hcan1, 1, 0);
+    exo_controller.CAN_send_status = CAN_send_status | Send_LK_Current_Single(&hcan2, 1, 0);
 
     if (exo_controller.CAN_send_status == HAL_OK)
       ;
@@ -240,12 +249,18 @@ static void send_exo_motor_current(void)
   }
   else
   {
+    IMU_RequestData(&hcan2, 0x01, reg);
+    if (reg == 0x01)
+      reg = 0x02; // 0x01:accel, 0x02:gyro, 0x03:euler, 0x04:quaternion
+    else if (reg == 0x02)
+      reg = 0x01;
+
     CAN_send_status = Send_DM_MIT_Command(&hcan1, 0X01, 0, 0, 0, 0, exo_controller.dm_motor[0].Output);
     DWT_Delay(0.0003f);
     CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X02, 0, 0, 0, 0, exo_controller.dm_motor[1].Output);
     DWT_Delay(0.0003f);
     CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X03, 0, 0, 0, 0, TargetTorque);
-    exo_controller.CAN_send_status = CAN_send_status | Send_LK_Current_Single(&hcan1, 1, exo_controller.lk_motor.Output);
+    exo_controller.CAN_send_status = CAN_send_status | Send_LK_Current_Single(&hcan2, 1, exo_controller.lk_motor.Output);
 
     if (exo_controller.CAN_send_status == HAL_OK)
       ;

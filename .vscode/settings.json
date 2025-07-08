@@ -12,6 +12,9 @@
         "main.h": "c",
         "motor.h": "c",
         "cmath": "c",
-        "tim.h": "c"
+        "tim.h": "c",
+        "math.h": "c",
+        "quaternionahrs.h": "c",
+        "dm_imu.h": "c"
     }
 }

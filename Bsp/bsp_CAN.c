@@ -41,6 +41,21 @@ void CAN_Device_Init(void)
     {
     }
     HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
+
+    can_filter_st.SlaveStartFilterBank = 14;
+    can_filter_st.FilterBank = 14;
+    // CAN ��������ʼ��
+    while (HAL_CAN_ConfigFilter(&hcan2, &can_filter_st) != HAL_OK)
+    {
+    }
+    // ����CAN
+    while (HAL_CAN_Start(&hcan2) != HAL_OK)
+    {
+    }
+    // ����֪ͨ
+    while (HAL_CAN_ActivateNotification(&hcan2, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK)
+    {
+    }
 }
 
 /**
@@ -89,16 +104,18 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *_hcan)
         }
     }
 
-    // if (_hcan == &hcan2)
-    // {
-    //     switch (rx_header.StdId)
-    //     {
-    //     case DM_DEVICE_STD_ID + 1:
-    //         if (exo_controller.dm_motor[0].msg_cnt++ <= 50)
-    //             Get_DM_Offset(&exo_controller.dm_motor[0], rx_data);
-    //         else
-    //             Get_DM_Info(&exo_controller.dm_motor[0], rx_data);
-    //         break;
-    //     }
-    // }
+    if (_hcan == &hcan2)
+    {
+        switch (rx_header.StdId)
+        {
+        case LK_DEVICE_STD_ID + 1:
+            if (exo_controller.lk_motor.msg_cnt++ <= 50)
+                Get_LK_Offset(&exo_controller.lk_motor, rx_data);
+            else
+                Get_LK_Info(&exo_controller.lk_motor, rx_data);
+            break;
+        case 0x11:
+            IMU_UpdateData(&exo_controller.dm_imu, rx_data);
+        }
+    }
 }
