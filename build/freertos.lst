@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s 			page 1
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s 			page 1
   17:Core/Src/freertos.c ****  ******************************************************************************
   18:Core/Src/freertos.c ****  */
   19:Core/Src/freertos.c **** /* USER CODE END Header */
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s 			page 2
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s 			page 2
 
 
   20:Core/Src/freertos.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s 			page 1
   74:Core/Src/freertos.c **** void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskSt
   75:Core/Src/freertos.c **** {
   76:Core/Src/freertos.c ****   *ppxIdleTaskTCBBuffer = &xIdleTaskTCBBuffer;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s 			page 3
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s 			page 3
 
 
   77:Core/Src/freertos.c ****   *ppxIdleTaskStackBuffer = &xIdleStack[0];
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s 			page 1
  131:Core/Src/freertos.c **** 
  132:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_THREADS */
  133:Core/Src/freertos.c ****   /* add threads, ... */
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s 			page 4
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s 			page 4
 
 
  134:Core/Src/freertos.c ****   /* USER CODE END RTOS_THREADS */
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s 			page 1
   73              	.LVL4:
   74              	.LFB175:
  153:Core/Src/freertos.c ****   }
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s 			page 5
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s 			page 5
 
 
  154:Core/Src/freertos.c ****   /* USER CODE END StartINSTask */
@@ -273,310 +273,311 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s 			page 1
  168:Core/Src/freertos.c ****   /* Infinite loop */
  169:Core/Src/freertos.c ****   for (;;)
   90              		.loc 1 169 3 discriminator 1 view .LVU10
+  91              	.LBB2:
  170:Core/Src/freertos.c ****   {
  171:Core/Src/freertos.c ****     exo_task();
-  91              		.loc 1 171 5 discriminator 1 view .LVU11
-  92 0006 FFF7FEFF 		bl	exo_task
-  93              	.LVL6:
+  92              		.loc 1 171 5 discriminator 1 view .LVU11
+  93 0006 FFF7FEFF 		bl	exo_task
+  94              	.LVL6:
  172:Core/Src/freertos.c ****     osDelay(1);
-  94              		.loc 1 172 5 discriminator 1 view .LVU12
-  95 000a 0120     		movs	r0, #1
-  96 000c FFF7FEFF 		bl	osDelay
-  97              	.LVL7:
+  95              		.loc 1 172 5 discriminator 1 view .LVU12
+  96 000a 0120     		movs	r0, #1
+  97 000c FFF7FEFF 		bl	osDelay
+  98              	.LVL7:
+  99              	.LBE2:
  169:Core/Src/freertos.c ****   {
-  98              		.loc 1 169 9 discriminator 1 view .LVU13
-  99 0010 F9E7     		b	.L5
- 100              		.cfi_endproc
- 101              	.LFE175:
- 103              		.section	.text.vApplicationGetIdleTaskMemory,"ax",%progbits
- 104              		.align	1
- 105              		.global	vApplicationGetIdleTaskMemory
- 106              		.syntax unified
- 107              		.thumb
- 108              		.thumb_func
- 110              	vApplicationGetIdleTaskMemory:
- 111              	.LVL8:
- 112              	.LFB171:
+ 100              		.loc 1 169 9 discriminator 1 view .LVU13
+ 101 0010 F9E7     		b	.L5
+ 102              		.cfi_endproc
+ 103              	.LFE175:
+ 105              		.section	.text.vApplicationGetIdleTaskMemory,"ax",%progbits
+ 106              		.align	1
+ 107              		.global	vApplicationGetIdleTaskMemory
+ 108              		.syntax unified
+ 109              		.thumb
+ 110              		.thumb_func
+ 112              	vApplicationGetIdleTaskMemory:
+ 113              	.LVL8:
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s 			page 6
+
+
+ 114              	.LFB171:
   75:Core/Src/freertos.c ****   *ppxIdleTaskTCBBuffer = &xIdleTaskTCBBuffer;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s 			page 6
-
-
- 113              		.loc 1 75 1 view -0
- 114              		.cfi_startproc
- 115              		@ args = 0, pretend = 0, frame = 0
- 116              		@ frame_needed = 0, uses_anonymous_args = 0
- 117              		@ link register save eliminated.
+ 115              		.loc 1 75 1 view -0
+ 116              		.cfi_startproc
+ 117              		@ args = 0, pretend = 0, frame = 0
+ 118              		@ frame_needed = 0, uses_anonymous_args = 0
+ 119              		@ link register save eliminated.
   76:Core/Src/freertos.c ****   *ppxIdleTaskStackBuffer = &xIdleStack[0];
- 118              		.loc 1 76 3 view .LVU15
+ 120              		.loc 1 76 3 view .LVU15
   76:Core/Src/freertos.c ****   *ppxIdleTaskStackBuffer = &xIdleStack[0];
- 119              		.loc 1 76 25 is_stmt 0 view .LVU16
- 120 0000 034B     		ldr	r3, .L8
- 121 0002 0360     		str	r3, [r0]
+ 121              		.loc 1 76 25 is_stmt 0 view .LVU16
+ 122 0000 034B     		ldr	r3, .L8
+ 123 0002 0360     		str	r3, [r0]
   77:Core/Src/freertos.c ****   *pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
- 122              		.loc 1 77 3 is_stmt 1 view .LVU17
+ 124              		.loc 1 77 3 is_stmt 1 view .LVU17
   77:Core/Src/freertos.c ****   *pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
- 123              		.loc 1 77 27 is_stmt 0 view .LVU18
- 124 0004 034B     		ldr	r3, .L8+4
- 125 0006 0B60     		str	r3, [r1]
+ 125              		.loc 1 77 27 is_stmt 0 view .LVU18
+ 126 0004 034B     		ldr	r3, .L8+4
+ 127 0006 0B60     		str	r3, [r1]
   78:Core/Src/freertos.c ****   /* place for user code */
- 126              		.loc 1 78 3 is_stmt 1 view .LVU19
+ 128              		.loc 1 78 3 is_stmt 1 view .LVU19
   78:Core/Src/freertos.c ****   /* place for user code */
- 127              		.loc 1 78 25 is_stmt 0 view .LVU20
- 128 0008 8023     		movs	r3, #128
- 129 000a 1360     		str	r3, [r2]
+ 129              		.loc 1 78 25 is_stmt 0 view .LVU20
+ 130 0008 8023     		movs	r3, #128
+ 131 000a 1360     		str	r3, [r2]
   80:Core/Src/freertos.c **** /* USER CODE END GET_IDLE_TASK_MEMORY */
- 130              		.loc 1 80 1 view .LVU21
- 131 000c 7047     		bx	lr
- 132              	.L9:
- 133 000e 00BF     		.align	2
- 134              	.L8:
- 135 0010 00000000 		.word	.LANCHOR0
- 136 0014 00000000 		.word	.LANCHOR1
- 137              		.cfi_endproc
- 138              	.LFE171:
- 140              		.section	.text.vApplicationGetTimerTaskMemory,"ax",%progbits
- 141              		.align	1
- 142              		.global	vApplicationGetTimerTaskMemory
- 143              		.syntax unified
- 144              		.thumb
- 145              		.thumb_func
- 147              	vApplicationGetTimerTaskMemory:
- 148              	.LVL9:
- 149              	.LFB172:
+ 132              		.loc 1 80 1 view .LVU21
+ 133 000c 7047     		bx	lr
+ 134              	.L9:
+ 135 000e 00BF     		.align	2
+ 136              	.L8:
+ 137 0010 00000000 		.word	.LANCHOR0
+ 138 0014 00000000 		.word	.LANCHOR1
+ 139              		.cfi_endproc
+ 140              	.LFE171:
+ 142              		.section	.text.vApplicationGetTimerTaskMemory,"ax",%progbits
+ 143              		.align	1
+ 144              		.global	vApplicationGetTimerTaskMemory
+ 145              		.syntax unified
+ 146              		.thumb
+ 147              		.thumb_func
+ 149              	vApplicationGetTimerTaskMemory:
+ 150              	.LVL9:
+ 151              	.LFB172:
   88:Core/Src/freertos.c ****   *ppxTimerTaskTCBBuffer = &xTimerTaskTCBBuffer;
- 150              		.loc 1 88 1 is_stmt 1 view -0
- 151              		.cfi_startproc
- 152              		@ args = 0, pretend = 0, frame = 0
- 153              		@ frame_needed = 0, uses_anonymous_args = 0
- 154              		@ link register save eliminated.
+ 152              		.loc 1 88 1 is_stmt 1 view -0
+ 153              		.cfi_startproc
+ 154              		@ args = 0, pretend = 0, frame = 0
+ 155              		@ frame_needed = 0, uses_anonymous_args = 0
+ 156              		@ link register save eliminated.
   89:Core/Src/freertos.c ****   *ppxTimerTaskStackBuffer = &xTimerStack[0];
- 155              		.loc 1 89 3 view .LVU23
+ 157              		.loc 1 89 3 view .LVU23
   89:Core/Src/freertos.c ****   *ppxTimerTaskStackBuffer = &xTimerStack[0];
- 156              		.loc 1 89 26 is_stmt 0 view .LVU24
- 157 0000 034B     		ldr	r3, .L11
- 158 0002 0360     		str	r3, [r0]
+ 158              		.loc 1 89 26 is_stmt 0 view .LVU24
+ 159 0000 034B     		ldr	r3, .L11
+ 160 0002 0360     		str	r3, [r0]
   90:Core/Src/freertos.c ****   *pulTimerTaskStackSize = configTIMER_TASK_STACK_DEPTH;
- 159              		.loc 1 90 3 is_stmt 1 view .LVU25
-  90:Core/Src/freertos.c ****   *pulTimerTaskStackSize = configTIMER_TASK_STACK_DEPTH;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s 			page 7
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s 			page 7
 
 
- 160              		.loc 1 90 28 is_stmt 0 view .LVU26
- 161 0004 034B     		ldr	r3, .L11+4
- 162 0006 0B60     		str	r3, [r1]
+ 161              		.loc 1 90 3 is_stmt 1 view .LVU25
+  90:Core/Src/freertos.c ****   *pulTimerTaskStackSize = configTIMER_TASK_STACK_DEPTH;
+ 162              		.loc 1 90 28 is_stmt 0 view .LVU26
+ 163 0004 034B     		ldr	r3, .L11+4
+ 164 0006 0B60     		str	r3, [r1]
   91:Core/Src/freertos.c ****   /* place for user code */
- 163              		.loc 1 91 3 is_stmt 1 view .LVU27
+ 165              		.loc 1 91 3 is_stmt 1 view .LVU27
   91:Core/Src/freertos.c ****   /* place for user code */
- 164              		.loc 1 91 26 is_stmt 0 view .LVU28
- 165 0008 4FF48073 		mov	r3, #256
- 166 000c 1360     		str	r3, [r2]
+ 166              		.loc 1 91 26 is_stmt 0 view .LVU28
+ 167 0008 4FF48073 		mov	r3, #256
+ 168 000c 1360     		str	r3, [r2]
   93:Core/Src/freertos.c **** /* USER CODE END GET_TIMER_TASK_MEMORY */
- 167              		.loc 1 93 1 view .LVU29
- 168 000e 7047     		bx	lr
- 169              	.L12:
- 170              		.align	2
- 171              	.L11:
- 172 0010 00000000 		.word	.LANCHOR2
- 173 0014 00000000 		.word	.LANCHOR3
- 174              		.cfi_endproc
- 175              	.LFE172:
- 177              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
- 178              		.align	1
- 179              		.global	MX_FREERTOS_Init
- 180              		.syntax unified
- 181              		.thumb
- 182              		.thumb_func
- 184              	MX_FREERTOS_Init:
- 185              	.LFB173:
+ 169              		.loc 1 93 1 view .LVU29
+ 170 000e 7047     		bx	lr
+ 171              	.L12:
+ 172              		.align	2
+ 173              	.L11:
+ 174 0010 00000000 		.word	.LANCHOR2
+ 175 0014 00000000 		.word	.LANCHOR3
+ 176              		.cfi_endproc
+ 177              	.LFE172:
+ 179              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
+ 180              		.align	1
+ 181              		.global	MX_FREERTOS_Init
+ 182              		.syntax unified
+ 183              		.thumb
+ 184              		.thumb_func
+ 186              	MX_FREERTOS_Init:
+ 187              	.LFB173:
  102:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
- 186              		.loc 1 102 1 is_stmt 1 view -0
- 187              		.cfi_startproc
- 188              		@ args = 0, pretend = 0, frame = 56
- 189              		@ frame_needed = 0, uses_anonymous_args = 0
- 190 0000 10B5     		push	{r4, lr}
- 191              	.LCFI2:
- 192              		.cfi_def_cfa_offset 8
- 193              		.cfi_offset 4, -8
- 194              		.cfi_offset 14, -4
- 195 0002 8EB0     		sub	sp, sp, #56
- 196              	.LCFI3:
- 197              		.cfi_def_cfa_offset 64
+ 188              		.loc 1 102 1 is_stmt 1 view -0
+ 189              		.cfi_startproc
+ 190              		@ args = 0, pretend = 0, frame = 56
+ 191              		@ frame_needed = 0, uses_anonymous_args = 0
+ 192 0000 10B5     		push	{r4, lr}
+ 193              	.LCFI2:
+ 194              		.cfi_def_cfa_offset 8
+ 195              		.cfi_offset 4, -8
+ 196              		.cfi_offset 14, -4
+ 197 0002 8EB0     		sub	sp, sp, #56
+ 198              	.LCFI3:
+ 199              		.cfi_def_cfa_offset 64
  125:Core/Src/freertos.c ****   INSTaskHandle = osThreadCreate(osThread(INSTask), NULL);
- 198              		.loc 1 125 3 view .LVU31
- 199 0004 124C     		ldr	r4, .L15
- 200 0006 0DF11C0C 		add	ip, sp, #28
- 201 000a A646     		mov	lr, r4
- 202 000c BEE80F00 		ldmia	lr!, {r0, r1, r2, r3}
- 203 0010 ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
- 204 0014 9EE80700 		ldm	lr, {r0, r1, r2}
- 205 0018 8CE80700 		stm	ip, {r0, r1, r2}
+ 200              		.loc 1 125 3 view .LVU31
+ 201 0004 124C     		ldr	r4, .L15
+ 202 0006 0DF11C0C 		add	ip, sp, #28
+ 203 000a A646     		mov	lr, r4
+ 204 000c BEE80F00 		ldmia	lr!, {r0, r1, r2, r3}
+ 205 0010 ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
+ 206 0014 9EE80700 		ldm	lr, {r0, r1, r2}
+ 207 0018 8CE80700 		stm	ip, {r0, r1, r2}
  126:Core/Src/freertos.c **** 
- 206              		.loc 1 126 3 view .LVU32
+ 208              		.loc 1 126 3 view .LVU32
  126:Core/Src/freertos.c **** 
- 207              		.loc 1 126 19 is_stmt 0 view .LVU33
- 208 001c 0021     		movs	r1, #0
- 209 001e 07A8     		add	r0, sp, #28
- 210 0020 FFF7FEFF 		bl	osThreadCreate
- 211              	.LVL10:
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s 			page 8
+ 209              		.loc 1 126 19 is_stmt 0 view .LVU33
+ 210 001c 0021     		movs	r1, #0
+ 211 001e 07A8     		add	r0, sp, #28
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s 			page 8
 
 
+ 212 0020 FFF7FEFF 		bl	osThreadCreate
+ 213              	.LVL10:
  126:Core/Src/freertos.c **** 
- 212              		.loc 1 126 17 view .LVU34
- 213 0024 0B4B     		ldr	r3, .L15+4
- 214 0026 1860     		str	r0, [r3]
+ 214              		.loc 1 126 17 view .LVU34
+ 215 0024 0B4B     		ldr	r3, .L15+4
+ 216 0026 1860     		str	r0, [r3]
  129:Core/Src/freertos.c ****   MotorTaskHandle = osThreadCreate(osThread(MotorTask), NULL);
- 215              		.loc 1 129 3 is_stmt 1 view .LVU35
- 216 0028 EE46     		mov	lr, sp
- 217 002a 04F11C0C 		add	ip, r4, #28
- 218 002e BCE80F00 		ldmia	ip!, {r0, r1, r2, r3}
- 219 0032 AEE80F00 		stmia	lr!, {r0, r1, r2, r3}
- 220 0036 9CE80700 		ldm	ip, {r0, r1, r2}
- 221 003a 8EE80700 		stm	lr, {r0, r1, r2}
+ 217              		.loc 1 129 3 is_stmt 1 view .LVU35
+ 218 0028 EE46     		mov	lr, sp
+ 219 002a 04F11C0C 		add	ip, r4, #28
+ 220 002e BCE80F00 		ldmia	ip!, {r0, r1, r2, r3}
+ 221 0032 AEE80F00 		stmia	lr!, {r0, r1, r2, r3}
+ 222 0036 9CE80700 		ldm	ip, {r0, r1, r2}
+ 223 003a 8EE80700 		stm	lr, {r0, r1, r2}
  130:Core/Src/freertos.c **** 
- 222              		.loc 1 130 3 view .LVU36
+ 224              		.loc 1 130 3 view .LVU36
  130:Core/Src/freertos.c **** 
- 223              		.loc 1 130 21 is_stmt 0 view .LVU37
- 224 003e 0021     		movs	r1, #0
- 225 0040 6846     		mov	r0, sp
- 226 0042 FFF7FEFF 		bl	osThreadCreate
- 227              	.LVL11:
+ 225              		.loc 1 130 21 is_stmt 0 view .LVU37
+ 226 003e 0021     		movs	r1, #0
+ 227 0040 6846     		mov	r0, sp
+ 228 0042 FFF7FEFF 		bl	osThreadCreate
+ 229              	.LVL11:
  130:Core/Src/freertos.c **** 
- 228              		.loc 1 130 19 view .LVU38
- 229 0046 044B     		ldr	r3, .L15+8
- 230 0048 1860     		str	r0, [r3]
+ 230              		.loc 1 130 19 view .LVU38
+ 231 0046 044B     		ldr	r3, .L15+8
+ 232 0048 1860     		str	r0, [r3]
  135:Core/Src/freertos.c **** 
- 231              		.loc 1 135 1 view .LVU39
- 232 004a 0EB0     		add	sp, sp, #56
- 233              	.LCFI4:
- 234              		.cfi_def_cfa_offset 8
- 235              		@ sp needed
- 236 004c 10BD     		pop	{r4, pc}
- 237              	.L16:
- 238 004e 00BF     		.align	2
- 239              	.L15:
- 240 0050 00000000 		.word	.LANCHOR4
- 241 0054 00000000 		.word	.LANCHOR5
- 242 0058 00000000 		.word	.LANCHOR6
- 243              		.cfi_endproc
- 244              	.LFE173:
- 246              		.global	MotorTaskHandle
- 247              		.global	INSTaskHandle
- 248              		.section	.rodata
- 249              		.align	2
- 250              		.set	.LANCHOR4,. + 0
- 251              	.LC4:
- 252 0000 00000000 		.word	.LC0
- 253 0004 00000000 		.word	StartINSTask
- 254 0008 0100     		.short	1
- 255 000a 0000     		.space	2
- 256 000c 00000000 		.word	0
- 257 0010 00020000 		.word	512
- 258 0014 00000000 		.word	0
- 259 0018 00000000 		.word	0
- 260              	.LC5:
- 261 001c 08000000 		.word	.LC2
- 262 0020 00000000 		.word	StartMotorTask
- 263 0024 0000     		.short	0
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s 			page 9
+ 233              		.loc 1 135 1 view .LVU39
+ 234 004a 0EB0     		add	sp, sp, #56
+ 235              	.LCFI4:
+ 236              		.cfi_def_cfa_offset 8
+ 237              		@ sp needed
+ 238 004c 10BD     		pop	{r4, pc}
+ 239              	.L16:
+ 240 004e 00BF     		.align	2
+ 241              	.L15:
+ 242 0050 00000000 		.word	.LANCHOR4
+ 243 0054 00000000 		.word	.LANCHOR5
+ 244 0058 00000000 		.word	.LANCHOR6
+ 245              		.cfi_endproc
+ 246              	.LFE173:
+ 248              		.global	MotorTaskHandle
+ 249              		.global	INSTaskHandle
+ 250              		.section	.rodata
+ 251              		.align	2
+ 252              		.set	.LANCHOR4,. + 0
+ 253              	.LC4:
+ 254 0000 00000000 		.word	.LC0
+ 255 0004 00000000 		.word	StartINSTask
+ 256 0008 0100     		.short	1
+ 257 000a 0000     		.space	2
+ 258 000c 00000000 		.word	0
+ 259 0010 00020000 		.word	512
+ 260 0014 00000000 		.word	0
+ 261 0018 00000000 		.word	0
+ 262              	.LC5:
+ 263 001c 08000000 		.word	.LC2
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s 			page 9
 
 
- 264 0026 0000     		.space	2
- 265 0028 00000000 		.word	0
- 266 002c 00010000 		.word	256
- 267 0030 00000000 		.word	0
- 268 0034 00000000 		.word	0
- 269              		.section	.bss.INSTaskHandle,"aw",%nobits
- 270              		.align	2
- 271              		.set	.LANCHOR5,. + 0
- 274              	INSTaskHandle:
- 275 0000 00000000 		.space	4
- 276              		.section	.bss.MotorTaskHandle,"aw",%nobits
- 277              		.align	2
- 278              		.set	.LANCHOR6,. + 0
- 281              	MotorTaskHandle:
- 282 0000 00000000 		.space	4
- 283              		.section	.bss.xIdleStack,"aw",%nobits
- 284              		.align	2
- 285              		.set	.LANCHOR1,. + 0
- 288              	xIdleStack:
- 289 0000 00000000 		.space	512
- 289      00000000 
- 289      00000000 
- 289      00000000 
- 289      00000000 
- 290              		.section	.bss.xIdleTaskTCBBuffer,"aw",%nobits
- 291              		.align	2
- 292              		.set	.LANCHOR0,. + 0
- 295              	xIdleTaskTCBBuffer:
- 296 0000 00000000 		.space	84
- 296      00000000 
- 296      00000000 
- 296      00000000 
- 296      00000000 
- 297              		.section	.bss.xTimerStack,"aw",%nobits
- 298              		.align	2
- 299              		.set	.LANCHOR3,. + 0
- 302              	xTimerStack:
- 303 0000 00000000 		.space	1024
- 303      00000000 
- 303      00000000 
- 303      00000000 
- 303      00000000 
- 304              		.section	.bss.xTimerTaskTCBBuffer,"aw",%nobits
- 305              		.align	2
- 306              		.set	.LANCHOR2,. + 0
- 309              	xTimerTaskTCBBuffer:
- 310 0000 00000000 		.space	84
- 310      00000000 
- 310      00000000 
- 310      00000000 
- 310      00000000 
- 311              		.text
- 312              	.Letext0:
- 313              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 314              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 315              		.file 4 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
- 316              		.file 5 "Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h"
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s 			page 10
+ 264 0020 00000000 		.word	StartMotorTask
+ 265 0024 0000     		.short	0
+ 266 0026 0000     		.space	2
+ 267 0028 00000000 		.word	0
+ 268 002c 00010000 		.word	256
+ 269 0030 00000000 		.word	0
+ 270 0034 00000000 		.word	0
+ 271              		.section	.bss.INSTaskHandle,"aw",%nobits
+ 272              		.align	2
+ 273              		.set	.LANCHOR5,. + 0
+ 276              	INSTaskHandle:
+ 277 0000 00000000 		.space	4
+ 278              		.section	.bss.MotorTaskHandle,"aw",%nobits
+ 279              		.align	2
+ 280              		.set	.LANCHOR6,. + 0
+ 283              	MotorTaskHandle:
+ 284 0000 00000000 		.space	4
+ 285              		.section	.bss.xIdleStack,"aw",%nobits
+ 286              		.align	2
+ 287              		.set	.LANCHOR1,. + 0
+ 290              	xIdleStack:
+ 291 0000 00000000 		.space	512
+ 291      00000000 
+ 291      00000000 
+ 291      00000000 
+ 291      00000000 
+ 292              		.section	.bss.xIdleTaskTCBBuffer,"aw",%nobits
+ 293              		.align	2
+ 294              		.set	.LANCHOR0,. + 0
+ 297              	xIdleTaskTCBBuffer:
+ 298 0000 00000000 		.space	84
+ 298      00000000 
+ 298      00000000 
+ 298      00000000 
+ 298      00000000 
+ 299              		.section	.bss.xTimerStack,"aw",%nobits
+ 300              		.align	2
+ 301              		.set	.LANCHOR3,. + 0
+ 304              	xTimerStack:
+ 305 0000 00000000 		.space	1024
+ 305      00000000 
+ 305      00000000 
+ 305      00000000 
+ 305      00000000 
+ 306              		.section	.bss.xTimerTaskTCBBuffer,"aw",%nobits
+ 307              		.align	2
+ 308              		.set	.LANCHOR2,. + 0
+ 311              	xTimerTaskTCBBuffer:
+ 312 0000 00000000 		.space	84
+ 312      00000000 
+ 312      00000000 
+ 312      00000000 
+ 312      00000000 
+ 313              		.text
+ 314              	.Letext0:
+ 315              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 316              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s 			page 10
 
 
- 317              		.file 6 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
- 318              		.file 7 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h"
- 319              		.file 8 "Application/motor_task.h"
- 320              		.file 9 "Application/ins_task.h"
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s 			page 11
+ 317              		.file 4 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 318              		.file 5 "Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h"
+ 319              		.file 6 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ 320              		.file 7 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h"
+ 321              		.file 8 "Application/ins_task.h"
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 freertos.c
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:17     .rodata.str1.4:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:27     .text.StartINSTask:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:33     .text.StartINSTask:00000000 StartINSTask
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:66     .text.StartMotorTask:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:72     .text.StartMotorTask:00000000 StartMotorTask
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:104    .text.vApplicationGetIdleTaskMemory:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:110    .text.vApplicationGetIdleTaskMemory:00000000 vApplicationGetIdleTaskMemory
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:135    .text.vApplicationGetIdleTaskMemory:00000010 $d
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:141    .text.vApplicationGetTimerTaskMemory:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:147    .text.vApplicationGetTimerTaskMemory:00000000 vApplicationGetTimerTaskMemory
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:172    .text.vApplicationGetTimerTaskMemory:00000010 $d
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:178    .text.MX_FREERTOS_Init:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:184    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:240    .text.MX_FREERTOS_Init:00000050 $d
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:281    .bss.MotorTaskHandle:00000000 MotorTaskHandle
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:274    .bss.INSTaskHandle:00000000 INSTaskHandle
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:249    .rodata:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:270    .bss.INSTaskHandle:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:277    .bss.MotorTaskHandle:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:284    .bss.xIdleStack:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:288    .bss.xIdleStack:00000000 xIdleStack
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:291    .bss.xIdleTaskTCBBuffer:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:295    .bss.xIdleTaskTCBBuffer:00000000 xIdleTaskTCBBuffer
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:298    .bss.xTimerStack:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:302    .bss.xTimerStack:00000000 xTimerStack
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:305    .bss.xTimerTaskTCBBuffer:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccTzNMTE.s:309    .bss.xTimerTaskTCBBuffer:00000000 xTimerTaskTCBBuffer
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:17     .rodata.str1.4:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:27     .text.StartINSTask:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:33     .text.StartINSTask:00000000 StartINSTask
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:66     .text.StartMotorTask:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:72     .text.StartMotorTask:00000000 StartMotorTask
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:106    .text.vApplicationGetIdleTaskMemory:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:112    .text.vApplicationGetIdleTaskMemory:00000000 vApplicationGetIdleTaskMemory
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:137    .text.vApplicationGetIdleTaskMemory:00000010 $d
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:143    .text.vApplicationGetTimerTaskMemory:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:149    .text.vApplicationGetTimerTaskMemory:00000000 vApplicationGetTimerTaskMemory
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:174    .text.vApplicationGetTimerTaskMemory:00000010 $d
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:180    .text.MX_FREERTOS_Init:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:186    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:242    .text.MX_FREERTOS_Init:00000050 $d
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:283    .bss.MotorTaskHandle:00000000 MotorTaskHandle
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:276    .bss.INSTaskHandle:00000000 INSTaskHandle
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:251    .rodata:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:272    .bss.INSTaskHandle:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:279    .bss.MotorTaskHandle:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:286    .bss.xIdleStack:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:290    .bss.xIdleStack:00000000 xIdleStack
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:293    .bss.xIdleTaskTCBBuffer:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:297    .bss.xIdleTaskTCBBuffer:00000000 xIdleTaskTCBBuffer
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:300    .bss.xTimerStack:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:304    .bss.xTimerStack:00000000 xTimerStack
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:307    .bss.xTimerTaskTCBBuffer:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccHsY1uk.s:311    .bss.xTimerTaskTCBBuffer:00000000 xTimerTaskTCBBuffer
 
 UNDEFINED SYMBOLS
 INS_Init

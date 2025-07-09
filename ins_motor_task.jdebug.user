@@ -1,33 +1,31 @@
 
-GraphedExpression="((exo_controller).dm_motor[0]).angle_in_degree", Color=#a00909
-GraphedExpression="(((exo_controller).dm_motor[0]).PID_Angle).Output", Color=#09a01b
-GraphedExpression="(((exo_controller).dm_motor[0]).PID_Angle).Iout", Color=#09a087
-GraphedExpression="TargetAngle1", Color=#a04134
-GraphedExpression="TargetAngle2", DisplayFormat=DISPLAY_FORMAT_DEC, Color=#0964a0
-GraphedExpression="((exo_controller).dm_motor[1]).angle_in_degree", Color=#094fa0
-GraphedExpression="pin_state", Color=#67a04f
-GraphedExpression="(exo_controller).mode", Color=#0934a0
-GraphedExpression="last_pin_state", Color=#a06243
-GraphedExpression="reset_count", Color=#0925a0
+GraphedExpression="((exo_controller).dm_imu).xzy_order_angle[2]", Color=#a00909
+GraphedExpression="((exo_controller).dm_imu).xzy_order_angle[1]", Color=#a09d50
+GraphedExpression="((exo_controller).dm_imu).xzy_order_angle[0]", Color=#09a087
+GraphedExpression="(INS).xzy_order_angle[0]", Color=#0984a0
+GraphedExpression="(INS).xzy_order_angle[1]", Color=#a05e28
+GraphedExpression="(INS).xzy_order_angle[2]", Color=#80a05f
+GraphedExpression="TargetAngle3", Color=#0940a0
 OpenDocument="main.c", FilePath="D:/Ji Zexian/robotics/stm32/INS_MOTOR_TASK/Core/Src/main.c", Line=53
-OpenDocument="motor_task.c", FilePath="D:/Ji Zexian/robotics/stm32/INS_MOTOR_TASK/Application/motor_task.c", Line=45
+OpenDocument="bsp_CAN.c", FilePath="D:/Ji Zexian/robotics/stm32/INS_MOTOR_TASK/Bsp/bsp_CAN.c", Line=45
+OpenDocument="motor_task.c", FilePath="D:/Ji Zexian/robotics/stm32/INS_MOTOR_TASK/Application/motor_task.c", Line=183
 OpenDocument="startup_stm32f407xx.s", FilePath="D:/Ji Zexian/robotics/stm32/INS_MOTOR_TASK/startup_stm32f407xx.s", Line=42
 OpenDocument="motor.c", FilePath="D:/Ji Zexian/robotics/stm32/INS_MOTOR_TASK/Application/motor.c", Line=273
 OpenDocument="tasks.c", FilePath="D:/Ji Zexian/robotics/stm32/INS_MOTOR_TASK/Middlewares/Third_Party/FreeRTOS/Source/tasks.c", Line=3569
-OpenDocument="bsp_CAN.c", FilePath="D:/Ji Zexian/robotics/stm32/INS_MOTOR_TASK/Bsp/bsp_CAN.c", Line=27
+OpenDocument="dm_imu.c", FilePath="D:/Ji Zexian/robotics/stm32/INS_MOTOR_TASK/Components/Devices/dm_imu.c", Line=45
 OpenDocument="freertos.c", FilePath="D:/Ji Zexian/robotics/stm32/INS_MOTOR_TASK/Core/Src/freertos.c", Line=106
 OpenDocument="bsp_dwt.c", FilePath="D:/Ji Zexian/robotics/stm32/INS_MOTOR_TASK/Bsp/bsp_dwt.c", Line=34
 OpenToolbar="Debug", Floating=0, x=0, y=0
-OpenWindow="Source Files", DockArea=LEFT, x=0, y=0, w=533, h=919, TabPos=0, TopOfStack=0, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
-OpenWindow="Watched Data 1", DockArea=LEFT, x=0, y=0, w=533, h=919, TabPos=1, TopOfStack=1, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
-OpenWindow="Data Sampling", DockArea=RIGHT, x=0, y=1, w=1233, h=214, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, VisibleTab=0, UniformSampleSpacing=0
-OpenWindow="Timeline", DockArea=RIGHT, x=0, y=0, w=1233, h=720, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=1, DataPaneShown=1, PowerPaneShown=0, CodePaneShown=0, PinCursor="Cursor Movable", TimePerDiv="1 ms / Div", TimeStampFormat="Time", DataGraphDrawAsPoints=0, DataGraphLegendShown=1, DataGraphUniformSampleSpacing=0, DataGraphLegendPosition="773;0", PowerGraphDrawAsPoints=0, PowerGraphLegendShown=0, PowerGraphAvgFilterTime=Off, PowerGraphAvgFilterLen=Off, PowerGraphUniformSampleSpacing=0, PowerGraphLegendPosition="1073;0", CodeGraphLegendShown=0, CodeGraphLegendPosition="1087;0"
+OpenWindow="Source Files", DockArea=LEFT, x=0, y=0, w=583, h=1279, TabPos=0, TopOfStack=0, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Watched Data 1", DockArea=LEFT, x=0, y=0, w=583, h=1279, TabPos=1, TopOfStack=1, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Data Sampling", DockArea=RIGHT, x=0, y=1, w=1255, h=403, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, VisibleTab=0, UniformSampleSpacing=0
+OpenWindow="Timeline", DockArea=RIGHT, x=0, y=0, w=1255, h=891, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=1, DataPaneShown=1, PowerPaneShown=0, CodePaneShown=0, PinCursor="Cursor Movable", TimePerDiv="1 s / Div", TimeStampFormat="Time", DataGraphDrawAsPoints=0, DataGraphLegendShown=1, DataGraphUniformSampleSpacing=0, DataGraphLegendPosition="789;0", PowerGraphDrawAsPoints=0, PowerGraphLegendShown=0, PowerGraphAvgFilterTime=Off, PowerGraphAvgFilterLen=Off, PowerGraphUniformSampleSpacing=0, PowerGraphLegendPosition="1032;0", CodeGraphLegendShown=0, CodeGraphLegendPosition="1046;0"
 TableHeader="Source Files", SortCol="File", SortOrder="ASCENDING", VisibleCols=["File";"Status";"Size";"#Insts";"Path"], ColWidths=[233;100;100;100;826]
-TableHeader="Data Sampling Table", SortCol="None", SortOrder="ASCENDING", VisibleCols=["Index";"Time";" ((exo_controller).dm_motor[0]).angle_in_degree";" (((exo_controller).dm_motor[0]).PID_Angle).Output";" (((exo_controller).dm_motor[0]).PID_Angle).Iout";" TargetAngle1";" TargetAngle2";" ((exo_controller).dm_motor[1]).angle_in_degree";" pin_state";" (exo_controller).mode";" last_pin_state";" reset_count"], ColWidths=[100;100;100;100;100;100;100;100;100;100;100;100]
-TableHeader="Data Sampling Setup", SortCol="Expression", SortOrder="ASCENDING", VisibleCols=["Expression";"Type";"Value";"Min";"Max";"Average";"# Changes";"Min. Change";"Max. Change"], ColWidths=[257;174;102;102;100;102;100;118;157]
+TableHeader="Watched Data 1", SortCol="Expression", SortOrder="ASCENDING", VisibleCols=["Expression";"Value";"Refresh"], ColWidths=[194;207;182]
+TableHeader="Data Sampling Table", SortCol="None", SortOrder="ASCENDING", VisibleCols=["Index";"Time";" ((exo_controller).dm_imu).xzy_order_angle[2]";" ((exo_controller).dm_imu).xzy_order_angle[1]";" ((exo_controller).dm_imu).xzy_order_angle[0]";" (INS).xzy_order_angle[0]";" (INS).xzy_order_angle[1]";" (INS).xzy_order_angle[2]";" TargetAngle3"], ColWidths=[100;100;100;100;100;100;100;100;100]
+TableHeader="Data Sampling Setup", SortCol="Expression", SortOrder="ASCENDING", VisibleCols=["Expression";"Type";"Value";"Min";"Max";"Average";"# Changes";"Min. Change";"Max. Change"], ColWidths=[332;100;102;102;100;102;100;118;199]
 TableHeader="Power Sampling", SortCol="Index", SortOrder="ASCENDING", VisibleCols=["Index";"Time";"Ch 0"], ColWidths=[100;100;100]
 TableHeader="RegisterSelectionDialog", SortCol="None", SortOrder="ASCENDING", VisibleCols=[], ColWidths=[]
-TableHeader="Watched Data 1", SortCol="Expression", SortOrder="ASCENDING", VisibleCols=["Expression";"Value";"Refresh"], ColWidths=[194;170;148]
 TableHeader="TargetExceptionDialog", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Value";"Address";"Description"], ColWidths=[200;100;100;351]
 WatchedExpression="INS", RefreshRate=2, Window=Watched Data 1
 WatchedExpression="debugoutput", Window=Watched Data 1
@@ -42,4 +40,4 @@ WatchedExpression="TargetAngle2", RefreshRate=1, Window=Watched Data 1
 WatchedExpression="TargetAngle3", RefreshRate=2, Window=Watched Data 1
 WatchedExpression="TargetAngle1", RefreshRate=1, Window=Watched Data 1
 WatchedExpression="debugoutput2", Window=Watched Data 1
-WatchedExpression="htim4", RefreshRate=2, Window=Watched Data 1
+WatchedExpression="reg", Window=Watched Data 1

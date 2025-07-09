@@ -1,12 +1,12 @@
 #include "ins_task.h"
 #include "QuaternionAHRS.h"
 #include "includes.h"
+#include "motor_task.h"
 #include "QuaternionEKF.h"
 #include "dm_imu.h"
 #include "tim.h"
 
 INS_t INS;
-IMU_Param_t IMU_Param;
 QuaternionBuf_t QuaternionBuffer;
 PID_t TempCtrl = {0};
 
@@ -17,31 +17,29 @@ const float zb[3] = {0, 0, 1};
 
 uint32_t INS_DWT_Count = 0;
 static float dt = 0, t = 0;
-uint8_t ins_debug_mode = 0;
 float RefTemp = 40;
 
-static void IMU_Param_Correction(IMU_Param_t *param, float gyro[3], float accel[3]);
+static void IMU_Param_Correction(imu_cali_param_t *param, float gyro[3], float accel[3]);
+static void get_INS_from_imu(INS_t *ins, float *accel, float *gyro);
 
 void INS_Init(void)
 {
     // gEstimateKF_Init(0.01, 1000);
     BMI088_Read(&BMI088);
-    INS.AccelLPF = 0.0085;
 
-    // if (fabsf(sqrtf(BMI088.Accel[0] * BMI088.Accel[0] +
-    //                 BMI088.Accel[1] * BMI088.Accel[1] +
-    //                 BMI088.Accel[2] * BMI088.Accel[2]) -
-    //           BMI088.gNorm) < 1)
-    //        Quaternion_AHRS_InitIMU(-BMI088.Accel[X], -BMI088.Accel[Y], BMI088.Accel[Z], BMI088.gNorm);
-    //
-    IMU_Param.scale[X] = 0.99;
-    IMU_Param.scale[Y] = 0.99;
-    IMU_Param.scale[Z] = 1;
+    exo_controller.xzy_shoulder.dm_imu.send_reg = 0x01;
+    IMU_RequestData(&hcan2, 0x01, exo_controller.xzy_shoulder.dm_imu.send_reg);
 
-    IMU_Param.Yaw = 0;
-    IMU_Param.Pitch = 0;
-    IMU_Param.Roll = 0;
-    IMU_Param.flag = 1;
+    // exo_controller.xzy_shoulder.INS_shoulder.AccelLPF = 0.0085;
+
+    exo_controller.xzy_shoulder.INS_shoulder.imu_cali_param.scale[X] = 1;
+    exo_controller.xzy_shoulder.INS_shoulder.imu_cali_param.scale[Y] = 1;
+    exo_controller.xzy_shoulder.INS_shoulder.imu_cali_param.scale[Z] = 1;
+
+    exo_controller.xzy_shoulder.INS_shoulder.imu_cali_param.Yaw = 0;
+    exo_controller.xzy_shoulder.INS_shoulder.imu_cali_param.Pitch = 0;
+    exo_controller.xzy_shoulder.INS_shoulder.imu_cali_param.Roll = 0;
+    exo_controller.xzy_shoulder.INS_shoulder.imu_cali_param.flag = 1;
 
     IMU_QuaternionEKF_Init(10, 0.001, 1000000 * 10, 0.9996 * 0 + 1, 0);
     // imu heat init
@@ -66,60 +64,14 @@ void INS_Task(void)
         // INS.Gyro[X] = -BMI088.Gyro[Y];
         // INS.Gyro[Y] = -BMI088.Gyro[Z];
         // INS.Gyro[Z] = BMI088.Gyro[X];
-        INS.Accel[X] = -exo_controller.dm_imu.accel[Y];
-        INS.Accel[Y] = -exo_controller.dm_imu.accel[Z];
-        INS.Accel[Z] = exo_controller.dm_imu.accel[X];
-        INS.Gyro[X] = -exo_controller.dm_imu.gyro[Y];
-        INS.Gyro[Y] = -exo_controller.dm_imu.gyro[Z];
-        INS.Gyro[Z] = exo_controller.dm_imu.gyro[X];
 
-        IMU_Param_Correction(&IMU_Param, INS.Gyro, INS.Accel);
-        INS.atanxz = -atan2f(INS.Accel[X], INS.Accel[Z]) * 180 / PI;
-        INS.atanyz = atan2f(INS.Accel[Y], INS.Accel[Z]) * 180 / PI;
-
-        // gEstimateKF_Update(INS.Gyro[X], INS.Gyro[Y], INS.Gyro[Z], INS.Accel[X], INS.Accel[Y], INS.Accel[Z], dt);
-        Quaternion_AHRS_UpdateIMU(INS.Gyro[X], INS.Gyro[Y], INS.Gyro[Z], INS.Accel[X], INS.Accel[Y], INS.Accel[Z], 0, 0, 0, dt);
-        // QEKF_INS.ChiSquareThresholdDelta = float_constrain(Shoot.FricSpeed, 0, 10000) * 0.00001f; //摩擦轮震动应提高卡方检验阈值
-        IMU_QuaternionEKF_Update(INS.Gyro[X], INS.Gyro[Y], INS.Gyro[Z], INS.Accel[X], INS.Accel[Y], INS.Accel[Z], dt);
-
-        float *q = QEKF_INS.q;
-        INS.xzy_order_angle[1] = -asinf(2 * (q[1] * q[2] - q[0] * q[3])) * 57.295779513f;
-        INS.xzy_order_angle[2] = atan2f(2.0f * (q[1] * q[3] + q[0] * q[2]), 1 - 2.0f * (q[2] * q[2] + q[3] * q[3])) * 57.295779513f;
-        INS.xzy_order_angle[0] = atan2f(2.0f * (q[0] * q[1] + q[2] * q[3]), 1 - 2.0f * (q[1] * q[1] - q[3] * q[3])) * 57.295779513f;
-
-        BodyFrameToEarthFrame(xb, INS.xn, INS.q);
-        BodyFrameToEarthFrame(yb, INS.yn, INS.q);
-        BodyFrameToEarthFrame(zb, INS.zn, INS.q);
-
-        float gravity_b[3];
-        EarthFrameToBodyFrame(gravity, gravity_b, INS.q);
-        for (uint8_t i = 0; i < 3; i++)
-            INS.MotionAccel_b[i] = (INS.Accel[i] - gravity_b[i]) * dt / (INS.AccelLPF + dt) + INS.MotionAccel_b[i] * INS.AccelLPF / (INS.AccelLPF + dt);
-        BodyFrameToEarthFrame(INS.MotionAccel_b, INS.MotionAccel_n, INS.q);
-
-        memcpy(INS.Gyro, QEKF_INS.Gyro, sizeof(QEKF_INS.Gyro));
-        memcpy(INS.Accel, QEKF_INS.Accel, sizeof(QEKF_INS.Accel));
-        memcpy(INS.q, QEKF_INS.q, sizeof(QEKF_INS.q));
-        INS.Yaw = QEKF_INS.Yaw;
-        INS.Pitch = QEKF_INS.Pitch;
-        INS.Roll = QEKF_INS.Roll;
-        INS.YawTotalAngle = QEKF_INS.YawTotalAngle;
-
-        InsertQuaternionFrame(&QuaternionBuffer, INS.q, INS.MotionAccel_n, INS_GetTimeline());
-
-        Get_EulerAngle(AHRS.q);
-
-        if (GlobalDebugMode == INS_DEBUG)
-        {
-            if (ins_debug_mode == 0)
-                Serial_Debug(&huart1, 1, AHRS.Yaw, AHRS.Pitch, AHRS.Roll, INS.Yaw, INS.Pitch, INS.Roll);
-            if (ins_debug_mode == 1)
-                // Serial_Debug(&huart1, 2, INS.Gyro[X] * 1000, INS.Gyro[Y] * 1000, INS.Gyro[Z] * 1000, Gimbal.PitchMotor.Velocity_RPM * 0.10472f * 1000, Gimbal.YawMotor.Velocity_RPM * 0.10472f * 1000, Gimbal.PitchMotor.AngleInDegree * 10);
-                if (ins_debug_mode == 2)
-                    Serial_Debug(&huart1, 2, INS.Accel[X] * 10, INS.Gyro[Y] * 10, INS.Accel[Z] * 10, QEKF_INS.Accel[X] * 10, QEKF_INS.Gyro[Y] * 10, QEKF_INS.Accel[Z] * 10);
-            if (ins_debug_mode == 3)
-                Serial_Debug(&huart1, 2, INS.Gyro[X] * 1000, INS.Gyro[Y] * 1000, INS.Gyro[Z] * 1000, 0, 0, 0);
-        }
+        if (exo_controller.xzy_shoulder.dm_imu.send_reg == 0x01)
+            exo_controller.xzy_shoulder.dm_imu.send_reg = 0x02; // 0x01:accel, 0x02:gyro, 0x03:euler, 0x04:quaternion
+        else if (exo_controller.xzy_shoulder.dm_imu.send_reg == 0x02)
+            exo_controller.xzy_shoulder.dm_imu.send_reg = 0x01;
+        IMU_RequestData(&hcan2, 0x01, exo_controller.xzy_shoulder.dm_imu.send_reg);
+        get_INS_from_imu(&exo_controller.xzy_shoulder.INS_shoulder,
+                         exo_controller.xzy_shoulder.dm_imu.accel, exo_controller.xzy_shoulder.dm_imu.gyro);
     }
 
     // temperature control
@@ -137,6 +89,50 @@ void INS_Task(void)
     }
 
     count++;
+}
+
+static void get_INS_from_imu(INS_t *ins, float *accel, float *gyro)
+{
+    ins->Accel[X] = -accel[Y];
+    ins->Accel[Y] = -accel[Z];
+    ins->Accel[Z] = accel[X];
+    ins->Gyro[X] = -gyro[Y];
+    ins->Gyro[Y] = -gyro[Z];
+    ins->Gyro[Z] = gyro[X];
+
+    IMU_Param_Correction(&ins->imu_cali_param, ins->Gyro, ins->Accel);
+    ins->atanxz = -atan2f(ins->Accel[X], ins->Accel[Z]) * 180 / PI;
+    ins->atanyz = atan2f(ins->Accel[Y], ins->Accel[Z]) * 180 / PI;
+
+    // Quaternion_AHRS_UpdateIMU(ins->Gyro[X], ins->Gyro[Y], ins->Gyro[Z], ins->Accel[X], ins->Accel[Y], ins->Accel[Z], 0, 0, 0, dt);
+    IMU_QuaternionEKF_Update(ins->Gyro[X], ins->Gyro[Y], ins->Gyro[Z], ins->Accel[X], ins->Accel[Y], ins->Accel[Z], dt);
+
+    float *q = QEKF_INS.q;
+    ins->xzy_order_angle[1] = -asinf(2 * (q[1] * q[2] - q[0] * q[3])) * 57.295779513f;
+    ins->xzy_order_angle[2] = atan2f(2.0f * (q[1] * q[3] + q[0] * q[2]), 1 - 2.0f * (q[2] * q[2] + q[3] * q[3])) * 57.295779513f;
+    ins->xzy_order_angle[0] = atan2f(2.0f * (q[0] * q[1] + q[2] * q[3]), 1 - 2.0f * (q[1] * q[1] - q[3] * q[3])) * 57.295779513f;
+
+    BodyFrameToEarthFrame(xb, ins->xn, ins->q);
+    BodyFrameToEarthFrame(yb, ins->yn, ins->q);
+    BodyFrameToEarthFrame(zb, ins->zn, ins->q);
+
+    float gravity_b[3];
+    EarthFrameToBodyFrame(gravity, gravity_b, INS.q);
+    for (uint8_t i = 0; i < 3; i++)
+        ins->MotionAccel_b[i] = (ins->Accel[i] - gravity_b[i]) * dt / (ins->AccelLPF + dt) + ins->MotionAccel_b[i] * ins->AccelLPF / (ins->AccelLPF + dt);
+    BodyFrameToEarthFrame(ins->MotionAccel_b, ins->MotionAccel_n, ins->q);
+
+    memcpy(ins->Gyro, QEKF_INS.Gyro, sizeof(QEKF_INS.Gyro));
+    memcpy(ins->Accel, QEKF_INS.Accel, sizeof(QEKF_INS.Accel));
+    memcpy(ins->q, QEKF_INS.q, sizeof(QEKF_INS.q));
+    ins->Yaw = QEKF_INS.Yaw;
+    ins->Pitch = QEKF_INS.Pitch;
+    // ins->Roll = QEKF_INS.Roll;
+    ins->YawTotalAngle = QEKF_INS.YawTotalAngle;
+
+    InsertQuaternionFrame(&QuaternionBuffer, ins->q, ins->MotionAccel_n, INS_GetTimeline());
+
+    // Get_EulerAngle(AHRS.q);
 }
 
 /**
@@ -260,7 +256,7 @@ void EarthFrameToBodyFrame(const float *vecEF, float *vecBF, float *q)
                        (0.5f - q[1] * q[1] - q[2] * q[2]) * vecEF[2]);
 }
 
-static void IMU_Param_Correction(IMU_Param_t *param, float gyro[3], float accel[3])
+static void IMU_Param_Correction(imu_cali_param_t *param, float gyro[3], float accel[3])
 {
     static float lastYawOffset, lastPitchOffset, lastRollOffset;
     static float c_11, c_12, c_13, c_21, c_22, c_23, c_31, c_32, c_33;

@@ -64,7 +64,7 @@
 #include "remote_control.h"
 #include "SerialDebug.h"
 #include "ins_task.h"
-#include "motor_task.h"
+// #include "motor_task.h"
 
 // DSP lib
 #include "arm_math.h"

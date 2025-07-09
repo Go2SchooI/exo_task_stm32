@@ -20,6 +20,8 @@
 
 typedef struct
 {
+	uint8_t send_reg; // 0x01:accel, 0x02:gyro, 0x03:euler, 0x04:quaternion
+
 	float pitch;
 	float roll;
 	float yaw;

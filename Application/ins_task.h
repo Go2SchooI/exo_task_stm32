@@ -14,6 +14,17 @@
 
 typedef struct
 {
+    uint8_t flag;
+
+    float scale[3];
+
+    float Yaw;
+    float Pitch;
+    float Roll;
+} imu_cali_param_t;
+
+typedef __packed struct
+{
     float q[4]; // 四元数估计值
 
     float Gyro[3];
@@ -35,6 +46,7 @@ typedef struct
     float Yaw;
     float YawTotalAngle;
 
+    imu_cali_param_t imu_cali_param;
     float xzy_order_angle[3]; // xzy order angle
 } INS_t;
 
@@ -51,17 +63,6 @@ typedef struct
     QuaternionFrame_t qFrame[Q_FRAME_LEN];
     uint16_t LatestNum;
 } QuaternionBuf_t;
-
-typedef struct
-{
-    uint8_t flag;
-
-    float scale[3];
-
-    float Yaw;
-    float Pitch;
-    float Roll;
-} IMU_Param_t;
 
 extern INS_t INS;
 extern float RefTemp;

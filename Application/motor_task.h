@@ -4,13 +4,11 @@
 #include "includes.h"
 #include "dm_imu.h"
 
-#define MOTOR_ZERO_OFFSET 45558
-
-#define MOTOR1_MIN 107.066223
-#define MOTOR1_MAX 149.883972
-
-#define MOTOR2_MIN -41.036377
-#define MOTOR2_MAX -0.338777393
+typedef struct
+{
+    dm_imu_t dm_imu;
+    INS_t INS_shoulder;
+} exo_shoulder_t;
 
 typedef struct
 {
@@ -25,13 +23,13 @@ typedef struct
     uint8_t CAN_send_status;
 
     motor_info lk_motor, dm_motor[3];
-    dm_imu_t dm_imu;
+    exo_shoulder_t xzy_shoulder;
 } exo_controller_t;
 
 enum
 {
     SILENCE_MODE = 0,
-    Angle,
+    ANGLE_MODE,
     Velocity,
     Debug
 };
