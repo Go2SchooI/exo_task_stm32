@@ -1,18 +1,18 @@
 #include "motor.h"
 #include "includes.h"
 
-float debugNum[5] = {0, 0, 0, 0, 0}; // debug��
+float debugNum[5] = {0, 0, 0, 0, 0}; // debug??
 
 float Motor_Torque_Calculate(motor_info *motor, float torque, float target_torque)
 {
-    // ��������
+    // ????????
     PID_Calculate(&motor->PID_Torque, torque, target_torque);
 
     if (motor->Direction != NEGATIVE)
         motor->Output = motor->PID_Torque.Output + motor->Ke * motor->velocity_in_rpm;
     else
         motor->Output = motor->PID_Torque.Output - motor->Ke * motor->velocity_in_rpm;
-    // ����޷�?
+    // ???????
     motor->Output = float_constrain(motor->Output, -motor->max_out, motor->max_out);
 
     return motor->Output;
@@ -46,7 +46,7 @@ float Motor_Angle_Calculate(motor_info *motor, float angle, float velocity, floa
  **/
 void Get_Motor_Info(motor_info *ptr, uint8_t *aData)
 {
-    // ���C620����ֲ�?
+    // ???C620???????
     if (ptr->Direction != NEGATIVE)
     {
         ptr->RawAngle = (uint16_t)(aData[0] << 8 | aData[1]);
@@ -61,19 +61,19 @@ void Get_Motor_Info(motor_info *ptr, uint8_t *aData)
     ptr->Real_Current = (aData[4] << 8 | aData[5]) * 5.0f / 16384.0f;
     ptr->Temperature = aData[6];
 
-    // ����Ȧ��
+    // ???????
     if (ptr->RawAngle - ptr->last_angle > 4096)
         ptr->round_cnt--;
     else if (ptr->RawAngle - ptr->last_angle < -4096)
         ptr->round_cnt++;
 
-    // ת����е���?
+    // ?????��????
     ptr->Angle = loop_float_constrain(ptr->RawAngle + ptr->zero_offset, -4095.5, 4095.5);
 
-    // ת���Ƕȵ�λΪ��
+    // ???????��???
     ptr->angle_in_degree = ptr->Angle * 0.0439507f;
 
-    // �����ܽǶ�
+    // ????????
     ptr->total_angle = ptr->round_cnt * 8192 + ptr->RawAngle - ptr->offset_angle;
 
     ptr->last_angle = ptr->RawAngle; // update last_angle
@@ -101,13 +101,13 @@ HAL_StatusTypeDef Send_Motor_Current_1_4(CAN_HandleTypeDef *_hcan,
     static uint8_t CAN_Send_Data[8];
     uint32_t send_mail_box;
 
-    // ���÷������ݰ���ID���������� ��IDΪ�ض���������?Ĭ�ϣ�ͨ�ã����?
+    // ???��??????????ID?????????? ??ID?????????????????????????
     TX_MSG.StdId = CAN_Transmit_1_4_ID;
     TX_MSG.IDE = CAN_ID_STD;
     TX_MSG.RTR = CAN_RTR_DATA;
     TX_MSG.DLC = 0x08;
 
-    // ����C620����?�����õ�������?
+    // ????C620???????????????????
     CAN_Send_Data[0] = (c1 >> 8);
     CAN_Send_Data[1] = c1;
     CAN_Send_Data[2] = (c2 >> 8);
@@ -117,7 +117,7 @@ HAL_StatusTypeDef Send_Motor_Current_1_4(CAN_HandleTypeDef *_hcan,
     CAN_Send_Data[6] = (c4 >> 8);
     CAN_Send_Data[7] = c4;
 
-    // CAN���ݰ�����
+    // CAN?????????
     return HAL_CAN_AddTxMessage(_hcan, &TX_MSG, CAN_Send_Data, &send_mail_box);
 }
 
@@ -198,13 +198,13 @@ HAL_StatusTypeDef Send_LK_Current(CAN_HandleTypeDef *_hcan,
     static uint8_t CAN_Send_Data[8];
     uint32_t send_mail_box;
 
-    // ���÷������ݰ���ID���������� ��IDΪ�ض���������?Ĭ�ϣ�ͨ�ã����?
+    // ???��??????????ID?????????? ??ID?????????????????????????
     TX_MSG.StdId = 0x280;
     TX_MSG.IDE = CAN_ID_STD;
     TX_MSG.RTR = CAN_RTR_DATA;
     TX_MSG.DLC = 0x08;
 
-    // ����C620����?�����õ�������?
+    // ????C620???????????????????
     CAN_Send_Data[0] = c1;
     CAN_Send_Data[1] = (c1 >> 8);
     CAN_Send_Data[2] = c2;
@@ -222,7 +222,7 @@ HAL_StatusTypeDef Send_LK_Current(CAN_HandleTypeDef *_hcan,
             break;
     }
     count = 0;
-    while (HAL_CAN_GetTxMailboxesFreeLevel(_hcan) == 0) // ����������䶼�����˾͵�һ�����ֱ������ĳ���������?
+    while (HAL_CAN_GetTxMailboxesFreeLevel(_hcan) == 0) // ???????????????????????????????????????????
     {
         count++;
         if (count > 10000)
@@ -315,16 +315,16 @@ int16_t LK8008_Current_Solver(float torque)
 }
 
 /* -------------------------------- dm motor -------------------------------- */
-uint8_t Data_Enable[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC};    // ���ʹ������
-uint8_t Data_Failure[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD};   // ���ʧ������
-uint8_t Data_Save_zero[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE}; // ��������������
+uint8_t Data_Enable[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC};    // ??????????
+uint8_t Data_Failure[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD};   // ??????????
+uint8_t Data_Save_zero[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE}; // ??????????????
 
 /**
- * @brief  ���ͱ�׼ID������֡
- * @param  hcan     CAN�ľ��
- * @param  ID       ����֡ID
- * @param  pData    ����ָ��
- * @param  Len      �ֽ���0~8
+ * @brief  ??????ID???????
+ * @param  hcan     CAN????
+ * @param  ID       ?????ID
+ * @param  pData    ???????
+ * @param  Len      ?????0~8
  */
 uint8_t DM_CANx_SendStdData(CAN_HandleTypeDef *_hcan, uint16_t id, uint8_t cmd, uint16_t len)
 {
@@ -343,9 +343,9 @@ uint8_t DM_CANx_SendStdData(CAN_HandleTypeDef *_hcan, uint16_t id, uint8_t cmd, 
     else if (cmd == SAVE_ZERO_MOTOR)
         memcpy(CAN_Send_Data, Data_Save_zero, len);
     else
-        return 1; // ���������
+        return 1; // ?????????
 
-    /*�ҵ��յķ������䣬�����ݷ��ͳ�ȥ*/
+    /*????????????????????????*/
     if (HAL_CAN_AddTxMessage(_hcan, &TX_MSG, CAN_Send_Data, (uint32_t *)CAN_TX_MAILBOX0) != HAL_OK) //
     {
         if (HAL_CAN_AddTxMessage(_hcan, &TX_MSG, CAN_Send_Data, (uint32_t *)CAN_TX_MAILBOX1) != HAL_OK)
@@ -357,11 +357,11 @@ uint8_t DM_CANx_SendStdData(CAN_HandleTypeDef *_hcan, uint16_t id, uint8_t cmd, 
 }
 
 /**
- * @brief  ���ø������ݵȱ���ת��������
- * @param  x_int     	Ҫת�����޷�������
- * @param  x_min      Ŀ�긡��������Сֵ
- * @param  x_max    	Ŀ�긡���������ֵ
- * @param  bits      	�޷���������λ��
+ * @brief  ????????????????????????
+ * @param  x_int     	???????????????
+ * @param  x_min      ???????????��?
+ * @param  x_max    	?????????????
+ * @param  bits      	???????????��??
  */
 float uint_to_float(int x_int, float x_min, float x_max, int bits)
 {
@@ -372,11 +372,11 @@ float uint_to_float(int x_int, float x_min, float x_max, int bits)
 }
 
 /**
- * @brief  ��������ת��Ϊ�޷�������
- * @param  x     			Ҫת���ĸ�����
- * @param  x_min      ����������Сֵ
- * @param  x_max    	�����������ֵ
- * @param  bits      	�޷���������λ��
+ * @brief  ?????????????????????
+ * @param  x     			???????????
+ * @param  x_min      ??????????��?
+ * @param  x_max    	????????????
+ * @param  bits      	???????????��??
  */
 
 int float_to_uint(float x, float x_min, float x_max, int bits)
@@ -388,14 +388,14 @@ int float_to_uint(float x, float x_min, float x_max, int bits)
 }
 
 /**
- * @brief  MITģʽ���¿���֡
- * @param  hcan   CAN�ľ��
- * @param  ID     ����֡��ID
- * @param  _pos   λ�ø���
- * @param  _vel   �ٶȸ���
- * @param  _KP    λ�ñ���ϵ��
- * @param  _KD    λ��΢��ϵ��
- * @param  _torq  ת�ظ���ֵ
+ * @brief  MIT??????????
+ * @param  hcan   CAN????
+ * @param  ID     ???????ID
+ * @param  _pos   ��?????
+ * @param  _vel   ??????
+ * @param  _KP    ��????????
+ * @param  _KD    ��????????
+ * @param  _torq  ???????
  */
 HAL_StatusTypeDef Send_DM_MIT_Command(CAN_HandleTypeDef *_hcan, uint16_t id, float _pos, float _vel,
                                       float _KP, float _KD, float _torq)
@@ -461,14 +461,17 @@ HAL_StatusTypeDef Send_DM_MIT_Command(CAN_HandleTypeDef *_hcan, uint16_t id, flo
 void Get_DM_Info(motor_info *ptr, uint8_t *aData)
 {
     ptr->CAN_ID = aData[0] & 0xF;
-    ptr->Err = aData[0] >> 4;
+    ptr->err = aData[0] >> 4;
     ptr->dm_raw_angle = (aData[1] << 8) | aData[2];
     ptr->raw_velocity = (aData[3] << 4) | (aData[4] >> 4);
     ptr->raw_torque = ((aData[4] & 0xF) << 8) | aData[5];
 
-    ptr->angle_in_degree = uint_to_float(ptr->dm_raw_angle, P_MIN, P_MAX, 16) * RADIAN_COEF; // (-12.5,12.5)
-    ptr->velocity_in_radps = uint_to_float(ptr->raw_velocity, V_MIN, V_MAX, 12);             // (-45.0,45.0)
-    ptr->torque_in_Nm = uint_to_float(ptr->raw_torque, T_MIN, T_MAX, 12);                    // (-18.0,18.0)
+    float tmp_angle_in_degree = uint_to_float(ptr->dm_raw_angle, P_MIN, P_MAX, 16) * RADIAN_COEF;  // (-12.5,12.5)
+    float tmp_angle_zero_offset = uint_to_float(ptr->zero_offset, P_MIN, P_MAX, 16) * RADIAN_COEF; // (-12.5,12.5)
+    ptr->angle_in_degree = tmp_angle_in_degree - tmp_angle_zero_offset;                            // (-12.5,12.5)
+
+    ptr->velocity_in_radps = uint_to_float(ptr->raw_velocity, V_MIN, V_MAX, 12); // (-45.0,45.0)
+    ptr->torque_in_Nm = uint_to_float(ptr->raw_torque, T_MIN, T_MAX, 12);        // (-18.0,18.0)
 
     ptr->Temperature = aData[7];
 }

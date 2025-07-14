@@ -80,7 +80,7 @@ Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c \
 Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c \
 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c \
 Application/ins_task.c \
-Application/motor_task.c \
+Application/exo_controller.c \
 Application/motor.c \
 Application/remote_control.c \
 Application/SerialDebug.c \

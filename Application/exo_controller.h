@@ -1,14 +1,29 @@
-#ifndef __MOTOR_TASK_H
-#define __MOTOR_TASK_H
+#ifndef __EXO_CONTROLLER_H
+#define __EXO_CONTROLLER_H
 
 #include "includes.h"
 #include "dm_imu.h"
 
 typedef struct
 {
+    float SSM_xzy_angle[3];
+} SSM_t;
+
+typedef struct
+{
     dm_imu_t dm_imu;
     INS_t INS_shoulder;
+    SSM_t SSM_shoulder;
+
+    motor_info lk_motor,
+        dm_motor[2];
 } exo_shoulder_t;
+
+typedef struct
+{
+    motor_info dm_motor;
+    float elbow_angle; // Elbow angle in degrees
+} exo_elbow_t;
 
 typedef struct
 {
@@ -22,8 +37,8 @@ typedef struct
     uint32_t CAN_send_error_count;
     uint8_t CAN_send_status;
 
-    motor_info lk_motor, dm_motor[3];
     exo_shoulder_t xzy_shoulder;
+    exo_elbow_t elbow;
 } exo_controller_t;
 
 enum

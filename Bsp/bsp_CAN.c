@@ -1,5 +1,5 @@
 #include "bsp_CAN.h"
-#include "motor_task.h"
+#include "exo_controller.h"
 
 int16_t RM_CAN_Msg_0x200[4]; // ID 1~4
 int16_t RM_CAN_Msg_0x1FF[4]; // ID 5~8
@@ -79,28 +79,28 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *_hcan)
         switch (rx_header.StdId)
         {
         // case LK_DEVICE_STD_ID + 1:
-        //     if (exo_controller.lk_motor.msg_cnt++ <= 50)
-        //         Get_LK_Offset(&exo_controller.lk_motor, rx_data);
+        //     if (exo_controller.xzy_shoulder.lk_motor.msg_cnt++ <= 50)
+        //         Get_LK_Offset(&exo_controller.xzy_shoulder.lk_motor, rx_data);
         //     else
-        //         Get_LK_Info(&exo_controller.lk_motor, rx_data);
+        //         Get_LK_Info(&exo_controller.xzy_shoulder.lk_motor, rx_data);
         //     break;
         case DM_DEVICE_STD_ID + 1:
-            if (exo_controller.dm_motor[0].msg_cnt++ <= 50)
-                Get_DM_Offset(&exo_controller.dm_motor[0], rx_data);
+            if (exo_controller.xzy_shoulder.dm_motor[0].msg_cnt++ <= 50)
+                Get_DM_Offset(&exo_controller.xzy_shoulder.dm_motor[0], rx_data);
             else
-                Get_DM_Info(&exo_controller.dm_motor[0], rx_data);
+                Get_DM_Info(&exo_controller.xzy_shoulder.dm_motor[0], rx_data);
             break;
         case DM_DEVICE_STD_ID + 2:
-            if (exo_controller.dm_motor[1].msg_cnt++ <= 50)
-                Get_DM_Offset(&exo_controller.dm_motor[1], rx_data);
+            if (exo_controller.xzy_shoulder.dm_motor[1].msg_cnt++ <= 50)
+                Get_DM_Offset(&exo_controller.xzy_shoulder.dm_motor[1], rx_data);
             else
-                Get_DM_Info(&exo_controller.dm_motor[1], rx_data);
+                Get_DM_Info(&exo_controller.xzy_shoulder.dm_motor[1], rx_data);
             break;
         case DM_DEVICE_STD_ID + 3:
-            if (exo_controller.dm_motor[2].msg_cnt++ <= 50)
-                Get_DM_Offset(&exo_controller.dm_motor[2], rx_data);
+            if (exo_controller.elbow.dm_motor.msg_cnt++ <= 50)
+                Get_DM_Offset(&exo_controller.elbow.dm_motor, rx_data);
             else
-                Get_DM_Info(&exo_controller.dm_motor[2], rx_data);
+                Get_DM_Info(&exo_controller.elbow.dm_motor, rx_data);
             break;
         }
     }
@@ -110,10 +110,10 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *_hcan)
         switch (rx_header.StdId)
         {
         case LK_DEVICE_STD_ID + 1:
-            if (exo_controller.lk_motor.msg_cnt++ <= 50)
-                Get_LK_Offset(&exo_controller.lk_motor, rx_data);
+            if (exo_controller.xzy_shoulder.lk_motor.msg_cnt++ <= 50)
+                Get_LK_Offset(&exo_controller.xzy_shoulder.lk_motor, rx_data);
             else
-                Get_LK_Info(&exo_controller.lk_motor, rx_data);
+                Get_LK_Info(&exo_controller.xzy_shoulder.lk_motor, rx_data);
             break;
         case 0x11:
             IMU_UpdateData(&exo_controller.xzy_shoulder.dm_imu, rx_data);

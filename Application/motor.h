@@ -75,10 +75,11 @@ typedef struct
   int32_t msg_cnt;
 
   uint16_t CAN_ID;
-  uint8_t Err; // 错误码
+  uint8_t err; // 错误码
 
   float Output;
   float max_out;
+  float debug_output;
 
   PID_t PID_Torque;
   PID_t PID_Velocity;

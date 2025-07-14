@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -32,7 +32,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
    1:Application/motor.c **** #include "motor.h"
    2:Application/motor.c **** #include "includes.h"
    3:Application/motor.c **** 
-   4:Application/motor.c **** float debugNum[5] = {0, 0, 0, 0, 0}; // debug��
+   4:Application/motor.c **** float debugNum[5] = {0, 0, 0, 0, 0}; // debug??
    5:Application/motor.c **** 
    6:Application/motor.c **** float Motor_Torque_Calculate(motor_info *motor, float torque, float target_torque)
    7:Application/motor.c **** {
@@ -47,7 +47,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
   38              		.cfi_offset 4, -8
   39              		.cfi_offset 14, -4
   40 0002 0446     		mov	r4, r0
-   8:Application/motor.c ****     // ��������
+   8:Application/motor.c ****     // ????????
    9:Application/motor.c ****     PID_Calculate(&motor->PID_Torque, torque, target_torque);
   41              		.loc 1 9 5 is_stmt 1 view .LVU2
   42 0004 7030     		adds	r0, r0, #112
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
   10:Application/motor.c **** 
   11:Application/motor.c ****     if (motor->Direction != NEGATIVE)
   47              		.loc 1 11 5 is_stmt 1 view .LVU4
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 2
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 2
 
 
   48              		.loc 1 11 14 is_stmt 0 view .LVU5
@@ -85,7 +85,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
   68              	.L3:
   13:Application/motor.c ****     else
   14:Application/motor.c ****         motor->Output = motor->PID_Torque.Output - motor->Ke * motor->velocity_in_rpm;
-  15:Application/motor.c ****     // ����޷�?
+  15:Application/motor.c ****     // ???????
   16:Application/motor.c ****     motor->Output = float_constrain(motor->Output, -motor->max_out, motor->max_out);
   69              		.loc 1 16 5 is_stmt 1 view .LVU14
   70              		.loc 1 16 58 is_stmt 0 view .LVU15
@@ -105,29 +105,29 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
   81 0044 10BD     		pop	{r4, pc}
   82              	.LVL4:
   83              	.L2:
-  14:Application/motor.c ****     // ����޷�?
+  14:Application/motor.c ****     // ???????
   84              		.loc 1 14 9 is_stmt 1 view .LVU20
-  14:Application/motor.c ****     // ����޷�?
+  14:Application/motor.c ****     // ???????
   85              		.loc 1 14 42 is_stmt 0 view .LVU21
   86 0046 94ED297A 		vldr.32	s14, [r4, #164]
-  14:Application/motor.c ****     // ����޷�?
+  14:Application/motor.c ****     // ???????
   87              		.loc 1 14 57 view .LVU22
   88 004a D4ED066A 		vldr.32	s13, [r4, #24]
-  14:Application/motor.c ****     // ����޷�?
+  14:Application/motor.c ****     // ???????
   89              		.loc 1 14 69 view .LVU23
   90 004e B4F90C30 		ldrsh	r3, [r4, #12]
   91 0052 07EE903A 		vmov	s15, r3	@ int
-  14:Application/motor.c ****     // ����޷�?
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 3
+  14:Application/motor.c ****     // ???????
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 3
 
 
   92              		.loc 1 14 62 view .LVU24
   93 0056 F8EEE77A 		vcvt.f32.s32	s15, s15
   94 005a 67EEA67A 		vmul.f32	s15, s15, s13
-  14:Application/motor.c ****     // ����޷�?
+  14:Application/motor.c ****     // ???????
   95              		.loc 1 14 50 view .LVU25
   96 005e 77EE677A 		vsub.f32	s15, s14, s15
-  14:Application/motor.c ****     // ����޷�?
+  14:Application/motor.c ****     // ???????
   97              		.loc 1 14 23 view .LVU26
   98 0062 C4ED197A 		vstr.32	s15, [r4, #100]
   99 0066 E3E7     		b	.L3
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  140 001c FFF7FEFF 		bl	float_constrain
  141              	.LVL8:
  142              		.loc 1 25 19 view .LVU37
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 4
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 4
 
 
  143 0020 84ED190A 		vstr.32	s0, [r4, #100]
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  191 0022 FFF7FEFF 		bl	Motor_Speed_Calculate
  192              	.LVL13:
   34:Application/motor.c ****     motor->Output = float_constrain(motor->Output, -motor->max_out, motor->max_out);
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 5
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 5
 
 
  193              		.loc 1 34 5 view .LVU47
@@ -298,10 +298,10 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  235              		.cfi_offset 4, -8
  236              		.cfi_offset 14, -4
  237 0002 0446     		mov	r4, r0
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 6
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 6
 
 
-  49:Application/motor.c ****     // ���C620����ֲ�?
+  49:Application/motor.c ****     // ???C620???????
   50:Application/motor.c ****     if (ptr->Direction != NEGATIVE)
  238              		.loc 1 50 5 is_stmt 1 view .LVU57
  239              		.loc 1 50 12 is_stmt 0 view .LVU58
@@ -358,14 +358,14 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  279 003e C4ED047A 		vstr.32	s15, [r4, #16]
   62:Application/motor.c ****     ptr->Temperature = aData[6];
  280              		.loc 1 62 5 is_stmt 1 view .LVU77
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 7
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 7
 
 
  281              		.loc 1 62 22 is_stmt 0 view .LVU78
  282 0042 8B79     		ldrb	r3, [r1, #6]	@ zero_extendqisi2
  283 0044 2375     		strb	r3, [r4, #20]
   63:Application/motor.c **** 
-  64:Application/motor.c ****     // ����Ȧ��
+  64:Application/motor.c ****     // ???????
   65:Application/motor.c ****     if (ptr->RawAngle - ptr->last_angle > 4096)
  284              		.loc 1 65 5 is_stmt 1 view .LVU79
  285              		.loc 1 65 12 is_stmt 0 view .LVU80
@@ -388,7 +388,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
   67:Application/motor.c ****     else if (ptr->RawAngle - ptr->last_angle < -4096)
   68:Application/motor.c ****         ptr->round_cnt++;
   69:Application/motor.c **** 
-  70:Application/motor.c ****     // ת����е���?
+  70:Application/motor.c ****     // ?????��????
   71:Application/motor.c ****     ptr->Angle = loop_float_constrain(ptr->RawAngle + ptr->zero_offset, -4095.5, 4095.5);
  301              		.loc 1 71 5 is_stmt 1 view .LVU87
  302              		.loc 1 71 58 is_stmt 0 view .LVU88
@@ -405,7 +405,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  313              		.loc 1 71 16 view .LVU91
  314 0072 84ED090A 		vstr.32	s0, [r4, #36]
   72:Application/motor.c **** 
-  73:Application/motor.c ****     // ת���Ƕȵ�λΪ��
+  73:Application/motor.c ****     // ???????��???
   74:Application/motor.c ****     ptr->angle_in_degree = ptr->Angle * 0.0439507f;
  315              		.loc 1 74 5 is_stmt 1 view .LVU92
  316              		.loc 1 74 39 is_stmt 0 view .LVU93
@@ -414,11 +414,11 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  319              		.loc 1 74 26 view .LVU94
  320 007e 84ED0A0A 		vstr.32	s0, [r4, #40]
   75:Application/motor.c **** 
-  76:Application/motor.c ****     // �����ܽǶ�
+  76:Application/motor.c ****     // ????????
   77:Application/motor.c ****     ptr->total_angle = ptr->round_cnt * 8192 + ptr->RawAngle - ptr->offset_angle;
  321              		.loc 1 77 5 is_stmt 1 view .LVU95
  322              		.loc 1 77 27 is_stmt 0 view .LVU96
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 8
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 8
 
 
  323 0082 236C     		ldr	r3, [r4, #64]
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  363 00b2 B4E7     		b	.L11
  364              	.L12:
   67:Application/motor.c ****         ptr->round_cnt++;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 9
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 9
 
 
  365              		.loc 1 67 10 is_stmt 1 view .LVU116
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  411              		.loc 1 86 23 is_stmt 0 view .LVU128
  412 000a 4387     		strh	r3, [r0, #58]	@ movhi
   87:Application/motor.c **** }
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 10
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 10
 
 
  413              		.loc 1 87 1 view .LVU129
@@ -590,7 +590,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  102:Application/motor.c ****     uint32_t send_mail_box;
  447              		.loc 1 102 5 view .LVU134
  103:Application/motor.c **** 
- 104:Application/motor.c ****     // ���÷������ݰ���ID���������� ��IDΪ�ض��
+ 104:Application/motor.c ****     // ???��??????????ID?????????? ??ID?????????????????????????
  105:Application/motor.c ****     TX_MSG.StdId = CAN_Transmit_1_4_ID;
  448              		.loc 1 105 5 view .LVU135
  449              		.loc 1 105 18 is_stmt 0 view .LVU136
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  451              	.LVL21:
  452              		.loc 1 105 18 view .LVU137
  453 000e 4FF40072 		mov	r2, #512
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 11
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 11
 
 
  454              	.LVL22:
@@ -619,7 +619,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  466 001a 0822     		movs	r2, #8
  467 001c 0A61     		str	r2, [r1, #16]
  109:Application/motor.c **** 
- 110:Application/motor.c ****     // ����C620����?�����õ�������?
+ 110:Application/motor.c ****     // ????C620???????????????????
  111:Application/motor.c ****     CAN_Send_Data[0] = (c1 >> 8);
  468              		.loc 1 111 5 is_stmt 1 view .LVU145
  469              		.loc 1 111 22 is_stmt 0 view .LVU146
@@ -658,12 +658,12 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  118:Application/motor.c ****     CAN_Send_Data[7] = c4;
  496              		.loc 1 118 5 is_stmt 1 view .LVU160
  497              		.loc 1 118 22 is_stmt 0 view .LVU161
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 12
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 12
 
 
  498 0046 D471     		strb	r4, [r2, #7]
  119:Application/motor.c **** 
- 120:Application/motor.c ****     // CAN���ݰ�����
+ 120:Application/motor.c ****     // CAN?????????
  121:Application/motor.c ****     return HAL_CAN_AddTxMessage(_hcan, &TX_MSG, CAN_Send_Data, &send_mail_box);
  499              		.loc 1 121 5 is_stmt 1 view .LVU162
  500              		.loc 1 121 12 is_stmt 0 view .LVU163
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  546 0008 BDF91840 		ldrsh	r4, [sp, #24]
  127:Application/motor.c ****     static CAN_TxHeaderTypeDef TX_MSG;
  547              		.loc 1 127 5 is_stmt 1 view .LVU168
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 13
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 13
 
 
  128:Application/motor.c ****     static uint8_t CAN_Send_Data[8];
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  589              		.loc 1 140 5 is_stmt 1 view .LVU191
  590              		.loc 1 140 22 is_stmt 0 view .LVU192
  591 003e 5371     		strb	r3, [r2, #5]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 14
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 14
 
 
  141:Application/motor.c ****     CAN_Send_Data[6] = (c4 >> 8);
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  639              		.cfi_def_cfa_offset 8
  640              		.cfi_offset 4, -8
  641              		.cfi_offset 14, -4
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 15
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 15
 
 
  642 0002 0446     		mov	r4, r0
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  684              		.loc 1 161 23 view .LVU222
  685 0042 07EE903A 		vmov	s15, r3	@ int
  686 0046 F8EEE77A 		vcvt.f32.s32	s15, s15
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 16
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 16
 
 
  687 004a C4ED047A 		vstr.32	s15, [r4, #16]
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  729              		.loc 1 173 5 is_stmt 1 view .LVU241
  730              		.loc 1 173 27 is_stmt 0 view .LVU242
  731 008e 236C     		ldr	r3, [r4, #64]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 17
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 17
 
 
  732              		.loc 1 173 39 view .LVU243
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  772 00be 5B42     		rsbs	r3, r3, #0
  773 00c0 07EE903A 		vmov	s15, r3	@ int
  158:Application/motor.c ****     }
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 18
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 18
 
 
  774              		.loc 1 158 69 view .LVU263
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  181:Application/motor.c ****     ptr->RawAngle = (uint16_t)(aData[7] << 8 | aData[6]);
  820              		.loc 1 181 5 view .LVU271
  821              		.loc 1 181 37 is_stmt 0 view .LVU272
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 19
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 19
 
 
  822 0000 CA79     		ldrb	r2, [r1, #7]	@ zero_extendqisi2
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  863              	.LCFI14:
  864              		.cfi_def_cfa_offset 24
  865 0004 0546     		mov	r5, r0
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 20
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 20
 
 
  866 0006 1446     		mov	r4, r2
@@ -1150,7 +1150,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  199:Application/motor.c ****     uint32_t send_mail_box;
  870              		.loc 1 199 5 view .LVU285
  200:Application/motor.c **** 
- 201:Application/motor.c ****     // ���÷������ݰ���ID���������� ��IDΪ�ض��
+ 201:Application/motor.c ****     // ???��??????????ID?????????? ??ID?????????????????????????
  202:Application/motor.c ****     TX_MSG.StdId = 0x280;
  871              		.loc 1 202 5 view .LVU286
  872              		.loc 1 202 18 is_stmt 0 view .LVU287
@@ -1176,7 +1176,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  889 001a 0826     		movs	r6, #8
  890 001c 0661     		str	r6, [r0, #16]
  206:Application/motor.c **** 
- 207:Application/motor.c ****     // ����C620����?�����õ�������?
+ 207:Application/motor.c ****     // ????C620???????????????????
  208:Application/motor.c ****     CAN_Send_Data[0] = c1;
  891              		.loc 1 208 5 is_stmt 1 view .LVU296
  892              		.loc 1 208 22 is_stmt 0 view .LVU297
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  905              		.loc 1 211 22 is_stmt 0 view .LVU304
  906 0028 3441     		asrs	r4, r4, r6
  907 002a C470     		strb	r4, [r0, #3]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 21
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 21
 
 
  212:Application/motor.c ****     CAN_Send_Data[4] = c3;
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  952              	.L48:
  953              		.loc 1 221 12 view .LVU325
  954 0060 0024     		movs	r4, #0
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 22
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 22
 
 
  955 0062 00E0     		b	.L40
@@ -1269,7 +1269,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  222:Application/motor.c ****             break;
  223:Application/motor.c ****     }
  224:Application/motor.c ****     count = 0;
- 225:Application/motor.c ****     while (HAL_CAN_GetTxMailboxesFreeLevel(_hcan) == 0) // ����������䶼���
+ 225:Application/motor.c ****     while (HAL_CAN_GetTxMailboxesFreeLevel(_hcan) == 0) // ????????????????????????????????????????
  960              		.loc 1 225 11 is_stmt 1 view .LVU326
  961              		.loc 1 225 12 is_stmt 0 view .LVU327
  962 0066 2846     		mov	r0, r5
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  241:Application/motor.c **** 
  242:Application/motor.c ****     /* Check Tx Mailbox 2 status */
  243:Application/motor.c ****     else if ((_hcan->Instance->TSR & CAN_TSR_TME2) != 0U)
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 23
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 23
 
 
  244:Application/motor.c ****     {
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1029 00ac 0423     		movs	r3, #4
  1030 00ae 0193     		str	r3, [sp, #4]
  1031 00b0 E9E7     		b	.L43
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 24
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 24
 
 
  1032              	.L50:
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1071              	.LVL49:
  1072              		.loc 1 265 18 view .LVU360
  1073 000c 0B60     		str	r3, [r1]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 25
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 25
 
 
  266:Application/motor.c ****     TX_MSG.IDE = CAN_ID_STD;
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  280:Application/motor.c ****     // while (!((_hcan->State == HAL_CAN_STATE_READY) || (_hcan->State == HAL_CAN_STATE_LISTENING))
  281:Application/motor.c ****     // {
  282:Application/motor.c ****     //     count++;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 26
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 26
 
 
  283:Application/motor.c ****     //     if (count > 10000)
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1142              	.LFB182:
  311:Application/motor.c **** 
  312:Application/motor.c **** int16_t LK8008_Current_Solver(float torque)
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 27
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 27
 
 
  313:Application/motor.c **** {
@@ -1597,16 +1597,16 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1175              	.LFB183:
  316:Application/motor.c **** 
  317:Application/motor.c **** /* -------------------------------- dm motor -------------------------------- */
- 318:Application/motor.c **** uint8_t Data_Enable[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC};    // ���ʹ���
- 319:Application/motor.c **** uint8_t Data_Failure[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD};   // ���ʧ���
- 320:Application/motor.c **** uint8_t Data_Save_zero[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE}; // ������
+ 318:Application/motor.c **** uint8_t Data_Enable[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC};    // ??????????
+ 319:Application/motor.c **** uint8_t Data_Failure[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD};   // ??????????
+ 320:Application/motor.c **** uint8_t Data_Save_zero[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE}; // ??????????????
  321:Application/motor.c **** 
  322:Application/motor.c **** /**
- 323:Application/motor.c ****  * @brief  ���ͱ�׼ID������֡
- 324:Application/motor.c ****  * @param  hcan     CAN�ľ��
- 325:Application/motor.c ****  * @param  ID       ����֡ID
- 326:Application/motor.c ****  * @param  pData    ����ָ��
- 327:Application/motor.c ****  * @param  Len      �ֽ���0~8
+ 323:Application/motor.c ****  * @brief  ??????ID???????
+ 324:Application/motor.c ****  * @param  hcan     CAN????
+ 325:Application/motor.c ****  * @param  ID       ?????ID
+ 326:Application/motor.c ****  * @param  pData    ???????
+ 327:Application/motor.c ****  * @param  Len      ?????0~8
  328:Application/motor.c ****  */
  329:Application/motor.c **** uint8_t DM_CANx_SendStdData(CAN_HandleTypeDef *_hcan, uint16_t id, uint8_t cmd, uint16_t len)
  330:Application/motor.c **** {
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1181 0000 70B5     		push	{r4, r5, r6, lr}
  1182              	.LCFI20:
  1183              		.cfi_def_cfa_offset 16
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 28
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 28
 
 
  1184              		.cfi_offset 4, -16
@@ -1676,9 +1676,9 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1223 001e 12D0     		beq	.L67
  344:Application/motor.c ****         memcpy(CAN_Send_Data, Data_Save_zero, len);
  345:Application/motor.c ****     else
- 346:Application/motor.c ****         return 1; // ���������
+ 346:Application/motor.c ****         return 1; // ?????????
  1224              		.loc 1 346 16 view .LVU413
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 29
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 29
 
 
  1225 0020 0120     		movs	r0, #1
@@ -1716,7 +1716,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1251              	.LVL65:
  1252              	.L60:
  347:Application/motor.c **** 
- 348:Application/motor.c ****     /*�ҵ��յķ������䣬�����ݷ��ͳ�ȥ*/
+ 348:Application/motor.c ****     /*????????????????????????*/
  349:Application/motor.c ****     if (HAL_CAN_AddTxMessage(_hcan, &TX_MSG, CAN_Send_Data, (uint32_t *)CAN_TX_MAILBOX0) != HAL_OK)
  1253              		.loc 1 349 5 is_stmt 1 view .LVU421
  1254              		.loc 1 349 9 is_stmt 0 view .LVU422
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  356:Application/motor.c ****     return 0;
  357:Application/motor.c **** }
  1264              		.loc 1 357 1 view .LVU424
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 30
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 30
 
 
  1265 0044 70BD     		pop	{r4, r5, r6, pc}
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1312              		.align	1
  1313              		.global	uint_to_float
  1314              		.syntax unified
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 31
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 31
 
 
  1315              		.thumb
@@ -1808,11 +1808,11 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1320              	.LFB184:
  358:Application/motor.c **** 
  359:Application/motor.c **** /**
- 360:Application/motor.c ****  * @brief  ���ø������ݵȱ���ת��������
- 361:Application/motor.c ****  * @param  x_int     	Ҫת�����޷�������
- 362:Application/motor.c ****  * @param  x_min      Ŀ�긡��������Сֵ
- 363:Application/motor.c ****  * @param  x_max    	Ŀ�긡���������ֵ
- 364:Application/motor.c ****  * @param  bits      	�޷���������λ��
+ 360:Application/motor.c ****  * @brief  ????????????????????????
+ 361:Application/motor.c ****  * @param  x_int     	???????????????
+ 362:Application/motor.c ****  * @param  x_min      ???????????��?
+ 363:Application/motor.c ****  * @param  x_max    	?????????????
+ 364:Application/motor.c ****  * @param  bits      	???????????��??
  365:Application/motor.c ****  */
  366:Application/motor.c **** float uint_to_float(int x_int, float x_min, float x_max, int bits)
  367:Application/motor.c **** {
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1355              	.LFE184:
  1357              		.section	.text.float_to_uint,"ax",%progbits
  1358              		.align	1
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 32
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 32
 
 
  1359              		.global	float_to_uint
@@ -1870,11 +1870,11 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1366              	.LFB185:
  373:Application/motor.c **** 
  374:Application/motor.c **** /**
- 375:Application/motor.c ****  * @brief  ��������ת��Ϊ�޷�������
- 376:Application/motor.c ****  * @param  x     			Ҫת���ĸ�����
- 377:Application/motor.c ****  * @param  x_min      ����������Сֵ
- 378:Application/motor.c ****  * @param  x_max    	�����������ֵ
- 379:Application/motor.c ****  * @param  bits      	�޷���������λ��
+ 375:Application/motor.c ****  * @brief  ?????????????????????
+ 376:Application/motor.c ****  * @param  x     			???????????
+ 377:Application/motor.c ****  * @param  x_min      ??????????��?
+ 378:Application/motor.c ****  * @param  x_max    	????????????
+ 379:Application/motor.c ****  * @param  bits      	???????????��??
  380:Application/motor.c ****  */
  381:Application/motor.c **** 
  382:Application/motor.c **** int float_to_uint(float x, float x_min, float x_max, int bits)
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1398 0026 7047     		bx	lr
  1399              		.cfi_endproc
  1400              	.LFE185:
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 33
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 33
 
 
  1402              		.section	.text.Send_DM_MIT_Command,"ax",%progbits
@@ -1932,14 +1932,14 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1411              	.LFB186:
  389:Application/motor.c **** 
  390:Application/motor.c **** /**
- 391:Application/motor.c ****  * @brief  MITģʽ���¿���֡
- 392:Application/motor.c ****  * @param  hcan   CAN�ľ��
- 393:Application/motor.c ****  * @param  ID     ����֡��ID
- 394:Application/motor.c ****  * @param  _pos   λ�ø���
- 395:Application/motor.c ****  * @param  _vel   �ٶȸ���
- 396:Application/motor.c ****  * @param  _KP    λ�ñ���ϵ��
- 397:Application/motor.c ****  * @param  _KD    λ��΢��ϵ��
- 398:Application/motor.c ****  * @param  _torq  ת�ظ���ֵ
+ 391:Application/motor.c ****  * @brief  MIT??????????
+ 392:Application/motor.c ****  * @param  hcan   CAN????
+ 393:Application/motor.c ****  * @param  ID     ???????ID
+ 394:Application/motor.c ****  * @param  _pos   ��?????
+ 395:Application/motor.c ****  * @param  _vel   ??????
+ 396:Application/motor.c ****  * @param  _KP    ��????????
+ 397:Application/motor.c ****  * @param  _KD    ��????????
+ 398:Application/motor.c ****  * @param  _torq  ???????
  399:Application/motor.c ****  */
  400:Application/motor.c **** HAL_StatusTypeDef Send_DM_MIT_Command(CAN_HandleTypeDef *_hcan, uint16_t id, float _pos, float _vel
  401:Application/motor.c ****                                       float _KP, float _KD, float _torq)
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1443 0016 F0EE618A 		vmov.f32	s17, s3
  1444 001a B0EE428A 		vmov.f32	s16, s4
  403:Application/motor.c ****     static CAN_TxHeaderTypeDef TX_MSG;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 34
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 34
 
 
  1445              		.loc 1 403 5 is_stmt 1 view .LVU462
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1492              	.LVL91:
  411:Application/motor.c ****     kd_tmp = float_to_uint(_KD, KD_MIN, KD_MAX, 12);
  1493              		.loc 1 411 5 is_stmt 1 view .LVU480
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 35
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 35
 
 
  1494              		.loc 1 411 14 is_stmt 0 view .LVU481
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1538              		.loc 1 421 22 is_stmt 0 view .LVU499
  1539 00a4 3B09     		lsrs	r3, r7, #4
  1540 00a6 9370     		strb	r3, [r2, #2]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 36
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 36
 
 
  422:Application/motor.c ****     CAN_Send_Data[3] = ((vel_tmp & 0xF) << 4) | (kp_tmp >> 8);
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  450:Application/motor.c ****     //     send_mail_box = CAN_TX_MAILBOX1;
  451:Application/motor.c ****     // }
  452:Application/motor.c **** 
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 37
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 37
 
 
  453:Application/motor.c ****     // /* Check Tx Mailbox 2 status */
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  462:Application/motor.c **** {
  1614              		.loc 1 462 1 is_stmt 1 view -0
  1615              		.cfi_startproc
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 38
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 38
 
 
  1616              		@ args = 0, pretend = 0, frame = 0
@@ -2233,389 +2233,420 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 1
  1625              		.cfi_offset 6, -12
  1626              		.cfi_offset 7, -8
  1627              		.cfi_offset 14, -4
- 1628 0002 0446     		mov	r4, r0
- 1629 0004 0D46     		mov	r5, r1
+ 1628 0002 2DED028B 		vpush.64	{d8}
+ 1629              	.LCFI27:
+ 1630              		.cfi_def_cfa_offset 32
+ 1631              		.cfi_offset 80, -32
+ 1632              		.cfi_offset 81, -28
+ 1633 0006 0446     		mov	r4, r0
+ 1634 0008 0D46     		mov	r5, r1
  463:Application/motor.c ****     ptr->CAN_ID = aData[0] & 0xF;
- 1630              		.loc 1 463 5 is_stmt 1 view .LVU521
- 1631              		.loc 1 463 24 is_stmt 0 view .LVU522
- 1632 0006 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
- 1633              		.loc 1 463 28 view .LVU523
- 1634 0008 03F00F03 		and	r3, r3, #15
- 1635              		.loc 1 463 17 view .LVU524
- 1636 000c A0F86030 		strh	r3, [r0, #96]	@ movhi
- 464:Application/motor.c ****     ptr->Err = aData[0] >> 4;
- 1637              		.loc 1 464 5 is_stmt 1 view .LVU525
- 1638              		.loc 1 464 21 is_stmt 0 view .LVU526
- 1639 0010 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
- 1640              		.loc 1 464 14 view .LVU527
- 1641 0012 1B09     		lsrs	r3, r3, #4
- 1642 0014 80F86230 		strb	r3, [r0, #98]
+ 1635              		.loc 1 463 5 is_stmt 1 view .LVU521
+ 1636              		.loc 1 463 24 is_stmt 0 view .LVU522
+ 1637 000a 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 1638              		.loc 1 463 28 view .LVU523
+ 1639 000c 03F00F03 		and	r3, r3, #15
+ 1640              		.loc 1 463 17 view .LVU524
+ 1641 0010 A0F86030 		strh	r3, [r0, #96]	@ movhi
+ 464:Application/motor.c ****     ptr->err = aData[0] >> 4;
+ 1642              		.loc 1 464 5 is_stmt 1 view .LVU525
+ 1643              		.loc 1 464 21 is_stmt 0 view .LVU526
+ 1644 0014 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 1645              		.loc 1 464 14 view .LVU527
+ 1646 0016 1B09     		lsrs	r3, r3, #4
+ 1647 0018 80F86230 		strb	r3, [r0, #98]
  465:Application/motor.c ****     ptr->dm_raw_angle = (aData[1] << 8) | aData[2];
- 1643              		.loc 1 465 5 is_stmt 1 view .LVU528
- 1644              		.loc 1 465 31 is_stmt 0 view .LVU529
- 1645 0018 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
- 1646              		.loc 1 465 48 view .LVU530
- 1647 001a 8878     		ldrb	r0, [r1, #2]	@ zero_extendqisi2
- 1648              	.LVL104:
- 1649              		.loc 1 465 41 view .LVU531
- 1650 001c 40EA0320 		orr	r0, r0, r3, lsl #8
- 1651              		.loc 1 465 23 view .LVU532
- 1652 0020 2063     		str	r0, [r4, #48]
+ 1648              		.loc 1 465 5 is_stmt 1 view .LVU528
+ 1649              		.loc 1 465 31 is_stmt 0 view .LVU529
+ 1650 001c 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 1651              		.loc 1 465 48 view .LVU530
+ 1652 001e 8878     		ldrb	r0, [r1, #2]	@ zero_extendqisi2
+ 1653              	.LVL104:
+ 1654              		.loc 1 465 41 view .LVU531
+ 1655 0020 40EA0320 		orr	r0, r0, r3, lsl #8
+ 1656              		.loc 1 465 23 view .LVU532
+ 1657 0024 2063     		str	r0, [r4, #48]
  466:Application/motor.c ****     ptr->raw_velocity = (aData[3] << 4) | (aData[4] >> 4);
- 1653              		.loc 1 466 5 is_stmt 1 view .LVU533
- 1654              		.loc 1 466 31 is_stmt 0 view .LVU534
- 1655 0022 CB78     		ldrb	r3, [r1, #3]	@ zero_extendqisi2
- 1656              		.loc 1 466 49 view .LVU535
- 1657 0024 0F79     		ldrb	r7, [r1, #4]	@ zero_extendqisi2
- 1658              		.loc 1 466 53 view .LVU536
- 1659 0026 3F09     		lsrs	r7, r7, #4
- 1660              		.loc 1 466 41 view .LVU537
- 1661 0028 47EA0317 		orr	r7, r7, r3, lsl #4
- 1662              		.loc 1 466 23 view .LVU538
- 1663 002c A760     		str	r7, [r4, #8]
+ 1658              		.loc 1 466 5 is_stmt 1 view .LVU533
+ 1659              		.loc 1 466 31 is_stmt 0 view .LVU534
+ 1660 0026 CB78     		ldrb	r3, [r1, #3]	@ zero_extendqisi2
+ 1661              		.loc 1 466 49 view .LVU535
+ 1662 0028 0F79     		ldrb	r7, [r1, #4]	@ zero_extendqisi2
+ 1663              		.loc 1 466 53 view .LVU536
+ 1664 002a 3F09     		lsrs	r7, r7, #4
+ 1665              		.loc 1 466 41 view .LVU537
+ 1666 002c 47EA0317 		orr	r7, r7, r3, lsl #4
+ 1667              		.loc 1 466 23 view .LVU538
+ 1668 0030 A760     		str	r7, [r4, #8]
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 39
+
+
  467:Application/motor.c ****     ptr->raw_torque = ((aData[4] & 0xF) << 8) | aData[5];
- 1664              		.loc 1 467 5 is_stmt 1 view .LVU539
- 1665              		.loc 1 467 30 is_stmt 0 view .LVU540
- 1666 002e 0E79     		ldrb	r6, [r1, #4]	@ zero_extendqisi2
- 1667              		.loc 1 467 41 view .LVU541
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 39
-
-
- 1668 0030 3602     		lsls	r6, r6, #8
- 1669 0032 06F47066 		and	r6, r6, #3840
- 1670              		.loc 1 467 54 view .LVU542
- 1671 0036 4B79     		ldrb	r3, [r1, #5]	@ zero_extendqisi2
- 1672              		.loc 1 467 47 view .LVU543
- 1673 0038 1E43     		orrs	r6, r6, r3
- 1674              		.loc 1 467 21 view .LVU544
- 1675 003a E661     		str	r6, [r4, #28]
+ 1669              		.loc 1 467 5 is_stmt 1 view .LVU539
+ 1670              		.loc 1 467 30 is_stmt 0 view .LVU540
+ 1671 0032 0E79     		ldrb	r6, [r1, #4]	@ zero_extendqisi2
+ 1672              		.loc 1 467 41 view .LVU541
+ 1673 0034 3602     		lsls	r6, r6, #8
+ 1674 0036 06F47066 		and	r6, r6, #3840
+ 1675              		.loc 1 467 54 view .LVU542
+ 1676 003a 4B79     		ldrb	r3, [r1, #5]	@ zero_extendqisi2
+ 1677              		.loc 1 467 47 view .LVU543
+ 1678 003c 1E43     		orrs	r6, r6, r3
+ 1679              		.loc 1 467 21 view .LVU544
+ 1680 003e E661     		str	r6, [r4, #28]
  468:Application/motor.c **** 
- 469:Application/motor.c ****     ptr->angle_in_degree = uint_to_float(ptr->dm_raw_angle, P_MIN, P_MAX, 16) * RADIAN_COEF; // (-1
- 1676              		.loc 1 469 5 is_stmt 1 view .LVU545
- 1677              		.loc 1 469 28 is_stmt 0 view .LVU546
- 1678 003c 1021     		movs	r1, #16
- 1679              	.LVL105:
- 1680              		.loc 1 469 28 view .LVU547
- 1681 003e F2EE090A 		vmov.f32	s1, #1.25e+1
- 1682 0042 BAEE090A 		vmov.f32	s0, #-1.25e+1
- 1683 0046 FFF7FEFF 		bl	uint_to_float
- 1684              	.LVL106:
- 1685              		.loc 1 469 79 view .LVU548
- 1686 004a DFED0E7A 		vldr.32	s15, .L79
- 1687 004e 20EE270A 		vmul.f32	s0, s0, s15
- 1688              		.loc 1 469 26 view .LVU549
- 1689 0052 84ED0A0A 		vstr.32	s0, [r4, #40]
- 470:Application/motor.c ****     ptr->velocity_in_radps = uint_to_float(ptr->raw_velocity, V_MIN, V_MAX, 12);             // (-4
- 1690              		.loc 1 470 5 is_stmt 1 view .LVU550
- 1691              		.loc 1 470 30 is_stmt 0 view .LVU551
- 1692 0056 0C21     		movs	r1, #12
- 1693 0058 DFED0B0A 		vldr.32	s1, .L79+4
- 1694 005c 9FED0B0A 		vldr.32	s0, .L79+8
- 1695 0060 3846     		mov	r0, r7
- 1696 0062 FFF7FEFF 		bl	uint_to_float
- 1697              	.LVL107:
- 1698              		.loc 1 470 28 view .LVU552
- 1699 0066 84ED010A 		vstr.32	s0, [r4, #4]
- 471:Application/motor.c ****     ptr->torque_in_Nm = uint_to_float(ptr->raw_torque, T_MIN, T_MAX, 12);                    // (-1
- 1700              		.loc 1 471 5 is_stmt 1 view .LVU553
- 1701              		.loc 1 471 25 is_stmt 0 view .LVU554
- 1702 006a 0C21     		movs	r1, #12
- 1703 006c F3EE020A 		vmov.f32	s1, #1.8e+1
- 1704 0070 BBEE020A 		vmov.f32	s0, #-1.8e+1
- 1705 0074 3046     		mov	r0, r6
- 1706 0076 FFF7FEFF 		bl	uint_to_float
- 1707              	.LVL108:
- 1708              		.loc 1 471 23 view .LVU555
- 1709 007a 84ED080A 		vstr.32	s0, [r4, #32]
+ 469:Application/motor.c ****     float tmp_angle_in_degree = uint_to_float(ptr->dm_raw_angle, P_MIN, P_MAX, 16) * RADIAN_COEF;  
+ 1681              		.loc 1 469 5 is_stmt 1 view .LVU545
+ 1682              		.loc 1 469 33 is_stmt 0 view .LVU546
+ 1683 0040 1021     		movs	r1, #16
+ 1684              	.LVL105:
+ 1685              		.loc 1 469 33 view .LVU547
+ 1686 0042 F2EE090A 		vmov.f32	s1, #1.25e+1
+ 1687 0046 BAEE090A 		vmov.f32	s0, #-1.25e+1
+ 1688 004a FFF7FEFF 		bl	uint_to_float
+ 1689              	.LVL106:
+ 1690              		.loc 1 469 11 view .LVU548
+ 1691 004e DFED168A 		vldr.32	s17, .L79
+ 1692 0052 20EE288A 		vmul.f32	s16, s0, s17
+ 1693              	.LVL107:
+ 470:Application/motor.c ****     float tmp_angle_zero_offset = uint_to_float(ptr->zero_offset, P_MIN, P_MAX, 16) * RADIAN_COEF; 
+ 1694              		.loc 1 470 5 is_stmt 1 view .LVU549
+ 1695              		.loc 1 470 35 is_stmt 0 view .LVU550
+ 1696 0056 1021     		movs	r1, #16
+ 1697 0058 F2EE090A 		vmov.f32	s1, #1.25e+1
+ 1698 005c BAEE090A 		vmov.f32	s0, #-1.25e+1
+ 1699 0060 B4F93C00 		ldrsh	r0, [r4, #60]
+ 1700 0064 FFF7FEFF 		bl	uint_to_float
+ 1701              	.LVL108:
+ 1702              		.loc 1 470 11 view .LVU551
+ 1703 0068 20EE280A 		vmul.f32	s0, s0, s17
+ 1704              	.LVL109:
+ 471:Application/motor.c ****     ptr->angle_in_degree = tmp_angle_in_degree - tmp_angle_zero_offset;                            
+ 1705              		.loc 1 471 5 is_stmt 1 view .LVU552
+ 1706              		.loc 1 471 48 is_stmt 0 view .LVU553
+ 1707 006c 38EE408A 		vsub.f32	s16, s16, s0
+ 1708              	.LVL110:
+ 1709              		.loc 1 471 26 view .LVU554
+ 1710 0070 84ED0A8A 		vstr.32	s16, [r4, #40]
  472:Application/motor.c **** 
- 473:Application/motor.c ****     ptr->Temperature = aData[7];
- 1710              		.loc 1 473 5 is_stmt 1 view .LVU556
- 1711              		.loc 1 473 22 is_stmt 0 view .LVU557
- 1712 007e EB79     		ldrb	r3, [r5, #7]	@ zero_extendqisi2
- 1713 0080 2375     		strb	r3, [r4, #20]
- 474:Application/motor.c **** }
- 1714              		.loc 1 474 1 view .LVU558
- 1715 0082 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
- 1716              	.LVL109:
- 1717              	.L80:
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 40
+ 473:Application/motor.c ****     ptr->velocity_in_radps = uint_to_float(ptr->raw_velocity, V_MIN, V_MAX, 12); // (-45.0,45.0)
+ 1711              		.loc 1 473 5 is_stmt 1 view .LVU555
+ 1712              		.loc 1 473 30 is_stmt 0 view .LVU556
+ 1713 0074 0C21     		movs	r1, #12
+ 1714 0076 DFED0D0A 		vldr.32	s1, .L79+4
+ 1715 007a 9FED0D0A 		vldr.32	s0, .L79+8
+ 1716              	.LVL111:
+ 1717              		.loc 1 473 30 view .LVU557
+ 1718 007e 3846     		mov	r0, r7
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 40
 
 
- 1718              		.loc 1 474 1 view .LVU559
- 1719              		.align	2
- 1720              	.L79:
- 1721 0084 E12E6542 		.word	1113927393
- 1722 0088 00003442 		.word	1110704128
- 1723 008c 000034C2 		.word	-1036779520
- 1724              		.cfi_endproc
- 1725              	.LFE187:
- 1727              		.section	.text.Get_DM_Offset,"ax",%progbits
- 1728              		.align	1
- 1729              		.global	Get_DM_Offset
- 1730              		.syntax unified
- 1731              		.thumb
- 1732              		.thumb_func
- 1734              	Get_DM_Offset:
- 1735              	.LVL110:
- 1736              	.LFB188:
+ 1719 0080 FFF7FEFF 		bl	uint_to_float
+ 1720              	.LVL112:
+ 1721              		.loc 1 473 28 view .LVU558
+ 1722 0084 84ED010A 		vstr.32	s0, [r4, #4]
+ 474:Application/motor.c ****     ptr->torque_in_Nm = uint_to_float(ptr->raw_torque, T_MIN, T_MAX, 12);        // (-18.0,18.0)
+ 1723              		.loc 1 474 5 is_stmt 1 view .LVU559
+ 1724              		.loc 1 474 25 is_stmt 0 view .LVU560
+ 1725 0088 0C21     		movs	r1, #12
+ 1726 008a F3EE020A 		vmov.f32	s1, #1.8e+1
+ 1727 008e BBEE020A 		vmov.f32	s0, #-1.8e+1
+ 1728 0092 3046     		mov	r0, r6
+ 1729 0094 FFF7FEFF 		bl	uint_to_float
+ 1730              	.LVL113:
+ 1731              		.loc 1 474 23 view .LVU561
+ 1732 0098 84ED080A 		vstr.32	s0, [r4, #32]
  475:Application/motor.c **** 
- 476:Application/motor.c **** void Get_DM_Offset(motor_info *ptr, uint8_t *aData)
- 477:Application/motor.c **** {
- 1737              		.loc 1 477 1 is_stmt 1 view -0
- 1738              		.cfi_startproc
- 1739              		@ args = 0, pretend = 0, frame = 0
- 1740              		@ frame_needed = 0, uses_anonymous_args = 0
- 1741              		@ link register save eliminated.
- 478:Application/motor.c ****     ptr->dm_raw_angle = (aData[1] << 8) | aData[2];
- 1742              		.loc 1 478 5 view .LVU561
- 1743              		.loc 1 478 31 is_stmt 0 view .LVU562
- 1744 0000 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
- 1745              		.loc 1 478 48 view .LVU563
- 1746 0002 8B78     		ldrb	r3, [r1, #2]	@ zero_extendqisi2
- 1747              		.loc 1 478 41 view .LVU564
- 1748 0004 43EA0223 		orr	r3, r3, r2, lsl #8
- 1749              		.loc 1 478 23 view .LVU565
- 1750 0008 0363     		str	r3, [r0, #48]
- 479:Application/motor.c ****     ptr->offset_angle = ptr->dm_raw_angle;
- 1751              		.loc 1 479 5 is_stmt 1 view .LVU566
- 1752              		.loc 1 479 23 is_stmt 0 view .LVU567
- 1753 000a 4387     		strh	r3, [r0, #58]	@ movhi
- 480:Application/motor.c ****     ptr->last_angle = ptr->dm_raw_angle; // update last_angle
- 1754              		.loc 1 480 5 is_stmt 1 view .LVU568
- 1755              		.loc 1 480 21 is_stmt 0 view .LVU569
- 1756 000c 0387     		strh	r3, [r0, #56]	@ movhi
- 481:Application/motor.c **** }
- 1757              		.loc 1 481 1 view .LVU570
- 1758 000e 7047     		bx	lr
- 1759              		.cfi_endproc
- 1760              	.LFE188:
- 1762              		.global	Data_Save_zero
- 1763              		.global	Data_Failure
- 1764              		.global	Data_Enable
- 1765              		.global	debugNum
- 1766              		.section	.bss.CAN_Send_Data.0,"aw",%nobits
- 1767              		.align	2
- 1768              		.set	.LANCHOR14,. + 0
- 1771              	CAN_Send_Data.0:
- 1772 0000 00000000 		.space	8
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 41
+ 476:Application/motor.c ****     ptr->Temperature = aData[7];
+ 1733              		.loc 1 476 5 is_stmt 1 view .LVU562
+ 1734              		.loc 1 476 22 is_stmt 0 view .LVU563
+ 1735 009c EB79     		ldrb	r3, [r5, #7]	@ zero_extendqisi2
+ 1736 009e 2375     		strb	r3, [r4, #20]
+ 477:Application/motor.c **** }
+ 1737              		.loc 1 477 1 view .LVU564
+ 1738 00a0 BDEC028B 		vldm	sp!, {d8}
+ 1739              	.LCFI28:
+ 1740              		.cfi_restore 80
+ 1741              		.cfi_restore 81
+ 1742              		.cfi_def_cfa_offset 24
+ 1743 00a4 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1744              	.LVL114:
+ 1745              	.L80:
+ 1746              		.loc 1 477 1 view .LVU565
+ 1747 00a6 00BF     		.align	2
+ 1748              	.L79:
+ 1749 00a8 E12E6542 		.word	1113927393
+ 1750 00ac 00003442 		.word	1110704128
+ 1751 00b0 000034C2 		.word	-1036779520
+ 1752              		.cfi_endproc
+ 1753              	.LFE187:
+ 1755              		.section	.text.Get_DM_Offset,"ax",%progbits
+ 1756              		.align	1
+ 1757              		.global	Get_DM_Offset
+ 1758              		.syntax unified
+ 1759              		.thumb
+ 1760              		.thumb_func
+ 1762              	Get_DM_Offset:
+ 1763              	.LVL115:
+ 1764              	.LFB188:
+ 478:Application/motor.c **** 
+ 479:Application/motor.c **** void Get_DM_Offset(motor_info *ptr, uint8_t *aData)
+ 480:Application/motor.c **** {
+ 1765              		.loc 1 480 1 is_stmt 1 view -0
+ 1766              		.cfi_startproc
+ 1767              		@ args = 0, pretend = 0, frame = 0
+ 1768              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1769              		@ link register save eliminated.
+ 481:Application/motor.c ****     ptr->dm_raw_angle = (aData[1] << 8) | aData[2];
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 41
 
 
- 1772      00000000 
- 1773              		.section	.bss.CAN_Send_Data.10,"aw",%nobits
- 1774              		.align	2
- 1775              		.set	.LANCHOR1,. + 0
- 1778              	CAN_Send_Data.10:
- 1779 0000 00000000 		.space	8
- 1779      00000000 
- 1780              		.section	.bss.CAN_Send_Data.2,"aw",%nobits
- 1781              		.align	2
- 1782              		.set	.LANCHOR9,. + 0
- 1785              	CAN_Send_Data.2:
- 1786 0000 00000000 		.space	8
- 1786      00000000 
- 1787              		.section	.bss.CAN_Send_Data.4,"aw",%nobits
- 1788              		.align	2
- 1789              		.set	.LANCHOR7,. + 0
- 1792              	CAN_Send_Data.4:
- 1793 0000 00000000 		.space	8
- 1793      00000000 
- 1794              		.section	.bss.CAN_Send_Data.6,"aw",%nobits
+ 1770              		.loc 1 481 5 view .LVU567
+ 1771              		.loc 1 481 31 is_stmt 0 view .LVU568
+ 1772 0000 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 1773              		.loc 1 481 48 view .LVU569
+ 1774 0002 8B78     		ldrb	r3, [r1, #2]	@ zero_extendqisi2
+ 1775              		.loc 1 481 41 view .LVU570
+ 1776 0004 43EA0223 		orr	r3, r3, r2, lsl #8
+ 1777              		.loc 1 481 23 view .LVU571
+ 1778 0008 0363     		str	r3, [r0, #48]
+ 482:Application/motor.c ****     ptr->offset_angle = ptr->dm_raw_angle;
+ 1779              		.loc 1 482 5 is_stmt 1 view .LVU572
+ 1780              		.loc 1 482 23 is_stmt 0 view .LVU573
+ 1781 000a 4387     		strh	r3, [r0, #58]	@ movhi
+ 483:Application/motor.c ****     ptr->last_angle = ptr->dm_raw_angle; // update last_angle
+ 1782              		.loc 1 483 5 is_stmt 1 view .LVU574
+ 1783              		.loc 1 483 21 is_stmt 0 view .LVU575
+ 1784 000c 0387     		strh	r3, [r0, #56]	@ movhi
+ 484:Application/motor.c **** }
+ 1785              		.loc 1 484 1 view .LVU576
+ 1786 000e 7047     		bx	lr
+ 1787              		.cfi_endproc
+ 1788              	.LFE188:
+ 1790              		.global	Data_Save_zero
+ 1791              		.global	Data_Failure
+ 1792              		.global	Data_Enable
+ 1793              		.global	debugNum
+ 1794              		.section	.bss.CAN_Send_Data.0,"aw",%nobits
  1795              		.align	2
- 1796              		.set	.LANCHOR5,. + 0
- 1799              	CAN_Send_Data.6:
+ 1796              		.set	.LANCHOR14,. + 0
+ 1799              	CAN_Send_Data.0:
  1800 0000 00000000 		.space	8
  1800      00000000 
- 1801              		.section	.bss.CAN_Send_Data.8,"aw",%nobits
+ 1801              		.section	.bss.CAN_Send_Data.10,"aw",%nobits
  1802              		.align	2
- 1803              		.set	.LANCHOR3,. + 0
- 1806              	CAN_Send_Data.8:
+ 1803              		.set	.LANCHOR1,. + 0
+ 1806              	CAN_Send_Data.10:
  1807 0000 00000000 		.space	8
  1807      00000000 
- 1808              		.section	.bss.TX_MSG.1,"aw",%nobits
+ 1808              		.section	.bss.CAN_Send_Data.2,"aw",%nobits
  1809              		.align	2
- 1810              		.set	.LANCHOR13,. + 0
- 1813              	TX_MSG.1:
- 1814 0000 00000000 		.space	24
+ 1810              		.set	.LANCHOR9,. + 0
+ 1813              	CAN_Send_Data.2:
+ 1814 0000 00000000 		.space	8
  1814      00000000 
- 1814      00000000 
- 1814      00000000 
- 1814      00000000 
- 1815              		.section	.bss.TX_MSG.11,"aw",%nobits
+ 1815              		.section	.bss.CAN_Send_Data.4,"aw",%nobits
  1816              		.align	2
- 1817              		.set	.LANCHOR0,. + 0
- 1820              	TX_MSG.11:
- 1821 0000 00000000 		.space	24
+ 1817              		.set	.LANCHOR7,. + 0
+ 1820              	CAN_Send_Data.4:
+ 1821 0000 00000000 		.space	8
  1821      00000000 
- 1821      00000000 
- 1821      00000000 
- 1821      00000000 
- 1822              		.section	.bss.TX_MSG.3,"aw",%nobits
+ 1822              		.section	.bss.CAN_Send_Data.6,"aw",%nobits
  1823              		.align	2
- 1824              		.set	.LANCHOR8,. + 0
- 1827              	TX_MSG.3:
- 1828 0000 00000000 		.space	24
+ 1824              		.set	.LANCHOR5,. + 0
+ 1827              	CAN_Send_Data.6:
+ 1828 0000 00000000 		.space	8
  1828      00000000 
- 1828      00000000 
- 1828      00000000 
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 42
+ 1829              		.section	.bss.CAN_Send_Data.8,"aw",%nobits
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 42
 
 
- 1828      00000000 
- 1829              		.section	.bss.TX_MSG.5,"aw",%nobits
  1830              		.align	2
- 1831              		.set	.LANCHOR6,. + 0
- 1834              	TX_MSG.5:
- 1835 0000 00000000 		.space	24
+ 1831              		.set	.LANCHOR3,. + 0
+ 1834              	CAN_Send_Data.8:
+ 1835 0000 00000000 		.space	8
  1835      00000000 
- 1835      00000000 
- 1835      00000000 
- 1835      00000000 
- 1836              		.section	.bss.TX_MSG.7,"aw",%nobits
+ 1836              		.section	.bss.TX_MSG.1,"aw",%nobits
  1837              		.align	2
- 1838              		.set	.LANCHOR4,. + 0
- 1841              	TX_MSG.7:
+ 1838              		.set	.LANCHOR13,. + 0
+ 1841              	TX_MSG.1:
  1842 0000 00000000 		.space	24
  1842      00000000 
  1842      00000000 
  1842      00000000 
  1842      00000000 
- 1843              		.section	.bss.TX_MSG.9,"aw",%nobits
+ 1843              		.section	.bss.TX_MSG.11,"aw",%nobits
  1844              		.align	2
- 1845              		.set	.LANCHOR2,. + 0
- 1848              	TX_MSG.9:
+ 1845              		.set	.LANCHOR0,. + 0
+ 1848              	TX_MSG.11:
  1849 0000 00000000 		.space	24
  1849      00000000 
  1849      00000000 
  1849      00000000 
  1849      00000000 
- 1850              		.section	.bss.debugNum,"aw",%nobits
+ 1850              		.section	.bss.TX_MSG.3,"aw",%nobits
  1851              		.align	2
- 1854              	debugNum:
- 1855 0000 00000000 		.space	20
- 1855      00000000 
- 1855      00000000 
- 1855      00000000 
- 1855      00000000 
- 1856              		.section	.data.Data_Enable,"aw"
- 1857              		.align	2
- 1858              		.set	.LANCHOR10,. + 0
- 1861              	Data_Enable:
- 1862 0000 FFFFFFFF 		.ascii	"\377\377\377\377\377\377\377\374"
- 1862      FFFFFFFC 
- 1863              		.section	.data.Data_Failure,"aw"
- 1864              		.align	2
- 1865              		.set	.LANCHOR11,. + 0
- 1868              	Data_Failure:
- 1869 0000 FFFFFFFF 		.ascii	"\377\377\377\377\377\377\377\375"
- 1869      FFFFFFFD 
- 1870              		.section	.data.Data_Save_zero,"aw"
- 1871              		.align	2
- 1872              		.set	.LANCHOR12,. + 0
- 1875              	Data_Save_zero:
- 1876 0000 FFFFFFFF 		.ascii	"\377\377\377\377\377\377\377\376"
- 1876      FFFFFFFE 
- 1877              		.text
- 1878              	.Letext0:
- 1879              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 43
+ 1852              		.set	.LANCHOR8,. + 0
+ 1855              	TX_MSG.3:
+ 1856 0000 00000000 		.space	24
+ 1856      00000000 
+ 1856      00000000 
+ 1856      00000000 
+ 1856      00000000 
+ 1857              		.section	.bss.TX_MSG.5,"aw",%nobits
+ 1858              		.align	2
+ 1859              		.set	.LANCHOR6,. + 0
+ 1862              	TX_MSG.5:
+ 1863 0000 00000000 		.space	24
+ 1863      00000000 
+ 1863      00000000 
+ 1863      00000000 
+ 1863      00000000 
+ 1864              		.section	.bss.TX_MSG.7,"aw",%nobits
+ 1865              		.align	2
+ 1866              		.set	.LANCHOR4,. + 0
+ 1869              	TX_MSG.7:
+ 1870 0000 00000000 		.space	24
+ 1870      00000000 
+ 1870      00000000 
+ 1870      00000000 
+ 1870      00000000 
+ 1871              		.section	.bss.TX_MSG.9,"aw",%nobits
+ 1872              		.align	2
+ 1873              		.set	.LANCHOR2,. + 0
+ 1876              	TX_MSG.9:
+ 1877 0000 00000000 		.space	24
+ 1877      00000000 
+ 1877      00000000 
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 43
 
 
- 1880              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 1881              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
- 1882              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
- 1883              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 1884              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h"
- 1885              		.file 8 "Components/user_lib.h"
- 1886              		.file 9 "Components/Controller/controller.h"
- 1887              		.file 10 "Application/motor.h"
- 1888              		.file 11 "<built-in>"
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 44
+ 1877      00000000 
+ 1877      00000000 
+ 1878              		.section	.bss.debugNum,"aw",%nobits
+ 1879              		.align	2
+ 1882              	debugNum:
+ 1883 0000 00000000 		.space	20
+ 1883      00000000 
+ 1883      00000000 
+ 1883      00000000 
+ 1883      00000000 
+ 1884              		.section	.data.Data_Enable,"aw"
+ 1885              		.align	2
+ 1886              		.set	.LANCHOR10,. + 0
+ 1889              	Data_Enable:
+ 1890 0000 FFFFFFFF 		.ascii	"\377\377\377\377\377\377\377\374"
+ 1890      FFFFFFFC 
+ 1891              		.section	.data.Data_Failure,"aw"
+ 1892              		.align	2
+ 1893              		.set	.LANCHOR11,. + 0
+ 1896              	Data_Failure:
+ 1897 0000 FFFFFFFF 		.ascii	"\377\377\377\377\377\377\377\375"
+ 1897      FFFFFFFD 
+ 1898              		.section	.data.Data_Save_zero,"aw"
+ 1899              		.align	2
+ 1900              		.set	.LANCHOR12,. + 0
+ 1903              	Data_Save_zero:
+ 1904 0000 FFFFFFFF 		.ascii	"\377\377\377\377\377\377\377\376"
+ 1904      FFFFFFFE 
+ 1905              		.text
+ 1906              	.Letext0:
+ 1907              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 1908              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 1909              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 1910              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
+ 1911              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 1912              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h"
+ 1913              		.file 8 "Components/user_lib.h"
+ 1914              		.file 9 "Components/Controller/controller.h"
+ 1915              		.file 10 "Application/motor.h"
+ 1916              		.file 11 "<built-in>"
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 44
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 motor.c
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:20     .text.Motor_Torque_Calculate:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:26     .text.Motor_Torque_Calculate:00000000 Motor_Torque_Calculate
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:104    .text.Motor_Speed_Calculate:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:110    .text.Motor_Speed_Calculate:00000000 Motor_Speed_Calculate
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:152    .text.Motor_Angle_Calculate:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:158    .text.Motor_Angle_Calculate:00000000 Motor_Angle_Calculate
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:218    .text.Get_Motor_Info:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:224    .text.Get_Motor_Info:00000000 Get_Motor_Info
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:379    .text.Get_Motor_Info:000000c4 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:387    .text.Get_Motor_Offset:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:393    .text.Get_Motor_Offset:00000000 Get_Motor_Offset
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:419    .text.Send_Motor_Current_1_4:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:425    .text.Send_Motor_Current_1_4:00000000 Send_Motor_Current_1_4
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:515    .text.Send_Motor_Current_1_4:00000054 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:521    .text.Send_Motor_Current_5_8:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:527    .text.Send_Motor_Current_5_8:00000000 Send_Motor_Current_5_8
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:617    .text.Send_Motor_Current_5_8:00000054 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:623    .text.Get_LK_Info:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:629    .text.Get_LK_Info:00000000 Get_LK_Info
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:798    .text.Get_LK_Info:000000ec $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:806    .text.Get_LK_Offset:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:812    .text.Get_LK_Offset:00000000 Get_LK_Offset
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:841    .text.Send_LK_Current:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:847    .text.Send_LK_Current:00000000 Send_LK_Current
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1035   .text.Send_LK_Current:000000b4 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1041   .text.Send_LK_Current_Single:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1047   .text.Send_LK_Current_Single:00000000 Send_LK_Current_Single
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1128   .text.Send_LK_Current_Single:00000044 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1134   .text.LK8008_Current_Solver:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1140   .text.LK8008_Current_Solver:00000000 LK8008_Current_Solver
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1162   .text.LK8008_Current_Solver:00000014 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1167   .text.DM_CANx_SendStdData:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1173   .text.DM_CANx_SendStdData:00000000 DM_CANx_SendStdData
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1303   .text.DM_CANx_SendStdData:00000070 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1312   .text.uint_to_float:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1318   .text.uint_to_float:00000000 uint_to_float
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1358   .text.float_to_uint:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1364   .text.float_to_uint:00000000 float_to_uint
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1403   .text.Send_DM_MIT_Command:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1409   .text.Send_DM_MIT_Command:00000000 Send_DM_MIT_Command
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1595   .text.Send_DM_MIT_Command:000000d4 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1605   .text.Get_DM_Info:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1611   .text.Get_DM_Info:00000000 Get_DM_Info
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1721   .text.Get_DM_Info:00000084 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1728   .text.Get_DM_Offset:00000000 $t
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1734   .text.Get_DM_Offset:00000000 Get_DM_Offset
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1875   .data.Data_Save_zero:00000000 Data_Save_zero
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1868   .data.Data_Failure:00000000 Data_Failure
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1861   .data.Data_Enable:00000000 Data_Enable
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1854   .bss.debugNum:00000000 debugNum
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1767   .bss.CAN_Send_Data.0:00000000 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1771   .bss.CAN_Send_Data.0:00000000 CAN_Send_Data.0
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1774   .bss.CAN_Send_Data.10:00000000 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1778   .bss.CAN_Send_Data.10:00000000 CAN_Send_Data.10
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1781   .bss.CAN_Send_Data.2:00000000 $d
-ARM GAS  C:\Users\86152\AppData\Local\Temp\cc0sye4v.s 			page 45
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:20     .text.Motor_Torque_Calculate:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:26     .text.Motor_Torque_Calculate:00000000 Motor_Torque_Calculate
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:104    .text.Motor_Speed_Calculate:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:110    .text.Motor_Speed_Calculate:00000000 Motor_Speed_Calculate
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:152    .text.Motor_Angle_Calculate:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:158    .text.Motor_Angle_Calculate:00000000 Motor_Angle_Calculate
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:218    .text.Get_Motor_Info:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:224    .text.Get_Motor_Info:00000000 Get_Motor_Info
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:379    .text.Get_Motor_Info:000000c4 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:387    .text.Get_Motor_Offset:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:393    .text.Get_Motor_Offset:00000000 Get_Motor_Offset
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:419    .text.Send_Motor_Current_1_4:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:425    .text.Send_Motor_Current_1_4:00000000 Send_Motor_Current_1_4
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:515    .text.Send_Motor_Current_1_4:00000054 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:521    .text.Send_Motor_Current_5_8:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:527    .text.Send_Motor_Current_5_8:00000000 Send_Motor_Current_5_8
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:617    .text.Send_Motor_Current_5_8:00000054 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:623    .text.Get_LK_Info:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:629    .text.Get_LK_Info:00000000 Get_LK_Info
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:798    .text.Get_LK_Info:000000ec $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:806    .text.Get_LK_Offset:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:812    .text.Get_LK_Offset:00000000 Get_LK_Offset
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:841    .text.Send_LK_Current:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:847    .text.Send_LK_Current:00000000 Send_LK_Current
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1035   .text.Send_LK_Current:000000b4 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1041   .text.Send_LK_Current_Single:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1047   .text.Send_LK_Current_Single:00000000 Send_LK_Current_Single
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1128   .text.Send_LK_Current_Single:00000044 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1134   .text.LK8008_Current_Solver:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1140   .text.LK8008_Current_Solver:00000000 LK8008_Current_Solver
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1162   .text.LK8008_Current_Solver:00000014 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1167   .text.DM_CANx_SendStdData:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1173   .text.DM_CANx_SendStdData:00000000 DM_CANx_SendStdData
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1303   .text.DM_CANx_SendStdData:00000070 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1312   .text.uint_to_float:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1318   .text.uint_to_float:00000000 uint_to_float
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1358   .text.float_to_uint:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1364   .text.float_to_uint:00000000 float_to_uint
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1403   .text.Send_DM_MIT_Command:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1409   .text.Send_DM_MIT_Command:00000000 Send_DM_MIT_Command
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1595   .text.Send_DM_MIT_Command:000000d4 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1605   .text.Get_DM_Info:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1611   .text.Get_DM_Info:00000000 Get_DM_Info
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1749   .text.Get_DM_Info:000000a8 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1756   .text.Get_DM_Offset:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1762   .text.Get_DM_Offset:00000000 Get_DM_Offset
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1903   .data.Data_Save_zero:00000000 Data_Save_zero
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1896   .data.Data_Failure:00000000 Data_Failure
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1889   .data.Data_Enable:00000000 Data_Enable
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1882   .bss.debugNum:00000000 debugNum
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1795   .bss.CAN_Send_Data.0:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1799   .bss.CAN_Send_Data.0:00000000 CAN_Send_Data.0
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1802   .bss.CAN_Send_Data.10:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1806   .bss.CAN_Send_Data.10:00000000 CAN_Send_Data.10
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1809   .bss.CAN_Send_Data.2:00000000 $d
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccKqegVc.s 			page 45
 
 
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1785   .bss.CAN_Send_Data.2:00000000 CAN_Send_Data.2
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1788   .bss.CAN_Send_Data.4:00000000 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1792   .bss.CAN_Send_Data.4:00000000 CAN_Send_Data.4
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1795   .bss.CAN_Send_Data.6:00000000 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1799   .bss.CAN_Send_Data.6:00000000 CAN_Send_Data.6
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1802   .bss.CAN_Send_Data.8:00000000 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1806   .bss.CAN_Send_Data.8:00000000 CAN_Send_Data.8
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1809   .bss.TX_MSG.1:00000000 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1813   .bss.TX_MSG.1:00000000 TX_MSG.1
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1816   .bss.TX_MSG.11:00000000 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1820   .bss.TX_MSG.11:00000000 TX_MSG.11
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1823   .bss.TX_MSG.3:00000000 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1827   .bss.TX_MSG.3:00000000 TX_MSG.3
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1830   .bss.TX_MSG.5:00000000 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1834   .bss.TX_MSG.5:00000000 TX_MSG.5
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1837   .bss.TX_MSG.7:00000000 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1841   .bss.TX_MSG.7:00000000 TX_MSG.7
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1844   .bss.TX_MSG.9:00000000 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1848   .bss.TX_MSG.9:00000000 TX_MSG.9
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1851   .bss.debugNum:00000000 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1857   .data.Data_Enable:00000000 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1864   .data.Data_Failure:00000000 $d
-C:\Users\86152\AppData\Local\Temp\cc0sye4v.s:1871   .data.Data_Save_zero:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1813   .bss.CAN_Send_Data.2:00000000 CAN_Send_Data.2
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1816   .bss.CAN_Send_Data.4:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1820   .bss.CAN_Send_Data.4:00000000 CAN_Send_Data.4
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1823   .bss.CAN_Send_Data.6:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1827   .bss.CAN_Send_Data.6:00000000 CAN_Send_Data.6
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1830   .bss.CAN_Send_Data.8:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1834   .bss.CAN_Send_Data.8:00000000 CAN_Send_Data.8
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1837   .bss.TX_MSG.1:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1841   .bss.TX_MSG.1:00000000 TX_MSG.1
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1844   .bss.TX_MSG.11:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1848   .bss.TX_MSG.11:00000000 TX_MSG.11
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1851   .bss.TX_MSG.3:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1855   .bss.TX_MSG.3:00000000 TX_MSG.3
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1858   .bss.TX_MSG.5:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1862   .bss.TX_MSG.5:00000000 TX_MSG.5
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1865   .bss.TX_MSG.7:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1869   .bss.TX_MSG.7:00000000 TX_MSG.7
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1872   .bss.TX_MSG.9:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1876   .bss.TX_MSG.9:00000000 TX_MSG.9
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1879   .bss.debugNum:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1885   .data.Data_Enable:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1892   .data.Data_Failure:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccKqegVc.s:1899   .data.Data_Save_zero:00000000 $d
 
 UNDEFINED SYMBOLS
 PID_Calculate

@@ -1,7 +1,7 @@
 #include "ins_task.h"
 #include "QuaternionAHRS.h"
 #include "includes.h"
-#include "motor_task.h"
+#include "exo_controller.h"
 #include "QuaternionEKF.h"
 #include "dm_imu.h"
 #include "tim.h"
