@@ -64,14 +64,14 @@ typedef struct
   uint16_t RawAngle; // abs angle range:[0,8191]
   int dm_raw_angle;
   float output_angle;
-  uint16_t last_angle;
-  int16_t offset_angle;
-  int16_t zero_offset;
+  uint32_t last_angle;
+  int32_t offset_angle;
+  int32_t zero_offset;
   int32_t round_cnt;
   int32_t total_angle;
   double total_output_angle;
 
-  int16_t angle_buf[5];
+  // int16_t angle_buf[5];
   int32_t msg_cnt;
 
   uint16_t CAN_ID;

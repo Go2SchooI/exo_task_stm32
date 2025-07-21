@@ -90,13 +90,13 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *_hcan)
             else
                 Get_DM_Info(&exo_controller.xzy_shoulder.dm_motor[0], rx_data);
             break;
-        case DM_DEVICE_STD_ID + 2:
+        case DM_DEVICE_STD_ID + 3:
             if (exo_controller.xzy_shoulder.dm_motor[1].msg_cnt++ <= 50)
                 Get_DM_Offset(&exo_controller.xzy_shoulder.dm_motor[1], rx_data);
             else
                 Get_DM_Info(&exo_controller.xzy_shoulder.dm_motor[1], rx_data);
             break;
-        case DM_DEVICE_STD_ID + 3:
+        case DM_DEVICE_STD_ID + 2:
             if (exo_controller.elbow.dm_motor.msg_cnt++ <= 50)
                 Get_DM_Offset(&exo_controller.elbow.dm_motor, rx_data);
             else

@@ -18,6 +18,8 @@
         "dm_imu.h": "c",
         "bmi088driver.h": "c",
         "remote_control.h": "c",
-        "exo_controller.h": "c"
+        "exo_controller.h": "c",
+        "ssm_kinematics.h": "c",
+        "type_traits": "c"
     }
 }

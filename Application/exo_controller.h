@@ -3,17 +3,16 @@
 
 #include "includes.h"
 #include "dm_imu.h"
+#include "SSM_kinematics.h"
 
-typedef struct
-{
-    float SSM_xzy_angle[3];
-} SSM_t;
+#define ELBOW_MOTOR_MIN -90.0f
+#define ELBOW_MOTOR_MAX 90.0f
 
 typedef struct
 {
     dm_imu_t dm_imu;
     INS_t INS_shoulder;
-    SSM_t SSM_shoulder;
+    SSM_t SSM;
 
     motor_info lk_motor,
         dm_motor[2];

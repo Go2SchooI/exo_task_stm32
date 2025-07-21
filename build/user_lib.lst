@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -55,10 +55,10 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
   24:Components/user_lib.c **** 
   25:Components/user_lib.c **** uint8_t GlobalDebugMode = 7;
   26:Components/user_lib.c **** 
-  27:Components/user_lib.c **** //¿ìËÙ¿ª·½
+  27:Components/user_lib.c **** // ï¿½ï¿½ï¿½Ù¿ï¿½ï¿½ï¿½
   28:Components/user_lib.c **** float Sqrt(float x)
   29:Components/user_lib.c **** {
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 2
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 2
 
 
   30              		.loc 1 29 1 view -0
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
   65 0026 70EE006A 		vadd.f32	s13, s0, s0
   66              		.loc 1 48 20 discriminator 3 view .LVU17
   67 002a 87EEA67A 		vdiv.f32	s14, s15, s13
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 3
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 3
 
 
   68              		.loc 1 48 11 discriminator 3 view .LVU18
@@ -165,7 +165,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
  106              	.LVL7:
  107              	.LFB136:
   53:Components/user_lib.c **** 
-  54:Components/user_lib.c **** //¿ìËÙÇóÆ½·½¸ùµ¹Êý
+  54:Components/user_lib.c **** // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
   55:Components/user_lib.c **** /*
   56:Components/user_lib.c **** float invSqrt(float num)
   57:Components/user_lib.c **** {
@@ -178,17 +178,17 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
   64:Components/user_lib.c ****     return y;
   65:Components/user_lib.c **** }*/
   66:Components/user_lib.c **** 
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 4
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 4
 
 
   67:Components/user_lib.c **** /**
-  68:Components/user_lib.c ****  * @brief          Ð±²¨º¯Êý³õÊ¼»¯
+  68:Components/user_lib.c ****  * @brief          Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
   69:Components/user_lib.c ****  * @author         RM
-  70:Components/user_lib.c ****  * @param[in]      Ð±²¨º¯Êý½á¹¹Ìå
-  71:Components/user_lib.c ****  * @param[in]      ¼ä¸ôµÄÊ±¼ä£¬µ¥Î» s
-  72:Components/user_lib.c ****  * @param[in]      ×î´óÖµ
-  73:Components/user_lib.c ****  * @param[in]      ×îÐ¡Öµ
-  74:Components/user_lib.c ****  * @retval         ·µ»Ø¿Õ
+  70:Components/user_lib.c ****  * @param[in]      Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹¹ï¿½ï¿½
+  71:Components/user_lib.c ****  * @param[in]      ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£¬ï¿½ï¿½Î» s
+  72:Components/user_lib.c ****  * @param[in]      ï¿½ï¿½ï¿½Öµ
+  73:Components/user_lib.c ****  * @param[in]      ï¿½ï¿½Ð¡Öµ
+  74:Components/user_lib.c ****  * @retval         ï¿½ï¿½ï¿½Ø¿ï¿½
   75:Components/user_lib.c ****  */
   76:Components/user_lib.c **** void ramp_init(ramp_function_source_t *ramp_source_type, float frame_period, float max, float min)
   77:Components/user_lib.c **** {
@@ -234,14 +234,14 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
  143              	.LFB137:
   84:Components/user_lib.c **** 
   85:Components/user_lib.c **** /**
-  86:Components/user_lib.c ****  * @brief          Ð±²¨º¯Êý¼ÆËã£¬¸ù¾ÝÊäÈëµÄÖµ½øÐÐµþ¼Ó£¬ ÊäÈëµ¥Î»Îª /s ¼´Ò»ÃëºóÔö¼ÓÊäÈëµÄÖµ
+  86:Components/user_lib.c ****  * @brief          Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Ðµï¿½ï¿½Ó£
   87:Components/user_lib.c ****  * @author         RM
-  88:Components/user_lib.c ****  * @param[in]      Ð±²¨º¯Êý½á¹¹Ìå
-  89:Components/user_lib.c ****  * @param[in]      ÊäÈëÖµ
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 5
+  88:Components/user_lib.c ****  * @param[in]      Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹¹ï¿½ï¿½
+  89:Components/user_lib.c ****  * @param[in]      ï¿½ï¿½ï¿½ï¿½Öµ
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 5
 
 
-  90:Components/user_lib.c ****  * @retval         ·µ»Ø¿Õ
+  90:Components/user_lib.c ****  * @retval         ï¿½ï¿½ï¿½Ø¿ï¿½
   91:Components/user_lib.c ****  */
   92:Components/user_lib.c **** float ramp_calc(ramp_function_source_t *ramp_source_type, float input)
   93:Components/user_lib.c **** {
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
  180 0030 D0ED027A 		vldr.32	s15, [r0, #8]
  100:Components/user_lib.c ****     {
  181              		.loc 1 100 13 view .LVU53
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 6
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 6
 
 
  182 0034 B4EEE70A 		vcmpe.f32	s0, s15
@@ -322,7 +322,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
  200              	.LVL10:
  201              	.LFB138:
  106:Components/user_lib.c **** 
- 107:Components/user_lib.c **** //¾ø¶ÔÖµÏÞÖÆ
+ 107:Components/user_lib.c **** // ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½
  108:Components/user_lib.c **** float abs_limit(float num, float Limit)
  109:Components/user_lib.c **** {
  202              		.loc 1 109 1 is_stmt 1 view -0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
  116:Components/user_lib.c ****         num = -Limit;
  117:Components/user_lib.c ****     }
  118:Components/user_lib.c ****     return num;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 7
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 7
 
 
  226              		.loc 1 118 5 is_stmt 1 view .LVU63
@@ -377,7 +377,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
  240              	.LVL13:
  241              	.LFB139:
  120:Components/user_lib.c **** 
- 121:Components/user_lib.c **** //ÅÐ¶Ï·ûºÅÎ»
+ 121:Components/user_lib.c **** // ï¿½Ð¶Ï·ï¿½ï¿½ï¿½Î»
  122:Components/user_lib.c **** float sign(float value)
  123:Components/user_lib.c **** {
  242              		.loc 1 123 1 is_stmt 1 view -0
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
  269              		.global	float_deadband
  270              		.syntax unified
  271              		.thumb
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 8
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 8
 
 
  272              		.thumb_func
@@ -426,7 +426,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
  275              	.LVL17:
  276              	.LFB140:
  133:Components/user_lib.c **** 
- 134:Components/user_lib.c **** //¸¡µãËÀÇø
+ 134:Components/user_lib.c **** // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  135:Components/user_lib.c **** float float_deadband(float Value, float minValue, float maxValue)
  136:Components/user_lib.c **** {
  277              		.loc 1 136 1 is_stmt 1 view -0
@@ -472,13 +472,13 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
  313              	.LVL19:
  314              	.LFB141:
  143:Components/user_lib.c **** 
- 144:Components/user_lib.c **** // int26ËÀÇø
+ 144:Components/user_lib.c **** // int26ï¿½ï¿½ï¿½ï¿½
  145:Components/user_lib.c **** int16_t int16_deadline(int16_t Value, int16_t minValue, int16_t maxValue)
  146:Components/user_lib.c **** {
  315              		.loc 1 146 1 is_stmt 1 view -0
  316              		.cfi_startproc
  317              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 9
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 9
 
 
  318              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -515,7 +515,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
  345              	.LVL21:
  346              	.LFB142:
  153:Components/user_lib.c **** 
- 154:Components/user_lib.c **** //ÏÞ·ùº¯Êý
+ 154:Components/user_lib.c **** // ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½
  155:Components/user_lib.c **** float float_constrain(float Value, float minValue, float maxValue)
  156:Components/user_lib.c **** {
  347              		.loc 1 156 1 is_stmt 1 view -0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
  361 0012 04DD     		ble	.L35
  160:Components/user_lib.c ****         return maxValue;
  362              		.loc 1 160 16 view .LVU91
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 10
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 10
 
 
  363 0014 B0EE410A 		vmov.f32	s0, s2
@@ -569,7 +569,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
  386              	.LVL25:
  387              	.LFB143:
  164:Components/user_lib.c **** 
- 165:Components/user_lib.c **** //ÏÞ·ùº¯Êý
+ 165:Components/user_lib.c **** // ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½
  166:Components/user_lib.c **** int16_t int16_constrain(int16_t Value, int16_t minValue, int16_t maxValue)
  167:Components/user_lib.c **** {
  388              		.loc 1 167 1 is_stmt 1 view -0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
  407              	.L44:
  169:Components/user_lib.c ****         return minValue;
  408              		.loc 1 169 16 view .LVU102
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 11
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 11
 
 
  409 000c 0846     		mov	r0, r1
@@ -621,7 +621,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
  425              	.LVL29:
  426              	.LFB144:
  175:Components/user_lib.c **** 
- 176:Components/user_lib.c **** //ÏÞ·ùº¯Êý
+ 176:Components/user_lib.c **** // ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½
  177:Components/user_lib.c **** int32_t int32_constrain(int32_t Value, int32_t minValue, int32_t maxValue)
  178:Components/user_lib.c **** {
  427              		.loc 1 178 1 is_stmt 1 view -0
@@ -658,1602 +658,1652 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 1
  185:Components/user_lib.c **** }
  451              		.loc 1 185 1 view .LVU112
  452 000e 7047     		bx	lr
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 12
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 12
 
 
  453              		.cfi_endproc
  454              	.LFE144:
- 456              		.section	.text.loop_float_constrain,"ax",%progbits
+ 456              		.section	.text.check_float_range,"ax",%progbits
  457              		.align	1
- 458              		.global	loop_float_constrain
+ 458              		.global	check_float_range
  459              		.syntax unified
  460              		.thumb
  461              		.thumb_func
- 463              	loop_float_constrain:
+ 463              	check_float_range:
  464              	.LVL33:
  465              	.LFB145:
  186:Components/user_lib.c **** 
- 187:Components/user_lib.c **** //Ñ­»·ÏÞ·ùº¯Êý
- 188:Components/user_lib.c **** float loop_float_constrain(float Input, float minValue, float maxValue)
- 189:Components/user_lib.c **** {
- 466              		.loc 1 189 1 is_stmt 1 view -0
+ 187:Components/user_lib.c **** uint8_t check_float_range(float value, float minValue, float maxValue)
+ 188:Components/user_lib.c **** {
+ 466              		.loc 1 188 1 is_stmt 1 view -0
  467              		.cfi_startproc
  468              		@ args = 0, pretend = 0, frame = 0
  469              		@ frame_needed = 0, uses_anonymous_args = 0
  470              		@ link register save eliminated.
- 190:Components/user_lib.c ****     if (maxValue < minValue)
- 471              		.loc 1 190 5 view .LVU114
- 472              		.loc 1 190 8 is_stmt 0 view .LVU115
- 473 0000 B4EEE01A 		vcmpe.f32	s2, s1
+ 189:Components/user_lib.c ****     if ((value < maxValue) && (value > minValue))
+ 471              		.loc 1 189 5 view .LVU114
+ 472              		.loc 1 189 8 is_stmt 0 view .LVU115
+ 473 0000 B4EEC10A 		vcmpe.f32	s0, s2
  474 0004 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 475 0008 1ED4     		bmi	.L51
- 191:Components/user_lib.c ****     {
- 192:Components/user_lib.c ****         return Input;
- 193:Components/user_lib.c ****     }
+ 475 0008 06D5     		bpl	.L56
+ 476              		.loc 1 189 28 discriminator 1 view .LVU116
+ 477 000a B4EEE00A 		vcmpe.f32	s0, s1
+ 478 000e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 479 0012 03DC     		bgt	.L54
+ 190:Components/user_lib.c ****         return 1;
+ 191:Components/user_lib.c ****     else
+ 192:Components/user_lib.c ****         return 0;
+ 480              		.loc 1 192 16 view .LVU117
+ 481 0014 0020     		movs	r0, #0
+ 482 0016 7047     		bx	lr
+ 483              	.L56:
+ 484 0018 0020     		movs	r0, #0
+ 485 001a 7047     		bx	lr
+ 486              	.L54:
+ 190:Components/user_lib.c ****         return 1;
+ 487              		.loc 1 190 16 view .LVU118
+ 488 001c 0120     		movs	r0, #1
+ 193:Components/user_lib.c **** }
+ 489              		.loc 1 193 1 view .LVU119
+ 490 001e 7047     		bx	lr
+ 491              		.cfi_endproc
+ 492              	.LFE145:
+ 494              		.section	.text.loop_float_constrain,"ax",%progbits
+ 495              		.align	1
+ 496              		.global	loop_float_constrain
+ 497              		.syntax unified
+ 498              		.thumb
+ 499              		.thumb_func
+ 501              	loop_float_constrain:
+ 502              	.LVL34:
+ 503              	.LFB146:
  194:Components/user_lib.c **** 
- 195:Components/user_lib.c ****     if (Input > maxValue)
- 476              		.loc 1 195 5 is_stmt 1 view .LVU116
- 477              		.loc 1 195 8 is_stmt 0 view .LVU117
- 478 000a B4EEC01A 		vcmpe.f32	s2, s0
- 479 000e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 480 0012 0AD5     		bpl	.L61
- 481              	.LBB2:
- 196:Components/user_lib.c ****     {
- 197:Components/user_lib.c ****         float len = maxValue - minValue;
- 482              		.loc 1 197 9 is_stmt 1 view .LVU118
- 483              		.loc 1 197 15 is_stmt 0 view .LVU119
- 484 0014 71EE600A 		vsub.f32	s1, s2, s1
- 485              	.LVL34:
- 198:Components/user_lib.c ****         while (Input > maxValue)
- 486              		.loc 1 198 9 is_stmt 1 view .LVU120
- 487              		.loc 1 198 15 is_stmt 0 view .LVU121
- 488 0018 01E0     		b	.L54
- 489              	.L55:
- 199:Components/user_lib.c ****         {
- 200:Components/user_lib.c ****             Input -= len;
- 490              		.loc 1 200 13 is_stmt 1 view .LVU122
- 491              		.loc 1 200 19 is_stmt 0 view .LVU123
- 492 001a 30EE600A 		vsub.f32	s0, s0, s1
- 493              	.LVL35:
- 494              	.L54:
- 198:Components/user_lib.c ****         while (Input > maxValue)
- 495              		.loc 1 198 15 is_stmt 1 view .LVU124
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 13
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 13
 
 
- 496 001e B4EEC10A 		vcmpe.f32	s0, s2
- 497 0022 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 498 0026 F8DC     		bgt	.L55
- 198:Components/user_lib.c ****         while (Input > maxValue)
- 499              		.loc 1 198 15 is_stmt 0 view .LVU125
- 500 0028 7047     		bx	lr
- 501              	.LVL36:
- 502              	.L61:
- 198:Components/user_lib.c ****         while (Input > maxValue)
- 503              		.loc 1 198 15 view .LVU126
- 504              	.LBE2:
- 201:Components/user_lib.c ****         }
- 202:Components/user_lib.c ****     }
- 203:Components/user_lib.c ****     else if (Input < minValue)
- 505              		.loc 1 203 10 is_stmt 1 view .LVU127
- 506              		.loc 1 203 13 is_stmt 0 view .LVU128
- 507 002a F4EEC00A 		vcmpe.f32	s1, s0
- 508 002e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 509 0032 09DD     		ble	.L51
- 510              	.LBB3:
+ 195:Components/user_lib.c **** // Ñ­ï¿½ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½
+ 196:Components/user_lib.c **** float loop_float_constrain(float Input, float minValue, float maxValue)
+ 197:Components/user_lib.c **** {
+ 504              		.loc 1 197 1 is_stmt 1 view -0
+ 505              		.cfi_startproc
+ 506              		@ args = 0, pretend = 0, frame = 0
+ 507              		@ frame_needed = 0, uses_anonymous_args = 0
+ 508              		@ link register save eliminated.
+ 198:Components/user_lib.c ****     if (maxValue < minValue)
+ 509              		.loc 1 198 5 view .LVU121
+ 510              		.loc 1 198 8 is_stmt 0 view .LVU122
+ 511 0000 B4EEE01A 		vcmpe.f32	s2, s1
+ 512 0004 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 513 0008 1ED4     		bmi	.L58
+ 199:Components/user_lib.c ****     {
+ 200:Components/user_lib.c ****         return Input;
+ 201:Components/user_lib.c ****     }
+ 202:Components/user_lib.c **** 
+ 203:Components/user_lib.c ****     if (Input > maxValue)
+ 514              		.loc 1 203 5 is_stmt 1 view .LVU123
+ 515              		.loc 1 203 8 is_stmt 0 view .LVU124
+ 516 000a B4EEC01A 		vcmpe.f32	s2, s0
+ 517 000e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 518 0012 0AD5     		bpl	.L68
+ 519              	.LBB2:
  204:Components/user_lib.c ****     {
  205:Components/user_lib.c ****         float len = maxValue - minValue;
- 511              		.loc 1 205 9 is_stmt 1 view .LVU129
- 512              		.loc 1 205 15 is_stmt 0 view .LVU130
- 513 0034 31EE601A 		vsub.f32	s2, s2, s1
- 514              	.LVL37:
- 206:Components/user_lib.c ****         while (Input < minValue)
- 515              		.loc 1 206 9 is_stmt 1 view .LVU131
- 516              	.L57:
- 517              		.loc 1 206 15 view .LVU132
- 518 0038 B4EEE00A 		vcmpe.f32	s0, s1
- 519 003c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 520 0040 02D5     		bpl	.L51
+ 520              		.loc 1 205 9 is_stmt 1 view .LVU125
+ 521              		.loc 1 205 15 is_stmt 0 view .LVU126
+ 522 0014 71EE600A 		vsub.f32	s1, s2, s1
+ 523              	.LVL35:
+ 206:Components/user_lib.c ****         while (Input > maxValue)
+ 524              		.loc 1 206 9 is_stmt 1 view .LVU127
+ 525              		.loc 1 206 15 is_stmt 0 view .LVU128
+ 526 0018 01E0     		b	.L61
+ 527              	.L62:
  207:Components/user_lib.c ****         {
- 208:Components/user_lib.c ****             Input += len;
- 521              		.loc 1 208 13 view .LVU133
- 522              		.loc 1 208 19 is_stmt 0 view .LVU134
- 523 0042 30EE010A 		vadd.f32	s0, s0, s2
- 524              	.LVL38:
- 525              		.loc 1 208 19 view .LVU135
- 526 0046 F7E7     		b	.L57
- 527              	.LVL39:
- 528              	.L51:
- 529              		.loc 1 208 19 view .LVU136
- 530              	.LBE3:
+ 208:Components/user_lib.c ****             Input -= len;
+ 528              		.loc 1 208 13 is_stmt 1 view .LVU129
+ 529              		.loc 1 208 19 is_stmt 0 view .LVU130
+ 530 001a 30EE600A 		vsub.f32	s0, s0, s1
+ 531              	.LVL36:
+ 532              	.L61:
+ 206:Components/user_lib.c ****         while (Input > maxValue)
+ 533              		.loc 1 206 15 is_stmt 1 view .LVU131
+ 534 001e B4EEC10A 		vcmpe.f32	s0, s2
+ 535 0022 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 536 0026 F8DC     		bgt	.L62
+ 206:Components/user_lib.c ****         while (Input > maxValue)
+ 537              		.loc 1 206 15 is_stmt 0 view .LVU132
+ 538 0028 7047     		bx	lr
+ 539              	.LVL37:
+ 540              	.L68:
+ 206:Components/user_lib.c ****         while (Input > maxValue)
+ 541              		.loc 1 206 15 view .LVU133
+ 542              	.LBE2:
  209:Components/user_lib.c ****         }
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 14
+
+
  210:Components/user_lib.c ****     }
- 211:Components/user_lib.c ****     return Input;
- 212:Components/user_lib.c **** }
- 531              		.loc 1 212 1 view .LVU137
- 532 0048 7047     		bx	lr
- 533              		.cfi_endproc
- 534              	.LFE145:
- 536              		.section	.text.theta_format,"ax",%progbits
- 537              		.align	1
- 538              		.global	theta_format
- 539              		.syntax unified
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 14
-
-
- 540              		.thumb
- 541              		.thumb_func
- 543              	theta_format:
- 544              	.LVL40:
- 545              	.LFB146:
- 213:Components/user_lib.c **** 
- 214:Components/user_lib.c **** //»¡¶È¸ñÊ½»¯Îª-PI~PI
- 215:Components/user_lib.c **** 
- 216:Components/user_lib.c **** //½Ç¶È¸ñÊ½»¯Îª-180~180
- 217:Components/user_lib.c **** float theta_format(float Ang)
- 218:Components/user_lib.c **** {
- 546              		.loc 1 218 1 is_stmt 1 view -0
- 547              		.cfi_startproc
- 548              		@ args = 0, pretend = 0, frame = 0
- 549              		@ frame_needed = 0, uses_anonymous_args = 0
- 550              		.loc 1 218 1 is_stmt 0 view .LVU139
- 551 0000 08B5     		push	{r3, lr}
- 552              	.LCFI0:
- 553              		.cfi_def_cfa_offset 8
- 554              		.cfi_offset 3, -8
- 555              		.cfi_offset 14, -4
- 219:Components/user_lib.c ****     return loop_float_constrain(Ang, -180.0f, 180.0f);
- 556              		.loc 1 219 5 is_stmt 1 view .LVU140
- 557              		.loc 1 219 12 is_stmt 0 view .LVU141
- 558 0002 9FED031A 		vldr.32	s2, .L64
- 559 0006 DFED030A 		vldr.32	s1, .L64+4
- 560 000a FFF7FEFF 		bl	loop_float_constrain
- 561              	.LVL41:
+ 211:Components/user_lib.c ****     else if (Input < minValue)
+ 543              		.loc 1 211 10 is_stmt 1 view .LVU134
+ 544              		.loc 1 211 13 is_stmt 0 view .LVU135
+ 545 002a F4EEC00A 		vcmpe.f32	s1, s0
+ 546 002e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 547 0032 09DD     		ble	.L58
+ 548              	.LBB3:
+ 212:Components/user_lib.c ****     {
+ 213:Components/user_lib.c ****         float len = maxValue - minValue;
+ 549              		.loc 1 213 9 is_stmt 1 view .LVU136
+ 550              		.loc 1 213 15 is_stmt 0 view .LVU137
+ 551 0034 31EE601A 		vsub.f32	s2, s2, s1
+ 552              	.LVL38:
+ 214:Components/user_lib.c ****         while (Input < minValue)
+ 553              		.loc 1 214 9 is_stmt 1 view .LVU138
+ 554              	.L64:
+ 555              		.loc 1 214 15 view .LVU139
+ 556 0038 B4EEE00A 		vcmpe.f32	s0, s1
+ 557 003c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 558 0040 02D5     		bpl	.L58
+ 215:Components/user_lib.c ****         {
+ 216:Components/user_lib.c ****             Input += len;
+ 559              		.loc 1 216 13 view .LVU140
+ 560              		.loc 1 216 19 is_stmt 0 view .LVU141
+ 561 0042 30EE010A 		vadd.f32	s0, s0, s2
+ 562              	.LVL39:
+ 563              		.loc 1 216 19 view .LVU142
+ 564 0046 F7E7     		b	.L64
+ 565              	.LVL40:
+ 566              	.L58:
+ 567              		.loc 1 216 19 view .LVU143
+ 568              	.LBE3:
+ 217:Components/user_lib.c ****         }
+ 218:Components/user_lib.c ****     }
+ 219:Components/user_lib.c ****     return Input;
  220:Components/user_lib.c **** }
- 562              		.loc 1 220 1 view .LVU142
- 563 000e 08BD     		pop	{r3, pc}
- 564              	.L65:
- 565              		.align	2
- 566              	.L64:
- 567 0010 00003443 		.word	1127481344
- 568 0014 000034C3 		.word	-1020002304
- 569              		.cfi_endproc
- 570              	.LFE146:
- 572              		.section	.text.float_rounding,"ax",%progbits
- 573              		.align	1
- 574              		.global	float_rounding
- 575              		.syntax unified
- 576              		.thumb
- 577              		.thumb_func
- 579              	float_rounding:
- 580              	.LVL42:
- 581              	.LFB147:
+ 569              		.loc 1 220 1 view .LVU144
+ 570 0048 7047     		bx	lr
+ 571              		.cfi_endproc
+ 572              	.LFE146:
+ 574              		.section	.text.theta_format,"ax",%progbits
+ 575              		.align	1
+ 576              		.global	theta_format
+ 577              		.syntax unified
+ 578              		.thumb
+ 579              		.thumb_func
+ 581              	theta_format:
+ 582              	.LVL41:
+ 583              	.LFB147:
  221:Components/user_lib.c **** 
- 222:Components/user_lib.c **** int float_rounding(float raw)
- 223:Components/user_lib.c **** {
- 582              		.loc 1 223 1 is_stmt 1 view -0
- 583              		.cfi_startproc
- 584              		@ args = 0, pretend = 0, frame = 0
- 585              		@ frame_needed = 0, uses_anonymous_args = 0
- 586              		@ link register save eliminated.
- 224:Components/user_lib.c ****     static int integer;
- 587              		.loc 1 224 5 view .LVU144
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 15
+ 222:Components/user_lib.c **** // ï¿½ï¿½ï¿½È¸ï¿½Ê½ï¿½ï¿½Îª-PI~PI
+ 223:Components/user_lib.c **** 
+ 224:Components/user_lib.c **** // ï¿½Ç¶È¸ï¿½Ê½ï¿½ï¿½Îª-180~180
+ 225:Components/user_lib.c **** float theta_format(float Ang)
+ 226:Components/user_lib.c **** {
+ 584              		.loc 1 226 1 is_stmt 1 view -0
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 15
 
 
- 225:Components/user_lib.c ****     static float decimal;
- 588              		.loc 1 225 5 view .LVU145
- 226:Components/user_lib.c ****     integer = (int)raw;
- 589              		.loc 1 226 5 view .LVU146
- 590              		.loc 1 226 15 is_stmt 0 view .LVU147
- 591 0000 FDEEC07A 		vcvt.s32.f32	s15, s0
- 592              		.loc 1 226 13 view .LVU148
- 593 0004 0C4B     		ldr	r3, .L70
- 594 0006 C3ED007A 		vstr.32	s15, [r3]	@ int
- 227:Components/user_lib.c ****     decimal = raw - integer;
- 595              		.loc 1 227 5 is_stmt 1 view .LVU149
- 596              		.loc 1 227 19 is_stmt 0 view .LVU150
- 597 000a B8EEE77A 		vcvt.f32.s32	s14, s15
- 598 000e 30EE470A 		vsub.f32	s0, s0, s14
- 599              	.LVL43:
- 600              		.loc 1 227 13 view .LVU151
- 601 0012 0A4B     		ldr	r3, .L70+4
- 602 0014 83ED000A 		vstr.32	s0, [r3]
- 228:Components/user_lib.c ****     if (decimal > 0.5f)
- 603              		.loc 1 228 5 is_stmt 1 view .LVU152
- 604              		.loc 1 228 8 is_stmt 0 view .LVU153
- 605 0018 B6EE007A 		vmov.f32	s14, #5.0e-1
- 606 001c B4EEC70A 		vcmpe.f32	s0, s14
- 607 0020 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 608 0024 04DD     		ble	.L67
- 229:Components/user_lib.c ****         integer++;
- 609              		.loc 1 229 9 is_stmt 1 view .LVU154
- 610              		.loc 1 229 16 is_stmt 0 view .LVU155
- 611 0026 17EE903A 		vmov	r3, s15	@ int
- 612 002a 0133     		adds	r3, r3, #1
- 613 002c 024A     		ldr	r2, .L70
- 614 002e 1360     		str	r3, [r2]
- 615              	.L67:
- 230:Components/user_lib.c ****     return integer;
- 616              		.loc 1 230 5 is_stmt 1 view .LVU156
- 231:Components/user_lib.c **** }
- 617              		.loc 1 231 1 is_stmt 0 view .LVU157
- 618 0030 014B     		ldr	r3, .L70
- 619 0032 1868     		ldr	r0, [r3]
- 620 0034 7047     		bx	lr
- 621              	.L71:
- 622 0036 00BF     		.align	2
- 623              	.L70:
- 624 0038 00000000 		.word	.LANCHOR0
- 625 003c 00000000 		.word	.LANCHOR1
- 626              		.cfi_endproc
- 627              	.LFE147:
- 629              		.section	.text.OLS_Init,"ax",%progbits
- 630              		.align	1
- 631              		.global	OLS_Init
- 632              		.syntax unified
- 633              		.thumb
- 634              		.thumb_func
- 636              	OLS_Init:
+ 585              		.cfi_startproc
+ 586              		@ args = 0, pretend = 0, frame = 0
+ 587              		@ frame_needed = 0, uses_anonymous_args = 0
+ 588              		.loc 1 226 1 is_stmt 0 view .LVU146
+ 589 0000 08B5     		push	{r3, lr}
+ 590              	.LCFI0:
+ 591              		.cfi_def_cfa_offset 8
+ 592              		.cfi_offset 3, -8
+ 593              		.cfi_offset 14, -4
+ 227:Components/user_lib.c ****     return loop_float_constrain(Ang, -180.0f, 180.0f);
+ 594              		.loc 1 227 5 is_stmt 1 view .LVU147
+ 595              		.loc 1 227 12 is_stmt 0 view .LVU148
+ 596 0002 9FED031A 		vldr.32	s2, .L71
+ 597 0006 DFED030A 		vldr.32	s1, .L71+4
+ 598 000a FFF7FEFF 		bl	loop_float_constrain
+ 599              	.LVL42:
+ 228:Components/user_lib.c **** }
+ 600              		.loc 1 228 1 view .LVU149
+ 601 000e 08BD     		pop	{r3, pc}
+ 602              	.L72:
+ 603              		.align	2
+ 604              	.L71:
+ 605 0010 00003443 		.word	1127481344
+ 606 0014 000034C3 		.word	-1020002304
+ 607              		.cfi_endproc
+ 608              	.LFE147:
+ 610              		.section	.text.float_rounding,"ax",%progbits
+ 611              		.align	1
+ 612              		.global	float_rounding
+ 613              		.syntax unified
+ 614              		.thumb
+ 615              		.thumb_func
+ 617              	float_rounding:
+ 618              	.LVL43:
+ 619              	.LFB148:
+ 229:Components/user_lib.c **** 
+ 230:Components/user_lib.c **** int float_rounding(float raw)
+ 231:Components/user_lib.c **** {
+ 620              		.loc 1 231 1 is_stmt 1 view -0
+ 621              		.cfi_startproc
+ 622              		@ args = 0, pretend = 0, frame = 0
+ 623              		@ frame_needed = 0, uses_anonymous_args = 0
+ 624              		@ link register save eliminated.
+ 232:Components/user_lib.c ****     static int integer;
+ 625              		.loc 1 232 5 view .LVU151
+ 233:Components/user_lib.c ****     static float decimal;
+ 626              		.loc 1 233 5 view .LVU152
+ 234:Components/user_lib.c ****     integer = (int)raw;
+ 627              		.loc 1 234 5 view .LVU153
+ 628              		.loc 1 234 15 is_stmt 0 view .LVU154
+ 629 0000 FDEEC07A 		vcvt.s32.f32	s15, s0
+ 630              		.loc 1 234 13 view .LVU155
+ 631 0004 0C4B     		ldr	r3, .L77
+ 632 0006 C3ED007A 		vstr.32	s15, [r3]	@ int
+ 235:Components/user_lib.c ****     decimal = raw - integer;
+ 633              		.loc 1 235 5 is_stmt 1 view .LVU156
+ 634              		.loc 1 235 19 is_stmt 0 view .LVU157
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 16
+
+
+ 635 000a B8EEE77A 		vcvt.f32.s32	s14, s15
+ 636 000e 30EE470A 		vsub.f32	s0, s0, s14
  637              	.LVL44:
- 638              	.LFB148:
- 232:Components/user_lib.c **** 
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 16
+ 638              		.loc 1 235 13 view .LVU158
+ 639 0012 0A4B     		ldr	r3, .L77+4
+ 640 0014 83ED000A 		vstr.32	s0, [r3]
+ 236:Components/user_lib.c ****     if (decimal > 0.5f)
+ 641              		.loc 1 236 5 is_stmt 1 view .LVU159
+ 642              		.loc 1 236 8 is_stmt 0 view .LVU160
+ 643 0018 B6EE007A 		vmov.f32	s14, #5.0e-1
+ 644 001c B4EEC70A 		vcmpe.f32	s0, s14
+ 645 0020 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 646 0024 04DD     		ble	.L74
+ 237:Components/user_lib.c ****         integer++;
+ 647              		.loc 1 237 9 is_stmt 1 view .LVU161
+ 648              		.loc 1 237 16 is_stmt 0 view .LVU162
+ 649 0026 17EE903A 		vmov	r3, s15	@ int
+ 650 002a 0133     		adds	r3, r3, #1
+ 651 002c 024A     		ldr	r2, .L77
+ 652 002e 1360     		str	r3, [r2]
+ 653              	.L74:
+ 238:Components/user_lib.c ****     return integer;
+ 654              		.loc 1 238 5 is_stmt 1 view .LVU163
+ 239:Components/user_lib.c **** }
+ 655              		.loc 1 239 1 is_stmt 0 view .LVU164
+ 656 0030 014B     		ldr	r3, .L77
+ 657 0032 1868     		ldr	r0, [r3]
+ 658 0034 7047     		bx	lr
+ 659              	.L78:
+ 660 0036 00BF     		.align	2
+ 661              	.L77:
+ 662 0038 00000000 		.word	.LANCHOR0
+ 663 003c 00000000 		.word	.LANCHOR1
+ 664              		.cfi_endproc
+ 665              	.LFE148:
+ 667              		.section	.text.OLS_Init,"ax",%progbits
+ 668              		.align	1
+ 669              		.global	OLS_Init
+ 670              		.syntax unified
+ 671              		.thumb
+ 672              		.thumb_func
+ 674              	OLS_Init:
+ 675              	.LVL45:
+ 676              	.LFB149:
+ 240:Components/user_lib.c **** 
+ 241:Components/user_lib.c **** /**
+ 242:Components/user_lib.c ****  * @brief          ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
+ 243:Components/user_lib.c ****  * @param[in]      ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ë·ï¿½ï¿½á¹¹ï¿½ï¿½
+ 244:Components/user_lib.c ****  * @param[in]      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ 245:Components/user_lib.c ****  * @retval         ï¿½ï¿½ï¿½Ø¿ï¿½
+ 246:Components/user_lib.c ****  */
+ 247:Components/user_lib.c **** void OLS_Init(Ordinary_Least_Squares_t *OLS, uint16_t order)
+ 248:Components/user_lib.c **** {
+ 677              		.loc 1 248 1 is_stmt 1 view -0
+ 678              		.cfi_startproc
+ 679              		@ args = 0, pretend = 0, frame = 0
+ 680              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 17
 
 
- 233:Components/user_lib.c **** /**
- 234:Components/user_lib.c ****  * @brief          ×îÐ¡¶þ³Ë·¨³õÊ¼»¯
- 235:Components/user_lib.c ****  * @param[in]      ×îÐ¡¶þ³Ë·¨½á¹¹Ìå
- 236:Components/user_lib.c ****  * @param[in]      Ñù±¾Êý
- 237:Components/user_lib.c ****  * @retval         ·µ»Ø¿Õ
- 238:Components/user_lib.c ****  */
- 239:Components/user_lib.c **** void OLS_Init(Ordinary_Least_Squares_t *OLS, uint16_t order)
- 240:Components/user_lib.c **** {
- 639              		.loc 1 240 1 is_stmt 1 view -0
- 640              		.cfi_startproc
- 641              		@ args = 0, pretend = 0, frame = 0
- 642              		@ frame_needed = 0, uses_anonymous_args = 0
- 643              		.loc 1 240 1 is_stmt 0 view .LVU159
- 644 0000 70B5     		push	{r4, r5, r6, lr}
- 645              	.LCFI1:
- 646              		.cfi_def_cfa_offset 16
- 647              		.cfi_offset 4, -16
- 648              		.cfi_offset 5, -12
- 649              		.cfi_offset 6, -8
- 650              		.cfi_offset 14, -4
- 651 0002 0446     		mov	r4, r0
- 241:Components/user_lib.c ****     OLS->Order = order;
- 652              		.loc 1 241 5 is_stmt 1 view .LVU160
- 653              		.loc 1 241 16 is_stmt 0 view .LVU161
- 654 0004 0180     		strh	r1, [r0]	@ movhi
- 242:Components/user_lib.c ****     OLS->Count = 0;
- 655              		.loc 1 242 5 is_stmt 1 view .LVU162
- 656              		.loc 1 242 16 is_stmt 0 view .LVU163
- 657 0006 0026     		movs	r6, #0
- 658 0008 4660     		str	r6, [r0, #4]
- 243:Components/user_lib.c ****     OLS->x = (float *)user_malloc(sizeof(float) * order);
- 659              		.loc 1 243 5 is_stmt 1 view .LVU164
- 660              		.loc 1 243 23 is_stmt 0 view .LVU165
- 661 000a 8D00     		lsls	r5, r1, #2
- 662 000c 2846     		mov	r0, r5
- 663              	.LVL45:
- 664              		.loc 1 243 23 view .LVU166
- 665 000e FFF7FEFF 		bl	pvPortMalloc
- 666              	.LVL46:
- 667              		.loc 1 243 12 view .LVU167
- 668 0012 A060     		str	r0, [r4, #8]
- 244:Components/user_lib.c ****     OLS->y = (float *)user_malloc(sizeof(float) * order);
- 669              		.loc 1 244 5 is_stmt 1 view .LVU168
- 670              		.loc 1 244 23 is_stmt 0 view .LVU169
- 671 0014 2846     		mov	r0, r5
- 672 0016 FFF7FEFF 		bl	pvPortMalloc
- 673              	.LVL47:
- 674              		.loc 1 244 12 view .LVU170
- 675 001a E060     		str	r0, [r4, #12]
- 245:Components/user_lib.c ****     OLS->k = 0;
- 676              		.loc 1 245 5 is_stmt 1 view .LVU171
- 677              		.loc 1 245 12 is_stmt 0 view .LVU172
- 678 001c 0023     		movs	r3, #0
- 679 001e 2361     		str	r3, [r4, #16]	@ float
- 246:Components/user_lib.c ****     OLS->b = 0;
- 680              		.loc 1 246 5 is_stmt 1 view .LVU173
- 681              		.loc 1 246 12 is_stmt 0 view .LVU174
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 17
+ 681              		.loc 1 248 1 is_stmt 0 view .LVU166
+ 682 0000 70B5     		push	{r4, r5, r6, lr}
+ 683              	.LCFI1:
+ 684              		.cfi_def_cfa_offset 16
+ 685              		.cfi_offset 4, -16
+ 686              		.cfi_offset 5, -12
+ 687              		.cfi_offset 6, -8
+ 688              		.cfi_offset 14, -4
+ 689 0002 0446     		mov	r4, r0
+ 249:Components/user_lib.c ****     OLS->Order = order;
+ 690              		.loc 1 249 5 is_stmt 1 view .LVU167
+ 691              		.loc 1 249 16 is_stmt 0 view .LVU168
+ 692 0004 0180     		strh	r1, [r0]	@ movhi
+ 250:Components/user_lib.c ****     OLS->Count = 0;
+ 693              		.loc 1 250 5 is_stmt 1 view .LVU169
+ 694              		.loc 1 250 16 is_stmt 0 view .LVU170
+ 695 0006 0026     		movs	r6, #0
+ 696 0008 4660     		str	r6, [r0, #4]
+ 251:Components/user_lib.c ****     OLS->x = (float *)user_malloc(sizeof(float) * order);
+ 697              		.loc 1 251 5 is_stmt 1 view .LVU171
+ 698              		.loc 1 251 23 is_stmt 0 view .LVU172
+ 699 000a 8D00     		lsls	r5, r1, #2
+ 700 000c 2846     		mov	r0, r5
+ 701              	.LVL46:
+ 702              		.loc 1 251 23 view .LVU173
+ 703 000e FFF7FEFF 		bl	pvPortMalloc
+ 704              	.LVL47:
+ 705              		.loc 1 251 12 view .LVU174
+ 706 0012 A060     		str	r0, [r4, #8]
+ 252:Components/user_lib.c ****     OLS->y = (float *)user_malloc(sizeof(float) * order);
+ 707              		.loc 1 252 5 is_stmt 1 view .LVU175
+ 708              		.loc 1 252 23 is_stmt 0 view .LVU176
+ 709 0014 2846     		mov	r0, r5
+ 710 0016 FFF7FEFF 		bl	pvPortMalloc
+ 711              	.LVL48:
+ 712              		.loc 1 252 12 view .LVU177
+ 713 001a E060     		str	r0, [r4, #12]
+ 253:Components/user_lib.c ****     OLS->k = 0;
+ 714              		.loc 1 253 5 is_stmt 1 view .LVU178
+ 715              		.loc 1 253 12 is_stmt 0 view .LVU179
+ 716 001c 0023     		movs	r3, #0
+ 717 001e 2361     		str	r3, [r4, #16]	@ float
+ 254:Components/user_lib.c ****     OLS->b = 0;
+ 718              		.loc 1 254 5 is_stmt 1 view .LVU180
+ 719              		.loc 1 254 12 is_stmt 0 view .LVU181
+ 720 0020 6361     		str	r3, [r4, #20]	@ float
+ 255:Components/user_lib.c ****     memset((void *)OLS->x, 0, sizeof(float) * order);
+ 721              		.loc 1 255 5 is_stmt 1 view .LVU182
+ 722 0022 2A46     		mov	r2, r5
+ 723 0024 3146     		mov	r1, r6
+ 724 0026 A068     		ldr	r0, [r4, #8]
+ 725 0028 FFF7FEFF 		bl	memset
+ 726              	.LVL49:
+ 256:Components/user_lib.c ****     memset((void *)OLS->y, 0, sizeof(float) * order);
+ 727              		.loc 1 256 5 view .LVU183
+ 728 002c 2A46     		mov	r2, r5
+ 729 002e 3146     		mov	r1, r6
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 18
 
 
- 682 0020 6361     		str	r3, [r4, #20]	@ float
- 247:Components/user_lib.c ****     memset((void *)OLS->x, 0, sizeof(float) * order);
- 683              		.loc 1 247 5 is_stmt 1 view .LVU175
- 684 0022 2A46     		mov	r2, r5
- 685 0024 3146     		mov	r1, r6
- 686 0026 A068     		ldr	r0, [r4, #8]
- 687 0028 FFF7FEFF 		bl	memset
- 688              	.LVL48:
- 248:Components/user_lib.c ****     memset((void *)OLS->y, 0, sizeof(float) * order);
- 689              		.loc 1 248 5 view .LVU176
- 690 002c 2A46     		mov	r2, r5
- 691 002e 3146     		mov	r1, r6
- 692 0030 E068     		ldr	r0, [r4, #12]
- 693 0032 FFF7FEFF 		bl	memset
- 694              	.LVL49:
- 249:Components/user_lib.c ****     memset((void *)OLS->t, 0, sizeof(float) * 4);
- 695              		.loc 1 249 5 view .LVU177
- 696 0036 E661     		str	r6, [r4, #28]	@ unaligned
- 697 0038 2662     		str	r6, [r4, #32]	@ unaligned
- 698 003a 6662     		str	r6, [r4, #36]	@ unaligned
- 699 003c A662     		str	r6, [r4, #40]	@ unaligned
- 250:Components/user_lib.c **** }
- 700              		.loc 1 250 1 is_stmt 0 view .LVU178
- 701 003e 70BD     		pop	{r4, r5, r6, pc}
- 702              		.loc 1 250 1 view .LVU179
- 703              		.cfi_endproc
- 704              	.LFE148:
- 706              		.section	.text.OLS_Update,"ax",%progbits
- 707              		.align	1
- 708              		.global	OLS_Update
- 709              		.syntax unified
- 710              		.thumb
- 711              		.thumb_func
- 713              	OLS_Update:
- 714              	.LVL50:
- 715              	.LFB149:
- 251:Components/user_lib.c **** 
- 252:Components/user_lib.c **** /**
- 253:Components/user_lib.c ****  * @brief          ×îÐ¡¶þ³Ë·¨ÄâºÏ
- 254:Components/user_lib.c ****  * @param[in]      ×îÐ¡¶þ³Ë·¨½á¹¹Ìå
- 255:Components/user_lib.c ****  * @param[in]      ÐÅºÅÐÂÑù±¾¾àÉÏÒ»¸öÑù±¾Ê±¼ä¼ä¸ô
- 256:Components/user_lib.c ****  * @param[in]      ÐÅºÅÖµ
- 257:Components/user_lib.c ****  */
- 258:Components/user_lib.c **** void OLS_Update(Ordinary_Least_Squares_t *OLS, float deltax, float y)
- 259:Components/user_lib.c **** {
- 716              		.loc 1 259 1 is_stmt 1 view -0
- 717              		.cfi_startproc
- 718              		@ args = 0, pretend = 0, frame = 0
- 719              		@ frame_needed = 0, uses_anonymous_args = 0
- 720              		@ link register save eliminated.
- 260:Components/user_lib.c ****     static float temp = 0;
- 721              		.loc 1 260 5 view .LVU181
- 261:Components/user_lib.c ****     temp = OLS->x[1];
- 722              		.loc 1 261 5 view .LVU182
- 723              		.loc 1 261 15 is_stmt 0 view .LVU183
- 724 0000 8368     		ldr	r3, [r0, #8]
- 725              		.loc 1 261 10 view .LVU184
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 18
+ 730 0030 E068     		ldr	r0, [r4, #12]
+ 731 0032 FFF7FEFF 		bl	memset
+ 732              	.LVL50:
+ 257:Components/user_lib.c ****     memset((void *)OLS->t, 0, sizeof(float) * 4);
+ 733              		.loc 1 257 5 view .LVU184
+ 734 0036 E661     		str	r6, [r4, #28]	@ unaligned
+ 735 0038 2662     		str	r6, [r4, #32]	@ unaligned
+ 736 003a 6662     		str	r6, [r4, #36]	@ unaligned
+ 737 003c A662     		str	r6, [r4, #40]	@ unaligned
+ 258:Components/user_lib.c **** }
+ 738              		.loc 1 258 1 is_stmt 0 view .LVU185
+ 739 003e 70BD     		pop	{r4, r5, r6, pc}
+ 740              		.loc 1 258 1 view .LVU186
+ 741              		.cfi_endproc
+ 742              	.LFE149:
+ 744              		.section	.text.OLS_Update,"ax",%progbits
+ 745              		.align	1
+ 746              		.global	OLS_Update
+ 747              		.syntax unified
+ 748              		.thumb
+ 749              		.thumb_func
+ 751              	OLS_Update:
+ 752              	.LVL51:
+ 753              	.LFB150:
+ 259:Components/user_lib.c **** 
+ 260:Components/user_lib.c **** /**
+ 261:Components/user_lib.c ****  * @brief          ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½ï¿½
+ 262:Components/user_lib.c ****  * @param[in]      ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ë·ï¿½ï¿½á¹¹ï¿½ï¿½
+ 263:Components/user_lib.c ****  * @param[in]      ï¿½Åºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
+ 264:Components/user_lib.c ****  * @param[in]      ï¿½Åºï¿½Öµ
+ 265:Components/user_lib.c ****  */
+ 266:Components/user_lib.c **** void OLS_Update(Ordinary_Least_Squares_t *OLS, float deltax, float y)
+ 267:Components/user_lib.c **** {
+ 754              		.loc 1 267 1 is_stmt 1 view -0
+ 755              		.cfi_startproc
+ 756              		@ args = 0, pretend = 0, frame = 0
+ 757              		@ frame_needed = 0, uses_anonymous_args = 0
+ 758              		@ link register save eliminated.
+ 268:Components/user_lib.c ****     static float temp = 0;
+ 759              		.loc 1 268 5 view .LVU188
+ 269:Components/user_lib.c ****     temp = OLS->x[1];
+ 760              		.loc 1 269 5 view .LVU189
+ 761              		.loc 1 269 15 is_stmt 0 view .LVU190
+ 762 0000 8368     		ldr	r3, [r0, #8]
+ 763              		.loc 1 269 10 view .LVU191
+ 764 0002 93ED017A 		vldr.32	s14, [r3, #4]
+ 765 0006 614B     		ldr	r3, .L89
+ 766 0008 83ED007A 		vstr.32	s14, [r3]
+ 270:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 767              		.loc 1 270 5 is_stmt 1 view .LVU192
+ 768              	.LBB4:
+ 769              		.loc 1 270 10 view .LVU193
+ 770              	.LVL52:
+ 771              		.loc 1 270 19 is_stmt 0 view .LVU194
+ 772 000c 0023     		movs	r3, #0
+ 773              		.loc 1 270 5 view .LVU195
+ 774 000e 13E0     		b	.L82
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 19
 
 
- 726 0002 93ED017A 		vldr.32	s14, [r3, #4]
- 727 0006 614B     		ldr	r3, .L82
- 728 0008 83ED007A 		vstr.32	s14, [r3]
- 262:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 729              		.loc 1 262 5 is_stmt 1 view .LVU185
- 730              	.LBB4:
- 731              		.loc 1 262 10 view .LVU186
- 732              	.LVL51:
- 733              		.loc 1 262 19 is_stmt 0 view .LVU187
- 734 000c 0023     		movs	r3, #0
- 735              		.loc 1 262 5 view .LVU188
- 736 000e 13E0     		b	.L75
- 737              	.LVL52:
- 738              	.L76:
- 263:Components/user_lib.c ****     {
- 264:Components/user_lib.c ****         OLS->x[i] = OLS->x[i + 1] - temp;
- 739              		.loc 1 264 9 is_stmt 1 discriminator 3 view .LVU189
- 740              		.loc 1 264 24 is_stmt 0 discriminator 3 view .LVU190
- 741 0010 8268     		ldr	r2, [r0, #8]
- 742              		.loc 1 264 27 discriminator 3 view .LVU191
- 743 0012 591C     		adds	r1, r3, #1
- 744 0014 02EB810C 		add	ip, r2, r1, lsl #2
- 745 0018 DCED007A 		vldr.32	s15, [ip]
- 746              		.loc 1 264 15 discriminator 3 view .LVU192
- 747 001c 02EB8302 		add	r2, r2, r3, lsl #2
- 748              		.loc 1 264 35 discriminator 3 view .LVU193
- 749 0020 77EEC77A 		vsub.f32	s15, s15, s14
- 750              		.loc 1 264 19 discriminator 3 view .LVU194
- 751 0024 C2ED007A 		vstr.32	s15, [r2]
- 265:Components/user_lib.c ****         OLS->y[i] = OLS->y[i + 1];
- 752              		.loc 1 265 9 is_stmt 1 discriminator 3 view .LVU195
- 753              		.loc 1 265 24 is_stmt 0 discriminator 3 view .LVU196
- 754 0028 C268     		ldr	r2, [r0, #12]
- 755              		.loc 1 265 15 discriminator 3 view .LVU197
- 756 002a 02EB8303 		add	r3, r2, r3, lsl #2
- 757              	.LVL53:
- 758              		.loc 1 265 27 discriminator 3 view .LVU198
- 759 002e 02EB8102 		add	r2, r2, r1, lsl #2
- 760 0032 1268     		ldr	r2, [r2]	@ float
- 761              		.loc 1 265 19 discriminator 3 view .LVU199
- 762 0034 1A60     		str	r2, [r3]	@ float
- 262:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 763              		.loc 1 262 46 is_stmt 1 discriminator 3 view .LVU200
- 764 0036 8BB2     		uxth	r3, r1
- 765              	.LVL54:
- 766              	.L75:
- 262:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 767              		.loc 1 262 26 discriminator 1 view .LVU201
- 262:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 768              		.loc 1 262 33 is_stmt 0 discriminator 1 view .LVU202
- 769 0038 0288     		ldrh	r2, [r0]
- 262:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 770              		.loc 1 262 41 discriminator 1 view .LVU203
- 771 003a 511E     		subs	r1, r2, #1
- 262:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 772              		.loc 1 262 5 discriminator 1 view .LVU204
- 773 003c 8B42     		cmp	r3, r1
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 19
-
-
- 774 003e E7DB     		blt	.L76
- 775              	.LBE4:
- 266:Components/user_lib.c ****     }
- 267:Components/user_lib.c ****     OLS->x[OLS->Order - 1] = OLS->x[OLS->Order - 2] + deltax;
- 776              		.loc 1 267 5 is_stmt 1 view .LVU205
- 777              		.loc 1 267 33 is_stmt 0 view .LVU206
- 778 0040 8168     		ldr	r1, [r0, #8]
- 779              		.loc 1 267 36 view .LVU207
- 780 0042 02F18043 		add	r3, r2, #1073741824
- 781              	.LVL55:
- 782              		.loc 1 267 36 view .LVU208
- 783 0046 023B     		subs	r3, r3, #2
- 784 0048 01EB8303 		add	r3, r1, r3, lsl #2
- 785 004c D3ED007A 		vldr.32	s15, [r3]
- 786              		.loc 1 267 11 view .LVU209
- 787 0050 6FF0404C 		mvn	ip, #-1073741824
- 788 0054 6244     		add	r2, r2, ip
- 789 0056 01EB8202 		add	r2, r1, r2, lsl #2
- 790              		.loc 1 267 53 view .LVU210
- 791 005a 37EE800A 		vadd.f32	s0, s15, s0
- 792              	.LVL56:
- 793              		.loc 1 267 28 view .LVU211
- 794 005e 82ED000A 		vstr.32	s0, [r2]
- 268:Components/user_lib.c ****     OLS->y[OLS->Order - 1] = y;
- 795              		.loc 1 268 5 is_stmt 1 view .LVU212
- 796              		.loc 1 268 8 is_stmt 0 view .LVU213
- 797 0062 C368     		ldr	r3, [r0, #12]
- 798              		.loc 1 268 15 view .LVU214
- 799 0064 0288     		ldrh	r2, [r0]
- 800              		.loc 1 268 11 view .LVU215
- 801 0066 6244     		add	r2, r2, ip
- 802 0068 03EB8203 		add	r3, r3, r2, lsl #2
- 803              		.loc 1 268 28 view .LVU216
- 804 006c C3ED000A 		vstr.32	s1, [r3]
- 269:Components/user_lib.c **** 
- 270:Components/user_lib.c ****     if (OLS->Count < OLS->Order)
- 805              		.loc 1 270 5 is_stmt 1 view .LVU217
- 806              		.loc 1 270 12 is_stmt 0 view .LVU218
- 807 0070 4368     		ldr	r3, [r0, #4]
- 808              		.loc 1 270 25 view .LVU219
- 809 0072 B0F800C0 		ldrh	ip, [r0]
- 810              		.loc 1 270 8 view .LVU220
- 811 0076 6345     		cmp	r3, ip
- 812 0078 01D2     		bcs	.L77
+ 775              	.LVL53:
+ 776              	.L83:
  271:Components/user_lib.c ****     {
- 272:Components/user_lib.c ****         OLS->Count++;
- 813              		.loc 1 272 9 is_stmt 1 view .LVU221
- 814              		.loc 1 272 19 is_stmt 0 view .LVU222
- 815 007a 0133     		adds	r3, r3, #1
- 816 007c 4360     		str	r3, [r0, #4]
- 817              	.L77:
- 273:Components/user_lib.c ****     }
- 274:Components/user_lib.c ****     memset((void *)OLS->t, 0, sizeof(float) * 4);
- 818              		.loc 1 274 5 is_stmt 1 view .LVU223
- 819 007e 0023     		movs	r3, #0
- 820 0080 C361     		str	r3, [r0, #28]	@ unaligned
- 821 0082 0362     		str	r3, [r0, #32]	@ unaligned
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 20
+ 272:Components/user_lib.c ****         OLS->x[i] = OLS->x[i + 1] - temp;
+ 777              		.loc 1 272 9 is_stmt 1 discriminator 3 view .LVU196
+ 778              		.loc 1 272 24 is_stmt 0 discriminator 3 view .LVU197
+ 779 0010 8268     		ldr	r2, [r0, #8]
+ 780              		.loc 1 272 27 discriminator 3 view .LVU198
+ 781 0012 591C     		adds	r1, r3, #1
+ 782 0014 02EB810C 		add	ip, r2, r1, lsl #2
+ 783 0018 DCED007A 		vldr.32	s15, [ip]
+ 784              		.loc 1 272 15 discriminator 3 view .LVU199
+ 785 001c 02EB8302 		add	r2, r2, r3, lsl #2
+ 786              		.loc 1 272 35 discriminator 3 view .LVU200
+ 787 0020 77EEC77A 		vsub.f32	s15, s15, s14
+ 788              		.loc 1 272 19 discriminator 3 view .LVU201
+ 789 0024 C2ED007A 		vstr.32	s15, [r2]
+ 273:Components/user_lib.c ****         OLS->y[i] = OLS->y[i + 1];
+ 790              		.loc 1 273 9 is_stmt 1 discriminator 3 view .LVU202
+ 791              		.loc 1 273 24 is_stmt 0 discriminator 3 view .LVU203
+ 792 0028 C268     		ldr	r2, [r0, #12]
+ 793              		.loc 1 273 15 discriminator 3 view .LVU204
+ 794 002a 02EB8303 		add	r3, r2, r3, lsl #2
+ 795              	.LVL54:
+ 796              		.loc 1 273 27 discriminator 3 view .LVU205
+ 797 002e 02EB8102 		add	r2, r2, r1, lsl #2
+ 798 0032 1268     		ldr	r2, [r2]	@ float
+ 799              		.loc 1 273 19 discriminator 3 view .LVU206
+ 800 0034 1A60     		str	r2, [r3]	@ float
+ 270:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 801              		.loc 1 270 46 is_stmt 1 discriminator 3 view .LVU207
+ 802 0036 8BB2     		uxth	r3, r1
+ 803              	.LVL55:
+ 804              	.L82:
+ 270:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 805              		.loc 1 270 26 discriminator 1 view .LVU208
+ 270:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 806              		.loc 1 270 33 is_stmt 0 discriminator 1 view .LVU209
+ 807 0038 0288     		ldrh	r2, [r0]
+ 270:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 808              		.loc 1 270 41 discriminator 1 view .LVU210
+ 809 003a 511E     		subs	r1, r2, #1
+ 270:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 810              		.loc 1 270 5 discriminator 1 view .LVU211
+ 811 003c 8B42     		cmp	r3, r1
+ 812 003e E7DB     		blt	.L83
+ 813              	.LBE4:
+ 274:Components/user_lib.c ****     }
+ 275:Components/user_lib.c ****     OLS->x[OLS->Order - 1] = OLS->x[OLS->Order - 2] + deltax;
+ 814              		.loc 1 275 5 is_stmt 1 view .LVU212
+ 815              		.loc 1 275 33 is_stmt 0 view .LVU213
+ 816 0040 8168     		ldr	r1, [r0, #8]
+ 817              		.loc 1 275 36 view .LVU214
+ 818 0042 02F18043 		add	r3, r2, #1073741824
+ 819              	.LVL56:
+ 820              		.loc 1 275 36 view .LVU215
+ 821 0046 023B     		subs	r3, r3, #2
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 20
 
 
- 822 0084 4362     		str	r3, [r0, #36]	@ unaligned
- 823 0086 8362     		str	r3, [r0, #40]	@ unaligned
- 275:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 824              		.loc 1 275 5 view .LVU224
- 825              	.LBB5:
- 826              		.loc 1 275 10 view .LVU225
- 827              		.loc 1 275 34 is_stmt 0 view .LVU226
- 828 0088 8388     		ldrh	r3, [r0, #4]
- 829              		.loc 1 275 19 view .LVU227
- 830 008a ACEB0303 		sub	r3, ip, r3
- 831 008e 9BB2     		uxth	r3, r3
- 832              	.LVL57:
- 833              		.loc 1 275 19 view .LVU228
- 834 0090 1A46     		mov	r2, r3
- 835              		.loc 1 275 5 view .LVU229
- 836 0092 2DE0     		b	.L78
- 837              	.LVL58:
- 838              	.L79:
- 276:Components/user_lib.c ****     {
- 277:Components/user_lib.c ****         OLS->t[0] += OLS->x[i] * OLS->x[i];
- 839              		.loc 1 277 9 is_stmt 1 discriminator 3 view .LVU230
- 840              		.loc 1 277 25 is_stmt 0 discriminator 3 view .LVU231
- 841 0094 8168     		ldr	r1, [r0, #8]
- 842              		.loc 1 277 28 discriminator 3 view .LVU232
- 843 0096 01EB8201 		add	r1, r1, r2, lsl #2
- 844 009a D1ED007A 		vldr.32	s15, [r1]
- 845              		.loc 1 277 32 discriminator 3 view .LVU233
- 846 009e 67EEA77A 		vmul.f32	s15, s15, s15
- 847              		.loc 1 277 19 discriminator 3 view .LVU234
- 848 00a2 90ED077A 		vldr.32	s14, [r0, #28]
- 849 00a6 77EE277A 		vadd.f32	s15, s14, s15
- 850 00aa C0ED077A 		vstr.32	s15, [r0, #28]
- 278:Components/user_lib.c ****         OLS->t[1] += OLS->x[i];
- 851              		.loc 1 278 9 is_stmt 1 discriminator 3 view .LVU235
- 852              		.loc 1 278 28 is_stmt 0 discriminator 3 view .LVU236
- 853 00ae 91ED007A 		vldr.32	s14, [r1]
- 854              		.loc 1 278 19 discriminator 3 view .LVU237
- 855 00b2 D0ED087A 		vldr.32	s15, [r0, #32]
- 856 00b6 77EE877A 		vadd.f32	s15, s15, s14
- 857 00ba C0ED087A 		vstr.32	s15, [r0, #32]
- 279:Components/user_lib.c ****         OLS->t[2] += OLS->x[i] * OLS->y[i];
- 858              		.loc 1 279 9 is_stmt 1 discriminator 3 view .LVU238
- 859              		.loc 1 279 28 is_stmt 0 discriminator 3 view .LVU239
- 860 00be D1ED007A 		vldr.32	s15, [r1]
- 861              		.loc 1 279 37 discriminator 3 view .LVU240
- 862 00c2 C168     		ldr	r1, [r0, #12]
- 863              		.loc 1 279 40 discriminator 3 view .LVU241
- 864 00c4 01EB8201 		add	r1, r1, r2, lsl #2
- 865 00c8 91ED007A 		vldr.32	s14, [r1]
- 866              		.loc 1 279 32 discriminator 3 view .LVU242
- 867 00cc 27EE877A 		vmul.f32	s14, s15, s14
- 868              		.loc 1 279 19 discriminator 3 view .LVU243
- 869 00d0 D0ED097A 		vldr.32	s15, [r0, #36]
- 870 00d4 77EE877A 		vadd.f32	s15, s15, s14
- 871 00d8 C0ED097A 		vstr.32	s15, [r0, #36]
- 280:Components/user_lib.c ****         OLS->t[3] += OLS->y[i];
- 872              		.loc 1 280 9 is_stmt 1 discriminator 3 view .LVU244
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 21
-
-
- 873              		.loc 1 280 28 is_stmt 0 discriminator 3 view .LVU245
- 874 00dc 91ED007A 		vldr.32	s14, [r1]
- 875              		.loc 1 280 19 discriminator 3 view .LVU246
- 876 00e0 D0ED0A7A 		vldr.32	s15, [r0, #40]
- 877 00e4 77EE877A 		vadd.f32	s15, s15, s14
- 878 00e8 C0ED0A7A 		vstr.32	s15, [r0, #40]
- 275:Components/user_lib.c ****     {
- 879              		.loc 1 275 64 is_stmt 1 discriminator 3 view .LVU247
- 880 00ec 0132     		adds	r2, r2, #1
- 881              	.LVL59:
- 275:Components/user_lib.c ****     {
- 882              		.loc 1 275 64 is_stmt 0 discriminator 3 view .LVU248
- 883 00ee 92B2     		uxth	r2, r2
- 884              	.LVL60:
- 885              	.L78:
- 275:Components/user_lib.c ****     {
- 886              		.loc 1 275 48 is_stmt 1 discriminator 1 view .LVU249
- 275:Components/user_lib.c ****     {
- 887              		.loc 1 275 5 is_stmt 0 discriminator 1 view .LVU250
- 888 00f0 9445     		cmp	ip, r2
- 889 00f2 CFD8     		bhi	.L79
- 890              	.LBE5:
+ 822 0048 01EB8303 		add	r3, r1, r3, lsl #2
+ 823 004c D3ED007A 		vldr.32	s15, [r3]
+ 824              		.loc 1 275 11 view .LVU216
+ 825 0050 6FF0404C 		mvn	ip, #-1073741824
+ 826 0054 6244     		add	r2, r2, ip
+ 827 0056 01EB8202 		add	r2, r1, r2, lsl #2
+ 828              		.loc 1 275 53 view .LVU217
+ 829 005a 37EE800A 		vadd.f32	s0, s15, s0
+ 830              	.LVL57:
+ 831              		.loc 1 275 28 view .LVU218
+ 832 005e 82ED000A 		vstr.32	s0, [r2]
+ 276:Components/user_lib.c ****     OLS->y[OLS->Order - 1] = y;
+ 833              		.loc 1 276 5 is_stmt 1 view .LVU219
+ 834              		.loc 1 276 8 is_stmt 0 view .LVU220
+ 835 0062 C368     		ldr	r3, [r0, #12]
+ 836              		.loc 1 276 15 view .LVU221
+ 837 0064 0288     		ldrh	r2, [r0]
+ 838              		.loc 1 276 11 view .LVU222
+ 839 0066 6244     		add	r2, r2, ip
+ 840 0068 03EB8203 		add	r3, r3, r2, lsl #2
+ 841              		.loc 1 276 28 view .LVU223
+ 842 006c C3ED000A 		vstr.32	s1, [r3]
+ 277:Components/user_lib.c **** 
+ 278:Components/user_lib.c ****     if (OLS->Count < OLS->Order)
+ 843              		.loc 1 278 5 is_stmt 1 view .LVU224
+ 844              		.loc 1 278 12 is_stmt 0 view .LVU225
+ 845 0070 4368     		ldr	r3, [r0, #4]
+ 846              		.loc 1 278 25 view .LVU226
+ 847 0072 B0F800C0 		ldrh	ip, [r0]
+ 848              		.loc 1 278 8 view .LVU227
+ 849 0076 6345     		cmp	r3, ip
+ 850 0078 01D2     		bcs	.L84
+ 279:Components/user_lib.c ****     {
+ 280:Components/user_lib.c ****         OLS->Count++;
+ 851              		.loc 1 280 9 is_stmt 1 view .LVU228
+ 852              		.loc 1 280 19 is_stmt 0 view .LVU229
+ 853 007a 0133     		adds	r3, r3, #1
+ 854 007c 4360     		str	r3, [r0, #4]
+ 855              	.L84:
  281:Components/user_lib.c ****     }
- 282:Components/user_lib.c **** 
- 283:Components/user_lib.c ****     OLS->k = (OLS->t[2] * OLS->Order - OLS->t[1] * OLS->t[3]) / (OLS->t[0] * OLS->Order - OLS->t[1]
- 891              		.loc 1 283 5 is_stmt 1 view .LVU251
- 892              		.loc 1 283 21 is_stmt 0 view .LVU252
- 893 00f4 D0ED096A 		vldr.32	s13, [r0, #36]
- 894              		.loc 1 283 25 view .LVU253
- 895 00f8 07EE90CA 		vmov	s15, ip	@ int
- 896 00fc B8EEE75A 		vcvt.f32.s32	s10, s15
- 897 0100 66EE854A 		vmul.f32	s9, s13, s10
- 898              		.loc 1 283 46 view .LVU254
- 899 0104 D0ED085A 		vldr.32	s11, [r0, #32]
- 900              		.loc 1 283 58 view .LVU255
- 901 0108 D0ED0A7A 		vldr.32	s15, [r0, #40]
- 902              		.loc 1 283 50 view .LVU256
- 903 010c 25EEA77A 		vmul.f32	s14, s11, s15
- 904              		.loc 1 283 38 view .LVU257
- 905 0110 74EEC74A 		vsub.f32	s9, s9, s14
- 906              		.loc 1 283 72 view .LVU258
- 907 0114 90ED074A 		vldr.32	s8, [r0, #28]
- 908              		.loc 1 283 76 view .LVU259
- 909 0118 25EE047A 		vmul.f32	s14, s10, s8
- 910              		.loc 1 283 101 view .LVU260
- 911 011c 25EEA56A 		vmul.f32	s12, s11, s11
- 912              		.loc 1 283 89 view .LVU261
- 913 0120 37EE467A 		vsub.f32	s14, s14, s12
- 914              		.loc 1 283 63 view .LVU262
- 915 0124 84EE876A 		vdiv.f32	s12, s9, s14
- 916              		.loc 1 283 12 view .LVU263
- 917 0128 80ED046A 		vstr.32	s12, [r0, #16]
- 284:Components/user_lib.c ****     OLS->b = (OLS->t[0] * OLS->t[3] - OLS->t[1] * OLS->t[2]) / (OLS->t[0] * OLS->Order - OLS->t[1] 
- 918              		.loc 1 284 5 is_stmt 1 view .LVU264
- 919              		.loc 1 284 25 is_stmt 0 view .LVU265
- 920 012c 67EE847A 		vmul.f32	s15, s15, s8
- 921              		.loc 1 284 49 view .LVU266
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 22
+ 282:Components/user_lib.c ****     memset((void *)OLS->t, 0, sizeof(float) * 4);
+ 856              		.loc 1 282 5 is_stmt 1 view .LVU230
+ 857 007e 0023     		movs	r3, #0
+ 858 0080 C361     		str	r3, [r0, #28]	@ unaligned
+ 859 0082 0362     		str	r3, [r0, #32]	@ unaligned
+ 860 0084 4362     		str	r3, [r0, #36]	@ unaligned
+ 861 0086 8362     		str	r3, [r0, #40]	@ unaligned
+ 283:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 862              		.loc 1 283 5 view .LVU231
+ 863              	.LBB5:
+ 864              		.loc 1 283 10 view .LVU232
+ 865              		.loc 1 283 34 is_stmt 0 view .LVU233
+ 866 0088 8388     		ldrh	r3, [r0, #4]
+ 867              		.loc 1 283 19 view .LVU234
+ 868 008a ACEB0303 		sub	r3, ip, r3
+ 869 008e 9BB2     		uxth	r3, r3
+ 870              	.LVL58:
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 21
 
 
- 922 0130 66EEA56A 		vmul.f32	s13, s13, s11
- 923              		.loc 1 284 37 view .LVU267
- 924 0134 77EEE67A 		vsub.f32	s15, s15, s13
- 925              		.loc 1 284 62 view .LVU268
- 926 0138 C7EE876A 		vdiv.f32	s13, s15, s14
- 927              		.loc 1 284 12 view .LVU269
- 928 013c C0ED056A 		vstr.32	s13, [r0, #20]
- 285:Components/user_lib.c **** 
- 286:Components/user_lib.c ****     OLS->StandardDeviation = 0;
- 929              		.loc 1 286 5 is_stmt 1 view .LVU270
- 930              		.loc 1 286 28 is_stmt 0 view .LVU271
- 931 0140 0022     		movs	r2, #0
- 932              	.LVL61:
- 933              		.loc 1 286 28 view .LVU272
- 934 0142 8261     		str	r2, [r0, #24]	@ float
- 287:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 935              		.loc 1 287 5 is_stmt 1 view .LVU273
- 936              	.LBB6:
- 937              		.loc 1 287 10 view .LVU274
- 938              	.LVL62:
- 939              		.loc 1 287 5 is_stmt 0 view .LVU275
- 940 0144 19E0     		b	.L80
- 941              	.L81:
- 288:Components/user_lib.c ****     {
- 289:Components/user_lib.c ****         OLS->StandardDeviation += fabsf(OLS->k * OLS->x[i] + OLS->b - OLS->y[i]);
- 942              		.loc 1 289 9 is_stmt 1 discriminator 3 view .LVU276
- 943              		.loc 1 289 53 is_stmt 0 discriminator 3 view .LVU277
- 944 0146 8268     		ldr	r2, [r0, #8]
- 945              		.loc 1 289 56 discriminator 3 view .LVU278
- 946 0148 02EB8302 		add	r2, r2, r3, lsl #2
- 947 014c D2ED007A 		vldr.32	s15, [r2]
- 948              		.loc 1 289 48 discriminator 3 view .LVU279
- 949 0150 66EE277A 		vmul.f32	s15, s12, s15
- 950              		.loc 1 289 60 discriminator 3 view .LVU280
- 951 0154 76EEA77A 		vadd.f32	s15, s13, s15
- 952              		.loc 1 289 74 discriminator 3 view .LVU281
- 953 0158 C268     		ldr	r2, [r0, #12]
- 954              		.loc 1 289 77 discriminator 3 view .LVU282
- 955 015a 02EB8302 		add	r2, r2, r3, lsl #2
- 956 015e 92ED007A 		vldr.32	s14, [r2]
- 957              		.loc 1 289 69 discriminator 3 view .LVU283
- 958 0162 77EEC77A 		vsub.f32	s15, s15, s14
- 959              		.loc 1 289 35 discriminator 3 view .LVU284
- 960 0166 F0EEE77A 		vabs.f32	s15, s15
- 961              		.loc 1 289 32 discriminator 3 view .LVU285
- 962 016a 90ED067A 		vldr.32	s14, [r0, #24]
- 963 016e 77EE277A 		vadd.f32	s15, s14, s15
- 964 0172 C0ED067A 		vstr.32	s15, [r0, #24]
- 287:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 965              		.loc 1 287 64 is_stmt 1 discriminator 3 view .LVU286
- 966 0176 0133     		adds	r3, r3, #1
- 967              	.LVL63:
- 287:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 968              		.loc 1 287 64 is_stmt 0 discriminator 3 view .LVU287
- 969 0178 9BB2     		uxth	r3, r3
- 970              	.LVL64:
- 971              	.L80:
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 23
+ 871              		.loc 1 283 19 view .LVU235
+ 872 0090 1A46     		mov	r2, r3
+ 873              		.loc 1 283 5 view .LVU236
+ 874 0092 2DE0     		b	.L85
+ 875              	.LVL59:
+ 876              	.L86:
+ 284:Components/user_lib.c ****     {
+ 285:Components/user_lib.c ****         OLS->t[0] += OLS->x[i] * OLS->x[i];
+ 877              		.loc 1 285 9 is_stmt 1 discriminator 3 view .LVU237
+ 878              		.loc 1 285 25 is_stmt 0 discriminator 3 view .LVU238
+ 879 0094 8168     		ldr	r1, [r0, #8]
+ 880              		.loc 1 285 28 discriminator 3 view .LVU239
+ 881 0096 01EB8201 		add	r1, r1, r2, lsl #2
+ 882 009a D1ED007A 		vldr.32	s15, [r1]
+ 883              		.loc 1 285 32 discriminator 3 view .LVU240
+ 884 009e 67EEA77A 		vmul.f32	s15, s15, s15
+ 885              		.loc 1 285 19 discriminator 3 view .LVU241
+ 886 00a2 90ED077A 		vldr.32	s14, [r0, #28]
+ 887 00a6 77EE277A 		vadd.f32	s15, s14, s15
+ 888 00aa C0ED077A 		vstr.32	s15, [r0, #28]
+ 286:Components/user_lib.c ****         OLS->t[1] += OLS->x[i];
+ 889              		.loc 1 286 9 is_stmt 1 discriminator 3 view .LVU242
+ 890              		.loc 1 286 28 is_stmt 0 discriminator 3 view .LVU243
+ 891 00ae 91ED007A 		vldr.32	s14, [r1]
+ 892              		.loc 1 286 19 discriminator 3 view .LVU244
+ 893 00b2 D0ED087A 		vldr.32	s15, [r0, #32]
+ 894 00b6 77EE877A 		vadd.f32	s15, s15, s14
+ 895 00ba C0ED087A 		vstr.32	s15, [r0, #32]
+ 287:Components/user_lib.c ****         OLS->t[2] += OLS->x[i] * OLS->y[i];
+ 896              		.loc 1 287 9 is_stmt 1 discriminator 3 view .LVU245
+ 897              		.loc 1 287 28 is_stmt 0 discriminator 3 view .LVU246
+ 898 00be D1ED007A 		vldr.32	s15, [r1]
+ 899              		.loc 1 287 37 discriminator 3 view .LVU247
+ 900 00c2 C168     		ldr	r1, [r0, #12]
+ 901              		.loc 1 287 40 discriminator 3 view .LVU248
+ 902 00c4 01EB8201 		add	r1, r1, r2, lsl #2
+ 903 00c8 91ED007A 		vldr.32	s14, [r1]
+ 904              		.loc 1 287 32 discriminator 3 view .LVU249
+ 905 00cc 27EE877A 		vmul.f32	s14, s15, s14
+ 906              		.loc 1 287 19 discriminator 3 view .LVU250
+ 907 00d0 D0ED097A 		vldr.32	s15, [r0, #36]
+ 908 00d4 77EE877A 		vadd.f32	s15, s15, s14
+ 909 00d8 C0ED097A 		vstr.32	s15, [r0, #36]
+ 288:Components/user_lib.c ****         OLS->t[3] += OLS->y[i];
+ 910              		.loc 1 288 9 is_stmt 1 discriminator 3 view .LVU251
+ 911              		.loc 1 288 28 is_stmt 0 discriminator 3 view .LVU252
+ 912 00dc 91ED007A 		vldr.32	s14, [r1]
+ 913              		.loc 1 288 19 discriminator 3 view .LVU253
+ 914 00e0 D0ED0A7A 		vldr.32	s15, [r0, #40]
+ 915 00e4 77EE877A 		vadd.f32	s15, s15, s14
+ 916 00e8 C0ED0A7A 		vstr.32	s15, [r0, #40]
+ 283:Components/user_lib.c ****     {
+ 917              		.loc 1 283 64 is_stmt 1 discriminator 3 view .LVU254
+ 918 00ec 0132     		adds	r2, r2, #1
+ 919              	.LVL60:
+ 283:Components/user_lib.c ****     {
+ 920              		.loc 1 283 64 is_stmt 0 discriminator 3 view .LVU255
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 22
 
 
- 287:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 972              		.loc 1 287 48 is_stmt 1 discriminator 1 view .LVU288
- 287:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 973              		.loc 1 287 5 is_stmt 0 discriminator 1 view .LVU289
- 974 017a 9C45     		cmp	ip, r3
- 975 017c E3D8     		bhi	.L81
- 287:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 976              		.loc 1 287 5 discriminator 1 view .LVU290
- 977              	.LBE6:
- 290:Components/user_lib.c ****     }
- 291:Components/user_lib.c ****     OLS->StandardDeviation /= OLS->Order;
- 978              		.loc 1 291 5 is_stmt 1 view .LVU291
- 979              		.loc 1 291 28 is_stmt 0 view .LVU292
- 980 017e 90ED067A 		vldr.32	s14, [r0, #24]
- 981 0182 C7EE057A 		vdiv.f32	s15, s14, s10
- 982 0186 C0ED067A 		vstr.32	s15, [r0, #24]
- 292:Components/user_lib.c **** }
- 983              		.loc 1 292 1 view .LVU293
- 984 018a 7047     		bx	lr
- 985              	.L83:
- 986              		.align	2
- 987              	.L82:
- 988 018c 00000000 		.word	.LANCHOR2
- 989              		.cfi_endproc
- 990              	.LFE149:
- 992              		.section	.text.OLS_Derivative,"ax",%progbits
- 993              		.align	1
- 994              		.global	OLS_Derivative
- 995              		.syntax unified
- 996              		.thumb
- 997              		.thumb_func
- 999              	OLS_Derivative:
- 1000              	.LVL65:
- 1001              	.LFB150:
+ 921 00ee 92B2     		uxth	r2, r2
+ 922              	.LVL61:
+ 923              	.L85:
+ 283:Components/user_lib.c ****     {
+ 924              		.loc 1 283 48 is_stmt 1 discriminator 1 view .LVU256
+ 283:Components/user_lib.c ****     {
+ 925              		.loc 1 283 5 is_stmt 0 discriminator 1 view .LVU257
+ 926 00f0 9445     		cmp	ip, r2
+ 927 00f2 CFD8     		bhi	.L86
+ 928              	.LBE5:
+ 289:Components/user_lib.c ****     }
+ 290:Components/user_lib.c **** 
+ 291:Components/user_lib.c ****     OLS->k = (OLS->t[2] * OLS->Order - OLS->t[1] * OLS->t[3]) / (OLS->t[0] * OLS->Order - OLS->t[1]
+ 929              		.loc 1 291 5 is_stmt 1 view .LVU258
+ 930              		.loc 1 291 21 is_stmt 0 view .LVU259
+ 931 00f4 D0ED096A 		vldr.32	s13, [r0, #36]
+ 932              		.loc 1 291 25 view .LVU260
+ 933 00f8 07EE90CA 		vmov	s15, ip	@ int
+ 934 00fc B8EEE75A 		vcvt.f32.s32	s10, s15
+ 935 0100 66EE854A 		vmul.f32	s9, s13, s10
+ 936              		.loc 1 291 46 view .LVU261
+ 937 0104 D0ED085A 		vldr.32	s11, [r0, #32]
+ 938              		.loc 1 291 58 view .LVU262
+ 939 0108 D0ED0A7A 		vldr.32	s15, [r0, #40]
+ 940              		.loc 1 291 50 view .LVU263
+ 941 010c 25EEA77A 		vmul.f32	s14, s11, s15
+ 942              		.loc 1 291 38 view .LVU264
+ 943 0110 74EEC74A 		vsub.f32	s9, s9, s14
+ 944              		.loc 1 291 72 view .LVU265
+ 945 0114 90ED074A 		vldr.32	s8, [r0, #28]
+ 946              		.loc 1 291 76 view .LVU266
+ 947 0118 25EE047A 		vmul.f32	s14, s10, s8
+ 948              		.loc 1 291 101 view .LVU267
+ 949 011c 25EEA56A 		vmul.f32	s12, s11, s11
+ 950              		.loc 1 291 89 view .LVU268
+ 951 0120 37EE467A 		vsub.f32	s14, s14, s12
+ 952              		.loc 1 291 63 view .LVU269
+ 953 0124 84EE876A 		vdiv.f32	s12, s9, s14
+ 954              		.loc 1 291 12 view .LVU270
+ 955 0128 80ED046A 		vstr.32	s12, [r0, #16]
+ 292:Components/user_lib.c ****     OLS->b = (OLS->t[0] * OLS->t[3] - OLS->t[1] * OLS->t[2]) / (OLS->t[0] * OLS->Order - OLS->t[1] 
+ 956              		.loc 1 292 5 is_stmt 1 view .LVU271
+ 957              		.loc 1 292 25 is_stmt 0 view .LVU272
+ 958 012c 67EE847A 		vmul.f32	s15, s15, s8
+ 959              		.loc 1 292 49 view .LVU273
+ 960 0130 66EEA56A 		vmul.f32	s13, s13, s11
+ 961              		.loc 1 292 37 view .LVU274
+ 962 0134 77EEE67A 		vsub.f32	s15, s15, s13
+ 963              		.loc 1 292 62 view .LVU275
+ 964 0138 C7EE876A 		vdiv.f32	s13, s15, s14
+ 965              		.loc 1 292 12 view .LVU276
+ 966 013c C0ED056A 		vstr.32	s13, [r0, #20]
  293:Components/user_lib.c **** 
- 294:Components/user_lib.c **** /**
- 295:Components/user_lib.c ****  * @brief          ×îÐ¡¶þ³Ë·¨ÌáÈ¡ÐÅºÅÎ¢·Ö
- 296:Components/user_lib.c ****  * @param[in]      ×îÐ¡¶þ³Ë·¨½á¹¹Ìå
- 297:Components/user_lib.c ****  * @param[in]      ÐÅºÅÐÂÑù±¾¾àÉÏÒ»¸öÑù±¾Ê±¼ä¼ä¸ô
- 298:Components/user_lib.c ****  * @param[in]      ÐÅºÅÖµ
- 299:Components/user_lib.c ****  * @retval         ·µ»ØÐ±ÂÊk
- 300:Components/user_lib.c ****  */
- 301:Components/user_lib.c **** float OLS_Derivative(Ordinary_Least_Squares_t *OLS, float deltax, float y)
- 302:Components/user_lib.c **** {
- 1002              		.loc 1 302 1 is_stmt 1 view -0
- 1003              		.cfi_startproc
- 1004              		@ args = 0, pretend = 0, frame = 0
- 1005              		@ frame_needed = 0, uses_anonymous_args = 0
- 1006              		@ link register save eliminated.
- 303:Components/user_lib.c ****     static float temp = 0;
- 1007              		.loc 1 303 5 view .LVU295
- 304:Components/user_lib.c ****     temp = OLS->x[1];
- 1008              		.loc 1 304 5 view .LVU296
- 1009              		.loc 1 304 15 is_stmt 0 view .LVU297
- 1010 0000 8368     		ldr	r3, [r0, #8]
- 1011              		.loc 1 304 10 view .LVU298
- 1012 0002 93ED017A 		vldr.32	s14, [r3, #4]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 24
+ 294:Components/user_lib.c ****     OLS->StandardDeviation = 0;
+ 967              		.loc 1 294 5 is_stmt 1 view .LVU277
+ 968              		.loc 1 294 28 is_stmt 0 view .LVU278
+ 969 0140 0022     		movs	r2, #0
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 23
 
 
- 1013 0006 5D4B     		ldr	r3, .L92
- 1014 0008 83ED007A 		vstr.32	s14, [r3]
- 305:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 1015              		.loc 1 305 5 is_stmt 1 view .LVU299
- 1016              	.LBB7:
- 1017              		.loc 1 305 10 view .LVU300
- 1018              	.LVL66:
- 1019              		.loc 1 305 19 is_stmt 0 view .LVU301
- 1020 000c 0023     		movs	r3, #0
- 1021              		.loc 1 305 5 view .LVU302
- 1022 000e 13E0     		b	.L85
- 1023              	.LVL67:
- 1024              	.L86:
- 306:Components/user_lib.c ****     {
- 307:Components/user_lib.c ****         OLS->x[i] = OLS->x[i + 1] - temp;
- 1025              		.loc 1 307 9 is_stmt 1 discriminator 3 view .LVU303
- 1026              		.loc 1 307 24 is_stmt 0 discriminator 3 view .LVU304
- 1027 0010 8268     		ldr	r2, [r0, #8]
- 1028              		.loc 1 307 27 discriminator 3 view .LVU305
- 1029 0012 591C     		adds	r1, r3, #1
- 1030 0014 02EB810C 		add	ip, r2, r1, lsl #2
- 1031 0018 DCED007A 		vldr.32	s15, [ip]
- 1032              		.loc 1 307 15 discriminator 3 view .LVU306
- 1033 001c 02EB8302 		add	r2, r2, r3, lsl #2
- 1034              		.loc 1 307 35 discriminator 3 view .LVU307
- 1035 0020 77EEC77A 		vsub.f32	s15, s15, s14
- 1036              		.loc 1 307 19 discriminator 3 view .LVU308
- 1037 0024 C2ED007A 		vstr.32	s15, [r2]
- 308:Components/user_lib.c ****         OLS->y[i] = OLS->y[i + 1];
- 1038              		.loc 1 308 9 is_stmt 1 discriminator 3 view .LVU309
- 1039              		.loc 1 308 24 is_stmt 0 discriminator 3 view .LVU310
- 1040 0028 C268     		ldr	r2, [r0, #12]
- 1041              		.loc 1 308 15 discriminator 3 view .LVU311
- 1042 002a 02EB8303 		add	r3, r2, r3, lsl #2
- 1043              	.LVL68:
- 1044              		.loc 1 308 27 discriminator 3 view .LVU312
- 1045 002e 02EB8102 		add	r2, r2, r1, lsl #2
- 1046 0032 1268     		ldr	r2, [r2]	@ float
- 1047              		.loc 1 308 19 discriminator 3 view .LVU313
- 1048 0034 1A60     		str	r2, [r3]	@ float
- 305:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 1049              		.loc 1 305 46 is_stmt 1 discriminator 3 view .LVU314
- 1050 0036 8BB2     		uxth	r3, r1
- 1051              	.LVL69:
- 1052              	.L85:
- 305:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 1053              		.loc 1 305 26 discriminator 1 view .LVU315
- 305:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 1054              		.loc 1 305 33 is_stmt 0 discriminator 1 view .LVU316
- 1055 0038 0288     		ldrh	r2, [r0]
- 305:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 1056              		.loc 1 305 41 discriminator 1 view .LVU317
- 1057 003a 511E     		subs	r1, r2, #1
- 305:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 1058              		.loc 1 305 5 discriminator 1 view .LVU318
- 1059 003c 8B42     		cmp	r3, r1
- 1060 003e E7DB     		blt	.L86
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 25
+ 970              	.LVL62:
+ 971              		.loc 1 294 28 view .LVU279
+ 972 0142 8261     		str	r2, [r0, #24]	@ float
+ 295:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 973              		.loc 1 295 5 is_stmt 1 view .LVU280
+ 974              	.LBB6:
+ 975              		.loc 1 295 10 view .LVU281
+ 976              	.LVL63:
+ 977              		.loc 1 295 5 is_stmt 0 view .LVU282
+ 978 0144 19E0     		b	.L87
+ 979              	.L88:
+ 296:Components/user_lib.c ****     {
+ 297:Components/user_lib.c ****         OLS->StandardDeviation += fabsf(OLS->k * OLS->x[i] + OLS->b - OLS->y[i]);
+ 980              		.loc 1 297 9 is_stmt 1 discriminator 3 view .LVU283
+ 981              		.loc 1 297 53 is_stmt 0 discriminator 3 view .LVU284
+ 982 0146 8268     		ldr	r2, [r0, #8]
+ 983              		.loc 1 297 56 discriminator 3 view .LVU285
+ 984 0148 02EB8302 		add	r2, r2, r3, lsl #2
+ 985 014c D2ED007A 		vldr.32	s15, [r2]
+ 986              		.loc 1 297 48 discriminator 3 view .LVU286
+ 987 0150 66EE277A 		vmul.f32	s15, s12, s15
+ 988              		.loc 1 297 60 discriminator 3 view .LVU287
+ 989 0154 76EEA77A 		vadd.f32	s15, s13, s15
+ 990              		.loc 1 297 74 discriminator 3 view .LVU288
+ 991 0158 C268     		ldr	r2, [r0, #12]
+ 992              		.loc 1 297 77 discriminator 3 view .LVU289
+ 993 015a 02EB8302 		add	r2, r2, r3, lsl #2
+ 994 015e 92ED007A 		vldr.32	s14, [r2]
+ 995              		.loc 1 297 69 discriminator 3 view .LVU290
+ 996 0162 77EEC77A 		vsub.f32	s15, s15, s14
+ 997              		.loc 1 297 35 discriminator 3 view .LVU291
+ 998 0166 F0EEE77A 		vabs.f32	s15, s15
+ 999              		.loc 1 297 32 discriminator 3 view .LVU292
+ 1000 016a 90ED067A 		vldr.32	s14, [r0, #24]
+ 1001 016e 77EE277A 		vadd.f32	s15, s14, s15
+ 1002 0172 C0ED067A 		vstr.32	s15, [r0, #24]
+ 295:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1003              		.loc 1 295 64 is_stmt 1 discriminator 3 view .LVU293
+ 1004 0176 0133     		adds	r3, r3, #1
+ 1005              	.LVL64:
+ 295:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1006              		.loc 1 295 64 is_stmt 0 discriminator 3 view .LVU294
+ 1007 0178 9BB2     		uxth	r3, r3
+ 1008              	.LVL65:
+ 1009              	.L87:
+ 295:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1010              		.loc 1 295 48 is_stmt 1 discriminator 1 view .LVU295
+ 295:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1011              		.loc 1 295 5 is_stmt 0 discriminator 1 view .LVU296
+ 1012 017a 9C45     		cmp	ip, r3
+ 1013 017c E3D8     		bhi	.L88
+ 295:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1014              		.loc 1 295 5 discriminator 1 view .LVU297
+ 1015              	.LBE6:
+ 298:Components/user_lib.c ****     }
+ 299:Components/user_lib.c ****     OLS->StandardDeviation /= OLS->Order;
+ 1016              		.loc 1 299 5 is_stmt 1 view .LVU298
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 24
 
 
- 1061              	.LBE7:
- 309:Components/user_lib.c ****     }
- 310:Components/user_lib.c ****     OLS->x[OLS->Order - 1] = OLS->x[OLS->Order - 2] + deltax;
- 1062              		.loc 1 310 5 is_stmt 1 view .LVU319
- 1063              		.loc 1 310 33 is_stmt 0 view .LVU320
- 1064 0040 8168     		ldr	r1, [r0, #8]
- 1065              		.loc 1 310 36 view .LVU321
- 1066 0042 02F18043 		add	r3, r2, #1073741824
- 1067              	.LVL70:
- 1068              		.loc 1 310 36 view .LVU322
- 1069 0046 023B     		subs	r3, r3, #2
- 1070 0048 01EB8303 		add	r3, r1, r3, lsl #2
- 1071 004c D3ED007A 		vldr.32	s15, [r3]
- 1072              		.loc 1 310 11 view .LVU323
- 1073 0050 6FF0404C 		mvn	ip, #-1073741824
- 1074 0054 6244     		add	r2, r2, ip
- 1075 0056 01EB8202 		add	r2, r1, r2, lsl #2
- 1076              		.loc 1 310 53 view .LVU324
- 1077 005a 37EE800A 		vadd.f32	s0, s15, s0
- 1078              	.LVL71:
- 1079              		.loc 1 310 28 view .LVU325
- 1080 005e 82ED000A 		vstr.32	s0, [r2]
- 311:Components/user_lib.c ****     OLS->y[OLS->Order - 1] = y;
- 1081              		.loc 1 311 5 is_stmt 1 view .LVU326
- 1082              		.loc 1 311 8 is_stmt 0 view .LVU327
- 1083 0062 C368     		ldr	r3, [r0, #12]
- 1084              		.loc 1 311 15 view .LVU328
- 1085 0064 0288     		ldrh	r2, [r0]
- 1086              		.loc 1 311 11 view .LVU329
- 1087 0066 6244     		add	r2, r2, ip
- 1088 0068 03EB8203 		add	r3, r3, r2, lsl #2
- 1089              		.loc 1 311 28 view .LVU330
- 1090 006c C3ED000A 		vstr.32	s1, [r3]
- 312:Components/user_lib.c **** 
- 313:Components/user_lib.c ****     if (OLS->Count < OLS->Order)
- 1091              		.loc 1 313 5 is_stmt 1 view .LVU331
- 1092              		.loc 1 313 12 is_stmt 0 view .LVU332
- 1093 0070 4368     		ldr	r3, [r0, #4]
- 1094              		.loc 1 313 25 view .LVU333
- 1095 0072 B0F800C0 		ldrh	ip, [r0]
- 1096              		.loc 1 313 8 view .LVU334
- 1097 0076 6345     		cmp	r3, ip
- 1098 0078 01D2     		bcs	.L87
+ 1017              		.loc 1 299 28 is_stmt 0 view .LVU299
+ 1018 017e 90ED067A 		vldr.32	s14, [r0, #24]
+ 1019 0182 C7EE057A 		vdiv.f32	s15, s14, s10
+ 1020 0186 C0ED067A 		vstr.32	s15, [r0, #24]
+ 300:Components/user_lib.c **** }
+ 1021              		.loc 1 300 1 view .LVU300
+ 1022 018a 7047     		bx	lr
+ 1023              	.L90:
+ 1024              		.align	2
+ 1025              	.L89:
+ 1026 018c 00000000 		.word	.LANCHOR2
+ 1027              		.cfi_endproc
+ 1028              	.LFE150:
+ 1030              		.section	.text.OLS_Derivative,"ax",%progbits
+ 1031              		.align	1
+ 1032              		.global	OLS_Derivative
+ 1033              		.syntax unified
+ 1034              		.thumb
+ 1035              		.thumb_func
+ 1037              	OLS_Derivative:
+ 1038              	.LVL66:
+ 1039              	.LFB151:
+ 301:Components/user_lib.c **** 
+ 302:Components/user_lib.c **** /**
+ 303:Components/user_lib.c ****  * @brief          ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½È¡ï¿½Åºï¿½Î¢ï¿½ï¿½
+ 304:Components/user_lib.c ****  * @param[in]      ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ë·ï¿½ï¿½á¹¹ï¿½ï¿½
+ 305:Components/user_lib.c ****  * @param[in]      ï¿½Åºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
+ 306:Components/user_lib.c ****  * @param[in]      ï¿½Åºï¿½Öµ
+ 307:Components/user_lib.c ****  * @retval         ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½k
+ 308:Components/user_lib.c ****  */
+ 309:Components/user_lib.c **** float OLS_Derivative(Ordinary_Least_Squares_t *OLS, float deltax, float y)
+ 310:Components/user_lib.c **** {
+ 1040              		.loc 1 310 1 is_stmt 1 view -0
+ 1041              		.cfi_startproc
+ 1042              		@ args = 0, pretend = 0, frame = 0
+ 1043              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1044              		@ link register save eliminated.
+ 311:Components/user_lib.c ****     static float temp = 0;
+ 1045              		.loc 1 311 5 view .LVU302
+ 312:Components/user_lib.c ****     temp = OLS->x[1];
+ 1046              		.loc 1 312 5 view .LVU303
+ 1047              		.loc 1 312 15 is_stmt 0 view .LVU304
+ 1048 0000 8368     		ldr	r3, [r0, #8]
+ 1049              		.loc 1 312 10 view .LVU305
+ 1050 0002 93ED017A 		vldr.32	s14, [r3, #4]
+ 1051 0006 5D4B     		ldr	r3, .L99
+ 1052 0008 83ED007A 		vstr.32	s14, [r3]
+ 313:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 1053              		.loc 1 313 5 is_stmt 1 view .LVU306
+ 1054              	.LBB7:
+ 1055              		.loc 1 313 10 view .LVU307
+ 1056              	.LVL67:
+ 1057              		.loc 1 313 19 is_stmt 0 view .LVU308
+ 1058 000c 0023     		movs	r3, #0
+ 1059              		.loc 1 313 5 view .LVU309
+ 1060 000e 13E0     		b	.L92
+ 1061              	.LVL68:
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 25
+
+
+ 1062              	.L93:
  314:Components/user_lib.c ****     {
- 315:Components/user_lib.c ****         OLS->Count++;
- 1099              		.loc 1 315 9 is_stmt 1 view .LVU335
- 1100              		.loc 1 315 19 is_stmt 0 view .LVU336
- 1101 007a 0133     		adds	r3, r3, #1
- 1102 007c 4360     		str	r3, [r0, #4]
- 1103              	.L87:
- 316:Components/user_lib.c ****     }
- 317:Components/user_lib.c **** 
- 318:Components/user_lib.c ****     memset((void *)OLS->t, 0, sizeof(float) * 4);
- 1104              		.loc 1 318 5 is_stmt 1 view .LVU337
- 1105 007e 0023     		movs	r3, #0
- 1106 0080 C361     		str	r3, [r0, #28]	@ unaligned
- 1107 0082 0362     		str	r3, [r0, #32]	@ unaligned
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 26
+ 315:Components/user_lib.c ****         OLS->x[i] = OLS->x[i + 1] - temp;
+ 1063              		.loc 1 315 9 is_stmt 1 discriminator 3 view .LVU310
+ 1064              		.loc 1 315 24 is_stmt 0 discriminator 3 view .LVU311
+ 1065 0010 8268     		ldr	r2, [r0, #8]
+ 1066              		.loc 1 315 27 discriminator 3 view .LVU312
+ 1067 0012 591C     		adds	r1, r3, #1
+ 1068 0014 02EB810C 		add	ip, r2, r1, lsl #2
+ 1069 0018 DCED007A 		vldr.32	s15, [ip]
+ 1070              		.loc 1 315 15 discriminator 3 view .LVU313
+ 1071 001c 02EB8302 		add	r2, r2, r3, lsl #2
+ 1072              		.loc 1 315 35 discriminator 3 view .LVU314
+ 1073 0020 77EEC77A 		vsub.f32	s15, s15, s14
+ 1074              		.loc 1 315 19 discriminator 3 view .LVU315
+ 1075 0024 C2ED007A 		vstr.32	s15, [r2]
+ 316:Components/user_lib.c ****         OLS->y[i] = OLS->y[i + 1];
+ 1076              		.loc 1 316 9 is_stmt 1 discriminator 3 view .LVU316
+ 1077              		.loc 1 316 24 is_stmt 0 discriminator 3 view .LVU317
+ 1078 0028 C268     		ldr	r2, [r0, #12]
+ 1079              		.loc 1 316 15 discriminator 3 view .LVU318
+ 1080 002a 02EB8303 		add	r3, r2, r3, lsl #2
+ 1081              	.LVL69:
+ 1082              		.loc 1 316 27 discriminator 3 view .LVU319
+ 1083 002e 02EB8102 		add	r2, r2, r1, lsl #2
+ 1084 0032 1268     		ldr	r2, [r2]	@ float
+ 1085              		.loc 1 316 19 discriminator 3 view .LVU320
+ 1086 0034 1A60     		str	r2, [r3]	@ float
+ 313:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 1087              		.loc 1 313 46 is_stmt 1 discriminator 3 view .LVU321
+ 1088 0036 8BB2     		uxth	r3, r1
+ 1089              	.LVL70:
+ 1090              	.L92:
+ 313:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 1091              		.loc 1 313 26 discriminator 1 view .LVU322
+ 313:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 1092              		.loc 1 313 33 is_stmt 0 discriminator 1 view .LVU323
+ 1093 0038 0288     		ldrh	r2, [r0]
+ 313:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 1094              		.loc 1 313 41 discriminator 1 view .LVU324
+ 1095 003a 511E     		subs	r1, r2, #1
+ 313:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 1096              		.loc 1 313 5 discriminator 1 view .LVU325
+ 1097 003c 8B42     		cmp	r3, r1
+ 1098 003e E7DB     		blt	.L93
+ 1099              	.LBE7:
+ 317:Components/user_lib.c ****     }
+ 318:Components/user_lib.c ****     OLS->x[OLS->Order - 1] = OLS->x[OLS->Order - 2] + deltax;
+ 1100              		.loc 1 318 5 is_stmt 1 view .LVU326
+ 1101              		.loc 1 318 33 is_stmt 0 view .LVU327
+ 1102 0040 8168     		ldr	r1, [r0, #8]
+ 1103              		.loc 1 318 36 view .LVU328
+ 1104 0042 02F18043 		add	r3, r2, #1073741824
+ 1105              	.LVL71:
+ 1106              		.loc 1 318 36 view .LVU329
+ 1107 0046 023B     		subs	r3, r3, #2
+ 1108 0048 01EB8303 		add	r3, r1, r3, lsl #2
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 26
 
 
- 1108 0084 4362     		str	r3, [r0, #36]	@ unaligned
- 1109 0086 8362     		str	r3, [r0, #40]	@ unaligned
- 319:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 1110              		.loc 1 319 5 view .LVU338
- 1111              	.LBB8:
- 1112              		.loc 1 319 10 view .LVU339
- 1113              		.loc 1 319 34 is_stmt 0 view .LVU340
- 1114 0088 8388     		ldrh	r3, [r0, #4]
- 1115              		.loc 1 319 19 view .LVU341
- 1116 008a ACEB0303 		sub	r3, ip, r3
- 1117 008e 9BB2     		uxth	r3, r3
- 1118              	.LVL72:
- 1119              		.loc 1 319 19 view .LVU342
- 1120 0090 1A46     		mov	r2, r3
- 1121              		.loc 1 319 5 view .LVU343
- 1122 0092 2DE0     		b	.L88
- 1123              	.LVL73:
- 1124              	.L89:
- 320:Components/user_lib.c ****     {
- 321:Components/user_lib.c ****         OLS->t[0] += OLS->x[i] * OLS->x[i];
- 1125              		.loc 1 321 9 is_stmt 1 discriminator 3 view .LVU344
- 1126              		.loc 1 321 25 is_stmt 0 discriminator 3 view .LVU345
- 1127 0094 8168     		ldr	r1, [r0, #8]
- 1128              		.loc 1 321 28 discriminator 3 view .LVU346
- 1129 0096 01EB8201 		add	r1, r1, r2, lsl #2
- 1130 009a D1ED007A 		vldr.32	s15, [r1]
- 1131              		.loc 1 321 32 discriminator 3 view .LVU347
- 1132 009e 67EEA77A 		vmul.f32	s15, s15, s15
- 1133              		.loc 1 321 19 discriminator 3 view .LVU348
- 1134 00a2 90ED077A 		vldr.32	s14, [r0, #28]
- 1135 00a6 77EE277A 		vadd.f32	s15, s14, s15
- 1136 00aa C0ED077A 		vstr.32	s15, [r0, #28]
- 322:Components/user_lib.c ****         OLS->t[1] += OLS->x[i];
- 1137              		.loc 1 322 9 is_stmt 1 discriminator 3 view .LVU349
- 1138              		.loc 1 322 28 is_stmt 0 discriminator 3 view .LVU350
- 1139 00ae 91ED007A 		vldr.32	s14, [r1]
- 1140              		.loc 1 322 19 discriminator 3 view .LVU351
- 1141 00b2 D0ED087A 		vldr.32	s15, [r0, #32]
- 1142 00b6 77EE877A 		vadd.f32	s15, s15, s14
- 1143 00ba C0ED087A 		vstr.32	s15, [r0, #32]
- 323:Components/user_lib.c ****         OLS->t[2] += OLS->x[i] * OLS->y[i];
- 1144              		.loc 1 323 9 is_stmt 1 discriminator 3 view .LVU352
- 1145              		.loc 1 323 28 is_stmt 0 discriminator 3 view .LVU353
- 1146 00be D1ED007A 		vldr.32	s15, [r1]
- 1147              		.loc 1 323 37 discriminator 3 view .LVU354
- 1148 00c2 C168     		ldr	r1, [r0, #12]
- 1149              		.loc 1 323 40 discriminator 3 view .LVU355
- 1150 00c4 01EB8201 		add	r1, r1, r2, lsl #2
- 1151 00c8 91ED007A 		vldr.32	s14, [r1]
- 1152              		.loc 1 323 32 discriminator 3 view .LVU356
- 1153 00cc 27EE877A 		vmul.f32	s14, s15, s14
- 1154              		.loc 1 323 19 discriminator 3 view .LVU357
- 1155 00d0 D0ED097A 		vldr.32	s15, [r0, #36]
- 1156 00d4 77EE877A 		vadd.f32	s15, s15, s14
- 1157 00d8 C0ED097A 		vstr.32	s15, [r0, #36]
- 324:Components/user_lib.c ****         OLS->t[3] += OLS->y[i];
- 1158              		.loc 1 324 9 is_stmt 1 discriminator 3 view .LVU358
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 27
+ 1109 004c D3ED007A 		vldr.32	s15, [r3]
+ 1110              		.loc 1 318 11 view .LVU330
+ 1111 0050 6FF0404C 		mvn	ip, #-1073741824
+ 1112 0054 6244     		add	r2, r2, ip
+ 1113 0056 01EB8202 		add	r2, r1, r2, lsl #2
+ 1114              		.loc 1 318 53 view .LVU331
+ 1115 005a 37EE800A 		vadd.f32	s0, s15, s0
+ 1116              	.LVL72:
+ 1117              		.loc 1 318 28 view .LVU332
+ 1118 005e 82ED000A 		vstr.32	s0, [r2]
+ 319:Components/user_lib.c ****     OLS->y[OLS->Order - 1] = y;
+ 1119              		.loc 1 319 5 is_stmt 1 view .LVU333
+ 1120              		.loc 1 319 8 is_stmt 0 view .LVU334
+ 1121 0062 C368     		ldr	r3, [r0, #12]
+ 1122              		.loc 1 319 15 view .LVU335
+ 1123 0064 0288     		ldrh	r2, [r0]
+ 1124              		.loc 1 319 11 view .LVU336
+ 1125 0066 6244     		add	r2, r2, ip
+ 1126 0068 03EB8203 		add	r3, r3, r2, lsl #2
+ 1127              		.loc 1 319 28 view .LVU337
+ 1128 006c C3ED000A 		vstr.32	s1, [r3]
+ 320:Components/user_lib.c **** 
+ 321:Components/user_lib.c ****     if (OLS->Count < OLS->Order)
+ 1129              		.loc 1 321 5 is_stmt 1 view .LVU338
+ 1130              		.loc 1 321 12 is_stmt 0 view .LVU339
+ 1131 0070 4368     		ldr	r3, [r0, #4]
+ 1132              		.loc 1 321 25 view .LVU340
+ 1133 0072 B0F800C0 		ldrh	ip, [r0]
+ 1134              		.loc 1 321 8 view .LVU341
+ 1135 0076 6345     		cmp	r3, ip
+ 1136 0078 01D2     		bcs	.L94
+ 322:Components/user_lib.c ****     {
+ 323:Components/user_lib.c ****         OLS->Count++;
+ 1137              		.loc 1 323 9 is_stmt 1 view .LVU342
+ 1138              		.loc 1 323 19 is_stmt 0 view .LVU343
+ 1139 007a 0133     		adds	r3, r3, #1
+ 1140 007c 4360     		str	r3, [r0, #4]
+ 1141              	.L94:
+ 324:Components/user_lib.c ****     }
+ 325:Components/user_lib.c **** 
+ 326:Components/user_lib.c ****     memset((void *)OLS->t, 0, sizeof(float) * 4);
+ 1142              		.loc 1 326 5 is_stmt 1 view .LVU344
+ 1143 007e 0023     		movs	r3, #0
+ 1144 0080 C361     		str	r3, [r0, #28]	@ unaligned
+ 1145 0082 0362     		str	r3, [r0, #32]	@ unaligned
+ 1146 0084 4362     		str	r3, [r0, #36]	@ unaligned
+ 1147 0086 8362     		str	r3, [r0, #40]	@ unaligned
+ 327:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1148              		.loc 1 327 5 view .LVU345
+ 1149              	.LBB8:
+ 1150              		.loc 1 327 10 view .LVU346
+ 1151              		.loc 1 327 34 is_stmt 0 view .LVU347
+ 1152 0088 8388     		ldrh	r3, [r0, #4]
+ 1153              		.loc 1 327 19 view .LVU348
+ 1154 008a ACEB0303 		sub	r3, ip, r3
+ 1155 008e 9BB2     		uxth	r3, r3
+ 1156              	.LVL73:
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 27
 
 
- 1159              		.loc 1 324 28 is_stmt 0 discriminator 3 view .LVU359
- 1160 00dc 91ED007A 		vldr.32	s14, [r1]
- 1161              		.loc 1 324 19 discriminator 3 view .LVU360
- 1162 00e0 D0ED0A7A 		vldr.32	s15, [r0, #40]
- 1163 00e4 77EE877A 		vadd.f32	s15, s15, s14
- 1164 00e8 C0ED0A7A 		vstr.32	s15, [r0, #40]
- 319:Components/user_lib.c ****     {
- 1165              		.loc 1 319 64 is_stmt 1 discriminator 3 view .LVU361
- 1166 00ec 0132     		adds	r2, r2, #1
- 1167              	.LVL74:
- 319:Components/user_lib.c ****     {
- 1168              		.loc 1 319 64 is_stmt 0 discriminator 3 view .LVU362
- 1169 00ee 92B2     		uxth	r2, r2
- 1170              	.LVL75:
- 1171              	.L88:
- 319:Components/user_lib.c ****     {
- 1172              		.loc 1 319 48 is_stmt 1 discriminator 1 view .LVU363
- 319:Components/user_lib.c ****     {
- 1173              		.loc 1 319 5 is_stmt 0 discriminator 1 view .LVU364
- 1174 00f0 9445     		cmp	ip, r2
- 1175 00f2 CFD8     		bhi	.L89
- 1176              	.LBE8:
- 325:Components/user_lib.c ****     }
- 326:Components/user_lib.c **** 
- 327:Components/user_lib.c ****     OLS->k = (OLS->t[2] * OLS->Order - OLS->t[1] * OLS->t[3]) / (OLS->t[0] * OLS->Order - OLS->t[1]
- 1177              		.loc 1 327 5 is_stmt 1 view .LVU365
- 1178              		.loc 1 327 21 is_stmt 0 view .LVU366
- 1179 00f4 90ED097A 		vldr.32	s14, [r0, #36]
- 1180              		.loc 1 327 25 view .LVU367
- 1181 00f8 07EE90CA 		vmov	s15, ip	@ int
- 1182 00fc B8EEE76A 		vcvt.f32.s32	s12, s15
- 1183 0100 27EE067A 		vmul.f32	s14, s14, s12
- 1184              		.loc 1 327 46 view .LVU368
- 1185 0104 D0ED086A 		vldr.32	s13, [r0, #32]
- 1186              		.loc 1 327 58 view .LVU369
- 1187 0108 D0ED0A7A 		vldr.32	s15, [r0, #40]
- 1188              		.loc 1 327 50 view .LVU370
- 1189 010c 66EEA77A 		vmul.f32	s15, s13, s15
- 1190              		.loc 1 327 38 view .LVU371
- 1191 0110 37EE677A 		vsub.f32	s14, s14, s15
- 1192              		.loc 1 327 72 view .LVU372
- 1193 0114 D0ED077A 		vldr.32	s15, [r0, #28]
- 1194              		.loc 1 327 76 view .LVU373
- 1195 0118 66EE277A 		vmul.f32	s15, s12, s15
- 1196              		.loc 1 327 101 view .LVU374
- 1197 011c 66EEA66A 		vmul.f32	s13, s13, s13
- 1198              		.loc 1 327 89 view .LVU375
- 1199 0120 77EEE67A 		vsub.f32	s15, s15, s13
- 1200              		.loc 1 327 63 view .LVU376
- 1201 0124 87EE270A 		vdiv.f32	s0, s14, s15
- 1202              		.loc 1 327 12 view .LVU377
- 1203 0128 80ED040A 		vstr.32	s0, [r0, #16]
- 328:Components/user_lib.c **** 
- 329:Components/user_lib.c ****     OLS->StandardDeviation = 0;
- 1204              		.loc 1 329 5 is_stmt 1 view .LVU378
- 1205              		.loc 1 329 28 is_stmt 0 view .LVU379
- 1206 012c 0022     		movs	r2, #0
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 28
+ 1157              		.loc 1 327 19 view .LVU349
+ 1158 0090 1A46     		mov	r2, r3
+ 1159              		.loc 1 327 5 view .LVU350
+ 1160 0092 2DE0     		b	.L95
+ 1161              	.LVL74:
+ 1162              	.L96:
+ 328:Components/user_lib.c ****     {
+ 329:Components/user_lib.c ****         OLS->t[0] += OLS->x[i] * OLS->x[i];
+ 1163              		.loc 1 329 9 is_stmt 1 discriminator 3 view .LVU351
+ 1164              		.loc 1 329 25 is_stmt 0 discriminator 3 view .LVU352
+ 1165 0094 8168     		ldr	r1, [r0, #8]
+ 1166              		.loc 1 329 28 discriminator 3 view .LVU353
+ 1167 0096 01EB8201 		add	r1, r1, r2, lsl #2
+ 1168 009a D1ED007A 		vldr.32	s15, [r1]
+ 1169              		.loc 1 329 32 discriminator 3 view .LVU354
+ 1170 009e 67EEA77A 		vmul.f32	s15, s15, s15
+ 1171              		.loc 1 329 19 discriminator 3 view .LVU355
+ 1172 00a2 90ED077A 		vldr.32	s14, [r0, #28]
+ 1173 00a6 77EE277A 		vadd.f32	s15, s14, s15
+ 1174 00aa C0ED077A 		vstr.32	s15, [r0, #28]
+ 330:Components/user_lib.c ****         OLS->t[1] += OLS->x[i];
+ 1175              		.loc 1 330 9 is_stmt 1 discriminator 3 view .LVU356
+ 1176              		.loc 1 330 28 is_stmt 0 discriminator 3 view .LVU357
+ 1177 00ae 91ED007A 		vldr.32	s14, [r1]
+ 1178              		.loc 1 330 19 discriminator 3 view .LVU358
+ 1179 00b2 D0ED087A 		vldr.32	s15, [r0, #32]
+ 1180 00b6 77EE877A 		vadd.f32	s15, s15, s14
+ 1181 00ba C0ED087A 		vstr.32	s15, [r0, #32]
+ 331:Components/user_lib.c ****         OLS->t[2] += OLS->x[i] * OLS->y[i];
+ 1182              		.loc 1 331 9 is_stmt 1 discriminator 3 view .LVU359
+ 1183              		.loc 1 331 28 is_stmt 0 discriminator 3 view .LVU360
+ 1184 00be D1ED007A 		vldr.32	s15, [r1]
+ 1185              		.loc 1 331 37 discriminator 3 view .LVU361
+ 1186 00c2 C168     		ldr	r1, [r0, #12]
+ 1187              		.loc 1 331 40 discriminator 3 view .LVU362
+ 1188 00c4 01EB8201 		add	r1, r1, r2, lsl #2
+ 1189 00c8 91ED007A 		vldr.32	s14, [r1]
+ 1190              		.loc 1 331 32 discriminator 3 view .LVU363
+ 1191 00cc 27EE877A 		vmul.f32	s14, s15, s14
+ 1192              		.loc 1 331 19 discriminator 3 view .LVU364
+ 1193 00d0 D0ED097A 		vldr.32	s15, [r0, #36]
+ 1194 00d4 77EE877A 		vadd.f32	s15, s15, s14
+ 1195 00d8 C0ED097A 		vstr.32	s15, [r0, #36]
+ 332:Components/user_lib.c ****         OLS->t[3] += OLS->y[i];
+ 1196              		.loc 1 332 9 is_stmt 1 discriminator 3 view .LVU365
+ 1197              		.loc 1 332 28 is_stmt 0 discriminator 3 view .LVU366
+ 1198 00dc 91ED007A 		vldr.32	s14, [r1]
+ 1199              		.loc 1 332 19 discriminator 3 view .LVU367
+ 1200 00e0 D0ED0A7A 		vldr.32	s15, [r0, #40]
+ 1201 00e4 77EE877A 		vadd.f32	s15, s15, s14
+ 1202 00e8 C0ED0A7A 		vstr.32	s15, [r0, #40]
+ 327:Components/user_lib.c ****     {
+ 1203              		.loc 1 327 64 is_stmt 1 discriminator 3 view .LVU368
+ 1204 00ec 0132     		adds	r2, r2, #1
+ 1205              	.LVL75:
+ 327:Components/user_lib.c ****     {
+ 1206              		.loc 1 327 64 is_stmt 0 discriminator 3 view .LVU369
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 28
 
 
- 1207              	.LVL76:
- 1208              		.loc 1 329 28 view .LVU380
- 1209 012e 8261     		str	r2, [r0, #24]	@ float
- 330:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 1210              		.loc 1 330 5 is_stmt 1 view .LVU381
- 1211              	.LBB9:
- 1212              		.loc 1 330 10 view .LVU382
- 1213              	.LVL77:
- 1214              		.loc 1 330 5 is_stmt 0 view .LVU383
- 1215 0130 1BE0     		b	.L90
- 1216              	.L91:
- 331:Components/user_lib.c ****     {
- 332:Components/user_lib.c ****         OLS->StandardDeviation += fabsf(OLS->k * OLS->x[i] + OLS->b - OLS->y[i]);
- 1217              		.loc 1 332 9 is_stmt 1 discriminator 3 view .LVU384
- 1218              		.loc 1 332 53 is_stmt 0 discriminator 3 view .LVU385
- 1219 0132 8268     		ldr	r2, [r0, #8]
- 1220              		.loc 1 332 56 discriminator 3 view .LVU386
- 1221 0134 02EB8302 		add	r2, r2, r3, lsl #2
- 1222 0138 D2ED007A 		vldr.32	s15, [r2]
- 1223              		.loc 1 332 48 discriminator 3 view .LVU387
- 1224 013c 60EE277A 		vmul.f32	s15, s0, s15
- 1225              		.loc 1 332 65 discriminator 3 view .LVU388
- 1226 0140 90ED057A 		vldr.32	s14, [r0, #20]
- 1227              		.loc 1 332 60 discriminator 3 view .LVU389
- 1228 0144 77EE877A 		vadd.f32	s15, s15, s14
- 1229              		.loc 1 332 74 discriminator 3 view .LVU390
- 1230 0148 C268     		ldr	r2, [r0, #12]
- 1231              		.loc 1 332 77 discriminator 3 view .LVU391
- 1232 014a 02EB8302 		add	r2, r2, r3, lsl #2
- 1233 014e 92ED007A 		vldr.32	s14, [r2]
- 1234              		.loc 1 332 69 discriminator 3 view .LVU392
- 1235 0152 77EEC77A 		vsub.f32	s15, s15, s14
- 1236              		.loc 1 332 35 discriminator 3 view .LVU393
- 1237 0156 F0EEE77A 		vabs.f32	s15, s15
- 1238              		.loc 1 332 32 discriminator 3 view .LVU394
- 1239 015a 90ED067A 		vldr.32	s14, [r0, #24]
- 1240 015e 77EE277A 		vadd.f32	s15, s14, s15
- 1241 0162 C0ED067A 		vstr.32	s15, [r0, #24]
- 330:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 1242              		.loc 1 330 64 is_stmt 1 discriminator 3 view .LVU395
- 1243 0166 0133     		adds	r3, r3, #1
- 1244              	.LVL78:
- 330:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 1245              		.loc 1 330 64 is_stmt 0 discriminator 3 view .LVU396
- 1246 0168 9BB2     		uxth	r3, r3
- 1247              	.LVL79:
- 1248              	.L90:
- 330:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 1249              		.loc 1 330 48 is_stmt 1 discriminator 1 view .LVU397
- 330:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 1250              		.loc 1 330 5 is_stmt 0 discriminator 1 view .LVU398
- 1251 016a 9C45     		cmp	ip, r3
- 1252 016c E1D8     		bhi	.L91
- 330:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 1253              		.loc 1 330 5 discriminator 1 view .LVU399
- 1254              	.LBE9:
+ 1207 00ee 92B2     		uxth	r2, r2
+ 1208              	.LVL76:
+ 1209              	.L95:
+ 327:Components/user_lib.c ****     {
+ 1210              		.loc 1 327 48 is_stmt 1 discriminator 1 view .LVU370
+ 327:Components/user_lib.c ****     {
+ 1211              		.loc 1 327 5 is_stmt 0 discriminator 1 view .LVU371
+ 1212 00f0 9445     		cmp	ip, r2
+ 1213 00f2 CFD8     		bhi	.L96
+ 1214              	.LBE8:
  333:Components/user_lib.c ****     }
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 29
+ 334:Components/user_lib.c **** 
+ 335:Components/user_lib.c ****     OLS->k = (OLS->t[2] * OLS->Order - OLS->t[1] * OLS->t[3]) / (OLS->t[0] * OLS->Order - OLS->t[1]
+ 1215              		.loc 1 335 5 is_stmt 1 view .LVU372
+ 1216              		.loc 1 335 21 is_stmt 0 view .LVU373
+ 1217 00f4 90ED097A 		vldr.32	s14, [r0, #36]
+ 1218              		.loc 1 335 25 view .LVU374
+ 1219 00f8 07EE90CA 		vmov	s15, ip	@ int
+ 1220 00fc B8EEE76A 		vcvt.f32.s32	s12, s15
+ 1221 0100 27EE067A 		vmul.f32	s14, s14, s12
+ 1222              		.loc 1 335 46 view .LVU375
+ 1223 0104 D0ED086A 		vldr.32	s13, [r0, #32]
+ 1224              		.loc 1 335 58 view .LVU376
+ 1225 0108 D0ED0A7A 		vldr.32	s15, [r0, #40]
+ 1226              		.loc 1 335 50 view .LVU377
+ 1227 010c 66EEA77A 		vmul.f32	s15, s13, s15
+ 1228              		.loc 1 335 38 view .LVU378
+ 1229 0110 37EE677A 		vsub.f32	s14, s14, s15
+ 1230              		.loc 1 335 72 view .LVU379
+ 1231 0114 D0ED077A 		vldr.32	s15, [r0, #28]
+ 1232              		.loc 1 335 76 view .LVU380
+ 1233 0118 66EE277A 		vmul.f32	s15, s12, s15
+ 1234              		.loc 1 335 101 view .LVU381
+ 1235 011c 66EEA66A 		vmul.f32	s13, s13, s13
+ 1236              		.loc 1 335 89 view .LVU382
+ 1237 0120 77EEE67A 		vsub.f32	s15, s15, s13
+ 1238              		.loc 1 335 63 view .LVU383
+ 1239 0124 87EE270A 		vdiv.f32	s0, s14, s15
+ 1240              		.loc 1 335 12 view .LVU384
+ 1241 0128 80ED040A 		vstr.32	s0, [r0, #16]
+ 336:Components/user_lib.c **** 
+ 337:Components/user_lib.c ****     OLS->StandardDeviation = 0;
+ 1242              		.loc 1 337 5 is_stmt 1 view .LVU385
+ 1243              		.loc 1 337 28 is_stmt 0 view .LVU386
+ 1244 012c 0022     		movs	r2, #0
+ 1245              	.LVL77:
+ 1246              		.loc 1 337 28 view .LVU387
+ 1247 012e 8261     		str	r2, [r0, #24]	@ float
+ 338:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1248              		.loc 1 338 5 is_stmt 1 view .LVU388
+ 1249              	.LBB9:
+ 1250              		.loc 1 338 10 view .LVU389
+ 1251              	.LVL78:
+ 1252              		.loc 1 338 5 is_stmt 0 view .LVU390
+ 1253 0130 1BE0     		b	.L97
+ 1254              	.L98:
+ 339:Components/user_lib.c ****     {
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 29
 
 
- 334:Components/user_lib.c ****     OLS->StandardDeviation /= OLS->Order;
- 1255              		.loc 1 334 5 is_stmt 1 view .LVU400
- 1256              		.loc 1 334 28 is_stmt 0 view .LVU401
- 1257 016e 90ED067A 		vldr.32	s14, [r0, #24]
- 1258 0172 C7EE067A 		vdiv.f32	s15, s14, s12
- 1259 0176 C0ED067A 		vstr.32	s15, [r0, #24]
- 335:Components/user_lib.c **** 
- 336:Components/user_lib.c ****     return OLS->k;
- 1260              		.loc 1 336 5 is_stmt 1 view .LVU402
- 337:Components/user_lib.c **** }
- 1261              		.loc 1 337 1 is_stmt 0 view .LVU403
- 1262 017a 7047     		bx	lr
- 1263              	.L93:
- 1264              		.align	2
- 1265              	.L92:
- 1266 017c 00000000 		.word	.LANCHOR3
- 1267              		.cfi_endproc
- 1268              	.LFE150:
- 1270              		.section	.text.Get_OLS_Derivative,"ax",%progbits
- 1271              		.align	1
- 1272              		.global	Get_OLS_Derivative
- 1273              		.syntax unified
- 1274              		.thumb
- 1275              		.thumb_func
- 1277              	Get_OLS_Derivative:
- 1278              	.LVL80:
- 1279              	.LFB151:
- 338:Components/user_lib.c **** 
- 339:Components/user_lib.c **** /**
- 340:Components/user_lib.c ****  * @brief          »ñÈ¡×îÐ¡¶þ³Ë·¨ÌáÈ¡ÐÅºÅÎ¢·Ö
- 341:Components/user_lib.c ****  * @param[in]      ×îÐ¡¶þ³Ë·¨½á¹¹Ìå
- 342:Components/user_lib.c ****  * @retval         ·µ»ØÐ±ÂÊk
- 343:Components/user_lib.c ****  */
- 344:Components/user_lib.c **** float Get_OLS_Derivative(Ordinary_Least_Squares_t *OLS)
- 345:Components/user_lib.c **** {
- 1280              		.loc 1 345 1 is_stmt 1 view -0
- 1281              		.cfi_startproc
- 1282              		@ args = 0, pretend = 0, frame = 0
- 1283              		@ frame_needed = 0, uses_anonymous_args = 0
- 1284              		@ link register save eliminated.
- 346:Components/user_lib.c ****     return OLS->k;
- 1285              		.loc 1 346 5 view .LVU405
- 347:Components/user_lib.c **** }
- 1286              		.loc 1 347 1 is_stmt 0 view .LVU406
- 1287 0000 90ED040A 		vldr.32	s0, [r0, #16]
- 1288 0004 7047     		bx	lr
- 1289              		.cfi_endproc
- 1290              	.LFE151:
- 1292              		.section	.text.OLS_Smooth,"ax",%progbits
- 1293              		.align	1
- 1294              		.global	OLS_Smooth
- 1295              		.syntax unified
- 1296              		.thumb
- 1297              		.thumb_func
- 1299              	OLS_Smooth:
- 1300              	.LVL81:
- 1301              	.LFB152:
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 30
+ 340:Components/user_lib.c ****         OLS->StandardDeviation += fabsf(OLS->k * OLS->x[i] + OLS->b - OLS->y[i]);
+ 1255              		.loc 1 340 9 is_stmt 1 discriminator 3 view .LVU391
+ 1256              		.loc 1 340 53 is_stmt 0 discriminator 3 view .LVU392
+ 1257 0132 8268     		ldr	r2, [r0, #8]
+ 1258              		.loc 1 340 56 discriminator 3 view .LVU393
+ 1259 0134 02EB8302 		add	r2, r2, r3, lsl #2
+ 1260 0138 D2ED007A 		vldr.32	s15, [r2]
+ 1261              		.loc 1 340 48 discriminator 3 view .LVU394
+ 1262 013c 60EE277A 		vmul.f32	s15, s0, s15
+ 1263              		.loc 1 340 65 discriminator 3 view .LVU395
+ 1264 0140 90ED057A 		vldr.32	s14, [r0, #20]
+ 1265              		.loc 1 340 60 discriminator 3 view .LVU396
+ 1266 0144 77EE877A 		vadd.f32	s15, s15, s14
+ 1267              		.loc 1 340 74 discriminator 3 view .LVU397
+ 1268 0148 C268     		ldr	r2, [r0, #12]
+ 1269              		.loc 1 340 77 discriminator 3 view .LVU398
+ 1270 014a 02EB8302 		add	r2, r2, r3, lsl #2
+ 1271 014e 92ED007A 		vldr.32	s14, [r2]
+ 1272              		.loc 1 340 69 discriminator 3 view .LVU399
+ 1273 0152 77EEC77A 		vsub.f32	s15, s15, s14
+ 1274              		.loc 1 340 35 discriminator 3 view .LVU400
+ 1275 0156 F0EEE77A 		vabs.f32	s15, s15
+ 1276              		.loc 1 340 32 discriminator 3 view .LVU401
+ 1277 015a 90ED067A 		vldr.32	s14, [r0, #24]
+ 1278 015e 77EE277A 		vadd.f32	s15, s14, s15
+ 1279 0162 C0ED067A 		vstr.32	s15, [r0, #24]
+ 338:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1280              		.loc 1 338 64 is_stmt 1 discriminator 3 view .LVU402
+ 1281 0166 0133     		adds	r3, r3, #1
+ 1282              	.LVL79:
+ 338:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1283              		.loc 1 338 64 is_stmt 0 discriminator 3 view .LVU403
+ 1284 0168 9BB2     		uxth	r3, r3
+ 1285              	.LVL80:
+ 1286              	.L97:
+ 338:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1287              		.loc 1 338 48 is_stmt 1 discriminator 1 view .LVU404
+ 338:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1288              		.loc 1 338 5 is_stmt 0 discriminator 1 view .LVU405
+ 1289 016a 9C45     		cmp	ip, r3
+ 1290 016c E1D8     		bhi	.L98
+ 338:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1291              		.loc 1 338 5 discriminator 1 view .LVU406
+ 1292              	.LBE9:
+ 341:Components/user_lib.c ****     }
+ 342:Components/user_lib.c ****     OLS->StandardDeviation /= OLS->Order;
+ 1293              		.loc 1 342 5 is_stmt 1 view .LVU407
+ 1294              		.loc 1 342 28 is_stmt 0 view .LVU408
+ 1295 016e 90ED067A 		vldr.32	s14, [r0, #24]
+ 1296 0172 C7EE067A 		vdiv.f32	s15, s14, s12
+ 1297 0176 C0ED067A 		vstr.32	s15, [r0, #24]
+ 343:Components/user_lib.c **** 
+ 344:Components/user_lib.c ****     return OLS->k;
+ 1298              		.loc 1 344 5 is_stmt 1 view .LVU409
+ 345:Components/user_lib.c **** }
+ 1299              		.loc 1 345 1 is_stmt 0 view .LVU410
+ 1300 017a 7047     		bx	lr
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 30
 
 
- 348:Components/user_lib.c **** 
- 349:Components/user_lib.c **** /**
- 350:Components/user_lib.c ****  * @brief          ×îÐ¡¶þ³Ë·¨Æ½»¬ÐÅºÅ
- 351:Components/user_lib.c ****  * @param[in]      ×îÐ¡¶þ³Ë·¨½á¹¹Ìå
- 352:Components/user_lib.c ****  * @param[in]      ÐÅºÅÐÂÑù±¾¾àÉÏÒ»¸öÑù±¾Ê±¼ä¼ä¸ô
- 353:Components/user_lib.c ****  * @param[in]      ÐÅºÅÖµ
- 354:Components/user_lib.c ****  * @retval         ·µ»ØÆ½»¬Êä³ö
- 355:Components/user_lib.c ****  */
- 356:Components/user_lib.c **** float OLS_Smooth(Ordinary_Least_Squares_t *OLS, float deltax, float y)
- 357:Components/user_lib.c **** {
- 1302              		.loc 1 357 1 is_stmt 1 view -0
- 1303              		.cfi_startproc
- 1304              		@ args = 0, pretend = 0, frame = 0
- 1305              		@ frame_needed = 0, uses_anonymous_args = 0
- 1306              		@ link register save eliminated.
- 358:Components/user_lib.c ****     static float temp = 0;
- 1307              		.loc 1 358 5 view .LVU408
- 359:Components/user_lib.c ****     temp = OLS->x[1];
- 1308              		.loc 1 359 5 view .LVU409
- 1309              		.loc 1 359 15 is_stmt 0 view .LVU410
- 1310 0000 8368     		ldr	r3, [r0, #8]
- 1311              		.loc 1 359 10 view .LVU411
- 1312 0002 93ED017A 		vldr.32	s14, [r3, #4]
- 1313 0006 684B     		ldr	r3, .L103
- 1314 0008 83ED007A 		vstr.32	s14, [r3]
- 360:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 1315              		.loc 1 360 5 is_stmt 1 view .LVU412
- 1316              	.LBB10:
- 1317              		.loc 1 360 10 view .LVU413
- 1318              	.LVL82:
- 1319              		.loc 1 360 19 is_stmt 0 view .LVU414
- 1320 000c 0023     		movs	r3, #0
- 1321              		.loc 1 360 5 view .LVU415
- 1322 000e 13E0     		b	.L96
- 1323              	.LVL83:
- 1324              	.L97:
- 361:Components/user_lib.c ****     {
- 362:Components/user_lib.c ****         OLS->x[i] = OLS->x[i + 1] - temp;
- 1325              		.loc 1 362 9 is_stmt 1 discriminator 3 view .LVU416
- 1326              		.loc 1 362 24 is_stmt 0 discriminator 3 view .LVU417
- 1327 0010 8268     		ldr	r2, [r0, #8]
- 1328              		.loc 1 362 27 discriminator 3 view .LVU418
- 1329 0012 591C     		adds	r1, r3, #1
- 1330 0014 02EB810C 		add	ip, r2, r1, lsl #2
- 1331 0018 DCED007A 		vldr.32	s15, [ip]
- 1332              		.loc 1 362 15 discriminator 3 view .LVU419
- 1333 001c 02EB8302 		add	r2, r2, r3, lsl #2
- 1334              		.loc 1 362 35 discriminator 3 view .LVU420
- 1335 0020 77EEC77A 		vsub.f32	s15, s15, s14
- 1336              		.loc 1 362 19 discriminator 3 view .LVU421
- 1337 0024 C2ED007A 		vstr.32	s15, [r2]
- 363:Components/user_lib.c ****         OLS->y[i] = OLS->y[i + 1];
- 1338              		.loc 1 363 9 is_stmt 1 discriminator 3 view .LVU422
- 1339              		.loc 1 363 24 is_stmt 0 discriminator 3 view .LVU423
- 1340 0028 C268     		ldr	r2, [r0, #12]
- 1341              		.loc 1 363 15 discriminator 3 view .LVU424
- 1342 002a 02EB8303 		add	r3, r2, r3, lsl #2
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 31
+ 1301              	.L100:
+ 1302              		.align	2
+ 1303              	.L99:
+ 1304 017c 00000000 		.word	.LANCHOR3
+ 1305              		.cfi_endproc
+ 1306              	.LFE151:
+ 1308              		.section	.text.Get_OLS_Derivative,"ax",%progbits
+ 1309              		.align	1
+ 1310              		.global	Get_OLS_Derivative
+ 1311              		.syntax unified
+ 1312              		.thumb
+ 1313              		.thumb_func
+ 1315              	Get_OLS_Derivative:
+ 1316              	.LVL81:
+ 1317              	.LFB152:
+ 346:Components/user_lib.c **** 
+ 347:Components/user_lib.c **** /**
+ 348:Components/user_lib.c ****  * @brief          ï¿½ï¿½È¡ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½È¡ï¿½Åºï¿½Î¢ï¿½ï¿½
+ 349:Components/user_lib.c ****  * @param[in]      ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ë·ï¿½ï¿½á¹¹ï¿½ï¿½
+ 350:Components/user_lib.c ****  * @retval         ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½k
+ 351:Components/user_lib.c ****  */
+ 352:Components/user_lib.c **** float Get_OLS_Derivative(Ordinary_Least_Squares_t *OLS)
+ 353:Components/user_lib.c **** {
+ 1318              		.loc 1 353 1 is_stmt 1 view -0
+ 1319              		.cfi_startproc
+ 1320              		@ args = 0, pretend = 0, frame = 0
+ 1321              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1322              		@ link register save eliminated.
+ 354:Components/user_lib.c ****     return OLS->k;
+ 1323              		.loc 1 354 5 view .LVU412
+ 355:Components/user_lib.c **** }
+ 1324              		.loc 1 355 1 is_stmt 0 view .LVU413
+ 1325 0000 90ED040A 		vldr.32	s0, [r0, #16]
+ 1326 0004 7047     		bx	lr
+ 1327              		.cfi_endproc
+ 1328              	.LFE152:
+ 1330              		.section	.text.OLS_Smooth,"ax",%progbits
+ 1331              		.align	1
+ 1332              		.global	OLS_Smooth
+ 1333              		.syntax unified
+ 1334              		.thumb
+ 1335              		.thumb_func
+ 1337              	OLS_Smooth:
+ 1338              	.LVL82:
+ 1339              	.LFB153:
+ 356:Components/user_lib.c **** 
+ 357:Components/user_lib.c **** /**
+ 358:Components/user_lib.c ****  * @brief          ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ë·ï¿½Æ½ï¿½ï¿½ï¿½Åºï¿½
+ 359:Components/user_lib.c ****  * @param[in]      ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ë·ï¿½ï¿½á¹¹ï¿½ï¿½
+ 360:Components/user_lib.c ****  * @param[in]      ï¿½Åºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
+ 361:Components/user_lib.c ****  * @param[in]      ï¿½Åºï¿½Öµ
+ 362:Components/user_lib.c ****  * @retval         ï¿½ï¿½ï¿½ï¿½Æ½ï¿½ï¿½ï¿½ï¿½ï¿½
+ 363:Components/user_lib.c ****  */
+ 364:Components/user_lib.c **** float OLS_Smooth(Ordinary_Least_Squares_t *OLS, float deltax, float y)
+ 365:Components/user_lib.c **** {
+ 1340              		.loc 1 365 1 is_stmt 1 view -0
+ 1341              		.cfi_startproc
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 31
 
 
- 1343              	.LVL84:
- 1344              		.loc 1 363 27 discriminator 3 view .LVU425
- 1345 002e 02EB8102 		add	r2, r2, r1, lsl #2
- 1346 0032 1268     		ldr	r2, [r2]	@ float
- 1347              		.loc 1 363 19 discriminator 3 view .LVU426
- 1348 0034 1A60     		str	r2, [r3]	@ float
- 360:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 1349              		.loc 1 360 46 is_stmt 1 discriminator 3 view .LVU427
- 1350 0036 8BB2     		uxth	r3, r1
- 1351              	.LVL85:
- 1352              	.L96:
- 360:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 1353              		.loc 1 360 26 discriminator 1 view .LVU428
- 360:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 1354              		.loc 1 360 33 is_stmt 0 discriminator 1 view .LVU429
- 1355 0038 0288     		ldrh	r2, [r0]
- 360:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 1356              		.loc 1 360 41 discriminator 1 view .LVU430
- 1357 003a 511E     		subs	r1, r2, #1
- 360:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
- 1358              		.loc 1 360 5 discriminator 1 view .LVU431
- 1359 003c 8B42     		cmp	r3, r1
- 1360 003e E7DB     		blt	.L97
- 1361              	.LBE10:
- 364:Components/user_lib.c ****     }
- 365:Components/user_lib.c ****     OLS->x[OLS->Order - 1] = OLS->x[OLS->Order - 2] + deltax;
- 1362              		.loc 1 365 5 is_stmt 1 view .LVU432
- 1363              		.loc 1 365 33 is_stmt 0 view .LVU433
- 1364 0040 8168     		ldr	r1, [r0, #8]
- 1365              		.loc 1 365 36 view .LVU434
- 1366 0042 02F18043 		add	r3, r2, #1073741824
- 1367              	.LVL86:
- 1368              		.loc 1 365 36 view .LVU435
- 1369 0046 023B     		subs	r3, r3, #2
- 1370 0048 01EB8303 		add	r3, r1, r3, lsl #2
- 1371 004c D3ED007A 		vldr.32	s15, [r3]
- 1372              		.loc 1 365 11 view .LVU436
- 1373 0050 6FF0404C 		mvn	ip, #-1073741824
- 1374 0054 6244     		add	r2, r2, ip
- 1375 0056 01EB8202 		add	r2, r1, r2, lsl #2
- 1376              		.loc 1 365 53 view .LVU437
- 1377 005a 37EE800A 		vadd.f32	s0, s15, s0
- 1378              	.LVL87:
- 1379              		.loc 1 365 28 view .LVU438
- 1380 005e 82ED000A 		vstr.32	s0, [r2]
- 366:Components/user_lib.c ****     OLS->y[OLS->Order - 1] = y;
- 1381              		.loc 1 366 5 is_stmt 1 view .LVU439
- 1382              		.loc 1 366 8 is_stmt 0 view .LVU440
- 1383 0062 C368     		ldr	r3, [r0, #12]
- 1384              		.loc 1 366 15 view .LVU441
- 1385 0064 0288     		ldrh	r2, [r0]
- 1386              		.loc 1 366 11 view .LVU442
- 1387 0066 6244     		add	r2, r2, ip
- 1388 0068 03EB8203 		add	r3, r3, r2, lsl #2
- 1389              		.loc 1 366 28 view .LVU443
- 1390 006c C3ED000A 		vstr.32	s1, [r3]
- 367:Components/user_lib.c **** 
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 32
-
-
- 368:Components/user_lib.c ****     if (OLS->Count < OLS->Order)
- 1391              		.loc 1 368 5 is_stmt 1 view .LVU444
- 1392              		.loc 1 368 12 is_stmt 0 view .LVU445
- 1393 0070 4368     		ldr	r3, [r0, #4]
- 1394              		.loc 1 368 25 view .LVU446
- 1395 0072 B0F800C0 		ldrh	ip, [r0]
- 1396              		.loc 1 368 8 view .LVU447
- 1397 0076 6345     		cmp	r3, ip
- 1398 0078 01D2     		bcs	.L98
+ 1342              		@ args = 0, pretend = 0, frame = 0
+ 1343              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1344              		@ link register save eliminated.
+ 366:Components/user_lib.c ****     static float temp = 0;
+ 1345              		.loc 1 366 5 view .LVU415
+ 367:Components/user_lib.c ****     temp = OLS->x[1];
+ 1346              		.loc 1 367 5 view .LVU416
+ 1347              		.loc 1 367 15 is_stmt 0 view .LVU417
+ 1348 0000 8368     		ldr	r3, [r0, #8]
+ 1349              		.loc 1 367 10 view .LVU418
+ 1350 0002 93ED017A 		vldr.32	s14, [r3, #4]
+ 1351 0006 684B     		ldr	r3, .L110
+ 1352 0008 83ED007A 		vstr.32	s14, [r3]
+ 368:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 1353              		.loc 1 368 5 is_stmt 1 view .LVU419
+ 1354              	.LBB10:
+ 1355              		.loc 1 368 10 view .LVU420
+ 1356              	.LVL83:
+ 1357              		.loc 1 368 19 is_stmt 0 view .LVU421
+ 1358 000c 0023     		movs	r3, #0
+ 1359              		.loc 1 368 5 view .LVU422
+ 1360 000e 13E0     		b	.L103
+ 1361              	.LVL84:
+ 1362              	.L104:
  369:Components/user_lib.c ****     {
- 370:Components/user_lib.c ****         OLS->Count++;
- 1399              		.loc 1 370 9 is_stmt 1 view .LVU448
- 1400              		.loc 1 370 19 is_stmt 0 view .LVU449
- 1401 007a 0133     		adds	r3, r3, #1
- 1402 007c 4360     		str	r3, [r0, #4]
- 1403              	.L98:
- 371:Components/user_lib.c ****     }
- 372:Components/user_lib.c **** 
- 373:Components/user_lib.c ****     memset((void *)OLS->t, 0, sizeof(float) * 4);
- 1404              		.loc 1 373 5 is_stmt 1 view .LVU450
- 1405 007e 0023     		movs	r3, #0
- 1406 0080 C361     		str	r3, [r0, #28]	@ unaligned
- 1407 0082 0362     		str	r3, [r0, #32]	@ unaligned
- 1408 0084 4362     		str	r3, [r0, #36]	@ unaligned
- 1409 0086 8362     		str	r3, [r0, #40]	@ unaligned
- 374:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 1410              		.loc 1 374 5 view .LVU451
- 1411              	.LBB11:
- 1412              		.loc 1 374 10 view .LVU452
- 1413              		.loc 1 374 34 is_stmt 0 view .LVU453
- 1414 0088 8388     		ldrh	r3, [r0, #4]
- 1415              		.loc 1 374 19 view .LVU454
- 1416 008a ACEB0303 		sub	r3, ip, r3
- 1417 008e 9BB2     		uxth	r3, r3
- 1418              	.LVL88:
- 1419              		.loc 1 374 19 view .LVU455
- 1420 0090 1A46     		mov	r2, r3
- 1421              		.loc 1 374 5 view .LVU456
- 1422 0092 2DE0     		b	.L99
- 1423              	.LVL89:
- 1424              	.L100:
- 375:Components/user_lib.c ****     {
- 376:Components/user_lib.c ****         OLS->t[0] += OLS->x[i] * OLS->x[i];
- 1425              		.loc 1 376 9 is_stmt 1 discriminator 3 view .LVU457
- 1426              		.loc 1 376 25 is_stmt 0 discriminator 3 view .LVU458
- 1427 0094 8168     		ldr	r1, [r0, #8]
- 1428              		.loc 1 376 28 discriminator 3 view .LVU459
- 1429 0096 01EB8201 		add	r1, r1, r2, lsl #2
- 1430 009a D1ED007A 		vldr.32	s15, [r1]
- 1431              		.loc 1 376 32 discriminator 3 view .LVU460
- 1432 009e 67EEA77A 		vmul.f32	s15, s15, s15
- 1433              		.loc 1 376 19 discriminator 3 view .LVU461
- 1434 00a2 90ED077A 		vldr.32	s14, [r0, #28]
- 1435 00a6 77EE277A 		vadd.f32	s15, s14, s15
- 1436 00aa C0ED077A 		vstr.32	s15, [r0, #28]
- 377:Components/user_lib.c ****         OLS->t[1] += OLS->x[i];
- 1437              		.loc 1 377 9 is_stmt 1 discriminator 3 view .LVU462
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 33
+ 370:Components/user_lib.c ****         OLS->x[i] = OLS->x[i + 1] - temp;
+ 1363              		.loc 1 370 9 is_stmt 1 discriminator 3 view .LVU423
+ 1364              		.loc 1 370 24 is_stmt 0 discriminator 3 view .LVU424
+ 1365 0010 8268     		ldr	r2, [r0, #8]
+ 1366              		.loc 1 370 27 discriminator 3 view .LVU425
+ 1367 0012 591C     		adds	r1, r3, #1
+ 1368 0014 02EB810C 		add	ip, r2, r1, lsl #2
+ 1369 0018 DCED007A 		vldr.32	s15, [ip]
+ 1370              		.loc 1 370 15 discriminator 3 view .LVU426
+ 1371 001c 02EB8302 		add	r2, r2, r3, lsl #2
+ 1372              		.loc 1 370 35 discriminator 3 view .LVU427
+ 1373 0020 77EEC77A 		vsub.f32	s15, s15, s14
+ 1374              		.loc 1 370 19 discriminator 3 view .LVU428
+ 1375 0024 C2ED007A 		vstr.32	s15, [r2]
+ 371:Components/user_lib.c ****         OLS->y[i] = OLS->y[i + 1];
+ 1376              		.loc 1 371 9 is_stmt 1 discriminator 3 view .LVU429
+ 1377              		.loc 1 371 24 is_stmt 0 discriminator 3 view .LVU430
+ 1378 0028 C268     		ldr	r2, [r0, #12]
+ 1379              		.loc 1 371 15 discriminator 3 view .LVU431
+ 1380 002a 02EB8303 		add	r3, r2, r3, lsl #2
+ 1381              	.LVL85:
+ 1382              		.loc 1 371 27 discriminator 3 view .LVU432
+ 1383 002e 02EB8102 		add	r2, r2, r1, lsl #2
+ 1384 0032 1268     		ldr	r2, [r2]	@ float
+ 1385              		.loc 1 371 19 discriminator 3 view .LVU433
+ 1386 0034 1A60     		str	r2, [r3]	@ float
+ 368:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 1387              		.loc 1 368 46 is_stmt 1 discriminator 3 view .LVU434
+ 1388 0036 8BB2     		uxth	r3, r1
+ 1389              	.LVL86:
+ 1390              	.L103:
+ 368:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 32
 
 
- 1438              		.loc 1 377 28 is_stmt 0 discriminator 3 view .LVU463
- 1439 00ae 91ED007A 		vldr.32	s14, [r1]
- 1440              		.loc 1 377 19 discriminator 3 view .LVU464
- 1441 00b2 D0ED087A 		vldr.32	s15, [r0, #32]
- 1442 00b6 77EE877A 		vadd.f32	s15, s15, s14
- 1443 00ba C0ED087A 		vstr.32	s15, [r0, #32]
- 378:Components/user_lib.c ****         OLS->t[2] += OLS->x[i] * OLS->y[i];
- 1444              		.loc 1 378 9 is_stmt 1 discriminator 3 view .LVU465
- 1445              		.loc 1 378 28 is_stmt 0 discriminator 3 view .LVU466
- 1446 00be D1ED007A 		vldr.32	s15, [r1]
- 1447              		.loc 1 378 37 discriminator 3 view .LVU467
- 1448 00c2 C168     		ldr	r1, [r0, #12]
- 1449              		.loc 1 378 40 discriminator 3 view .LVU468
- 1450 00c4 01EB8201 		add	r1, r1, r2, lsl #2
- 1451 00c8 91ED007A 		vldr.32	s14, [r1]
- 1452              		.loc 1 378 32 discriminator 3 view .LVU469
- 1453 00cc 27EE877A 		vmul.f32	s14, s15, s14
- 1454              		.loc 1 378 19 discriminator 3 view .LVU470
- 1455 00d0 D0ED097A 		vldr.32	s15, [r0, #36]
- 1456 00d4 77EE877A 		vadd.f32	s15, s15, s14
- 1457 00d8 C0ED097A 		vstr.32	s15, [r0, #36]
- 379:Components/user_lib.c ****         OLS->t[3] += OLS->y[i];
- 1458              		.loc 1 379 9 is_stmt 1 discriminator 3 view .LVU471
- 1459              		.loc 1 379 28 is_stmt 0 discriminator 3 view .LVU472
- 1460 00dc 91ED007A 		vldr.32	s14, [r1]
- 1461              		.loc 1 379 19 discriminator 3 view .LVU473
- 1462 00e0 D0ED0A7A 		vldr.32	s15, [r0, #40]
- 1463 00e4 77EE877A 		vadd.f32	s15, s15, s14
- 1464 00e8 C0ED0A7A 		vstr.32	s15, [r0, #40]
- 374:Components/user_lib.c ****     {
- 1465              		.loc 1 374 64 is_stmt 1 discriminator 3 view .LVU474
- 1466 00ec 0132     		adds	r2, r2, #1
- 1467              	.LVL90:
- 374:Components/user_lib.c ****     {
- 1468              		.loc 1 374 64 is_stmt 0 discriminator 3 view .LVU475
- 1469 00ee 92B2     		uxth	r2, r2
- 1470              	.LVL91:
- 1471              	.L99:
- 374:Components/user_lib.c ****     {
- 1472              		.loc 1 374 48 is_stmt 1 discriminator 1 view .LVU476
- 374:Components/user_lib.c ****     {
- 1473              		.loc 1 374 5 is_stmt 0 discriminator 1 view .LVU477
- 1474 00f0 9445     		cmp	ip, r2
- 1475 00f2 CFD8     		bhi	.L100
- 1476              	.LBE11:
- 380:Components/user_lib.c ****     }
- 381:Components/user_lib.c **** 
- 382:Components/user_lib.c ****     OLS->k = (OLS->t[2] * OLS->Order - OLS->t[1] * OLS->t[3]) / (OLS->t[0] * OLS->Order - OLS->t[1]
- 1477              		.loc 1 382 5 is_stmt 1 view .LVU478
- 1478              		.loc 1 382 21 is_stmt 0 view .LVU479
- 1479 00f4 90ED096A 		vldr.32	s12, [r0, #36]
- 1480              		.loc 1 382 25 view .LVU480
- 1481 00f8 07EE90CA 		vmov	s15, ip	@ int
- 1482 00fc B8EEE75A 		vcvt.f32.s32	s10, s15
- 1483 0100 66EE054A 		vmul.f32	s9, s12, s10
- 1484              		.loc 1 382 46 view .LVU481
- 1485 0104 D0ED085A 		vldr.32	s11, [r0, #32]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 34
+ 1391              		.loc 1 368 26 discriminator 1 view .LVU435
+ 368:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 1392              		.loc 1 368 33 is_stmt 0 discriminator 1 view .LVU436
+ 1393 0038 0288     		ldrh	r2, [r0]
+ 368:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 1394              		.loc 1 368 41 discriminator 1 view .LVU437
+ 1395 003a 511E     		subs	r1, r2, #1
+ 368:Components/user_lib.c ****     for (uint16_t i = 0; i < OLS->Order - 1; ++i)
+ 1396              		.loc 1 368 5 discriminator 1 view .LVU438
+ 1397 003c 8B42     		cmp	r3, r1
+ 1398 003e E7DB     		blt	.L104
+ 1399              	.LBE10:
+ 372:Components/user_lib.c ****     }
+ 373:Components/user_lib.c ****     OLS->x[OLS->Order - 1] = OLS->x[OLS->Order - 2] + deltax;
+ 1400              		.loc 1 373 5 is_stmt 1 view .LVU439
+ 1401              		.loc 1 373 33 is_stmt 0 view .LVU440
+ 1402 0040 8168     		ldr	r1, [r0, #8]
+ 1403              		.loc 1 373 36 view .LVU441
+ 1404 0042 02F18043 		add	r3, r2, #1073741824
+ 1405              	.LVL87:
+ 1406              		.loc 1 373 36 view .LVU442
+ 1407 0046 023B     		subs	r3, r3, #2
+ 1408 0048 01EB8303 		add	r3, r1, r3, lsl #2
+ 1409 004c D3ED007A 		vldr.32	s15, [r3]
+ 1410              		.loc 1 373 11 view .LVU443
+ 1411 0050 6FF0404C 		mvn	ip, #-1073741824
+ 1412 0054 6244     		add	r2, r2, ip
+ 1413 0056 01EB8202 		add	r2, r1, r2, lsl #2
+ 1414              		.loc 1 373 53 view .LVU444
+ 1415 005a 37EE800A 		vadd.f32	s0, s15, s0
+ 1416              	.LVL88:
+ 1417              		.loc 1 373 28 view .LVU445
+ 1418 005e 82ED000A 		vstr.32	s0, [r2]
+ 374:Components/user_lib.c ****     OLS->y[OLS->Order - 1] = y;
+ 1419              		.loc 1 374 5 is_stmt 1 view .LVU446
+ 1420              		.loc 1 374 8 is_stmt 0 view .LVU447
+ 1421 0062 C368     		ldr	r3, [r0, #12]
+ 1422              		.loc 1 374 15 view .LVU448
+ 1423 0064 0288     		ldrh	r2, [r0]
+ 1424              		.loc 1 374 11 view .LVU449
+ 1425 0066 6244     		add	r2, r2, ip
+ 1426 0068 03EB8203 		add	r3, r3, r2, lsl #2
+ 1427              		.loc 1 374 28 view .LVU450
+ 1428 006c C3ED000A 		vstr.32	s1, [r3]
+ 375:Components/user_lib.c **** 
+ 376:Components/user_lib.c ****     if (OLS->Count < OLS->Order)
+ 1429              		.loc 1 376 5 is_stmt 1 view .LVU451
+ 1430              		.loc 1 376 12 is_stmt 0 view .LVU452
+ 1431 0070 4368     		ldr	r3, [r0, #4]
+ 1432              		.loc 1 376 25 view .LVU453
+ 1433 0072 B0F800C0 		ldrh	ip, [r0]
+ 1434              		.loc 1 376 8 view .LVU454
+ 1435 0076 6345     		cmp	r3, ip
+ 1436 0078 01D2     		bcs	.L105
+ 377:Components/user_lib.c ****     {
+ 378:Components/user_lib.c ****         OLS->Count++;
+ 1437              		.loc 1 378 9 is_stmt 1 view .LVU455
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 33
 
 
- 1486              		.loc 1 382 58 view .LVU482
- 1487 0108 D0ED0A7A 		vldr.32	s15, [r0, #40]
- 1488              		.loc 1 382 50 view .LVU483
- 1489 010c 25EEA77A 		vmul.f32	s14, s11, s15
- 1490              		.loc 1 382 38 view .LVU484
- 1491 0110 74EEC74A 		vsub.f32	s9, s9, s14
- 1492              		.loc 1 382 72 view .LVU485
- 1493 0114 90ED074A 		vldr.32	s8, [r0, #28]
- 1494              		.loc 1 382 76 view .LVU486
- 1495 0118 25EE047A 		vmul.f32	s14, s10, s8
- 1496              		.loc 1 382 101 view .LVU487
- 1497 011c 65EEA56A 		vmul.f32	s13, s11, s11
- 1498              		.loc 1 382 89 view .LVU488
- 1499 0120 37EE667A 		vsub.f32	s14, s14, s13
- 1500              		.loc 1 382 63 view .LVU489
- 1501 0124 C4EE876A 		vdiv.f32	s13, s9, s14
- 1502              		.loc 1 382 12 view .LVU490
- 1503 0128 C0ED046A 		vstr.32	s13, [r0, #16]
- 383:Components/user_lib.c ****     OLS->b = (OLS->t[0] * OLS->t[3] - OLS->t[1] * OLS->t[2]) / (OLS->t[0] * OLS->Order - OLS->t[1] 
- 1504              		.loc 1 383 5 is_stmt 1 view .LVU491
- 1505              		.loc 1 383 25 is_stmt 0 view .LVU492
- 1506 012c 67EE847A 		vmul.f32	s15, s15, s8
- 1507              		.loc 1 383 49 view .LVU493
- 1508 0130 26EE256A 		vmul.f32	s12, s12, s11
- 1509              		.loc 1 383 37 view .LVU494
- 1510 0134 77EEC67A 		vsub.f32	s15, s15, s12
- 1511              		.loc 1 383 62 view .LVU495
- 1512 0138 87EE870A 		vdiv.f32	s0, s15, s14
- 1513              		.loc 1 383 12 view .LVU496
- 1514 013c 80ED050A 		vstr.32	s0, [r0, #20]
- 384:Components/user_lib.c **** 
- 385:Components/user_lib.c ****     OLS->StandardDeviation = 0;
- 1515              		.loc 1 385 5 is_stmt 1 view .LVU497
- 1516              		.loc 1 385 28 is_stmt 0 view .LVU498
- 1517 0140 0022     		movs	r2, #0
- 1518              	.LVL92:
- 1519              		.loc 1 385 28 view .LVU499
- 1520 0142 8261     		str	r2, [r0, #24]	@ float
- 386:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 1521              		.loc 1 386 5 is_stmt 1 view .LVU500
- 1522              	.LBB12:
- 1523              		.loc 1 386 10 view .LVU501
- 1524              	.LVL93:
- 1525              		.loc 1 386 5 is_stmt 0 view .LVU502
- 1526 0144 19E0     		b	.L101
- 1527              	.L102:
- 387:Components/user_lib.c ****     {
- 388:Components/user_lib.c ****         OLS->StandardDeviation += fabsf(OLS->k * OLS->x[i] + OLS->b - OLS->y[i]);
- 1528              		.loc 1 388 9 is_stmt 1 discriminator 3 view .LVU503
- 1529              		.loc 1 388 53 is_stmt 0 discriminator 3 view .LVU504
- 1530 0146 8268     		ldr	r2, [r0, #8]
- 1531              		.loc 1 388 56 discriminator 3 view .LVU505
- 1532 0148 02EB8302 		add	r2, r2, r3, lsl #2
- 1533 014c D2ED007A 		vldr.32	s15, [r2]
- 1534              		.loc 1 388 48 discriminator 3 view .LVU506
- 1535 0150 66EEA77A 		vmul.f32	s15, s13, s15
- 1536              		.loc 1 388 60 discriminator 3 view .LVU507
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 35
+ 1438              		.loc 1 378 19 is_stmt 0 view .LVU456
+ 1439 007a 0133     		adds	r3, r3, #1
+ 1440 007c 4360     		str	r3, [r0, #4]
+ 1441              	.L105:
+ 379:Components/user_lib.c ****     }
+ 380:Components/user_lib.c **** 
+ 381:Components/user_lib.c ****     memset((void *)OLS->t, 0, sizeof(float) * 4);
+ 1442              		.loc 1 381 5 is_stmt 1 view .LVU457
+ 1443 007e 0023     		movs	r3, #0
+ 1444 0080 C361     		str	r3, [r0, #28]	@ unaligned
+ 1445 0082 0362     		str	r3, [r0, #32]	@ unaligned
+ 1446 0084 4362     		str	r3, [r0, #36]	@ unaligned
+ 1447 0086 8362     		str	r3, [r0, #40]	@ unaligned
+ 382:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1448              		.loc 1 382 5 view .LVU458
+ 1449              	.LBB11:
+ 1450              		.loc 1 382 10 view .LVU459
+ 1451              		.loc 1 382 34 is_stmt 0 view .LVU460
+ 1452 0088 8388     		ldrh	r3, [r0, #4]
+ 1453              		.loc 1 382 19 view .LVU461
+ 1454 008a ACEB0303 		sub	r3, ip, r3
+ 1455 008e 9BB2     		uxth	r3, r3
+ 1456              	.LVL89:
+ 1457              		.loc 1 382 19 view .LVU462
+ 1458 0090 1A46     		mov	r2, r3
+ 1459              		.loc 1 382 5 view .LVU463
+ 1460 0092 2DE0     		b	.L106
+ 1461              	.LVL90:
+ 1462              	.L107:
+ 383:Components/user_lib.c ****     {
+ 384:Components/user_lib.c ****         OLS->t[0] += OLS->x[i] * OLS->x[i];
+ 1463              		.loc 1 384 9 is_stmt 1 discriminator 3 view .LVU464
+ 1464              		.loc 1 384 25 is_stmt 0 discriminator 3 view .LVU465
+ 1465 0094 8168     		ldr	r1, [r0, #8]
+ 1466              		.loc 1 384 28 discriminator 3 view .LVU466
+ 1467 0096 01EB8201 		add	r1, r1, r2, lsl #2
+ 1468 009a D1ED007A 		vldr.32	s15, [r1]
+ 1469              		.loc 1 384 32 discriminator 3 view .LVU467
+ 1470 009e 67EEA77A 		vmul.f32	s15, s15, s15
+ 1471              		.loc 1 384 19 discriminator 3 view .LVU468
+ 1472 00a2 90ED077A 		vldr.32	s14, [r0, #28]
+ 1473 00a6 77EE277A 		vadd.f32	s15, s14, s15
+ 1474 00aa C0ED077A 		vstr.32	s15, [r0, #28]
+ 385:Components/user_lib.c ****         OLS->t[1] += OLS->x[i];
+ 1475              		.loc 1 385 9 is_stmt 1 discriminator 3 view .LVU469
+ 1476              		.loc 1 385 28 is_stmt 0 discriminator 3 view .LVU470
+ 1477 00ae 91ED007A 		vldr.32	s14, [r1]
+ 1478              		.loc 1 385 19 discriminator 3 view .LVU471
+ 1479 00b2 D0ED087A 		vldr.32	s15, [r0, #32]
+ 1480 00b6 77EE877A 		vadd.f32	s15, s15, s14
+ 1481 00ba C0ED087A 		vstr.32	s15, [r0, #32]
+ 386:Components/user_lib.c ****         OLS->t[2] += OLS->x[i] * OLS->y[i];
+ 1482              		.loc 1 386 9 is_stmt 1 discriminator 3 view .LVU472
+ 1483              		.loc 1 386 28 is_stmt 0 discriminator 3 view .LVU473
+ 1484 00be D1ED007A 		vldr.32	s15, [r1]
+ 1485              		.loc 1 386 37 discriminator 3 view .LVU474
+ 1486 00c2 C168     		ldr	r1, [r0, #12]
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 34
 
 
- 1537 0154 70EE277A 		vadd.f32	s15, s0, s15
- 1538              		.loc 1 388 74 discriminator 3 view .LVU508
- 1539 0158 C268     		ldr	r2, [r0, #12]
- 1540              		.loc 1 388 77 discriminator 3 view .LVU509
- 1541 015a 02EB8302 		add	r2, r2, r3, lsl #2
- 1542 015e 92ED007A 		vldr.32	s14, [r2]
- 1543              		.loc 1 388 69 discriminator 3 view .LVU510
- 1544 0162 77EEC77A 		vsub.f32	s15, s15, s14
- 1545              		.loc 1 388 35 discriminator 3 view .LVU511
- 1546 0166 F0EEE77A 		vabs.f32	s15, s15
- 1547              		.loc 1 388 32 discriminator 3 view .LVU512
- 1548 016a 90ED067A 		vldr.32	s14, [r0, #24]
- 1549 016e 77EE277A 		vadd.f32	s15, s14, s15
- 1550 0172 C0ED067A 		vstr.32	s15, [r0, #24]
- 386:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 1551              		.loc 1 386 64 is_stmt 1 discriminator 3 view .LVU513
- 1552 0176 0133     		adds	r3, r3, #1
- 1553              	.LVL94:
- 386:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 1554              		.loc 1 386 64 is_stmt 0 discriminator 3 view .LVU514
- 1555 0178 9BB2     		uxth	r3, r3
- 1556              	.LVL95:
- 1557              	.L101:
- 386:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 1558              		.loc 1 386 48 is_stmt 1 discriminator 1 view .LVU515
- 386:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 1559              		.loc 1 386 5 is_stmt 0 discriminator 1 view .LVU516
- 1560 017a 9C45     		cmp	ip, r3
- 1561 017c E3D8     		bhi	.L102
- 386:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
- 1562              		.loc 1 386 5 discriminator 1 view .LVU517
- 1563              	.LBE12:
- 389:Components/user_lib.c ****     }
- 390:Components/user_lib.c ****     OLS->StandardDeviation /= OLS->Order;
- 1564              		.loc 1 390 5 is_stmt 1 view .LVU518
- 1565              		.loc 1 390 28 is_stmt 0 view .LVU519
- 1566 017e 90ED067A 		vldr.32	s14, [r0, #24]
- 1567 0182 C7EE057A 		vdiv.f32	s15, s14, s10
- 1568 0186 C0ED067A 		vstr.32	s15, [r0, #24]
- 391:Components/user_lib.c **** 
- 392:Components/user_lib.c ****     return OLS->k * OLS->x[OLS->Order - 1] + OLS->b;
- 1569              		.loc 1 392 5 is_stmt 1 view .LVU520
- 1570              		.loc 1 392 24 is_stmt 0 view .LVU521
- 1571 018a 8368     		ldr	r3, [r0, #8]
- 1572              	.LVL96:
- 1573              		.loc 1 392 27 view .LVU522
- 1574 018c 0CF1804C 		add	ip, ip, #1073741824
- 1575 0190 0CF1FF3C 		add	ip, ip, #-1
- 1576 0194 03EB8C0C 		add	ip, r3, ip, lsl #2
- 1577 0198 DCED007A 		vldr.32	s15, [ip]
- 1578              		.loc 1 392 19 view .LVU523
- 1579 019c 66EEA76A 		vmul.f32	s13, s13, s15
- 393:Components/user_lib.c **** }
- 1580              		.loc 1 393 1 view .LVU524
- 1581 01a0 30EE260A 		vadd.f32	s0, s0, s13
- 1582 01a4 7047     		bx	lr
- 1583              	.L104:
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 36
+ 1487              		.loc 1 386 40 discriminator 3 view .LVU475
+ 1488 00c4 01EB8201 		add	r1, r1, r2, lsl #2
+ 1489 00c8 91ED007A 		vldr.32	s14, [r1]
+ 1490              		.loc 1 386 32 discriminator 3 view .LVU476
+ 1491 00cc 27EE877A 		vmul.f32	s14, s15, s14
+ 1492              		.loc 1 386 19 discriminator 3 view .LVU477
+ 1493 00d0 D0ED097A 		vldr.32	s15, [r0, #36]
+ 1494 00d4 77EE877A 		vadd.f32	s15, s15, s14
+ 1495 00d8 C0ED097A 		vstr.32	s15, [r0, #36]
+ 387:Components/user_lib.c ****         OLS->t[3] += OLS->y[i];
+ 1496              		.loc 1 387 9 is_stmt 1 discriminator 3 view .LVU478
+ 1497              		.loc 1 387 28 is_stmt 0 discriminator 3 view .LVU479
+ 1498 00dc 91ED007A 		vldr.32	s14, [r1]
+ 1499              		.loc 1 387 19 discriminator 3 view .LVU480
+ 1500 00e0 D0ED0A7A 		vldr.32	s15, [r0, #40]
+ 1501 00e4 77EE877A 		vadd.f32	s15, s15, s14
+ 1502 00e8 C0ED0A7A 		vstr.32	s15, [r0, #40]
+ 382:Components/user_lib.c ****     {
+ 1503              		.loc 1 382 64 is_stmt 1 discriminator 3 view .LVU481
+ 1504 00ec 0132     		adds	r2, r2, #1
+ 1505              	.LVL91:
+ 382:Components/user_lib.c ****     {
+ 1506              		.loc 1 382 64 is_stmt 0 discriminator 3 view .LVU482
+ 1507 00ee 92B2     		uxth	r2, r2
+ 1508              	.LVL92:
+ 1509              	.L106:
+ 382:Components/user_lib.c ****     {
+ 1510              		.loc 1 382 48 is_stmt 1 discriminator 1 view .LVU483
+ 382:Components/user_lib.c ****     {
+ 1511              		.loc 1 382 5 is_stmt 0 discriminator 1 view .LVU484
+ 1512 00f0 9445     		cmp	ip, r2
+ 1513 00f2 CFD8     		bhi	.L107
+ 1514              	.LBE11:
+ 388:Components/user_lib.c ****     }
+ 389:Components/user_lib.c **** 
+ 390:Components/user_lib.c ****     OLS->k = (OLS->t[2] * OLS->Order - OLS->t[1] * OLS->t[3]) / (OLS->t[0] * OLS->Order - OLS->t[1]
+ 1515              		.loc 1 390 5 is_stmt 1 view .LVU485
+ 1516              		.loc 1 390 21 is_stmt 0 view .LVU486
+ 1517 00f4 90ED096A 		vldr.32	s12, [r0, #36]
+ 1518              		.loc 1 390 25 view .LVU487
+ 1519 00f8 07EE90CA 		vmov	s15, ip	@ int
+ 1520 00fc B8EEE75A 		vcvt.f32.s32	s10, s15
+ 1521 0100 66EE054A 		vmul.f32	s9, s12, s10
+ 1522              		.loc 1 390 46 view .LVU488
+ 1523 0104 D0ED085A 		vldr.32	s11, [r0, #32]
+ 1524              		.loc 1 390 58 view .LVU489
+ 1525 0108 D0ED0A7A 		vldr.32	s15, [r0, #40]
+ 1526              		.loc 1 390 50 view .LVU490
+ 1527 010c 25EEA77A 		vmul.f32	s14, s11, s15
+ 1528              		.loc 1 390 38 view .LVU491
+ 1529 0110 74EEC74A 		vsub.f32	s9, s9, s14
+ 1530              		.loc 1 390 72 view .LVU492
+ 1531 0114 90ED074A 		vldr.32	s8, [r0, #28]
+ 1532              		.loc 1 390 76 view .LVU493
+ 1533 0118 25EE047A 		vmul.f32	s14, s10, s8
+ 1534              		.loc 1 390 101 view .LVU494
+ 1535 011c 65EEA56A 		vmul.f32	s13, s11, s11
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 35
 
 
- 1584 01a6 00BF     		.align	2
- 1585              	.L103:
- 1586 01a8 00000000 		.word	.LANCHOR4
- 1587              		.cfi_endproc
- 1588              	.LFE152:
- 1590              		.section	.text.Get_OLS_Smooth,"ax",%progbits
- 1591              		.align	1
- 1592              		.global	Get_OLS_Smooth
- 1593              		.syntax unified
- 1594              		.thumb
- 1595              		.thumb_func
- 1597              	Get_OLS_Smooth:
- 1598              	.LVL97:
- 1599              	.LFB153:
- 394:Components/user_lib.c **** 
- 395:Components/user_lib.c **** /**
- 396:Components/user_lib.c ****  * @brief          »ñÈ¡×îÐ¡¶þ³Ë·¨Æ½»¬ÐÅºÅ
- 397:Components/user_lib.c ****  * @param[in]      ×îÐ¡¶þ³Ë·¨½á¹¹Ìå
- 398:Components/user_lib.c ****  * @retval         ·µ»ØÆ½»¬Êä³ö
- 399:Components/user_lib.c ****  */
- 400:Components/user_lib.c **** float Get_OLS_Smooth(Ordinary_Least_Squares_t *OLS)
- 401:Components/user_lib.c **** {
- 1600              		.loc 1 401 1 is_stmt 1 view -0
- 1601              		.cfi_startproc
- 1602              		@ args = 0, pretend = 0, frame = 0
- 1603              		@ frame_needed = 0, uses_anonymous_args = 0
- 1604              		@ link register save eliminated.
- 402:Components/user_lib.c ****     return OLS->k * OLS->x[OLS->Order - 1] + OLS->b;
- 1605              		.loc 1 402 5 view .LVU526
- 1606              		.loc 1 402 15 is_stmt 0 view .LVU527
- 1607 0000 D0ED047A 		vldr.32	s15, [r0, #16]
- 1608              		.loc 1 402 24 view .LVU528
- 1609 0004 8268     		ldr	r2, [r0, #8]
- 1610              		.loc 1 402 31 view .LVU529
- 1611 0006 0388     		ldrh	r3, [r0]
- 1612              		.loc 1 402 27 view .LVU530
- 1613 0008 03F18043 		add	r3, r3, #1073741824
- 1614 000c 013B     		subs	r3, r3, #1
- 1615 000e 02EB8303 		add	r3, r2, r3, lsl #2
- 1616 0012 93ED000A 		vldr.32	s0, [r3]
- 1617              		.loc 1 402 19 view .LVU531
- 1618 0016 67EE807A 		vmul.f32	s15, s15, s0
- 1619              		.loc 1 402 49 view .LVU532
- 1620 001a 90ED050A 		vldr.32	s0, [r0, #20]
- 403:Components/user_lib.c **** }
- 1621              		.loc 1 403 1 view .LVU533
- 1622 001e 37EE800A 		vadd.f32	s0, s15, s0
- 1623 0022 7047     		bx	lr
- 1624              		.cfi_endproc
- 1625              	.LFE153:
- 1627              		.global	GlobalDebugMode
- 1628              		.section	.bss.decimal.3,"aw",%nobits
- 1629              		.align	2
- 1630              		.set	.LANCHOR1,. + 0
- 1633              	decimal.3:
- 1634 0000 00000000 		.space	4
- 1635              		.section	.bss.integer.4,"aw",%nobits
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 37
+ 1536              		.loc 1 390 89 view .LVU495
+ 1537 0120 37EE667A 		vsub.f32	s14, s14, s13
+ 1538              		.loc 1 390 63 view .LVU496
+ 1539 0124 C4EE876A 		vdiv.f32	s13, s9, s14
+ 1540              		.loc 1 390 12 view .LVU497
+ 1541 0128 C0ED046A 		vstr.32	s13, [r0, #16]
+ 391:Components/user_lib.c ****     OLS->b = (OLS->t[0] * OLS->t[3] - OLS->t[1] * OLS->t[2]) / (OLS->t[0] * OLS->Order - OLS->t[1] 
+ 1542              		.loc 1 391 5 is_stmt 1 view .LVU498
+ 1543              		.loc 1 391 25 is_stmt 0 view .LVU499
+ 1544 012c 67EE847A 		vmul.f32	s15, s15, s8
+ 1545              		.loc 1 391 49 view .LVU500
+ 1546 0130 26EE256A 		vmul.f32	s12, s12, s11
+ 1547              		.loc 1 391 37 view .LVU501
+ 1548 0134 77EEC67A 		vsub.f32	s15, s15, s12
+ 1549              		.loc 1 391 62 view .LVU502
+ 1550 0138 87EE870A 		vdiv.f32	s0, s15, s14
+ 1551              		.loc 1 391 12 view .LVU503
+ 1552 013c 80ED050A 		vstr.32	s0, [r0, #20]
+ 392:Components/user_lib.c **** 
+ 393:Components/user_lib.c ****     OLS->StandardDeviation = 0;
+ 1553              		.loc 1 393 5 is_stmt 1 view .LVU504
+ 1554              		.loc 1 393 28 is_stmt 0 view .LVU505
+ 1555 0140 0022     		movs	r2, #0
+ 1556              	.LVL93:
+ 1557              		.loc 1 393 28 view .LVU506
+ 1558 0142 8261     		str	r2, [r0, #24]	@ float
+ 394:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1559              		.loc 1 394 5 is_stmt 1 view .LVU507
+ 1560              	.LBB12:
+ 1561              		.loc 1 394 10 view .LVU508
+ 1562              	.LVL94:
+ 1563              		.loc 1 394 5 is_stmt 0 view .LVU509
+ 1564 0144 19E0     		b	.L108
+ 1565              	.L109:
+ 395:Components/user_lib.c ****     {
+ 396:Components/user_lib.c ****         OLS->StandardDeviation += fabsf(OLS->k * OLS->x[i] + OLS->b - OLS->y[i]);
+ 1566              		.loc 1 396 9 is_stmt 1 discriminator 3 view .LVU510
+ 1567              		.loc 1 396 53 is_stmt 0 discriminator 3 view .LVU511
+ 1568 0146 8268     		ldr	r2, [r0, #8]
+ 1569              		.loc 1 396 56 discriminator 3 view .LVU512
+ 1570 0148 02EB8302 		add	r2, r2, r3, lsl #2
+ 1571 014c D2ED007A 		vldr.32	s15, [r2]
+ 1572              		.loc 1 396 48 discriminator 3 view .LVU513
+ 1573 0150 66EEA77A 		vmul.f32	s15, s13, s15
+ 1574              		.loc 1 396 60 discriminator 3 view .LVU514
+ 1575 0154 70EE277A 		vadd.f32	s15, s0, s15
+ 1576              		.loc 1 396 74 discriminator 3 view .LVU515
+ 1577 0158 C268     		ldr	r2, [r0, #12]
+ 1578              		.loc 1 396 77 discriminator 3 view .LVU516
+ 1579 015a 02EB8302 		add	r2, r2, r3, lsl #2
+ 1580 015e 92ED007A 		vldr.32	s14, [r2]
+ 1581              		.loc 1 396 69 discriminator 3 view .LVU517
+ 1582 0162 77EEC77A 		vsub.f32	s15, s15, s14
+ 1583              		.loc 1 396 35 discriminator 3 view .LVU518
+ 1584 0166 F0EEE77A 		vabs.f32	s15, s15
+ 1585              		.loc 1 396 32 discriminator 3 view .LVU519
+ 1586 016a 90ED067A 		vldr.32	s14, [r0, #24]
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 36
 
 
- 1636              		.align	2
- 1637              		.set	.LANCHOR0,. + 0
- 1640              	integer.4:
- 1641 0000 00000000 		.space	4
- 1642              		.section	.bss.temp.0,"aw",%nobits
- 1643              		.align	2
- 1644              		.set	.LANCHOR4,. + 0
- 1647              	temp.0:
- 1648 0000 00000000 		.space	4
- 1649              		.section	.bss.temp.1,"aw",%nobits
- 1650              		.align	2
- 1651              		.set	.LANCHOR3,. + 0
- 1654              	temp.1:
- 1655 0000 00000000 		.space	4
- 1656              		.section	.bss.temp.2,"aw",%nobits
- 1657              		.align	2
- 1658              		.set	.LANCHOR2,. + 0
- 1661              	temp.2:
- 1662 0000 00000000 		.space	4
- 1663              		.section	.data.GlobalDebugMode,"aw"
- 1666              	GlobalDebugMode:
- 1667 0000 07       		.byte	7
- 1668              		.text
- 1669              	.Letext0:
- 1670              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 1671              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 1672              		.file 4 "Components/user_lib.h"
- 1673              		.file 5 "Middlewares/Third_Party/FreeRTOS/Source/include/portable.h"
- 1674              		.file 6 "<built-in>"
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 38
+ 1587 016e 77EE277A 		vadd.f32	s15, s14, s15
+ 1588 0172 C0ED067A 		vstr.32	s15, [r0, #24]
+ 394:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1589              		.loc 1 394 64 is_stmt 1 discriminator 3 view .LVU520
+ 1590 0176 0133     		adds	r3, r3, #1
+ 1591              	.LVL95:
+ 394:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1592              		.loc 1 394 64 is_stmt 0 discriminator 3 view .LVU521
+ 1593 0178 9BB2     		uxth	r3, r3
+ 1594              	.LVL96:
+ 1595              	.L108:
+ 394:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1596              		.loc 1 394 48 is_stmt 1 discriminator 1 view .LVU522
+ 394:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1597              		.loc 1 394 5 is_stmt 0 discriminator 1 view .LVU523
+ 1598 017a 9C45     		cmp	ip, r3
+ 1599 017c E3D8     		bhi	.L109
+ 394:Components/user_lib.c ****     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
+ 1600              		.loc 1 394 5 discriminator 1 view .LVU524
+ 1601              	.LBE12:
+ 397:Components/user_lib.c ****     }
+ 398:Components/user_lib.c ****     OLS->StandardDeviation /= OLS->Order;
+ 1602              		.loc 1 398 5 is_stmt 1 view .LVU525
+ 1603              		.loc 1 398 28 is_stmt 0 view .LVU526
+ 1604 017e 90ED067A 		vldr.32	s14, [r0, #24]
+ 1605 0182 C7EE057A 		vdiv.f32	s15, s14, s10
+ 1606 0186 C0ED067A 		vstr.32	s15, [r0, #24]
+ 399:Components/user_lib.c **** 
+ 400:Components/user_lib.c ****     return OLS->k * OLS->x[OLS->Order - 1] + OLS->b;
+ 1607              		.loc 1 400 5 is_stmt 1 view .LVU527
+ 1608              		.loc 1 400 24 is_stmt 0 view .LVU528
+ 1609 018a 8368     		ldr	r3, [r0, #8]
+ 1610              	.LVL97:
+ 1611              		.loc 1 400 27 view .LVU529
+ 1612 018c 0CF1804C 		add	ip, ip, #1073741824
+ 1613 0190 0CF1FF3C 		add	ip, ip, #-1
+ 1614 0194 03EB8C0C 		add	ip, r3, ip, lsl #2
+ 1615 0198 DCED007A 		vldr.32	s15, [ip]
+ 1616              		.loc 1 400 19 view .LVU530
+ 1617 019c 66EEA76A 		vmul.f32	s13, s13, s15
+ 401:Components/user_lib.c **** }
+ 1618              		.loc 1 401 1 view .LVU531
+ 1619 01a0 30EE260A 		vadd.f32	s0, s0, s13
+ 1620 01a4 7047     		bx	lr
+ 1621              	.L111:
+ 1622 01a6 00BF     		.align	2
+ 1623              	.L110:
+ 1624 01a8 00000000 		.word	.LANCHOR4
+ 1625              		.cfi_endproc
+ 1626              	.LFE153:
+ 1628              		.section	.text.Get_OLS_Smooth,"ax",%progbits
+ 1629              		.align	1
+ 1630              		.global	Get_OLS_Smooth
+ 1631              		.syntax unified
+ 1632              		.thumb
+ 1633              		.thumb_func
+ 1635              	Get_OLS_Smooth:
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 37
+
+
+ 1636              	.LVL98:
+ 1637              	.LFB154:
+ 402:Components/user_lib.c **** 
+ 403:Components/user_lib.c **** /**
+ 404:Components/user_lib.c ****  * @brief          ï¿½ï¿½È¡ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ë·ï¿½Æ½ï¿½ï¿½ï¿½Åºï¿½
+ 405:Components/user_lib.c ****  * @param[in]      ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ë·ï¿½ï¿½á¹¹ï¿½ï¿½
+ 406:Components/user_lib.c ****  * @retval         ï¿½ï¿½ï¿½ï¿½Æ½ï¿½ï¿½ï¿½ï¿½ï¿½
+ 407:Components/user_lib.c ****  */
+ 408:Components/user_lib.c **** float Get_OLS_Smooth(Ordinary_Least_Squares_t *OLS)
+ 409:Components/user_lib.c **** {
+ 1638              		.loc 1 409 1 is_stmt 1 view -0
+ 1639              		.cfi_startproc
+ 1640              		@ args = 0, pretend = 0, frame = 0
+ 1641              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1642              		@ link register save eliminated.
+ 410:Components/user_lib.c ****     return OLS->k * OLS->x[OLS->Order - 1] + OLS->b;
+ 1643              		.loc 1 410 5 view .LVU533
+ 1644              		.loc 1 410 15 is_stmt 0 view .LVU534
+ 1645 0000 D0ED047A 		vldr.32	s15, [r0, #16]
+ 1646              		.loc 1 410 24 view .LVU535
+ 1647 0004 8268     		ldr	r2, [r0, #8]
+ 1648              		.loc 1 410 31 view .LVU536
+ 1649 0006 0388     		ldrh	r3, [r0]
+ 1650              		.loc 1 410 27 view .LVU537
+ 1651 0008 03F18043 		add	r3, r3, #1073741824
+ 1652 000c 013B     		subs	r3, r3, #1
+ 1653 000e 02EB8303 		add	r3, r2, r3, lsl #2
+ 1654 0012 93ED000A 		vldr.32	s0, [r3]
+ 1655              		.loc 1 410 19 view .LVU538
+ 1656 0016 67EE807A 		vmul.f32	s15, s15, s0
+ 1657              		.loc 1 410 49 view .LVU539
+ 1658 001a 90ED050A 		vldr.32	s0, [r0, #20]
+ 411:Components/user_lib.c **** }
+ 1659              		.loc 1 411 1 view .LVU540
+ 1660 001e 37EE800A 		vadd.f32	s0, s15, s0
+ 1661 0022 7047     		bx	lr
+ 1662              		.cfi_endproc
+ 1663              	.LFE154:
+ 1665              		.global	GlobalDebugMode
+ 1666              		.section	.bss.decimal.3,"aw",%nobits
+ 1667              		.align	2
+ 1668              		.set	.LANCHOR1,. + 0
+ 1671              	decimal.3:
+ 1672 0000 00000000 		.space	4
+ 1673              		.section	.bss.integer.4,"aw",%nobits
+ 1674              		.align	2
+ 1675              		.set	.LANCHOR0,. + 0
+ 1678              	integer.4:
+ 1679 0000 00000000 		.space	4
+ 1680              		.section	.bss.temp.0,"aw",%nobits
+ 1681              		.align	2
+ 1682              		.set	.LANCHOR4,. + 0
+ 1685              	temp.0:
+ 1686 0000 00000000 		.space	4
+ 1687              		.section	.bss.temp.1,"aw",%nobits
+ 1688              		.align	2
+ 1689              		.set	.LANCHOR3,. + 0
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 38
+
+
+ 1692              	temp.1:
+ 1693 0000 00000000 		.space	4
+ 1694              		.section	.bss.temp.2,"aw",%nobits
+ 1695              		.align	2
+ 1696              		.set	.LANCHOR2,. + 0
+ 1699              	temp.2:
+ 1700 0000 00000000 		.space	4
+ 1701              		.section	.data.GlobalDebugMode,"aw"
+ 1704              	GlobalDebugMode:
+ 1705 0000 07       		.byte	7
+ 1706              		.text
+ 1707              	.Letext0:
+ 1708              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 1709              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 1710              		.file 4 "Components/user_lib.h"
+ 1711              		.file 5 "Middlewares/Third_Party/FreeRTOS/Source/include/portable.h"
+ 1712              		.file 6 "<built-in>"
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 39
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 user_lib.c
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:20     .text.Sqrt:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:26     .text.Sqrt:00000000 Sqrt
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:93     .text.Sqrt:00000054 $d
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:99     .text.ramp_init:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:105    .text.ramp_init:00000000 ramp_init
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:135    .text.ramp_calc:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:141    .text.ramp_calc:00000000 ramp_calc
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:193    .text.abs_limit:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:199    .text.abs_limit:00000000 abs_limit
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:233    .text.sign:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:239    .text.sign:00000000 sign
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:268    .text.float_deadband:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:274    .text.float_deadband:00000000 float_deadband
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:301    .text.float_deadband:0000001c $d
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:306    .text.int16_deadline:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:312    .text.int16_deadline:00000000 int16_deadline
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:338    .text.float_constrain:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:344    .text.float_constrain:00000000 float_constrain
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:379    .text.int16_constrain:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:385    .text.int16_constrain:00000000 int16_constrain
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:418    .text.int32_constrain:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:424    .text.int32_constrain:00000000 int32_constrain
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:457    .text.loop_float_constrain:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:463    .text.loop_float_constrain:00000000 loop_float_constrain
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:537    .text.theta_format:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:543    .text.theta_format:00000000 theta_format
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:567    .text.theta_format:00000010 $d
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:573    .text.float_rounding:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:579    .text.float_rounding:00000000 float_rounding
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:624    .text.float_rounding:00000038 $d
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:630    .text.OLS_Init:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:636    .text.OLS_Init:00000000 OLS_Init
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:707    .text.OLS_Update:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:713    .text.OLS_Update:00000000 OLS_Update
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:988    .text.OLS_Update:0000018c $d
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:993    .text.OLS_Derivative:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:999    .text.OLS_Derivative:00000000 OLS_Derivative
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1266   .text.OLS_Derivative:0000017c $d
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1271   .text.Get_OLS_Derivative:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1277   .text.Get_OLS_Derivative:00000000 Get_OLS_Derivative
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1293   .text.OLS_Smooth:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1299   .text.OLS_Smooth:00000000 OLS_Smooth
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1586   .text.OLS_Smooth:000001a8 $d
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1591   .text.Get_OLS_Smooth:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1597   .text.Get_OLS_Smooth:00000000 Get_OLS_Smooth
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1666   .data.GlobalDebugMode:00000000 GlobalDebugMode
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1629   .bss.decimal.3:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1633   .bss.decimal.3:00000000 decimal.3
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1636   .bss.integer.4:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1640   .bss.integer.4:00000000 integer.4
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1643   .bss.temp.0:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1647   .bss.temp.0:00000000 temp.0
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1650   .bss.temp.1:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1654   .bss.temp.1:00000000 temp.1
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1657   .bss.temp.2:00000000 $d
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s 			page 39
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:20     .text.Sqrt:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:26     .text.Sqrt:00000000 Sqrt
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:93     .text.Sqrt:00000054 $d
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:99     .text.ramp_init:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:105    .text.ramp_init:00000000 ramp_init
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:135    .text.ramp_calc:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:141    .text.ramp_calc:00000000 ramp_calc
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:193    .text.abs_limit:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:199    .text.abs_limit:00000000 abs_limit
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:233    .text.sign:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:239    .text.sign:00000000 sign
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:268    .text.float_deadband:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:274    .text.float_deadband:00000000 float_deadband
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:301    .text.float_deadband:0000001c $d
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:306    .text.int16_deadline:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:312    .text.int16_deadline:00000000 int16_deadline
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:338    .text.float_constrain:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:344    .text.float_constrain:00000000 float_constrain
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:379    .text.int16_constrain:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:385    .text.int16_constrain:00000000 int16_constrain
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:418    .text.int32_constrain:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:424    .text.int32_constrain:00000000 int32_constrain
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:457    .text.check_float_range:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:463    .text.check_float_range:00000000 check_float_range
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:495    .text.loop_float_constrain:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:501    .text.loop_float_constrain:00000000 loop_float_constrain
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:575    .text.theta_format:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:581    .text.theta_format:00000000 theta_format
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:605    .text.theta_format:00000010 $d
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:611    .text.float_rounding:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:617    .text.float_rounding:00000000 float_rounding
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:662    .text.float_rounding:00000038 $d
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:668    .text.OLS_Init:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:674    .text.OLS_Init:00000000 OLS_Init
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:745    .text.OLS_Update:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:751    .text.OLS_Update:00000000 OLS_Update
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1026   .text.OLS_Update:0000018c $d
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1031   .text.OLS_Derivative:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1037   .text.OLS_Derivative:00000000 OLS_Derivative
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1304   .text.OLS_Derivative:0000017c $d
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1309   .text.Get_OLS_Derivative:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1315   .text.Get_OLS_Derivative:00000000 Get_OLS_Derivative
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1331   .text.OLS_Smooth:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1337   .text.OLS_Smooth:00000000 OLS_Smooth
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1624   .text.OLS_Smooth:000001a8 $d
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1629   .text.Get_OLS_Smooth:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1635   .text.Get_OLS_Smooth:00000000 Get_OLS_Smooth
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1704   .data.GlobalDebugMode:00000000 GlobalDebugMode
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1667   .bss.decimal.3:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1671   .bss.decimal.3:00000000 decimal.3
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1674   .bss.integer.4:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1678   .bss.integer.4:00000000 integer.4
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1681   .bss.temp.0:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1685   .bss.temp.0:00000000 temp.0
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1688   .bss.temp.1:00000000 $d
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccb561JO.s 			page 40
 
 
-C:\Users\86152\AppData\Local\Temp\ccjsy8D2.s:1661   .bss.temp.2:00000000 temp.2
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1692   .bss.temp.1:00000000 temp.1
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1695   .bss.temp.2:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccb561JO.s:1699   .bss.temp.2:00000000 temp.2
 
 UNDEFINED SYMBOLS
 pvPortMalloc

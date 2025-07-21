@@ -25,12 +25,12 @@ void exo_init(void)
   PID_Init(&exo_controller.xzy_shoulder.dm_motor[0].PID_Velocity, 18, 10, 0, 0.7, 0, 0, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
   PID_Init(&exo_controller.xzy_shoulder.dm_motor[0].PID_Angle, 50, 5, 0, 0.4, 0.05, 0.01, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
   exo_controller.xzy_shoulder.dm_motor[0].max_out = 0;
-  exo_controller.xzy_shoulder.dm_motor[0].zero_offset = 0;
+  exo_controller.xzy_shoulder.dm_motor[0].zero_offset = 30585;
 
   PID_Init(&exo_controller.xzy_shoulder.dm_motor[1].PID_Velocity, 18, 10, 0, 0.7, 0, 0, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
   PID_Init(&exo_controller.xzy_shoulder.dm_motor[1].PID_Angle, 50, 5, 0, 0.4, 0.05, 0.01, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
   exo_controller.xzy_shoulder.dm_motor[1].max_out = 0;
-  exo_controller.xzy_shoulder.dm_motor[1].zero_offset = 0;
+  exo_controller.xzy_shoulder.dm_motor[1].zero_offset = 32999;
 
   PID_Init(&exo_controller.elbow.dm_motor.PID_Velocity, 18, 10, 0, 0.7, 0, 0, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
   PID_Init(&exo_controller.elbow.dm_motor.PID_Angle, 50, 5, 0, 0.4, 0.05, 0.01, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
@@ -41,6 +41,9 @@ void exo_init(void)
   exo_controller.xzy_shoulder.dm_motor[0].reduction_ratio = 1.0f;
   exo_controller.xzy_shoulder.dm_motor[1].reduction_ratio = 1.0f;
   exo_controller.elbow.dm_motor.reduction_ratio = 1.0f;
+
+  exo_controller.xzy_shoulder.SSM.alpha = 30.0f;
+  exo_controller.xzy_shoulder.SSM.offset_Z = 22.5f;
 
   DM_CANx_SendStdData(&hcan1, 0x01, ENABLE_MOTOR, 8);
   HAL_Delay(2);
@@ -60,6 +63,7 @@ void exo_task(void)
   set_exo_mode();
   get_exo_ctrl_value();
   set_exo_control();
+  limit_exo_ctrl_value();
   send_exo_motor_current();
 }
 
@@ -122,23 +126,28 @@ static void get_exo_ctrl_value(void)
     }
     else if (exo_controller.debug_mode == 5)
     {
-      TargetAngle2 = -a1 * sin(b * exo_controller.t + PI / 3) - c1;
+      TargetAngle4 = -a1 * sin(b * exo_controller.t + PI / 3) - c1;
     }
     else if (exo_controller.debug_mode == 6)
     {
       TargetAngle3 = a * sin(b * exo_controller.t + PI) + c;
-      TargetAngle2 = -a1 * sin(b * exo_controller.t + PI / 3) - c1;
+      TargetAngle4 = -a1 * sin(b * exo_controller.t + PI / 3) - c1;
     }
 
-    // TargetAngle1 = float_constrain(TargetAngle1, MOTOR1_MIN, MOTOR1_MAX);
-    // TargetAngle2 = float_constrain(TargetAngle2, MOTOR2_MIN, MOTOR2_MAX);
     break;
   }
 }
 
 static void limit_exo_ctrl_value(void)
 {
-  ;
+  if (abs(TargetAngle1 - TargetAngle2) > MAX_SSM_MOTOR_ANFLE_DIFFERENCE)
+  {
+    TargetAngle1 = exo_controller.xzy_shoulder.dm_motor[0].angle_in_degree;
+    TargetAngle2 = exo_controller.xzy_shoulder.dm_motor[1].angle_in_degree;
+  }
+  TargetAngle1 = float_constrain(TargetAngle1, SSM_MOTOR1_MIN, SSM_MOTOR1_MAX);
+  TargetAngle2 = float_constrain(TargetAngle2, SSM_MOTOR2_MIN, SSM_MOTOR2_MAX);
+  TargetAngle3 = float_constrain(TargetAngle3, SSM_Y_ANGLE_MIN, SSM_Y_ANGLE_MAX);
 }
 
 static void set_exo_control(void)
@@ -200,6 +209,7 @@ static void set_exo_control(void)
                                       -exo_controller.elbow.dm_motor.PID_Velocity.MaxOut, exo_controller.elbow.dm_motor.PID_Velocity.MaxOut);
 
     exo_controller.elbow.dm_motor.Output = float_constrain(TorqueLoopInput, -exo_controller.elbow.dm_motor.max_out, exo_controller.elbow.dm_motor.max_out);
+    break;
 
   case Velocity:
     // 速度控制
@@ -229,11 +239,33 @@ static void set_exo_control(void)
   }
 }
 
+static uint8_t check_motor_angle(void)
+{
+  static float flag_change_timestamp;
+  static uint8_t tmp_check_flag;
+
+  if (check_float_range(exo_controller.xzy_shoulder.dm_motor[0].angle_in_degree, SSM_MOTOR1_MIN, SSM_MOTOR1_MAX) &&
+      check_float_range(exo_controller.xzy_shoulder.dm_motor[1].angle_in_degree, SSM_MOTOR2_MIN, SSM_MOTOR2_MAX) &&
+      check_float_range(exo_controller.xzy_shoulder.INS_shoulder.xzy_order_angle[2], SSM_Y_ANGLE_MIN, SSM_Y_ANGLE_MAX) &&
+      check_float_range(exo_controller.elbow.dm_motor.angle_in_degree, ELBOW_MOTOR_MIN, ELBOW_MOTOR_MAX))
+    tmp_check_flag = 1;
+  else if (tmp_check_flag == 1)
+  {
+    tmp_check_flag = 0;
+    flag_change_timestamp = exo_controller.t;
+  }
+
+  if ((tmp_check_flag == 0) && ((exo_controller.t - flag_change_timestamp) > 0.005f))
+    return 0;
+  else
+    return 1;
+}
+
 static void send_exo_motor_current(void)
 {
   static uint8_t CAN_send_status;
 
-  if (exo_controller.mode == SILENCE_MODE)
+  if (exo_controller.mode == SILENCE_MODE || check_motor_angle() == 0)
   {
     CAN_send_status = Send_DM_MIT_Command(&hcan1, 0X01, 0, 0, 0, 0, 0);
     DWT_Delay(0.0003f);
@@ -252,9 +284,9 @@ static void send_exo_motor_current(void)
   {
     CAN_send_status = Send_DM_MIT_Command(&hcan1, 0X01, 0, 0, 0, 0, exo_controller.xzy_shoulder.dm_motor[0].Output);
     DWT_Delay(0.0003f);
-    CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X02, 0, 0, 0, 0, exo_controller.xzy_shoulder.dm_motor[1].Output);
+    CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X03, 0, 0, 0, 0, exo_controller.xzy_shoulder.dm_motor[1].Output);
     DWT_Delay(0.0003f);
-    CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X03, 0, 0, 0, 0, TargetTorque);
+    CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X02, 0, 0, 0, 0, TargetTorque);
 
     exo_controller.CAN_send_status = CAN_send_status | Send_LK_Current_Single(&hcan2, 1, exo_controller.xzy_shoulder.lk_motor.Output);
 
