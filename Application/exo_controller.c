@@ -5,7 +5,7 @@ exo_controller_t exo_controller = {0};
 float TargetVelocity = 0, TargetTorque = 0;
 float TargetAngle1 = 0, TargetAngle2 = 0,
       TargetAngle3 = 0, TargetAngle4 = 0; // 目标角度
-float a = 35.0f, b = 0.5f, c = 40.0f;
+float a = -35.0f, b = 0.5f, c = -40.0f;
 float a1 = 60.0f, c1 = 70.0f;
 
 static void set_exo_mode(void);
@@ -18,7 +18,7 @@ void exo_init(void)
 {
   // PID初始化
   PID_Init(&exo_controller.xzy_shoulder.lk_motor.PID_Velocity, 2000, 1000, 0, 1.5, 0.1, 0, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
-  PID_Init(&exo_controller.xzy_shoulder.lk_motor.PID_Angle, 8600, 4000, 0, 30, 1, 2, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
+  PID_Init(&exo_controller.xzy_shoulder.lk_motor.PID_Angle, 8600, 4000, 0, 30, 0, 2, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
   exo_controller.xzy_shoulder.lk_motor.max_out = 0;
   exo_controller.xzy_shoulder.lk_motor.zero_offset = 0;
 
@@ -35,7 +35,7 @@ void exo_init(void)
   PID_Init(&exo_controller.elbow.dm_motor.PID_Velocity, 18, 10, 0, 0.7, 0, 0, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
   PID_Init(&exo_controller.elbow.dm_motor.PID_Angle, 50, 5, 0, 0.4, 0.05, 0.01, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
   exo_controller.elbow.dm_motor.max_out = 0;
-  exo_controller.elbow.dm_motor.zero_offset = 0;
+  exo_controller.elbow.dm_motor.zero_offset = 31706;
 
   exo_controller.xzy_shoulder.lk_motor.reduction_ratio = 1.0f;
   exo_controller.xzy_shoulder.dm_motor[0].reduction_ratio = 1.0f;
@@ -126,12 +126,27 @@ static void get_exo_ctrl_value(void)
     }
     else if (exo_controller.debug_mode == 5)
     {
-      TargetAngle4 = -a1 * sin(b * exo_controller.t + PI / 3) - c1;
+      TargetAngle4 = 50 * sin(b * exo_controller.t + PI / 3) + 60;
     }
     else if (exo_controller.debug_mode == 6)
     {
       TargetAngle3 = a * sin(b * exo_controller.t + PI) + c;
-      TargetAngle4 = -a1 * sin(b * exo_controller.t + PI / 3) - c1;
+      TargetAngle4 = 50 * sin(b * exo_controller.t + PI / 3) + 60;
+    }
+    else if (exo_controller.debug_mode == 7)
+    {
+      TargetAngle1 = -20 * sin(b * exo_controller.t + PI) - 25;
+      TargetAngle2 = 20 * sin(b * exo_controller.t + PI / 3) + 25;
+    }
+    else if (exo_controller.debug_mode == 8)
+    {
+      TargetAngle1 = -30 * sin(b * exo_controller.t + PI) - 25;
+      TargetAngle2 = -30 * sin(b * exo_controller.t + PI) + 20;
+    }
+    else if (exo_controller.debug_mode == 9)
+    {
+      TargetAngle1 = -17 * sin(b * exo_controller.t + PI) - 20;
+      TargetAngle2 = 17 * sin(b * exo_controller.t + PI) + 20;
     }
 
     break;
@@ -140,7 +155,7 @@ static void get_exo_ctrl_value(void)
 
 static void limit_exo_ctrl_value(void)
 {
-  if (abs(TargetAngle1 - TargetAngle2) > MAX_SSM_MOTOR_ANFLE_DIFFERENCE)
+  if (fabsf(TargetAngle1 - TargetAngle2) > MAX_SSM_MOTOR_ANFLE_DIFFERENCE)
   {
     TargetAngle1 = exo_controller.xzy_shoulder.dm_motor[0].angle_in_degree;
     TargetAngle2 = exo_controller.xzy_shoulder.dm_motor[1].angle_in_degree;
@@ -167,7 +182,7 @@ static void set_exo_control(void)
     /* -------------------------------- lk motor -------------------------------- */
     /* ---------------------------- shoulder motor 3 ---------------------------- */
     if (exo_controller.debug_mode == 6 || exo_controller.debug_mode == 4)
-      PID_Calculate(&exo_controller.xzy_shoulder.lk_motor.PID_Angle, -exo_controller.xzy_shoulder.INS_shoulder.xzy_order_angle[2], TargetAngle3);
+      PID_Calculate(&exo_controller.xzy_shoulder.lk_motor.PID_Angle, exo_controller.xzy_shoulder.INS_shoulder.xzy_order_angle[2], TargetAngle3);
     else
       PID_Calculate(&exo_controller.xzy_shoulder.lk_motor.PID_Angle, exo_controller.xzy_shoulder.lk_motor.angle_in_degree, TargetAngle3);
     VelocityLoopInput = float_constrain(exo_controller.xzy_shoulder.lk_motor.PID_Angle.Output,
@@ -256,9 +271,11 @@ static uint8_t check_motor_angle(void)
   }
 
   if ((tmp_check_flag == 0) && ((exo_controller.t - flag_change_timestamp) > 0.005f))
-    return 0;
+    exo_controller.motor_angle_check_flag = 0;
   else
-    return 1;
+    exo_controller.motor_angle_check_flag = 1;
+
+  return exo_controller.motor_angle_check_flag;
 }
 
 static void send_exo_motor_current(void)
@@ -286,7 +303,7 @@ static void send_exo_motor_current(void)
     DWT_Delay(0.0003f);
     CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X03, 0, 0, 0, 0, exo_controller.xzy_shoulder.dm_motor[1].Output);
     DWT_Delay(0.0003f);
-    CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X02, 0, 0, 0, 0, TargetTorque);
+    CAN_send_status = CAN_send_status | Send_DM_MIT_Command(&hcan1, 0X02, 0, 0, 0, 0, exo_controller.elbow.dm_motor.Output);
 
     exo_controller.CAN_send_status = CAN_send_status | Send_LK_Current_Single(&hcan2, 1, exo_controller.xzy_shoulder.lk_motor.Output);
 

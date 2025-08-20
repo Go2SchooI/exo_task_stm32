@@ -5,8 +5,8 @@
 #include "dm_imu.h"
 #include "SSM_kinematics.h"
 
-#define ELBOW_MOTOR_MIN -90.0f
-#define ELBOW_MOTOR_MAX 90.0f
+#define ELBOW_MOTOR_MIN -25.0f
+#define ELBOW_MOTOR_MAX 135.0f
 
 typedef struct
 {
@@ -38,6 +38,8 @@ typedef struct
 
     exo_shoulder_t xzy_shoulder;
     exo_elbow_t elbow;
+
+    uint8_t motor_angle_check_flag;
 } exo_controller_t;
 
 enum
