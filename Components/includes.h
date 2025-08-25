@@ -48,6 +48,7 @@
 // std C
 #include <stdio.h>
 #include <stdint.h>
+#include <math.h>
 
 // user lib
 #include "BMI088driver.h"

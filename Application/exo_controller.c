@@ -25,12 +25,12 @@ void exo_init(void)
   PID_Init(&exo_controller.xzy_shoulder.dm_motor[0].PID_Velocity, 18, 10, 0, 0.7, 0, 0, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
   PID_Init(&exo_controller.xzy_shoulder.dm_motor[0].PID_Angle, 50, 5, 0, 0.4, 0.05, 0.01, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
   exo_controller.xzy_shoulder.dm_motor[0].max_out = 0;
-  exo_controller.xzy_shoulder.dm_motor[0].zero_offset = 30585;
+  exo_controller.xzy_shoulder.dm_motor[0].zero_offset = 31760;
 
   PID_Init(&exo_controller.xzy_shoulder.dm_motor[1].PID_Velocity, 18, 10, 0, 0.7, 0, 0, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
   PID_Init(&exo_controller.xzy_shoulder.dm_motor[1].PID_Angle, 50, 5, 0, 0.4, 0.05, 0.01, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
   exo_controller.xzy_shoulder.dm_motor[1].max_out = 0;
-  exo_controller.xzy_shoulder.dm_motor[1].zero_offset = 32999;
+  exo_controller.xzy_shoulder.dm_motor[1].zero_offset = 33620;
 
   PID_Init(&exo_controller.elbow.dm_motor.PID_Velocity, 18, 10, 0, 0.7, 0, 0, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
   PID_Init(&exo_controller.elbow.dm_motor.PID_Angle, 50, 5, 0, 0.4, 0.05, 0.01, 0, 0, 0, 0, 0, Integral_Limit | Trapezoid_Intergral | OutputFilter);
@@ -42,8 +42,10 @@ void exo_init(void)
   exo_controller.xzy_shoulder.dm_motor[1].reduction_ratio = 1.0f;
   exo_controller.elbow.dm_motor.reduction_ratio = 1.0f;
 
-  exo_controller.xzy_shoulder.SSM.alpha = 30.0f;
+  exo_controller.xzy_shoulder.SSM.alpha = 32.0f;
   exo_controller.xzy_shoulder.SSM.offset_Z = 22.5f;
+
+  exo_dynamics_params_init(&exo_controller.dynamics_params);
 
   DM_CANx_SendStdData(&hcan1, 0x01, ENABLE_MOTOR, 8);
   HAL_Delay(2);
@@ -107,6 +109,11 @@ static void set_exo_mode(void)
 
 static void get_exo_ctrl_value(void)
 {
+  SSM_inner_forward_kinematics(exo_controller.xzy_shoulder.SSM.theta,
+                               exo_controller.xzy_shoulder.SSM.alpha, exo_controller.xzy_shoulder.SSM.phi);
+  SSM_2_shoulder_angle(exo_controller.xzy_shoulder.SSM.phi,
+                       exo_controller.xzy_shoulder.SSM.offset_Z, exo_controller.xzy_shoulder.human_xzy_angle);
+
   switch (exo_controller.mode)
   {
   case SILENCE_MODE:
@@ -138,10 +145,10 @@ static void get_exo_ctrl_value(void)
       TargetAngle1 = -20 * sin(b * exo_controller.t + PI) - 25;
       TargetAngle2 = 20 * sin(b * exo_controller.t + PI / 3) + 25;
     }
-    else if (exo_controller.debug_mode == 8)
+    else if (exo_controller.debug_mode == 8) // ab
     {
-      TargetAngle1 = -30 * sin(b * exo_controller.t + PI) - 25;
-      TargetAngle2 = -30 * sin(b * exo_controller.t + PI) + 20;
+      TargetAngle1 = -30 * sin(b * exo_controller.t + PI) - 65;
+      TargetAngle2 = -30 * sin(b * exo_controller.t + PI) - 20;
     }
     else if (exo_controller.debug_mode == 9)
     {
@@ -149,6 +156,11 @@ static void get_exo_ctrl_value(void)
       TargetAngle2 = 17 * sin(b * exo_controller.t + PI) + 20;
     }
 
+  case NORMAL_MODE:
+    shoulder_angle_2_SSM(exo_controller.xzy_shoulder.human_ctrl_xzy_angle,
+                         exo_controller.xzy_shoulder.SSM.offset_Z, exo_controller.xzy_shoulder.SSM.SSM_xzy_angle);
+    SSM_inner_inv_kinematics(exo_controller.xzy_shoulder.SSM.SSM_xzy_angle,
+                             exo_controller.xzy_shoulder.SSM.alpha, exo_controller.xzy_shoulder.SSM.theta);
     break;
   }
 }
@@ -179,6 +191,10 @@ static void set_exo_control(void)
     break;
 
   case ANGLE_MODE:
+    calculate_dynamics_feedforward(&exo_controller.dynamics_params,
+                                   exo_controller.ctrl_human_value.q, exo_controller.ctrl_human_value.q_dot,
+                                   exo_controller.ctrl_human_value.q_ddot, exo_controller.feedforward_output);
+
     /* -------------------------------- lk motor -------------------------------- */
     /* ---------------------------- shoulder motor 3 ---------------------------- */
     if (exo_controller.debug_mode == 6 || exo_controller.debug_mode == 4)

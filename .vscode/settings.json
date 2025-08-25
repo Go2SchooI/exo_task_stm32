@@ -20,6 +20,8 @@
         "remote_control.h": "c",
         "exo_controller.h": "c",
         "ssm_kinematics.h": "c",
-        "type_traits": "c"
+        "type_traits": "c",
+        "arm_math.h": "c",
+        "exo_dynamics.h": "c"
     }
 }

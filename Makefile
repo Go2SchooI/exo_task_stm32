@@ -81,6 +81,8 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c \
 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c \
 Application/ins_task.c \
 Application/exo_controller.c \
+Application/exo_dynamics.c \
+Application/SSM_kinematics.c \
 Application/motor.c \
 Application/remote_control.c \
 Application/SerialDebug.c \

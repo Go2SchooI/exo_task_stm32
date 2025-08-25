@@ -2,6 +2,7 @@
 #define __SSM_KINEMATICS_H
 
 #include "includes.h"
+#include "kalman_filter.h"
 
 #define MAX_SSM_MOTOR_ANFLE_DIFFERENCE 75.0f // Maximum angle difference for SSM motors
 
@@ -16,12 +17,13 @@
 typedef struct
 {
     float alpha, offset_Z;
-    float theta[3];
+    float theta[3], phi[3];
     float SSM_xzy_angle[3];
 } SSM_t;
 
-void SSM_inner_kinematics(float *theta, float alpha);
-void SSM_inner_inv_kinematics(float *xzy_angle, float alpha);
-void SSM_inner_2_shoulder_angle(float *theta);
+void SSM_inner_forward_kinematics(float *theta, float alpha, float *phi);
+void SSM_inner_inv_kinematics(float *xzy_angle, float alpha, float *theta);
+void SSM_2_shoulder_angle(float *phi, float offsetZ, float *human_xzy_angle);
+void shoulder_angle_2_SSM(float *human_xzy_angle, float offsetZ, float *ssm_xzy_angle);
 
 #endif

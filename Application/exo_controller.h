@@ -4,9 +4,15 @@
 #include "includes.h"
 #include "dm_imu.h"
 #include "SSM_kinematics.h"
+#include "exo_dynamics.h"
 
 #define ELBOW_MOTOR_MIN -25.0f
 #define ELBOW_MOTOR_MAX 135.0f
+
+typedef struct
+{
+    float q[4], q_dot[4], q_ddot[4]; // 关节空间的位移、速度、加速度
+} ctrl_human_value_t;
 
 typedef struct
 {
@@ -14,8 +20,12 @@ typedef struct
     INS_t INS_shoulder;
     SSM_t SSM;
 
+    float human_ctrl_xzy_angle[3]; // Human xzy angle
+    float human_xzy_angle[3];
+
     motor_info lk_motor,
         dm_motor[2];
+
 } exo_shoulder_t;
 
 typedef struct
@@ -39,6 +49,10 @@ typedef struct
     exo_shoulder_t xzy_shoulder;
     exo_elbow_t elbow;
 
+    ExoDynamicsParams dynamics_params;
+    float feedforward_output[4];
+    ctrl_human_value_t ctrl_human_value;
+
     uint8_t motor_angle_check_flag;
 } exo_controller_t;
 
@@ -46,6 +60,7 @@ enum
 {
     SILENCE_MODE = 0,
     ANGLE_MODE,
+    NORMAL_MODE,
     Velocity,
     Debug
 };
