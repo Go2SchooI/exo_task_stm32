@@ -1,9 +1,5 @@
 make.exe --dry-run --keep-going --print-directory
 make.exe: Entering directory 'd:/Ji Zexian/robotics/stm32/INS_MOTOR_TASK'
-arm-none-eabi-gcc build/main.o build/gpio.o build/freertos.o build/can.o build/dma.o build/i2c.o build/spi.o build/tim.o build/usart.o build/stm32f4xx_it.o build/stm32f4xx_hal_msp.o build/stm32f4xx_hal_timebase_tim.o build/stm32f4xx_hal_can.o build/stm32f4xx_hal_rcc.o build/stm32f4xx_hal_rcc_ex.o build/stm32f4xx_hal_flash.o build/stm32f4xx_hal_flash_ex.o build/stm32f4xx_hal_flash_ramfunc.o build/stm32f4xx_hal_gpio.o build/stm32f4xx_hal_dma_ex.o build/stm32f4xx_hal_dma.o build/stm32f4xx_hal_pwr.o build/stm32f4xx_hal_pwr_ex.o build/stm32f4xx_hal_cortex.o build/stm32f4xx_hal.o build/stm32f4xx_hal_exti.o build/stm32f4xx_hal_i2c.o build/stm32f4xx_hal_i2c_ex.o build/stm32f4xx_hal_spi.o build/stm32f4xx_hal_tim.o build/stm32f4xx_hal_tim_ex.o build/stm32f4xx_hal_uart.o build/system_stm32f4xx.o build/croutine.o build/event_groups.o build/list.o build/queue.o build/stream_buffer.o build/tasks.o build/timers.o build/cmsis_os.o build/heap_4.o build/port.o build/ins_task.o build/exo_controller.o build/exo_dynamics.o build/SSM_kinematics.o build/motor.o build/remote_control.o build/SerialDebug.o build/bsp_CAN.o build/bsp_dwt.o build/bsp_PWM.o build/filter32.o build/kalman_filter.o build/system_identification.o build/user_lib.o build/GravityEstimateKF.o build/QuaternionAHRS.o build/QuaternionEKF.o build/controller.o build/BMI088driver.o build/BMI088Middleware.o build/dm_imu.o build/transfer_function.o build/startup_stm32f407xx.o -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -specs=nano.specs -TSTM32F407IGHx_FLASH.ld -LDrivers/CMSIS/Lib/GCC -lc -lm -lnosys -larm_cortexM4lf_math -Wl,-Map=build/INS_MOTOR_TASK.map,--cref -Wl,--gc-sections -o build/INS_MOTOR_TASK.elf
-arm-none-eabi-size build/INS_MOTOR_TASK.elf
- 
-arm-none-eabi-objcopy -O ihex build/INS_MOTOR_TASK.elf build/INS_MOTOR_TASK.hex
-arm-none-eabi-objcopy -O binary -S build/INS_MOTOR_TASK.elf build/INS_MOTOR_TASK.bin	
+make.exe: Nothing to be done for 'all'.
 make.exe: Leaving directory 'd:/Ji Zexian/robotics/stm32/INS_MOTOR_TASK'
  

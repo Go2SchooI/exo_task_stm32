@@ -47,7 +47,7 @@ static void rotation_from_axis_angle(float axis[3], float angle, mat *pR, float 
     Matrix_Init(pR, 3, 3, pR_Data);
 }
 
-void SSM_2_shoulder_angle(float *phi, float offsetZ, float *human_xzy_angle)
+void SSM_2_shoulder_angle(float *phi, float offsetZ, float *shoulder_xzy_angle)
 {
     mat R_e1, R_e2, R_e3, R_e_temp, R_e_final;
 
@@ -101,12 +101,12 @@ void SSM_2_shoulder_angle(float *phi, float offsetZ, float *human_xzy_angle)
         a1 = atan2f(-R_e_final.pData[5], R_e_final.pData[8]);
     }
 
-    human_xzy_angle[0] = a1;
-    human_xzy_angle[1] = a2;
-    human_xzy_angle[2] = a3;
+    shoulder_xzy_angle[0] = a1 * RADIAN_COEF;
+    shoulder_xzy_angle[1] = a2 * RADIAN_COEF;
+    shoulder_xzy_angle[2] = a3 * RADIAN_COEF;
 }
 
-void shoulder_angle_2_SSM(float *human_xzy_angle, float offsetZ, float *ssm_xzy_angle)
+void shoulder_angle_2_SSM(float *shoulder_xzy_angle, float offsetZ, float *ssm_xzy_angle)
 {
     // --- 声明矩阵实例和数据缓冲区 ---
     mat Rz_neg20, Rx_q1, Rz_q2, Ry_q3;
@@ -116,17 +116,16 @@ void shoulder_angle_2_SSM(float *human_xzy_angle, float offsetZ, float *ssm_xzy_
     float R_temp1_data[9], R_temp2_data[9], R_final_data[9];
 
     // 1. 定义旋转轴和固定角度
-    float z_angle_deg = -offsetZ; // 对应 rotz(20).'
-    float z_angle_rad = z_angle_deg * PI / 180.0f;
+    float z_angle_rad = -offsetZ; // 对应 rotz(20).'
     float axis_x[3] = {1.0f, 0.0f, 0.0f};
     float axis_y[3] = {0.0f, 1.0f, 0.0f};
     float axis_z[3] = {0.0f, 0.0f, 1.0f};
 
     // 2. 计算每个独立的旋转矩阵
     rotation_from_axis_angle(axis_z, z_angle_rad, &Rz_neg20, Rz_neg20_data);
-    rotation_from_axis_angle(axis_x, human_xzy_angle[0], &Rx_q1, Rx_q1_data);
-    rotation_from_axis_angle(axis_z, human_xzy_angle[1], &Rz_q2, Rz_q2_data);
-    rotation_from_axis_angle(axis_y, human_xzy_angle[2], &Ry_q3, Ry_q3_data);
+    rotation_from_axis_angle(axis_x, shoulder_xzy_angle[0], &Rx_q1, Rx_q1_data);
+    rotation_from_axis_angle(axis_z, shoulder_xzy_angle[1], &Rz_q2, Rz_q2_data);
+    rotation_from_axis_angle(axis_y, shoulder_xzy_angle[2], &Ry_q3, Ry_q3_data);
 
     // 3. 按照顺序连乘: R_final = Rz(-20) * Rx(q1) * Rz(q2) * Ry(q3)
     Matrix_Init(&R_temp1, 3, 3, R_temp1_data);

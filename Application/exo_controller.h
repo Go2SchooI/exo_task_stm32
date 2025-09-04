@@ -20,8 +20,8 @@ typedef struct
     INS_t INS_shoulder;
     SSM_t SSM;
 
-    float human_ctrl_xzy_angle[3]; // Human xzy angle
-    float human_xzy_angle[3];
+    float shoulder_ctrl_xzy_angle[3];
+    float SSM_shoulder_xzy_angle[3]; // Human xzy angle from SSM,in degree
 
     motor_info lk_motor,
         dm_motor[2];
@@ -48,6 +48,9 @@ typedef struct
 
     exo_shoulder_t xzy_shoulder;
     exo_elbow_t elbow;
+
+    INS_t INS_torso;
+    EulerAnglesXZY shoulder_xzy_angle_wrt_torso;
 
     ExoDynamicsParams dynamics_params;
     float feedforward_output[4];

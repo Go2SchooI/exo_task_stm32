@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
   28:Components/Algorithm/QuaternionEKF.c ****                                  0.1, 0.1, 100000, 0.1, 0.1, 0.1,
   29:Components/Algorithm/QuaternionEKF.c ****                                  0.1, 0.1, 0.1, 100000, 0.1, 0.1,
   30:Components/Algorithm/QuaternionEKF.c ****                                  0.1, 0.1, 0.1, 0.1, 100, 0.1,
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 2
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 2
 
 
   31:Components/Algorithm/QuaternionEKF.c ****                                  0.1, 0.1, 0.1, 0.1, 0.1, 100};
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
   85:Components/Algorithm/QuaternionEKF.c **** 
   86:Components/Algorithm/QuaternionEKF.c ****     memcpy(QEKF_INS.IMU_QuaternionEKF.F_data, IMU_QuaternionEKF_F, sizeof(IMU_QuaternionEKF_F));
   87:Components/Algorithm/QuaternionEKF.c ****     memcpy(QEKF_INS.IMU_QuaternionEKF.P_data, IMU_QuaternionEKF_P, sizeof(IMU_QuaternionEKF_P));
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 3
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 3
 
 
   88:Components/Algorithm/QuaternionEKF.c **** }
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  142:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.F_data[19] = halfgydt;
  143:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.F_data[20] = -halfgxdt;
  144:Components/Algorithm/QuaternionEKF.c **** 
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 4
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 4
 
 
  145:Components/Algorithm/QuaternionEKF.c ****     // accel low pass filter,加速度过一下低通滤波平滑数据,降低撞击和异常的影
@@ -238,26 +238,26 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  199:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.GyroBias[0] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[4];
  200:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.GyroBias[1] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[5];
  201:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.GyroBias[2] = 0; // 大部分时候z轴通天,无法观测yaw的漂移
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 5
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 5
 
 
  202:Components/Algorithm/QuaternionEKF.c **** 
- 203:Components/Algorithm/QuaternionEKF.c ****     // 利用四元数反解欧拉角
- 204:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Yaw = atan2f(2.0f * (QEKF_INS.q[0] * QEKF_INS.q[3] + QEKF_INS.q[1] * QEKF_INS.q[2]), 2
- 205:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Pitch = atan2f(2.0f * (QEKF_INS.q[0] * QEKF_INS.q[1] + QEKF_INS.q[2] * QEKF_INS.q[3]),
- 206:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2])) 
+ 203:Components/Algorithm/QuaternionEKF.c ****     // // 利用四元数反解欧拉角
+ 204:Components/Algorithm/QuaternionEKF.c ****     // QEKF_INS.Yaw = atan2f(2.0f * (QEKF_INS.q[0] * QEKF_INS.q[3] + QEKF_INS.q[1] * QEKF_INS.q[2])
+ 205:Components/Algorithm/QuaternionEKF.c ****     // QEKF_INS.Pitch = atan2f(2.0f * (QEKF_INS.q[0] * QEKF_INS.q[1] + QEKF_INS.q[2] * QEKF_INS.q[3
+ 206:Components/Algorithm/QuaternionEKF.c ****     // QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2]
  207:Components/Algorithm/QuaternionEKF.c **** 
- 208:Components/Algorithm/QuaternionEKF.c ****     // get Yaw total, yaw数据可能会超过360,处理一下方便其他功能使用(如小陀螺
- 209:Components/Algorithm/QuaternionEKF.c ****     if (QEKF_INS.Yaw - QEKF_INS.YawAngleLast > 180.0f)
- 210:Components/Algorithm/QuaternionEKF.c ****     {
- 211:Components/Algorithm/QuaternionEKF.c ****         QEKF_INS.YawRoundCount--;
- 212:Components/Algorithm/QuaternionEKF.c ****     }
- 213:Components/Algorithm/QuaternionEKF.c ****     else if (QEKF_INS.Yaw - QEKF_INS.YawAngleLast < -180.0f)
- 214:Components/Algorithm/QuaternionEKF.c ****     {
- 215:Components/Algorithm/QuaternionEKF.c ****         QEKF_INS.YawRoundCount++;
- 216:Components/Algorithm/QuaternionEKF.c ****     }
- 217:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.YawTotalAngle = 360.0f * QEKF_INS.YawRoundCount + QEKF_INS.Yaw;
- 218:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.YawAngleLast = QEKF_INS.Yaw;
+ 208:Components/Algorithm/QuaternionEKF.c ****     // // get Yaw total, yaw数据可能会超过360,处理一下方便其他功能使用(如小陀
+ 209:Components/Algorithm/QuaternionEKF.c ****     // if (QEKF_INS.Yaw - QEKF_INS.YawAngleLast > 180.0f)
+ 210:Components/Algorithm/QuaternionEKF.c ****     // {
+ 211:Components/Algorithm/QuaternionEKF.c ****     //     QEKF_INS.YawRoundCount--;
+ 212:Components/Algorithm/QuaternionEKF.c ****     // }
+ 213:Components/Algorithm/QuaternionEKF.c ****     // else if (QEKF_INS.Yaw - QEKF_INS.YawAngleLast < -180.0f)
+ 214:Components/Algorithm/QuaternionEKF.c ****     // {
+ 215:Components/Algorithm/QuaternionEKF.c ****     //     QEKF_INS.YawRoundCount++;
+ 216:Components/Algorithm/QuaternionEKF.c ****     // }
+ 217:Components/Algorithm/QuaternionEKF.c ****     // QEKF_INS.YawTotalAngle = 360.0f * QEKF_INS.YawRoundCount + QEKF_INS.Yaw;
+ 218:Components/Algorithm/QuaternionEKF.c ****     // QEKF_INS.YawAngleLast = QEKF_INS.Yaw;
  219:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.UpdateCount++; // 初始化低通滤波用,计数测试用
  220:Components/Algorithm/QuaternionEKF.c **** }
  221:Components/Algorithm/QuaternionEKF.c **** 
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  256:Components/Algorithm/QuaternionEKF.c ****     kf->F_data[10] = -q0 * QEKF_INS.dt / 2;
  257:Components/Algorithm/QuaternionEKF.c ****     kf->F_data[11] = q3 * QEKF_INS.dt / 2;
  258:Components/Algorithm/QuaternionEKF.c **** 
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 6
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 6
 
 
  259:Components/Algorithm/QuaternionEKF.c ****     kf->F_data[16] = -q3 * QEKF_INS.dt / 2;
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  313:Components/Algorithm/QuaternionEKF.c ****     kf->H_data[13] = -doubleq1;
  314:Components/Algorithm/QuaternionEKF.c ****     kf->H_data[14] = -doubleq2;
  315:Components/Algorithm/QuaternionEKF.c ****     kf->H_data[15] = doubleq3;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 7
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 7
 
 
  316:Components/Algorithm/QuaternionEKF.c **** }
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  370:Components/Algorithm/QuaternionEKF.c ****     kf->MatStatus = Matrix_Transpose(&kf->temp_vector1, &kf->temp_vector); // temp_vector = z(k) - 
  371:Components/Algorithm/QuaternionEKF.c ****     kf->MatStatus = Matrix_Multiply(&kf->temp_vector, &kf->temp_matrix, &QEKF_INS.ChiSquare);
  372:Components/Algorithm/QuaternionEKF.c ****     // rk is small,filter converged/converging
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 8
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 8
 
 
  373:Components/Algorithm/QuaternionEKF.c ****     if (QEKF_INS.ChiSquare_Data[0] < 0.5f * QEKF_INS.ChiSquareTestThreshold)
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  427:Components/Algorithm/QuaternionEKF.c ****     // implement adaptive
  428:Components/Algorithm/QuaternionEKF.c ****     for (uint8_t i = 0; i < kf->K.numRows * kf->K.numCols; i++)
  429:Components/Algorithm/QuaternionEKF.c ****     {
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 9
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 9
 
 
  430:Components/Algorithm/QuaternionEKF.c ****         kf->K_data[i] *= QEKF_INS.AdaptiveGainScale;
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  484:Components/Algorithm/QuaternionEKF.c **** {
   29              		.loc 1 484 1 view -0
   30              		.cfi_startproc
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 10
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 10
 
 
   31              		@ args = 0, pretend = 0, frame = 0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
   78              		.syntax unified
   79              		.thumb
   80              		.thumb_func
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 11
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 11
 
 
   82              	IMU_QuaternionEKF_F_Linearization_P_Fading:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  123              		.loc 1 236 5 is_stmt 1 view .LVU29
  236:Components/Algorithm/QuaternionEKF.c **** 
  124              		.loc 1 236 8 is_stmt 0 view .LVU30
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 12
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 12
 
 
  125 002a D3ED039A 		vldr.32	s19, [r3, #12]
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  163 0066 D2ED007A 		vldr.32	s15, [r2]
  164 006a 67EE807A 		vmul.f32	s15, s15, s0
  165 006e C2ED007A 		vstr.32	s15, [r2]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 13
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 13
 
 
  240:Components/Algorithm/QuaternionEKF.c ****     {
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  254:Components/Algorithm/QuaternionEKF.c **** 
  203              		.loc 1 254 19 view .LVU64
  204 00a4 82ED057A 		vstr.32	s14, [r2, #20]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 14
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 14
 
 
  256:Components/Algorithm/QuaternionEKF.c ****     kf->F_data[11] = q3 * QEKF_INS.dt / 2;
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  239              		.loc 1 260 36 is_stmt 0 view .LVU84
  240 00e4 93ED6F7A 		vldr.32	s14, [r3, #444]
  260:Components/Algorithm/QuaternionEKF.c **** 
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 15
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 15
 
 
  241              		.loc 1 260 26 view .LVU85
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  276              		.loc 1 266 20 view .LVU104
  277 0128 D2ED1C6A 		vldr.32	s13, [r2, #112]
  278 012c C6EE877A 		vdiv.f32	s15, s13, s14
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 16
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 16
 
 
  279 0130 C2ED1C7A 		vstr.32	s15, [r2, #112]
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  278:Components/Algorithm/QuaternionEKF.c **** 
  317              		.loc 1 278 1 view .LVU121
  318 017c BDEC048B 		vldm	sp!, {d8-d9}
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 17
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 17
 
 
  319              	.LCFI2:
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  370              	.LVL18:
  473:Components/Algorithm/QuaternionEKF.c ****     memcpy(IMU_QuaternionEKF_H, kf->H_data, sizeof(IMU_QuaternionEKF_H));
  371              		.loc 1 473 5 is_stmt 1 view .LVU127
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 18
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 18
 
 
  372 0010 4825     		movs	r5, #72
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  423              		.cfi_offset 14, -4
  424 0004 0446     		mov	r4, r0
  327:Components/Algorithm/QuaternionEKF.c **** 
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 19
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 19
 
 
  425              		.loc 1 327 5 is_stmt 1 view .LVU133
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  462              		.loc 1 333 47 is_stmt 0 view .LVU150
  463 0040 B4F8A830 		ldrh	r3, [r4, #168]
  333:Components/Algorithm/QuaternionEKF.c ****     kf->temp_matrix1.numCols = kf->HT.numCols;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 20
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 20
 
 
  464              		.loc 1 333 30 view .LVU151
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  339:Components/Algorithm/QuaternionEKF.c **** 
  502              		.loc 1 339 21 is_stmt 0 view .LVU168
  503 0086 4946     		mov	r1, r9
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 21
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 21
 
 
  504 0088 2846     		mov	r0, r5
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  541              		.loc 1 349 5 is_stmt 1 view .LVU185
  349:Components/Algorithm/QuaternionEKF.c ****     kf->temp_vector_data[1] = 2 * (q0 * q1 + q2 * q3);
  542              		.loc 1 349 39 is_stmt 0 view .LVU186
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 22
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 22
 
 
  543 00cc 66EE075A 		vmul.f32	s11, s12, s14
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  578              		.loc 1 351 64 view .LVU205
  579 0110 27EE077A 		vmul.f32	s14, s14, s14
  351:Components/Algorithm/QuaternionEKF.c **** 
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 23
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 23
 
 
  580              		.loc 1 351 7 view .LVU206
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  619              		.loc 1 354 25 is_stmt 1 discriminator 1 view .LVU221
  354:Components/Algorithm/QuaternionEKF.c ****     {
  620              		.loc 1 354 5 is_stmt 0 discriminator 1 view .LVU222
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 24
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 24
 
 
  621 014a 022D     		cmp	r5, #2
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  659 0188 FFF7FEFF 		bl	arm_mat_mult_f32
  660              	.LVL36:
  367:Components/Algorithm/QuaternionEKF.c ****     kf->temp_vector.numRows = 1;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 25
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 25
 
 
  661              		.loc 1 367 19 view .LVU239
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  699 01d0 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
  700 01d4 02D5     		bpl	.L23
  375:Components/Algorithm/QuaternionEKF.c ****     }
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 26
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 26
 
 
  701              		.loc 1 375 9 is_stmt 1 view .LVU256
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  741 021c 73F10003 		sbcs	r3, r3, #0
  742 0220 0CD3     		bcc	.L29
  392:Components/Algorithm/QuaternionEKF.c ****             kf->SkipEq5 = FALSE; // step-5 is cov mat P updating
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 27
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 27
 
 
  743              		.loc 1 392 13 is_stmt 1 view .LVU271
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  783 0262 D4F8F800 		ldr	r0, [r4, #248]
  784 0266 FFF7FEFF 		bl	memcpy
  785              	.LVL40:
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 28
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 28
 
 
  402:Components/Algorithm/QuaternionEKF.c ****             return;
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  417:Components/Algorithm/QuaternionEKF.c ****         kf->SkipEq5 = FALSE;
  825              		.loc 1 417 9 is_stmt 1 view .LVU301
  417:Components/Algorithm/QuaternionEKF.c ****         kf->SkipEq5 = FALSE;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 29
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 29
 
 
  826              		.loc 1 417 29 is_stmt 0 view .LVU302
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  865              		.loc 1 428 5 is_stmt 1 view .LVU317
  866              	.LBB4:
  428:Components/Algorithm/QuaternionEKF.c ****     {
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 30
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 30
 
 
  867              		.loc 1 428 10 view .LVU318
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  906              	.LBB5:
  432:Components/Algorithm/QuaternionEKF.c ****     {
  907              		.loc 1 432 18 view .LVU334
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 31
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 31
 
 
  908 0320 0422     		movs	r2, #4
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  948              		.loc 1 436 35 discriminator 3 view .LVU348
  949 0356 D1ED007A 		vldr.32	s15, [r1]
  950 035a 67EE877A 		vmul.f32	s15, s15, s14
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 32
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 32
 
 
  951 035e C1ED007A 		vstr.32	s15, [r1]
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  989 0386 93F83831 		ldrb	r3, [r3, #312]	@ zero_extendqisi2
  445:Components/Algorithm/QuaternionEKF.c ****     {
  990              		.loc 1 445 8 view .LVU365
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 33
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 33
 
 
  991 038a 002B     		cmp	r3, #0
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1034 03d2 DBB2     		uxtb	r3, r3
  1035              	.LVL60:
  1036              	.L40:
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 34
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 34
 
 
  447:Components/Algorithm/QuaternionEKF.c ****         {
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1075 041a B4EEE77A 		vcmpe.f32	s14, s15
  1076 041e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
  1077 0422 D5D5     		bpl	.L44
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 35
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 35
 
 
  455:Components/Algorithm/QuaternionEKF.c ****             }
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1126              		.loc 1 295 22 is_stmt 0 view .LVU400
  1127 0008 D0F8EC30 		ldr	r3, [r0, #236]
  295:Components/Algorithm/QuaternionEKF.c ****     doubleq1 = 2 * kf->xhatminus_data[1];
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 36
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 36
 
 
  1128              		.loc 1 295 38 view .LVU401
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1165 004a 02FB03F3 		mul	r3, r2, r3
  300:Components/Algorithm/QuaternionEKF.c **** 
  1166              		.loc 1 300 56 view .LVU419
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 37
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 37
 
 
  1167 004e 027B     		ldrb	r2, [r0, #12]	@ zero_extendqisi2
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  307:Components/Algorithm/QuaternionEKF.c ****     kf->H_data[7] = doubleq0;
  1203              		.loc 1 307 19 view .LVU438
  1204 008a 83ED068A 		vstr.32	s16, [r3, #24]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 38
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 38
 
 
  308:Components/Algorithm/QuaternionEKF.c ****     kf->H_data[8] = doubleq3;
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1238              		.loc 1 315 7 is_stmt 0 view .LVU459
  1239 00c2 D4F80C31 		ldr	r3, [r4, #268]
  315:Components/Algorithm/QuaternionEKF.c **** }
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 39
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 39
 
 
  1240              		.loc 1 315 20 view .LVU460
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1290 0006 1A70     		strb	r2, [r3]
   52:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Q2 = process_noise2;
  1291              		.loc 1 52 5 is_stmt 1 view .LVU467
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 40
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 40
 
 
   52:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Q2 = process_noise2;
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1328 003e 204C     		ldr	r4, .L69
  1329 0040 C4ED741A 		vstr.32	s3, [r4, #464]
   64:Components/Algorithm/QuaternionEKF.c **** 
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 41
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 41
 
 
  1330              		.loc 1 64 5 is_stmt 1 view .LVU486
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
   77:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.User_Func1_f = IMU_QuaternionEKF_F_Linearization_P_Fading;
  1369              		.loc 1 77 5 is_stmt 1 view .LVU502
   77:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.User_Func1_f = IMU_QuaternionEKF_F_Linearization_P_Fading;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 42
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 42
 
 
  1370              		.loc 1 77 45 is_stmt 0 view .LVU503
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1411 00c4 77CC2B32 		.word	841731191
  1412 00c8 00000000 		.word	IMU_QuaternionEKF_Observe
  1413 00cc 00000000 		.word	IMU_QuaternionEKF_F_Linearization_P_Fading
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 43
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 43
 
 
  1414 00d0 00000000 		.word	IMU_QuaternionEKF_SetH
@@ -2574,22 +2574,22 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1461              		.loc 1 101 5 view .LVU521
  101:Components/Algorithm/QuaternionEKF.c ****     {
  1462              		.loc 1 101 18 is_stmt 0 view .LVU522
- 1463 0022 894B     		ldr	r3, .L93
+ 1463 0022 C34B     		ldr	r3, .L86
  1464 0024 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  101:Components/Algorithm/QuaternionEKF.c ****     {
  1465              		.loc 1 101 8 view .LVU523
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 44
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 44
 
 
  1466 0026 002B     		cmp	r3, #0
- 1467 0028 00F0B880 		beq	.L92
+ 1467 0028 00F0B880 		beq	.L85
  1468              	.LVL73:
  1469              	.L72:
  114:Components/Algorithm/QuaternionEKF.c **** 
  1470              		.loc 1 114 5 is_stmt 1 view .LVU524
  114:Components/Algorithm/QuaternionEKF.c **** 
  1471              		.loc 1 114 17 is_stmt 0 view .LVU525
- 1472 002c 864C     		ldr	r4, .L93
+ 1472 002c C04C     		ldr	r4, .L86
  1473 002e C4ED6F8A 		vstr.32	s17, [r4, #444]
  116:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Gyro[1] = gy - QEKF_INS.GyroBias[1];
  1474              		.loc 1 116 5 is_stmt 1 view .LVU526
@@ -2637,8 +2637,8 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1502 005e 29EE289A 		vmul.f32	s18, s18, s17
  121:Components/Algorithm/QuaternionEKF.c ****     halfgydt = 0.5f * QEKF_INS.Gyro[1] * dt;
  1503              		.loc 1 121 14 view .LVU541
- 1504 0062 7A4B     		ldr	r3, .L93+4
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 45
+ 1504 0062 B44B     		ldr	r3, .L86+4
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 45
 
 
  1505 0064 83ED009A 		vstr.32	s18, [r3]
@@ -2652,7 +2652,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1510 006c 28EE288A 		vmul.f32	s16, s16, s17
  122:Components/Algorithm/QuaternionEKF.c ****     halfgzdt = 0.5f * QEKF_INS.Gyro[2] * dt;
  1511              		.loc 1 122 14 view .LVU545
- 1512 0070 774B     		ldr	r3, .L93+8
+ 1512 0070 B14B     		ldr	r3, .L86+8
  1513 0072 83ED008A 		vstr.32	s16, [r3]
  123:Components/Algorithm/QuaternionEKF.c **** 
  1514              		.loc 1 123 5 is_stmt 1 view .LVU546
@@ -2665,12 +2665,12 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1519              	.LVL76:
  123:Components/Algorithm/QuaternionEKF.c **** 
  1520              		.loc 1 123 14 view .LVU549
- 1521 007e 754B     		ldr	r3, .L93+12
+ 1521 007e AF4B     		ldr	r3, .L86+12
  1522 0080 C3ED008A 		vstr.32	s17, [r3]
  127:Components/Algorithm/QuaternionEKF.c **** 
  1523              		.loc 1 127 5 is_stmt 1 view .LVU550
  1524 0084 9022     		movs	r2, #144
- 1525 0086 7449     		ldr	r1, .L93+16
+ 1525 0086 AE49     		ldr	r1, .L86+16
  1526 0088 D4F80401 		ldr	r0, [r4, #260]
  1527 008c FFF7FEFF 		bl	memcpy
  1528              	.LVL77:
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1542 00a4 C3ED026A 		vstr.32	s13, [r3, #8]
  131:Components/Algorithm/QuaternionEKF.c **** 
  1543              		.loc 1 131 5 is_stmt 1 view .LVU559
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 46
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 46
 
 
  131:Components/Algorithm/QuaternionEKF.c **** 
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  139:Components/Algorithm/QuaternionEKF.c **** 
  1578              		.loc 1 139 43 view .LVU580
  1579 00e0 83ED0F9A 		vstr.32	s18, [r3, #60]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 47
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 47
 
 
  141:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.F_data[19] = halfgydt;
@@ -2815,10 +2815,10 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1612              		.loc 1 152 5 is_stmt 1 view .LVU599
  152:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Accel[1] = QEKF_INS.Accel[1] * QEKF_INS.accLPFcoef / (QEKF_INS.dt + QEKF_INS.accLPFcoe
  1613              		.loc 1 152 39 is_stmt 0 view .LVU600
- 1614 0114 4C4B     		ldr	r3, .L93
+ 1614 0114 864B     		ldr	r3, .L86
  1615 0116 93ED5E7A 		vldr.32	s14, [r3, #376]
  152:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Accel[1] = QEKF_INS.Accel[1] * QEKF_INS.accLPFcoef / (QEKF_INS.dt + QEKF_INS.accLPFcoe
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 48
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 48
 
 
  1616              		.loc 1 152 53 view .LVU601
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1652              		.loc 1 154 39 is_stmt 0 view .LVU619
  1653 015a D3ED605A 		vldr.32	s11, [r3, #384]
  154:Components/Algorithm/QuaternionEKF.c **** 
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 49
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 49
 
 
  1654              		.loc 1 154 43 view .LVU620
@@ -2920,7 +2920,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1679 018e B0EE408A 		vmov.f32	s16, s0
  157:Components/Algorithm/QuaternionEKF.c ****     for (uint8_t i = 0; i < 3; i++)
  1680              		.loc 1 157 18 view .LVU632
- 1681 0192 324B     		ldr	r3, .L93+20
+ 1681 0192 6C4B     		ldr	r3, .L86+20
  1682 0194 83ED000A 		vstr.32	s0, [r3]
  158:Components/Algorithm/QuaternionEKF.c ****     {
  1683              		.loc 1 158 5 is_stmt 1 view .LVU633
@@ -2935,16 +2935,16 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1689              		.loc 1 158 5 view .LVU636
  1690 019a 1CE0     		b	.L74
  1691              	.LVL82:
- 1692              	.L92:
+ 1692              	.L85:
  158:Components/Algorithm/QuaternionEKF.c ****     {
  1693              		.loc 1 158 5 view .LVU637
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 50
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 50
 
 
  1694              	.LBE8:
  103:Components/Algorithm/QuaternionEKF.c ****     }
  1695              		.loc 1 103 9 is_stmt 1 view .LVU638
- 1696 019c 9FED302A 		vldr.32	s4, .L93+24
+ 1696 019c 9FED6A2A 		vldr.32	s4, .L86+24
  1697              	.LVL83:
  103:Components/Algorithm/QuaternionEKF.c ****     }
  1698              		.loc 1 103 9 is_stmt 0 view .LVU639
@@ -2952,11 +2952,11 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1700              	.LVL84:
  103:Components/Algorithm/QuaternionEKF.c ****     }
  1701              		.loc 1 103 9 view .LVU640
- 1702 01a4 9FED2F1A 		vldr.32	s2, .L93+28
+ 1702 01a4 9FED691A 		vldr.32	s2, .L86+28
  1703              	.LVL85:
  103:Components/Algorithm/QuaternionEKF.c ****     }
  1704              		.loc 1 103 9 view .LVU641
- 1705 01a8 DFED2F0A 		vldr.32	s1, .L93+32
+ 1705 01a8 DFED690A 		vldr.32	s1, .L86+32
  1706              	.LVL86:
  103:Components/Algorithm/QuaternionEKF.c ****     }
  1707              		.loc 1 103 9 view .LVU642
@@ -2976,7 +2976,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1718              		.loc 1 160 9 is_stmt 1 discriminator 3 view .LVU645
  160:Components/Algorithm/QuaternionEKF.c ****     }
  1719              		.loc 1 160 70 is_stmt 0 discriminator 3 view .LVU646
- 1720 01b6 2449     		ldr	r1, .L93
+ 1720 01b6 5E49     		ldr	r1, .L86
  1721 01b8 03F15E02 		add	r2, r3, #94
  1722 01bc 01EB8202 		add	r2, r1, r2, lsl #2
  1723 01c0 D2ED007A 		vldr.32	s15, [r2]
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1733              		.loc 1 158 33 is_stmt 0 discriminator 3 view .LVU652
  1734 01d2 0133     		adds	r3, r3, #1
  1735              	.LVL90:
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 51
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 51
 
 
  158:Components/Algorithm/QuaternionEKF.c ****     {
@@ -3017,7 +3017,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1745              		.loc 1 164 5 is_stmt 1 view .LVU656
  164:Components/Algorithm/QuaternionEKF.c ****                                         QEKF_INS.Gyro[1] * QEKF_INS.Gyro[1] +
  1746              		.loc 1 164 54 is_stmt 0 view .LVU657
- 1747 01da 1B4C     		ldr	r4, .L93
+ 1747 01da 554C     		ldr	r4, .L86
  1748 01dc 94ED5B0A 		vldr.32	s0, [r4, #364]
  164:Components/Algorithm/QuaternionEKF.c ****                                         QEKF_INS.Gyro[1] * QEKF_INS.Gyro[1] +
  1749              		.loc 1 164 58 view .LVU658
@@ -3058,792 +3058,580 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 1
  1773              		.loc 1 167 24 view .LVU669
  1774 0210 C4ED666A 		vstr.32	s13, [r4, #408]
  171:Components/Algorithm/QuaternionEKF.c ****     {
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 52
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 52
 
 
  1775              		.loc 1 171 5 is_stmt 1 view .LVU670
  171:Components/Algorithm/QuaternionEKF.c ****     {
  1776              		.loc 1 171 8 is_stmt 0 view .LVU671
- 1777 0214 9FED157A 		vldr.32	s14, .L93+36
+ 1777 0214 9FED4F7A 		vldr.32	s14, .L86+36
  1778 0218 F4EEC77A 		vcmpe.f32	s15, s14
  1779 021c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 1780 0220 2AD5     		bpl	.L76
+ 1780 0220 11D5     		bpl	.L76
  171:Components/Algorithm/QuaternionEKF.c ****     {
  1781              		.loc 1 171 35 discriminator 1 view .LVU672
- 1782 0222 DFED137A 		vldr.32	s15, .L93+40
+ 1782 0222 DFED4D7A 		vldr.32	s15, .L86+40
  1783 0226 F4EEE76A 		vcmpe.f32	s13, s15
  1784 022a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 1785 022e 23DD     		ble	.L76
+ 1785 022e 0ADD     		ble	.L76
  171:Components/Algorithm/QuaternionEKF.c ****     {
  1786              		.loc 1 171 71 discriminator 2 view .LVU673
- 1787 0230 DFED107A 		vldr.32	s15, .L93+44
+ 1787 0230 DFED4A7A 		vldr.32	s15, .L86+44
  1788 0234 F4EEE76A 		vcmpe.f32	s13, s15
  1789 0238 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 1790 023c 1CD5     		bpl	.L76
+ 1790 023c 03D5     		bpl	.L76
  173:Components/Algorithm/QuaternionEKF.c ****     }
  1791              		.loc 1 173 9 is_stmt 1 view .LVU674
  173:Components/Algorithm/QuaternionEKF.c ****     }
  1792              		.loc 1 173 29 is_stmt 0 view .LVU675
  1793 023e 0122     		movs	r2, #1
  1794 0240 84F83921 		strb	r2, [r4, #313]
- 1795 0244 1CE0     		b	.L80
- 1796              	.L94:
- 1797 0246 00BF     		.align	2
- 1798              	.L93:
- 1799 0248 00000000 		.word	.LANCHOR5
- 1800 024c 00000000 		.word	.LANCHOR18
- 1801 0250 00000000 		.word	.LANCHOR19
- 1802 0254 00000000 		.word	.LANCHOR20
- 1803 0258 00000000 		.word	.LANCHOR17
- 1804 025c 00000000 		.word	.LANCHOR21
- 1805 0260 00000000 		.word	0
- 1806 0264 8096184B 		.word	1259902592
- 1807 0268 6F12833A 		.word	981668463
- 1808 026c 9A99993E 		.word	1050253722
- 1809 0270 CDCC1441 		.word	1091882189
- 1810 0274 CDCC2441 		.word	1092930765
- 1811              	.L76:
+ 1795 0244 03E0     		b	.L80
+ 1796              	.L76:
  177:Components/Algorithm/QuaternionEKF.c ****     }
- 1812              		.loc 1 177 9 is_stmt 1 view .LVU676
+ 1797              		.loc 1 177 9 is_stmt 1 view .LVU676
  177:Components/Algorithm/QuaternionEKF.c ****     }
- 1813              		.loc 1 177 29 is_stmt 0 view .LVU677
- 1814 0278 7E4B     		ldr	r3, .L95
- 1815 027a 0022     		movs	r2, #0
- 1816 027c 83F83921 		strb	r2, [r3, #313]
- 1817              	.L80:
+ 1798              		.loc 1 177 29 is_stmt 0 view .LVU677
+ 1799 0246 3A4B     		ldr	r3, .L86
+ 1800 0248 0022     		movs	r2, #0
+ 1801 024a 83F83921 		strb	r2, [r3, #313]
+ 1802              	.L80:
  181:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[7] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1818              		.loc 1 181 5 is_stmt 1 view .LVU678
+ 1803              		.loc 1 181 5 is_stmt 1 view .LVU678
  181:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[7] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1819              		.loc 1 181 52 is_stmt 0 view .LVU679
- 1820 0280 7C4C     		ldr	r4, .L95
- 1821 0282 D4ED6C7A 		vldr.32	s15, [r4, #432]
+ 1804              		.loc 1 181 52 is_stmt 0 view .LVU679
+ 1805 024e 384C     		ldr	r4, .L86
+ 1806 0250 D4ED6C7A 		vldr.32	s15, [r4, #432]
  181:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[7] = QEKF_INS.Q1 * QEKF_INS.dt;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 53
+ 1807              		.loc 1 181 66 view .LVU680
+ 1808 0254 94ED6F7A 		vldr.32	s14, [r4, #444]
+ 181:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[7] = QEKF_INS.Q1 * QEKF_INS.dt;
+ 1809              		.loc 1 181 31 view .LVU681
+ 1810 0258 D4F81831 		ldr	r3, [r4, #280]
+ 181:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[7] = QEKF_INS.Q1 * QEKF_INS.dt;
+ 1811              		.loc 1 181 56 view .LVU682
+ 1812 025c 67EE877A 		vmul.f32	s15, s15, s14
+ 181:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[7] = QEKF_INS.Q1 * QEKF_INS.dt;
+ 1813              		.loc 1 181 42 view .LVU683
+ 1814 0260 C3ED007A 		vstr.32	s15, [r3]
+ 182:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[14] = QEKF_INS.Q1 * QEKF_INS.dt;
+ 1815              		.loc 1 182 5 is_stmt 1 view .LVU684
+ 182:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[14] = QEKF_INS.Q1 * QEKF_INS.dt;
+ 1816              		.loc 1 182 52 is_stmt 0 view .LVU685
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 53
 
 
- 1822              		.loc 1 181 66 view .LVU680
- 1823 0286 94ED6F7A 		vldr.32	s14, [r4, #444]
- 181:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[7] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1824              		.loc 1 181 31 view .LVU681
- 1825 028a D4F81831 		ldr	r3, [r4, #280]
- 181:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[7] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1826              		.loc 1 181 56 view .LVU682
- 1827 028e 67EE877A 		vmul.f32	s15, s15, s14
- 181:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[7] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1828              		.loc 1 181 42 view .LVU683
- 1829 0292 C3ED007A 		vstr.32	s15, [r3]
+ 1817 0264 D4ED6C7A 		vldr.32	s15, [r4, #432]
  182:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[14] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1830              		.loc 1 182 5 is_stmt 1 view .LVU684
+ 1818              		.loc 1 182 66 view .LVU686
+ 1819 0268 94ED6F7A 		vldr.32	s14, [r4, #444]
  182:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[14] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1831              		.loc 1 182 52 is_stmt 0 view .LVU685
- 1832 0296 D4ED6C7A 		vldr.32	s15, [r4, #432]
+ 1820              		.loc 1 182 31 view .LVU687
+ 1821 026c D4F81831 		ldr	r3, [r4, #280]
  182:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[14] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1833              		.loc 1 182 66 view .LVU686
- 1834 029a 94ED6F7A 		vldr.32	s14, [r4, #444]
+ 1822              		.loc 1 182 56 view .LVU688
+ 1823 0270 67EE877A 		vmul.f32	s15, s15, s14
  182:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[14] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1835              		.loc 1 182 31 view .LVU687
- 1836 029e D4F81831 		ldr	r3, [r4, #280]
- 182:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[14] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1837              		.loc 1 182 56 view .LVU688
- 1838 02a2 67EE877A 		vmul.f32	s15, s15, s14
- 182:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[14] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1839              		.loc 1 182 42 view .LVU689
- 1840 02a6 C3ED077A 		vstr.32	s15, [r3, #28]
+ 1824              		.loc 1 182 42 view .LVU689
+ 1825 0274 C3ED077A 		vstr.32	s15, [r3, #28]
  183:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[21] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1841              		.loc 1 183 5 is_stmt 1 view .LVU690
+ 1826              		.loc 1 183 5 is_stmt 1 view .LVU690
  183:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[21] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1842              		.loc 1 183 53 is_stmt 0 view .LVU691
- 1843 02aa D4ED6C7A 		vldr.32	s15, [r4, #432]
+ 1827              		.loc 1 183 53 is_stmt 0 view .LVU691
+ 1828 0278 D4ED6C7A 		vldr.32	s15, [r4, #432]
  183:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[21] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1844              		.loc 1 183 67 view .LVU692
- 1845 02ae 94ED6F7A 		vldr.32	s14, [r4, #444]
+ 1829              		.loc 1 183 67 view .LVU692
+ 1830 027c 94ED6F7A 		vldr.32	s14, [r4, #444]
  183:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[21] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1846              		.loc 1 183 31 view .LVU693
- 1847 02b2 D4F81831 		ldr	r3, [r4, #280]
+ 1831              		.loc 1 183 31 view .LVU693
+ 1832 0280 D4F81831 		ldr	r3, [r4, #280]
  183:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[21] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1848              		.loc 1 183 57 view .LVU694
- 1849 02b6 67EE877A 		vmul.f32	s15, s15, s14
+ 1833              		.loc 1 183 57 view .LVU694
+ 1834 0284 67EE877A 		vmul.f32	s15, s15, s14
  183:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[21] = QEKF_INS.Q1 * QEKF_INS.dt;
- 1850              		.loc 1 183 43 view .LVU695
- 1851 02ba C3ED0E7A 		vstr.32	s15, [r3, #56]
+ 1835              		.loc 1 183 43 view .LVU695
+ 1836 0288 C3ED0E7A 		vstr.32	s15, [r3, #56]
  184:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[28] = QEKF_INS.Q2 * QEKF_INS.dt;
- 1852              		.loc 1 184 5 is_stmt 1 view .LVU696
+ 1837              		.loc 1 184 5 is_stmt 1 view .LVU696
  184:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[28] = QEKF_INS.Q2 * QEKF_INS.dt;
- 1853              		.loc 1 184 53 is_stmt 0 view .LVU697
- 1854 02be D4ED6C7A 		vldr.32	s15, [r4, #432]
+ 1838              		.loc 1 184 53 is_stmt 0 view .LVU697
+ 1839 028c D4ED6C7A 		vldr.32	s15, [r4, #432]
  184:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[28] = QEKF_INS.Q2 * QEKF_INS.dt;
- 1855              		.loc 1 184 67 view .LVU698
- 1856 02c2 94ED6F7A 		vldr.32	s14, [r4, #444]
+ 1840              		.loc 1 184 67 view .LVU698
+ 1841 0290 94ED6F7A 		vldr.32	s14, [r4, #444]
  184:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[28] = QEKF_INS.Q2 * QEKF_INS.dt;
- 1857              		.loc 1 184 31 view .LVU699
- 1858 02c6 D4F81831 		ldr	r3, [r4, #280]
+ 1842              		.loc 1 184 31 view .LVU699
+ 1843 0294 D4F81831 		ldr	r3, [r4, #280]
  184:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[28] = QEKF_INS.Q2 * QEKF_INS.dt;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 54
+ 1844              		.loc 1 184 57 view .LVU700
+ 1845 0298 67EE877A 		vmul.f32	s15, s15, s14
+ 184:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[28] = QEKF_INS.Q2 * QEKF_INS.dt;
+ 1846              		.loc 1 184 43 view .LVU701
+ 1847 029c C3ED157A 		vstr.32	s15, [r3, #84]
+ 185:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[35] = QEKF_INS.Q2 * QEKF_INS.dt;
+ 1848              		.loc 1 185 5 is_stmt 1 view .LVU702
+ 185:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[35] = QEKF_INS.Q2 * QEKF_INS.dt;
+ 1849              		.loc 1 185 53 is_stmt 0 view .LVU703
+ 1850 02a0 D4ED6D7A 		vldr.32	s15, [r4, #436]
+ 185:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[35] = QEKF_INS.Q2 * QEKF_INS.dt;
+ 1851              		.loc 1 185 67 view .LVU704
+ 1852 02a4 94ED6F7A 		vldr.32	s14, [r4, #444]
+ 185:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[35] = QEKF_INS.Q2 * QEKF_INS.dt;
+ 1853              		.loc 1 185 31 view .LVU705
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 54
 
 
- 1859              		.loc 1 184 57 view .LVU700
- 1860 02ca 67EE877A 		vmul.f32	s15, s15, s14
- 184:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[28] = QEKF_INS.Q2 * QEKF_INS.dt;
- 1861              		.loc 1 184 43 view .LVU701
- 1862 02ce C3ED157A 		vstr.32	s15, [r3, #84]
+ 1854 02a8 D4F81831 		ldr	r3, [r4, #280]
  185:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[35] = QEKF_INS.Q2 * QEKF_INS.dt;
- 1863              		.loc 1 185 5 is_stmt 1 view .LVU702
+ 1855              		.loc 1 185 57 view .LVU706
+ 1856 02ac 67EE877A 		vmul.f32	s15, s15, s14
  185:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[35] = QEKF_INS.Q2 * QEKF_INS.dt;
- 1864              		.loc 1 185 53 is_stmt 0 view .LVU703
- 1865 02d2 D4ED6D7A 		vldr.32	s15, [r4, #436]
- 185:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[35] = QEKF_INS.Q2 * QEKF_INS.dt;
- 1866              		.loc 1 185 67 view .LVU704
- 1867 02d6 94ED6F7A 		vldr.32	s14, [r4, #444]
- 185:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[35] = QEKF_INS.Q2 * QEKF_INS.dt;
- 1868              		.loc 1 185 31 view .LVU705
- 1869 02da D4F81831 		ldr	r3, [r4, #280]
- 185:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[35] = QEKF_INS.Q2 * QEKF_INS.dt;
- 1870              		.loc 1 185 57 view .LVU706
- 1871 02de 67EE877A 		vmul.f32	s15, s15, s14
- 185:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.Q_data[35] = QEKF_INS.Q2 * QEKF_INS.dt;
- 1872              		.loc 1 185 43 view .LVU707
- 1873 02e2 C3ED1C7A 		vstr.32	s15, [r3, #112]
+ 1857              		.loc 1 185 43 view .LVU707
+ 1858 02b0 C3ED1C7A 		vstr.32	s15, [r3, #112]
  186:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.R_data[0] = QEKF_INS.R;
- 1874              		.loc 1 186 5 is_stmt 1 view .LVU708
+ 1859              		.loc 1 186 5 is_stmt 1 view .LVU708
  186:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.R_data[0] = QEKF_INS.R;
- 1875              		.loc 1 186 53 is_stmt 0 view .LVU709
- 1876 02e6 D4ED6D7A 		vldr.32	s15, [r4, #436]
+ 1860              		.loc 1 186 53 is_stmt 0 view .LVU709
+ 1861 02b4 D4ED6D7A 		vldr.32	s15, [r4, #436]
  186:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.R_data[0] = QEKF_INS.R;
- 1877              		.loc 1 186 67 view .LVU710
- 1878 02ea 94ED6F7A 		vldr.32	s14, [r4, #444]
+ 1862              		.loc 1 186 67 view .LVU710
+ 1863 02b8 94ED6F7A 		vldr.32	s14, [r4, #444]
  186:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.R_data[0] = QEKF_INS.R;
- 1879              		.loc 1 186 31 view .LVU711
- 1880 02ee D4F81831 		ldr	r3, [r4, #280]
+ 1864              		.loc 1 186 31 view .LVU711
+ 1865 02bc D4F81831 		ldr	r3, [r4, #280]
  186:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.R_data[0] = QEKF_INS.R;
- 1881              		.loc 1 186 57 view .LVU712
- 1882 02f2 67EE877A 		vmul.f32	s15, s15, s14
+ 1866              		.loc 1 186 57 view .LVU712
+ 1867 02c0 67EE877A 		vmul.f32	s15, s15, s14
  186:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.R_data[0] = QEKF_INS.R;
- 1883              		.loc 1 186 43 view .LVU713
- 1884 02f6 C3ED237A 		vstr.32	s15, [r3, #140]
+ 1868              		.loc 1 186 43 view .LVU713
+ 1869 02c4 C3ED237A 		vstr.32	s15, [r3, #140]
  187:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.R_data[4] = QEKF_INS.R;
- 1885              		.loc 1 187 5 is_stmt 1 view .LVU714
+ 1870              		.loc 1 187 5 is_stmt 1 view .LVU714
  187:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.R_data[4] = QEKF_INS.R;
- 1886              		.loc 1 187 31 is_stmt 0 view .LVU715
- 1887 02fa D4F81C21 		ldr	r2, [r4, #284]
+ 1871              		.loc 1 187 31 is_stmt 0 view .LVU715
+ 1872 02c8 D4F81C21 		ldr	r2, [r4, #284]
  187:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.R_data[4] = QEKF_INS.R;
- 1888              		.loc 1 187 52 view .LVU716
- 1889 02fe D4F8B831 		ldr	r3, [r4, #440]	@ float
+ 1873              		.loc 1 187 52 view .LVU716
+ 1874 02cc D4F8B831 		ldr	r3, [r4, #440]	@ float
  187:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.R_data[4] = QEKF_INS.R;
- 1890              		.loc 1 187 42 view .LVU717
- 1891 0302 1360     		str	r3, [r2]	@ float
+ 1875              		.loc 1 187 42 view .LVU717
+ 1876 02d0 1360     		str	r3, [r2]	@ float
  188:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.R_data[8] = QEKF_INS.R;
- 1892              		.loc 1 188 5 is_stmt 1 view .LVU718
+ 1877              		.loc 1 188 5 is_stmt 1 view .LVU718
  188:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.R_data[8] = QEKF_INS.R;
- 1893              		.loc 1 188 31 is_stmt 0 view .LVU719
- 1894 0304 D4F81C21 		ldr	r2, [r4, #284]
+ 1878              		.loc 1 188 31 is_stmt 0 view .LVU719
+ 1879 02d2 D4F81C21 		ldr	r2, [r4, #284]
  188:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.IMU_QuaternionEKF.R_data[8] = QEKF_INS.R;
- 1895              		.loc 1 188 42 view .LVU720
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 55
-
-
- 1896 0308 1361     		str	r3, [r2, #16]	@ float
+ 1880              		.loc 1 188 42 view .LVU720
+ 1881 02d6 1361     		str	r3, [r2, #16]	@ float
  189:Components/Algorithm/QuaternionEKF.c **** 
- 1897              		.loc 1 189 5 is_stmt 1 view .LVU721
+ 1882              		.loc 1 189 5 is_stmt 1 view .LVU721
  189:Components/Algorithm/QuaternionEKF.c **** 
- 1898              		.loc 1 189 31 is_stmt 0 view .LVU722
- 1899 030a D4F81C31 		ldr	r3, [r4, #284]
+ 1883              		.loc 1 189 31 is_stmt 0 view .LVU722
+ 1884 02d8 D4F81C31 		ldr	r3, [r4, #284]
  189:Components/Algorithm/QuaternionEKF.c **** 
- 1900              		.loc 1 189 52 view .LVU723
- 1901 030e D4F8B821 		ldr	r2, [r4, #440]	@ float
+ 1885              		.loc 1 189 52 view .LVU723
+ 1886 02dc D4F8B821 		ldr	r2, [r4, #440]	@ float
  189:Components/Algorithm/QuaternionEKF.c **** 
- 1902              		.loc 1 189 42 view .LVU724
- 1903 0312 1A62     		str	r2, [r3, #32]	@ float
+ 1887              		.loc 1 189 42 view .LVU724
+ 1888 02e0 1A62     		str	r2, [r3, #32]	@ float
  192:Components/Algorithm/QuaternionEKF.c **** 
- 1904              		.loc 1 192 5 is_stmt 1 view .LVU725
- 1905 0314 201D     		adds	r0, r4, #4
- 1906 0316 FFF7FEFF 		bl	Kalman_Filter_Update
- 1907              	.LVL93:
+ 1889              		.loc 1 192 5 is_stmt 1 view .LVU725
+ 1890 02e2 201D     		adds	r0, r4, #4
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 55
+
+
+ 1891 02e4 FFF7FEFF 		bl	Kalman_Filter_Update
+ 1892              	.LVL93:
  195:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.q[1] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[1];
- 1908              		.loc 1 195 5 view .LVU726
+ 1893              		.loc 1 195 5 view .LVU726
  195:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.q[1] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[1];
- 1909              		.loc 1 195 47 is_stmt 0 view .LVU727
- 1910 031a 6368     		ldr	r3, [r4, #4]
+ 1894              		.loc 1 195 47 is_stmt 0 view .LVU727
+ 1895 02e8 6368     		ldr	r3, [r4, #4]
  195:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.q[1] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[1];
- 1911              		.loc 1 195 61 view .LVU728
- 1912 031c D3ED000A 		vldr.32	s1, [r3]
+ 1896              		.loc 1 195 61 view .LVU728
+ 1897 02ea 1A68     		ldr	r2, [r3]	@ float
  195:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.q[1] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[1];
- 1913              		.loc 1 195 19 view .LVU729
- 1914 0320 C4ED540A 		vstr.32	s1, [r4, #336]
+ 1898              		.loc 1 195 19 view .LVU729
+ 1899 02ec C4F85021 		str	r2, [r4, #336]	@ float
  196:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.q[2] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[2];
- 1915              		.loc 1 196 5 is_stmt 1 view .LVU730
+ 1900              		.loc 1 196 5 is_stmt 1 view .LVU730
  196:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.q[2] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[2];
- 1916              		.loc 1 196 19 is_stmt 0 view .LVU731
- 1917 0324 D3ED017A 		vldr.32	s15, [r3, #4]
- 1918 0328 C4ED557A 		vstr.32	s15, [r4, #340]
+ 1901              		.loc 1 196 19 is_stmt 0 view .LVU731
+ 1902 02f0 5A68     		ldr	r2, [r3, #4]	@ float
+ 1903 02f2 C4F85421 		str	r2, [r4, #340]	@ float
  197:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.q[3] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[3];
- 1919              		.loc 1 197 5 is_stmt 1 view .LVU732
+ 1904              		.loc 1 197 5 is_stmt 1 view .LVU732
  197:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.q[3] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[3];
- 1920              		.loc 1 197 19 is_stmt 0 view .LVU733
- 1921 032c 93ED027A 		vldr.32	s14, [r3, #8]
- 1922 0330 84ED567A 		vstr.32	s14, [r4, #344]
+ 1905              		.loc 1 197 19 is_stmt 0 view .LVU733
+ 1906 02f6 9A68     		ldr	r2, [r3, #8]	@ float
+ 1907 02f8 C4F85821 		str	r2, [r4, #344]	@ float
  198:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.GyroBias[0] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[4];
- 1923              		.loc 1 198 5 is_stmt 1 view .LVU734
+ 1908              		.loc 1 198 5 is_stmt 1 view .LVU734
  198:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.GyroBias[0] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[4];
- 1924              		.loc 1 198 19 is_stmt 0 view .LVU735
- 1925 0334 93ED030A 		vldr.32	s0, [r3, #12]
- 1926 0338 84ED570A 		vstr.32	s0, [r4, #348]
+ 1909              		.loc 1 198 19 is_stmt 0 view .LVU735
+ 1910 02fc DA68     		ldr	r2, [r3, #12]	@ float
+ 1911 02fe C4F85C21 		str	r2, [r4, #348]	@ float
  199:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.GyroBias[1] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[5];
- 1927              		.loc 1 199 5 is_stmt 1 view .LVU736
+ 1912              		.loc 1 199 5 is_stmt 1 view .LVU736
  199:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.GyroBias[1] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[5];
- 1928              		.loc 1 199 26 is_stmt 0 view .LVU737
- 1929 033c 1A69     		ldr	r2, [r3, #16]	@ float
- 1930 033e C4F86021 		str	r2, [r4, #352]	@ float
+ 1913              		.loc 1 199 26 is_stmt 0 view .LVU737
+ 1914 0302 1A69     		ldr	r2, [r3, #16]	@ float
+ 1915 0304 C4F86021 		str	r2, [r4, #352]	@ float
  200:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.GyroBias[2] = 0; // 大部分时候z轴通天,无法观测yaw的漂移
- 1931              		.loc 1 200 5 is_stmt 1 view .LVU738
+ 1916              		.loc 1 200 5 is_stmt 1 view .LVU738
  200:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.GyroBias[2] = 0; // 大部分时候z轴通天,无法观测yaw的漂移
- 1932              		.loc 1 200 26 is_stmt 0 view .LVU739
- 1933 0342 5B69     		ldr	r3, [r3, #20]	@ float
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 56
-
-
- 1934 0344 C4F86431 		str	r3, [r4, #356]	@ float
+ 1917              		.loc 1 200 26 is_stmt 0 view .LVU739
+ 1918 0308 5B69     		ldr	r3, [r3, #20]	@ float
+ 1919 030a C4F86431 		str	r3, [r4, #356]	@ float
  201:Components/Algorithm/QuaternionEKF.c **** 
- 1935              		.loc 1 201 5 is_stmt 1 view .LVU740
+ 1920              		.loc 1 201 5 is_stmt 1 view .LVU740
  201:Components/Algorithm/QuaternionEKF.c **** 
- 1936              		.loc 1 201 26 is_stmt 0 view .LVU741
- 1937 0348 0023     		movs	r3, #0
- 1938 034a C4F86831 		str	r3, [r4, #360]	@ float
- 204:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Pitch = atan2f(2.0f * (QEKF_INS.q[0] * QEKF_INS.q[1] + QEKF_INS.q[2] * QEKF_INS.q[3]),
- 1939              		.loc 1 204 5 is_stmt 1 view .LVU742
- 204:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Pitch = atan2f(2.0f * (QEKF_INS.q[0] * QEKF_INS.q[1] + QEKF_INS.q[2] * QEKF_INS.q[3]),
- 1940              		.loc 1 204 49 is_stmt 0 view .LVU743
- 1941 034e 20EE800A 		vmul.f32	s0, s1, s0
- 204:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Pitch = atan2f(2.0f * (QEKF_INS.q[0] * QEKF_INS.q[1] + QEKF_INS.q[2] * QEKF_INS.q[3]),
- 1942              		.loc 1 204 81 view .LVU744
- 1943 0352 27EE877A 		vmul.f32	s14, s15, s14
- 204:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Pitch = atan2f(2.0f * (QEKF_INS.q[0] * QEKF_INS.q[1] + QEKF_INS.q[2] * QEKF_INS.q[3]),
- 1944              		.loc 1 204 65 view .LVU745
- 1945 0356 30EE070A 		vadd.f32	s0, s0, s14
- 204:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Pitch = atan2f(2.0f * (QEKF_INS.q[0] * QEKF_INS.q[1] + QEKF_INS.q[2] * QEKF_INS.q[3]),
- 1946              		.loc 1 204 121 view .LVU746
- 1947 035a 60EEA00A 		vmul.f32	s1, s1, s1
- 204:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Pitch = atan2f(2.0f * (QEKF_INS.q[0] * QEKF_INS.q[1] + QEKF_INS.q[2] * QEKF_INS.q[3]),
- 1948              		.loc 1 204 153 view .LVU747
- 1949 035e 67EEA77A 		vmul.f32	s15, s15, s15
- 204:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Pitch = atan2f(2.0f * (QEKF_INS.q[0] * QEKF_INS.q[1] + QEKF_INS.q[2] * QEKF_INS.q[3]),
- 1950              		.loc 1 204 137 view .LVU748
- 1951 0362 70EEA70A 		vadd.f32	s1, s1, s15
- 204:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Pitch = atan2f(2.0f * (QEKF_INS.q[0] * QEKF_INS.q[1] + QEKF_INS.q[2] * QEKF_INS.q[3]),
- 1952              		.loc 1 204 104 view .LVU749
- 1953 0366 70EEA00A 		vadd.f32	s1, s1, s1
- 204:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Pitch = atan2f(2.0f * (QEKF_INS.q[0] * QEKF_INS.q[1] + QEKF_INS.q[2] * QEKF_INS.q[3]),
- 1954              		.loc 1 204 20 view .LVU750
- 1955 036a F7EE008A 		vmov.f32	s17, #1.0e+0
- 1956 036e 70EEE80A 		vsub.f32	s1, s1, s17
- 1957 0372 30EE000A 		vadd.f32	s0, s0, s0
- 1958 0376 FFF7FEFF 		bl	atan2f
- 1959              	.LVL94:
- 204:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Pitch = atan2f(2.0f * (QEKF_INS.q[0] * QEKF_INS.q[1] + QEKF_INS.q[2] * QEKF_INS.q[3]),
- 1960              		.loc 1 204 178 view .LVU751
- 1961 037a 9FED3F8A 		vldr.32	s16, .L95+4
- 1962 037e 20EE080A 		vmul.f32	s0, s0, s16
- 204:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Pitch = atan2f(2.0f * (QEKF_INS.q[0] * QEKF_INS.q[1] + QEKF_INS.q[2] * QEKF_INS.q[3]),
- 1963              		.loc 1 204 18 view .LVU752
- 1964 0382 84ED6A0A 		vstr.32	s0, [r4, #424]
- 205:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2])) 
- 1965              		.loc 1 205 5 is_stmt 1 view .LVU753
- 205:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2])) 
- 1966              		.loc 1 205 47 is_stmt 0 view .LVU754
- 1967 0386 D4ED540A 		vldr.32	s1, [r4, #336]
- 205:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2])) 
- 1968              		.loc 1 205 63 view .LVU755
- 1969 038a 94ED550A 		vldr.32	s0, [r4, #340]
- 205:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2])) 
- 1970              		.loc 1 205 51 view .LVU756
- 1971 038e 20EE800A 		vmul.f32	s0, s1, s0
- 205:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2])) 
- 1972              		.loc 1 205 79 view .LVU757
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 57
-
-
- 1973 0392 94ED567A 		vldr.32	s14, [r4, #344]
- 205:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2])) 
- 1974              		.loc 1 205 95 view .LVU758
- 1975 0396 D4ED577A 		vldr.32	s15, [r4, #348]
- 205:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2])) 
- 1976              		.loc 1 205 83 view .LVU759
- 1977 039a 27EE277A 		vmul.f32	s14, s14, s15
- 205:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2])) 
- 1978              		.loc 1 205 67 view .LVU760
- 1979 039e 30EE070A 		vadd.f32	s0, s0, s14
- 205:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2])) 
- 1980              		.loc 1 205 123 view .LVU761
- 1981 03a2 60EEA00A 		vmul.f32	s1, s1, s1
- 205:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2])) 
- 1982              		.loc 1 205 155 view .LVU762
- 1983 03a6 67EEA77A 		vmul.f32	s15, s15, s15
- 205:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2])) 
- 1984              		.loc 1 205 139 view .LVU763
- 1985 03aa 70EEA70A 		vadd.f32	s1, s1, s15
- 205:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2])) 
- 1986              		.loc 1 205 106 view .LVU764
- 1987 03ae 70EEA00A 		vadd.f32	s1, s1, s1
- 205:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2])) 
- 1988              		.loc 1 205 22 view .LVU765
- 1989 03b2 70EEE80A 		vsub.f32	s1, s1, s17
- 1990 03b6 30EE000A 		vadd.f32	s0, s0, s0
- 1991 03ba FFF7FEFF 		bl	atan2f
- 1992              	.LVL95:
- 205:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2])) 
- 1993              		.loc 1 205 180 view .LVU766
- 1994 03be 20EE080A 		vmul.f32	s0, s0, s16
- 205:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.Roll = asinf(-2.0f * (QEKF_INS.q[1] * QEKF_INS.q[3] - QEKF_INS.q[0] * QEKF_INS.q[2])) 
- 1995              		.loc 1 205 20 view .LVU767
- 1996 03c2 84ED690A 		vstr.32	s0, [r4, #420]
- 206:Components/Algorithm/QuaternionEKF.c **** 
- 1997              		.loc 1 206 5 is_stmt 1 view .LVU768
- 206:Components/Algorithm/QuaternionEKF.c **** 
- 1998              		.loc 1 206 46 is_stmt 0 view .LVU769
- 1999 03c6 D4ED557A 		vldr.32	s15, [r4, #340]
- 206:Components/Algorithm/QuaternionEKF.c **** 
- 2000              		.loc 1 206 62 view .LVU770
- 2001 03ca 94ED570A 		vldr.32	s0, [r4, #348]
- 206:Components/Algorithm/QuaternionEKF.c **** 
- 2002              		.loc 1 206 50 view .LVU771
- 2003 03ce 67EE807A 		vmul.f32	s15, s15, s0
- 206:Components/Algorithm/QuaternionEKF.c **** 
- 2004              		.loc 1 206 78 view .LVU772
- 2005 03d2 94ED540A 		vldr.32	s0, [r4, #336]
- 206:Components/Algorithm/QuaternionEKF.c **** 
- 2006              		.loc 1 206 94 view .LVU773
- 2007 03d6 94ED567A 		vldr.32	s14, [r4, #344]
- 206:Components/Algorithm/QuaternionEKF.c **** 
- 2008              		.loc 1 206 82 view .LVU774
- 2009 03da 20EE070A 		vmul.f32	s0, s0, s14
- 206:Components/Algorithm/QuaternionEKF.c **** 
- 2010              		.loc 1 206 66 view .LVU775
- 2011 03de 77EEC07A 		vsub.f32	s15, s15, s0
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 58
-
-
- 206:Components/Algorithm/QuaternionEKF.c **** 
- 2012              		.loc 1 206 21 view .LVU776
- 2013 03e2 B8EE000A 		vmov.f32	s0, #-2.0e+0
- 2014 03e6 27EE800A 		vmul.f32	s0, s15, s0
- 2015 03ea FFF7FEFF 		bl	asinf
- 2016              	.LVL96:
- 206:Components/Algorithm/QuaternionEKF.c **** 
- 2017              		.loc 1 206 100 view .LVU777
- 2018 03ee 20EE080A 		vmul.f32	s0, s0, s16
- 206:Components/Algorithm/QuaternionEKF.c **** 
- 2019              		.loc 1 206 19 view .LVU778
- 2020 03f2 84ED680A 		vstr.32	s0, [r4, #416]
- 209:Components/Algorithm/QuaternionEKF.c ****     {
- 2021              		.loc 1 209 5 is_stmt 1 view .LVU779
- 209:Components/Algorithm/QuaternionEKF.c ****     {
- 2022              		.loc 1 209 17 is_stmt 0 view .LVU780
- 2023 03f6 94ED6A7A 		vldr.32	s14, [r4, #424]
- 209:Components/Algorithm/QuaternionEKF.c ****     {
- 2024              		.loc 1 209 32 view .LVU781
- 2025 03fa D4ED767A 		vldr.32	s15, [r4, #472]
- 209:Components/Algorithm/QuaternionEKF.c ****     {
- 2026              		.loc 1 209 22 view .LVU782
- 2027 03fe 77EE677A 		vsub.f32	s15, s14, s15
- 209:Components/Algorithm/QuaternionEKF.c ****     {
- 2028              		.loc 1 209 8 view .LVU783
- 2029 0402 DFED1E6A 		vldr.32	s13, .L95+8
- 2030 0406 F4EEE67A 		vcmpe.f32	s15, s13
- 2031 040a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 2032 040e 23DD     		ble	.L90
- 211:Components/Algorithm/QuaternionEKF.c ****     }
- 2033              		.loc 1 211 9 is_stmt 1 view .LVU784
- 211:Components/Algorithm/QuaternionEKF.c ****     }
- 2034              		.loc 1 211 17 is_stmt 0 view .LVU785
- 2035 0410 B4F9D431 		ldrsh	r3, [r4, #468]
- 211:Components/Algorithm/QuaternionEKF.c ****     }
- 2036              		.loc 1 211 31 view .LVU786
- 2037 0414 013B     		subs	r3, r3, #1
- 2038 0416 A4F8D431 		strh	r3, [r4, #468]	@ movhi
- 2039              	.L83:
- 217:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.YawAngleLast = QEKF_INS.Yaw;
- 2040              		.loc 1 217 5 is_stmt 1 view .LVU787
- 217:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.YawAngleLast = QEKF_INS.Yaw;
- 2041              		.loc 1 217 47 is_stmt 0 view .LVU788
- 2042 041a 164B     		ldr	r3, .L95
- 2043 041c B3F9D421 		ldrsh	r2, [r3, #468]
- 2044 0420 07EE902A 		vmov	s15, r2	@ int
- 217:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.YawAngleLast = QEKF_INS.Yaw;
- 2045              		.loc 1 217 37 view .LVU789
- 2046 0424 F8EEE77A 		vcvt.f32.s32	s15, s15
- 2047 0428 DFED156A 		vldr.32	s13, .L95+12
- 2048 042c 67EEA67A 		vmul.f32	s15, s15, s13
- 217:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.YawAngleLast = QEKF_INS.Yaw;
- 2049              		.loc 1 217 62 view .LVU790
- 2050 0430 77EE277A 		vadd.f32	s15, s14, s15
- 217:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.YawAngleLast = QEKF_INS.Yaw;
- 2051              		.loc 1 217 28 view .LVU791
- 2052 0434 C3ED6B7A 		vstr.32	s15, [r3, #428]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 59
-
-
- 218:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.UpdateCount++; // 初始化低通滤波用,计数测试用
- 2053              		.loc 1 218 5 is_stmt 1 view .LVU792
- 218:Components/Algorithm/QuaternionEKF.c ****     QEKF_INS.UpdateCount++; // 初始化低通滤波用,计数测试用
- 2054              		.loc 1 218 27 is_stmt 0 view .LVU793
- 2055 0438 83ED767A 		vstr.32	s14, [r3, #472]
+ 1921              		.loc 1 201 26 is_stmt 0 view .LVU741
+ 1922 030e 0023     		movs	r3, #0
+ 1923 0310 C4F86831 		str	r3, [r4, #360]	@ float
  219:Components/Algorithm/QuaternionEKF.c **** }
- 2056              		.loc 1 219 5 is_stmt 1 view .LVU794
+ 1924              		.loc 1 219 5 is_stmt 1 view .LVU742
  219:Components/Algorithm/QuaternionEKF.c **** }
- 2057              		.loc 1 219 13 is_stmt 0 view .LVU795
- 2058 043c D3F84821 		ldr	r2, [r3, #328]
- 2059 0440 D3F84C11 		ldr	r1, [r3, #332]
+ 1925              		.loc 1 219 13 is_stmt 0 view .LVU743
+ 1926 0314 D4F84831 		ldr	r3, [r4, #328]
+ 1927 0318 D4F84C21 		ldr	r2, [r4, #332]
  219:Components/Algorithm/QuaternionEKF.c **** }
- 2060              		.loc 1 219 25 view .LVU796
- 2061 0444 0132     		adds	r2, r2, #1
- 2062 0446 41F10001 		adc	r1, r1, #0
- 2063 044a C3F84821 		str	r2, [r3, #328]
- 2064 044e C3F84C11 		str	r1, [r3, #332]
+ 1928              		.loc 1 219 25 view .LVU744
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 56
+
+
+ 1929 031c 0133     		adds	r3, r3, #1
+ 1930 031e 42F10002 		adc	r2, r2, #0
+ 1931 0322 C4F84831 		str	r3, [r4, #328]
+ 1932 0326 C4F84C21 		str	r2, [r4, #332]
  220:Components/Algorithm/QuaternionEKF.c **** 
- 2065              		.loc 1 220 1 view .LVU797
- 2066 0452 BDEC088B 		vldm	sp!, {d8-d11}
- 2067              	.LCFI11:
- 2068              		.cfi_remember_state
- 2069              		.cfi_restore 86
- 2070              		.cfi_restore 87
- 2071              		.cfi_restore 84
- 2072              		.cfi_restore 85
- 2073              		.cfi_restore 82
- 2074              		.cfi_restore 83
- 2075              		.cfi_restore 80
- 2076              		.cfi_restore 81
- 2077              		.cfi_def_cfa_offset 8
- 2078              	.LVL97:
+ 1933              		.loc 1 220 1 view .LVU745
+ 1934 032a BDEC088B 		vldm	sp!, {d8-d11}
+ 1935              	.LCFI11:
+ 1936              		.cfi_restore 86
+ 1937              		.cfi_restore 87
+ 1938              		.cfi_restore 84
+ 1939              		.cfi_restore 85
+ 1940              		.cfi_restore 82
+ 1941              		.cfi_restore 83
+ 1942              		.cfi_restore 80
+ 1943              		.cfi_restore 81
+ 1944              		.cfi_def_cfa_offset 8
+ 1945              	.LVL94:
  220:Components/Algorithm/QuaternionEKF.c **** 
- 2079              		.loc 1 220 1 view .LVU798
- 2080 0456 10BD     		pop	{r4, pc}
- 2081              	.LVL98:
- 2082              	.L90:
- 2083              	.LCFI12:
- 2084              		.cfi_restore_state
- 213:Components/Algorithm/QuaternionEKF.c ****     {
- 2085              		.loc 1 213 10 is_stmt 1 view .LVU799
- 213:Components/Algorithm/QuaternionEKF.c ****     {
- 2086              		.loc 1 213 13 is_stmt 0 view .LVU800
- 2087 0458 DFED0A6A 		vldr.32	s13, .L95+16
- 2088 045c F4EEE67A 		vcmpe.f32	s15, s13
- 2089 0460 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 2090 0464 D9D5     		bpl	.L83
- 215:Components/Algorithm/QuaternionEKF.c ****     }
- 2091              		.loc 1 215 9 is_stmt 1 view .LVU801
- 215:Components/Algorithm/QuaternionEKF.c ****     }
- 2092              		.loc 1 215 17 is_stmt 0 view .LVU802
- 2093 0466 034A     		ldr	r2, .L95
- 2094 0468 B2F9D431 		ldrsh	r3, [r2, #468]
- 215:Components/Algorithm/QuaternionEKF.c ****     }
- 2095              		.loc 1 215 31 view .LVU803
- 2096 046c 0133     		adds	r3, r3, #1
- 2097 046e A2F8D431 		strh	r3, [r2, #468]	@ movhi
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 60
+ 1946              		.loc 1 220 1 view .LVU746
+ 1947 032e 10BD     		pop	{r4, pc}
+ 1948              	.L87:
+ 1949              		.align	2
+ 1950              	.L86:
+ 1951 0330 00000000 		.word	.LANCHOR5
+ 1952 0334 00000000 		.word	.LANCHOR18
+ 1953 0338 00000000 		.word	.LANCHOR19
+ 1954 033c 00000000 		.word	.LANCHOR20
+ 1955 0340 00000000 		.word	.LANCHOR17
+ 1956 0344 00000000 		.word	.LANCHOR21
+ 1957 0348 00000000 		.word	0
+ 1958 034c 8096184B 		.word	1259902592
+ 1959 0350 6F12833A 		.word	981668463
+ 1960 0354 9A99993E 		.word	1050253722
+ 1961 0358 CDCC1441 		.word	1091882189
+ 1962 035c CDCC2441 		.word	1092930765
+ 1963              		.cfi_endproc
+ 1964              	.LFE164:
+ 1966              		.global	IMU_QuaternionEKF_H
+ 1967              		.global	IMU_QuaternionEKF_K
+ 1968              		.global	IMU_QuaternionEKF_P
+ 1969              		.global	IMU_QuaternionEKF_F
+ 1970              		.global	QEKF_INS
+ 1971              		.section	.bss.IMU_QuaternionEKF_H,"aw",%nobits
+ 1972              		.align	2
+ 1973              		.set	.LANCHOR8,. + 0
+ 1976              	IMU_QuaternionEKF_H:
+ 1977 0000 00000000 		.space	72
+ 1977      00000000 
+ 1977      00000000 
+ 1977      00000000 
+ 1977      00000000 
+ 1978              		.section	.bss.IMU_QuaternionEKF_K,"aw",%nobits
+ 1979              		.align	2
+ 1980              		.set	.LANCHOR7,. + 0
+ 1983              	IMU_QuaternionEKF_K:
+ 1984 0000 00000000 		.space	72
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 57
 
 
- 2098 0472 D2E7     		b	.L83
- 2099              	.L96:
- 2100              		.align	2
- 2101              	.L95:
- 2102 0474 00000000 		.word	.LANCHOR5
- 2103 0478 E12E6542 		.word	1113927393
- 2104 047c 00003443 		.word	1127481344
- 2105 0480 0000B443 		.word	1135869952
- 2106 0484 000034C3 		.word	-1020002304
- 2107              		.cfi_endproc
- 2108              	.LFE164:
- 2110              		.global	IMU_QuaternionEKF_H
- 2111              		.global	IMU_QuaternionEKF_K
- 2112              		.global	IMU_QuaternionEKF_P
- 2113              		.global	IMU_QuaternionEKF_F
- 2114              		.global	QEKF_INS
- 2115              		.section	.bss.IMU_QuaternionEKF_H,"aw",%nobits
- 2116              		.align	2
- 2117              		.set	.LANCHOR8,. + 0
- 2120              	IMU_QuaternionEKF_H:
- 2121 0000 00000000 		.space	72
- 2121      00000000 
- 2121      00000000 
- 2121      00000000 
- 2121      00000000 
- 2122              		.section	.bss.IMU_QuaternionEKF_K,"aw",%nobits
- 2123              		.align	2
- 2124              		.set	.LANCHOR7,. + 0
- 2127              	IMU_QuaternionEKF_K:
- 2128 0000 00000000 		.space	72
- 2128      00000000 
- 2128      00000000 
- 2128      00000000 
- 2128      00000000 
- 2129              		.section	.bss.QEKF_INS,"aw",%nobits
- 2130              		.align	3
- 2131              		.set	.LANCHOR5,. + 0
- 2134              	QEKF_INS:
- 2135 0000 00000000 		.space	480
- 2135      00000000 
- 2135      00000000 
- 2135      00000000 
- 2135      00000000 
- 2136              		.section	.bss.accelInvNorm.0,"aw",%nobits
- 2137              		.align	2
- 2138              		.set	.LANCHOR21,. + 0
- 2141              	accelInvNorm.0:
- 2142 0000 00000000 		.space	4
- 2143              		.section	.bss.doubleq0.12,"aw",%nobits
- 2144              		.align	2
- 2145              		.set	.LANCHOR13,. + 0
- 2148              	doubleq0.12:
- 2149 0000 00000000 		.space	4
- 2150              		.section	.bss.doubleq1.11,"aw",%nobits
- 2151              		.align	2
- 2152              		.set	.LANCHOR14,. + 0
- 2155              	doubleq1.11:
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 61
+ 1984      00000000 
+ 1984      00000000 
+ 1984      00000000 
+ 1984      00000000 
+ 1985              		.section	.bss.QEKF_INS,"aw",%nobits
+ 1986              		.align	3
+ 1987              		.set	.LANCHOR5,. + 0
+ 1990              	QEKF_INS:
+ 1991 0000 00000000 		.space	480
+ 1991      00000000 
+ 1991      00000000 
+ 1991      00000000 
+ 1991      00000000 
+ 1992              		.section	.bss.accelInvNorm.0,"aw",%nobits
+ 1993              		.align	2
+ 1994              		.set	.LANCHOR21,. + 0
+ 1997              	accelInvNorm.0:
+ 1998 0000 00000000 		.space	4
+ 1999              		.section	.bss.doubleq0.12,"aw",%nobits
+ 2000              		.align	2
+ 2001              		.set	.LANCHOR13,. + 0
+ 2004              	doubleq0.12:
+ 2005 0000 00000000 		.space	4
+ 2006              		.section	.bss.doubleq1.11,"aw",%nobits
+ 2007              		.align	2
+ 2008              		.set	.LANCHOR14,. + 0
+ 2011              	doubleq1.11:
+ 2012 0000 00000000 		.space	4
+ 2013              		.section	.bss.doubleq2.10,"aw",%nobits
+ 2014              		.align	2
+ 2015              		.set	.LANCHOR15,. + 0
+ 2018              	doubleq2.10:
+ 2019 0000 00000000 		.space	4
+ 2020              		.section	.bss.doubleq3.9,"aw",%nobits
+ 2021              		.align	2
+ 2022              		.set	.LANCHOR16,. + 0
+ 2025              	doubleq3.9:
+ 2026 0000 00000000 		.space	4
+ 2027              		.section	.bss.halfgxdt.3,"aw",%nobits
+ 2028              		.align	2
+ 2029              		.set	.LANCHOR18,. + 0
+ 2032              	halfgxdt.3:
+ 2033 0000 00000000 		.space	4
+ 2034              		.section	.bss.halfgydt.2,"aw",%nobits
+ 2035              		.align	2
+ 2036              		.set	.LANCHOR19,. + 0
+ 2039              	halfgydt.2:
+ 2040 0000 00000000 		.space	4
+ 2041              		.section	.bss.halfgzdt.1,"aw",%nobits
+ 2042              		.align	2
+ 2043              		.set	.LANCHOR20,. + 0
+ 2046              	halfgzdt.1:
+ 2047 0000 00000000 		.space	4
+ 2048              		.section	.bss.q0.16,"aw",%nobits
+ 2049              		.align	2
+ 2050              		.set	.LANCHOR9,. + 0
+ 2053              	q0.16:
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 58
 
 
- 2156 0000 00000000 		.space	4
- 2157              		.section	.bss.doubleq2.10,"aw",%nobits
- 2158              		.align	2
- 2159              		.set	.LANCHOR15,. + 0
- 2162              	doubleq2.10:
- 2163 0000 00000000 		.space	4
- 2164              		.section	.bss.doubleq3.9,"aw",%nobits
- 2165              		.align	2
- 2166              		.set	.LANCHOR16,. + 0
- 2169              	doubleq3.9:
- 2170 0000 00000000 		.space	4
- 2171              		.section	.bss.halfgxdt.3,"aw",%nobits
- 2172              		.align	2
- 2173              		.set	.LANCHOR18,. + 0
- 2176              	halfgxdt.3:
- 2177 0000 00000000 		.space	4
- 2178              		.section	.bss.halfgydt.2,"aw",%nobits
- 2179              		.align	2
- 2180              		.set	.LANCHOR19,. + 0
- 2183              	halfgydt.2:
- 2184 0000 00000000 		.space	4
- 2185              		.section	.bss.halfgzdt.1,"aw",%nobits
- 2186              		.align	2
- 2187              		.set	.LANCHOR20,. + 0
- 2190              	halfgzdt.1:
- 2191 0000 00000000 		.space	4
- 2192              		.section	.bss.q0.16,"aw",%nobits
- 2193              		.align	2
- 2194              		.set	.LANCHOR9,. + 0
- 2197              	q0.16:
- 2198 0000 00000000 		.space	4
- 2199              		.section	.bss.q0.8,"aw",%nobits
- 2200              		.align	2
- 2201              		.set	.LANCHOR0,. + 0
- 2204              	q0.8:
- 2205 0000 00000000 		.space	4
- 2206              		.section	.bss.q1.15,"aw",%nobits
- 2207              		.align	2
- 2208              		.set	.LANCHOR10,. + 0
- 2211              	q1.15:
- 2212 0000 00000000 		.space	4
- 2213              		.section	.bss.q1.7,"aw",%nobits
- 2214              		.align	2
- 2215              		.set	.LANCHOR1,. + 0
- 2218              	q1.7:
- 2219 0000 00000000 		.space	4
- 2220              		.section	.bss.q2.14,"aw",%nobits
- 2221              		.align	2
- 2222              		.set	.LANCHOR11,. + 0
- 2225              	q2.14:
- 2226 0000 00000000 		.space	4
- 2227              		.section	.bss.q2.6,"aw",%nobits
- 2228              		.align	2
- 2229              		.set	.LANCHOR2,. + 0
- 2232              	q2.6:
- 2233 0000 00000000 		.space	4
- 2234              		.section	.bss.q3.13,"aw",%nobits
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 62
+ 2054 0000 00000000 		.space	4
+ 2055              		.section	.bss.q0.8,"aw",%nobits
+ 2056              		.align	2
+ 2057              		.set	.LANCHOR0,. + 0
+ 2060              	q0.8:
+ 2061 0000 00000000 		.space	4
+ 2062              		.section	.bss.q1.15,"aw",%nobits
+ 2063              		.align	2
+ 2064              		.set	.LANCHOR10,. + 0
+ 2067              	q1.15:
+ 2068 0000 00000000 		.space	4
+ 2069              		.section	.bss.q1.7,"aw",%nobits
+ 2070              		.align	2
+ 2071              		.set	.LANCHOR1,. + 0
+ 2074              	q1.7:
+ 2075 0000 00000000 		.space	4
+ 2076              		.section	.bss.q2.14,"aw",%nobits
+ 2077              		.align	2
+ 2078              		.set	.LANCHOR11,. + 0
+ 2081              	q2.14:
+ 2082 0000 00000000 		.space	4
+ 2083              		.section	.bss.q2.6,"aw",%nobits
+ 2084              		.align	2
+ 2085              		.set	.LANCHOR2,. + 0
+ 2088              	q2.6:
+ 2089 0000 00000000 		.space	4
+ 2090              		.section	.bss.q3.13,"aw",%nobits
+ 2091              		.align	2
+ 2092              		.set	.LANCHOR12,. + 0
+ 2095              	q3.13:
+ 2096 0000 00000000 		.space	4
+ 2097              		.section	.bss.q3.5,"aw",%nobits
+ 2098              		.align	2
+ 2099              		.set	.LANCHOR3,. + 0
+ 2102              	q3.5:
+ 2103 0000 00000000 		.space	4
+ 2104              		.section	.bss.qInvNorm.4,"aw",%nobits
+ 2105              		.align	2
+ 2106              		.set	.LANCHOR4,. + 0
+ 2109              	qInvNorm.4:
+ 2110 0000 00000000 		.space	4
+ 2111              		.section	.data.IMU_QuaternionEKF_P,"aw"
+ 2112              		.align	2
+ 2113              		.set	.LANCHOR6,. + 0
+ 2116              	IMU_QuaternionEKF_P:
+ 2117 0000 0050C347 		.word	1203982336
+ 2118 0004 CDCCCC3D 		.word	1036831949
+ 2119 0008 CDCCCC3D 		.word	1036831949
+ 2120 000c CDCCCC3D 		.word	1036831949
+ 2121 0010 CDCCCC3D 		.word	1036831949
+ 2122 0014 CDCCCC3D 		.word	1036831949
+ 2123 0018 CDCCCC3D 		.word	1036831949
+ 2124 001c 0050C347 		.word	1203982336
+ 2125 0020 CDCCCC3D 		.word	1036831949
+ 2126 0024 CDCCCC3D 		.word	1036831949
+ 2127 0028 CDCCCC3D 		.word	1036831949
+ 2128 002c CDCCCC3D 		.word	1036831949
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 59
 
 
- 2235              		.align	2
- 2236              		.set	.LANCHOR12,. + 0
- 2239              	q3.13:
- 2240 0000 00000000 		.space	4
- 2241              		.section	.bss.q3.5,"aw",%nobits
- 2242              		.align	2
- 2243              		.set	.LANCHOR3,. + 0
- 2246              	q3.5:
- 2247 0000 00000000 		.space	4
- 2248              		.section	.bss.qInvNorm.4,"aw",%nobits
- 2249              		.align	2
- 2250              		.set	.LANCHOR4,. + 0
- 2253              	qInvNorm.4:
- 2254 0000 00000000 		.space	4
- 2255              		.section	.data.IMU_QuaternionEKF_P,"aw"
- 2256              		.align	2
- 2257              		.set	.LANCHOR6,. + 0
- 2260              	IMU_QuaternionEKF_P:
- 2261 0000 0050C347 		.word	1203982336
- 2262 0004 CDCCCC3D 		.word	1036831949
- 2263 0008 CDCCCC3D 		.word	1036831949
- 2264 000c CDCCCC3D 		.word	1036831949
- 2265 0010 CDCCCC3D 		.word	1036831949
- 2266 0014 CDCCCC3D 		.word	1036831949
- 2267 0018 CDCCCC3D 		.word	1036831949
- 2268 001c 0050C347 		.word	1203982336
- 2269 0020 CDCCCC3D 		.word	1036831949
- 2270 0024 CDCCCC3D 		.word	1036831949
- 2271 0028 CDCCCC3D 		.word	1036831949
- 2272 002c CDCCCC3D 		.word	1036831949
- 2273 0030 CDCCCC3D 		.word	1036831949
- 2274 0034 CDCCCC3D 		.word	1036831949
- 2275 0038 0050C347 		.word	1203982336
- 2276 003c CDCCCC3D 		.word	1036831949
- 2277 0040 CDCCCC3D 		.word	1036831949
- 2278 0044 CDCCCC3D 		.word	1036831949
- 2279 0048 CDCCCC3D 		.word	1036831949
- 2280 004c CDCCCC3D 		.word	1036831949
- 2281 0050 CDCCCC3D 		.word	1036831949
- 2282 0054 0050C347 		.word	1203982336
- 2283 0058 CDCCCC3D 		.word	1036831949
- 2284 005c CDCCCC3D 		.word	1036831949
- 2285 0060 CDCCCC3D 		.word	1036831949
- 2286 0064 CDCCCC3D 		.word	1036831949
- 2287 0068 CDCCCC3D 		.word	1036831949
- 2288 006c CDCCCC3D 		.word	1036831949
- 2289 0070 0000C842 		.word	1120403456
- 2290 0074 CDCCCC3D 		.word	1036831949
- 2291 0078 CDCCCC3D 		.word	1036831949
- 2292 007c CDCCCC3D 		.word	1036831949
- 2293 0080 CDCCCC3D 		.word	1036831949
- 2294 0084 CDCCCC3D 		.word	1036831949
- 2295 0088 CDCCCC3D 		.word	1036831949
- 2296 008c 0000C842 		.word	1120403456
- 2297              		.section	.rodata.IMU_QuaternionEKF_F,"a"
- 2298              		.align	2
- 2299              		.set	.LANCHOR17,. + 0
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 63
+ 2129 0030 CDCCCC3D 		.word	1036831949
+ 2130 0034 CDCCCC3D 		.word	1036831949
+ 2131 0038 0050C347 		.word	1203982336
+ 2132 003c CDCCCC3D 		.word	1036831949
+ 2133 0040 CDCCCC3D 		.word	1036831949
+ 2134 0044 CDCCCC3D 		.word	1036831949
+ 2135 0048 CDCCCC3D 		.word	1036831949
+ 2136 004c CDCCCC3D 		.word	1036831949
+ 2137 0050 CDCCCC3D 		.word	1036831949
+ 2138 0054 0050C347 		.word	1203982336
+ 2139 0058 CDCCCC3D 		.word	1036831949
+ 2140 005c CDCCCC3D 		.word	1036831949
+ 2141 0060 CDCCCC3D 		.word	1036831949
+ 2142 0064 CDCCCC3D 		.word	1036831949
+ 2143 0068 CDCCCC3D 		.word	1036831949
+ 2144 006c CDCCCC3D 		.word	1036831949
+ 2145 0070 0000C842 		.word	1120403456
+ 2146 0074 CDCCCC3D 		.word	1036831949
+ 2147 0078 CDCCCC3D 		.word	1036831949
+ 2148 007c CDCCCC3D 		.word	1036831949
+ 2149 0080 CDCCCC3D 		.word	1036831949
+ 2150 0084 CDCCCC3D 		.word	1036831949
+ 2151 0088 CDCCCC3D 		.word	1036831949
+ 2152 008c 0000C842 		.word	1120403456
+ 2153              		.section	.rodata.IMU_QuaternionEKF_F,"a"
+ 2154              		.align	2
+ 2155              		.set	.LANCHOR17,. + 0
+ 2158              	IMU_QuaternionEKF_F:
+ 2159 0000 0000803F 		.word	1065353216
+ 2160 0004 00000000 		.word	0
+ 2161 0008 00000000 		.word	0
+ 2162 000c 00000000 		.word	0
+ 2163 0010 00000000 		.word	0
+ 2164 0014 00000000 		.word	0
+ 2165 0018 00000000 		.word	0
+ 2166 001c 0000803F 		.word	1065353216
+ 2167 0020 00000000 		.word	0
+ 2168 0024 00000000 		.word	0
+ 2169 0028 00000000 		.word	0
+ 2170 002c 00000000 		.word	0
+ 2171 0030 00000000 		.word	0
+ 2172 0034 00000000 		.word	0
+ 2173 0038 0000803F 		.word	1065353216
+ 2174 003c 00000000 		.word	0
+ 2175 0040 00000000 		.word	0
+ 2176 0044 00000000 		.word	0
+ 2177 0048 00000000 		.word	0
+ 2178 004c 00000000 		.word	0
+ 2179 0050 00000000 		.word	0
+ 2180 0054 0000803F 		.word	1065353216
+ 2181 0058 00000000 		.word	0
+ 2182 005c 00000000 		.word	0
+ 2183 0060 00000000 		.word	0
+ 2184 0064 00000000 		.word	0
+ 2185 0068 00000000 		.word	0
+ 2186 006c 00000000 		.word	0
+ 2187 0070 0000803F 		.word	1065353216
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 60
 
 
- 2302              	IMU_QuaternionEKF_F:
- 2303 0000 0000803F 		.word	1065353216
- 2304 0004 00000000 		.word	0
- 2305 0008 00000000 		.word	0
- 2306 000c 00000000 		.word	0
- 2307 0010 00000000 		.word	0
- 2308 0014 00000000 		.word	0
- 2309 0018 00000000 		.word	0
- 2310 001c 0000803F 		.word	1065353216
- 2311 0020 00000000 		.word	0
- 2312 0024 00000000 		.word	0
- 2313 0028 00000000 		.word	0
- 2314 002c 00000000 		.word	0
- 2315 0030 00000000 		.word	0
- 2316 0034 00000000 		.word	0
- 2317 0038 0000803F 		.word	1065353216
- 2318 003c 00000000 		.word	0
- 2319 0040 00000000 		.word	0
- 2320 0044 00000000 		.word	0
- 2321 0048 00000000 		.word	0
- 2322 004c 00000000 		.word	0
- 2323 0050 00000000 		.word	0
- 2324 0054 0000803F 		.word	1065353216
- 2325 0058 00000000 		.word	0
- 2326 005c 00000000 		.word	0
- 2327 0060 00000000 		.word	0
- 2328 0064 00000000 		.word	0
- 2329 0068 00000000 		.word	0
- 2330 006c 00000000 		.word	0
- 2331 0070 0000803F 		.word	1065353216
- 2332 0074 00000000 		.word	0
- 2333 0078 00000000 		.word	0
- 2334 007c 00000000 		.word	0
- 2335 0080 00000000 		.word	0
- 2336 0084 00000000 		.word	0
- 2337 0088 00000000 		.word	0
- 2338 008c 0000803F 		.word	1065353216
- 2339              		.text
- 2340              	.Letext0:
- 2341              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 2342              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 2343              		.file 4 "Components/Algorithm/Include/arm_math.h"
- 2344              		.file 5 "Components/kalman_filter.h"
- 2345              		.file 6 "Components/Algorithm/QuaternionEKF.h"
- 2346              		.file 7 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
- 2347              		.file 8 "<built-in>"
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 64
+ 2188 0074 00000000 		.word	0
+ 2189 0078 00000000 		.word	0
+ 2190 007c 00000000 		.word	0
+ 2191 0080 00000000 		.word	0
+ 2192 0084 00000000 		.word	0
+ 2193 0088 00000000 		.word	0
+ 2194 008c 0000803F 		.word	1065353216
+ 2195              		.text
+ 2196              	.Letext0:
+ 2197              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 2198              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 2199              		.file 4 "Components/Algorithm/Include/arm_math.h"
+ 2200              		.file 5 "Components/kalman_filter.h"
+ 2201              		.file 6 "Components/Algorithm/QuaternionEKF.h"
+ 2202              		.file 7 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 2203              		.file 8 "<built-in>"
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 61
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 QuaternionEKF.c
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:20     .text.invSqrt:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:25     .text.invSqrt:00000000 invSqrt
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:72     .text.invSqrt:0000002c $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:77     .text.IMU_QuaternionEKF_F_Linearization_P_Fading:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:82     .text.IMU_QuaternionEKF_F_Linearization_P_Fading:00000000 IMU_QuaternionEKF_F_Linearization_P_Fading
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:331    .text.IMU_QuaternionEKF_F_Linearization_P_Fading:00000184 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:342    .text.IMU_QuaternionEKF_Observe:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:347    .text.IMU_QuaternionEKF_Observe:00000000 IMU_QuaternionEKF_Observe
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:391    .text.IMU_QuaternionEKF_Observe:0000002c $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:398    .text.IMU_QuaternionEKF_xhatUpdate:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:403    .text.IMU_QuaternionEKF_xhatUpdate:00000000 IMU_QuaternionEKF_xhatUpdate
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:1017   .text.IMU_QuaternionEKF_xhatUpdate:000003ac $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:1031   .text.IMU_QuaternionEKF_xhatUpdate:000003d0 $t
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:1090   .text.IMU_QuaternionEKF_xhatUpdate:00000430 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:1098   .text.IMU_QuaternionEKF_SetH:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:1103   .text.IMU_QuaternionEKF_SetH:00000000 IMU_QuaternionEKF_SetH
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:1256   .text.IMU_QuaternionEKF_SetH:000000d0 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:1265   .text.IMU_QuaternionEKF_Init:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:1271   .text.IMU_QuaternionEKF_Init:00000000 IMU_QuaternionEKF_Init
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:1410   .text.IMU_QuaternionEKF_Init:000000c0 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:1422   .text.IMU_QuaternionEKF_Update:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:1428   .text.IMU_QuaternionEKF_Update:00000000 IMU_QuaternionEKF_Update
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:1799   .text.IMU_QuaternionEKF_Update:00000248 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:1814   .text.IMU_QuaternionEKF_Update:00000278 $t
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2102   .text.IMU_QuaternionEKF_Update:00000474 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2120   .bss.IMU_QuaternionEKF_H:00000000 IMU_QuaternionEKF_H
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2127   .bss.IMU_QuaternionEKF_K:00000000 IMU_QuaternionEKF_K
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2260   .data.IMU_QuaternionEKF_P:00000000 IMU_QuaternionEKF_P
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2302   .rodata.IMU_QuaternionEKF_F:00000000 IMU_QuaternionEKF_F
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2134   .bss.QEKF_INS:00000000 QEKF_INS
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2116   .bss.IMU_QuaternionEKF_H:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2123   .bss.IMU_QuaternionEKF_K:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2130   .bss.QEKF_INS:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2137   .bss.accelInvNorm.0:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2141   .bss.accelInvNorm.0:00000000 accelInvNorm.0
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2144   .bss.doubleq0.12:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2148   .bss.doubleq0.12:00000000 doubleq0.12
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2151   .bss.doubleq1.11:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2155   .bss.doubleq1.11:00000000 doubleq1.11
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2158   .bss.doubleq2.10:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2162   .bss.doubleq2.10:00000000 doubleq2.10
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2165   .bss.doubleq3.9:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2169   .bss.doubleq3.9:00000000 doubleq3.9
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2172   .bss.halfgxdt.3:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2176   .bss.halfgxdt.3:00000000 halfgxdt.3
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2179   .bss.halfgydt.2:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2183   .bss.halfgydt.2:00000000 halfgydt.2
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2186   .bss.halfgzdt.1:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2190   .bss.halfgzdt.1:00000000 halfgzdt.1
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2193   .bss.q0.16:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2197   .bss.q0.16:00000000 q0.16
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2200   .bss.q0.8:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2204   .bss.q0.8:00000000 q0.8
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2207   .bss.q1.15:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2211   .bss.q1.15:00000000 q1.15
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccbSzuda.s 			page 65
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:20     .text.invSqrt:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:25     .text.invSqrt:00000000 invSqrt
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:72     .text.invSqrt:0000002c $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:77     .text.IMU_QuaternionEKF_F_Linearization_P_Fading:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:82     .text.IMU_QuaternionEKF_F_Linearization_P_Fading:00000000 IMU_QuaternionEKF_F_Linearization_P_Fading
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:331    .text.IMU_QuaternionEKF_F_Linearization_P_Fading:00000184 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:342    .text.IMU_QuaternionEKF_Observe:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:347    .text.IMU_QuaternionEKF_Observe:00000000 IMU_QuaternionEKF_Observe
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:391    .text.IMU_QuaternionEKF_Observe:0000002c $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:398    .text.IMU_QuaternionEKF_xhatUpdate:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:403    .text.IMU_QuaternionEKF_xhatUpdate:00000000 IMU_QuaternionEKF_xhatUpdate
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1017   .text.IMU_QuaternionEKF_xhatUpdate:000003ac $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1031   .text.IMU_QuaternionEKF_xhatUpdate:000003d0 $t
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1090   .text.IMU_QuaternionEKF_xhatUpdate:00000430 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1098   .text.IMU_QuaternionEKF_SetH:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1103   .text.IMU_QuaternionEKF_SetH:00000000 IMU_QuaternionEKF_SetH
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1256   .text.IMU_QuaternionEKF_SetH:000000d0 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1265   .text.IMU_QuaternionEKF_Init:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1271   .text.IMU_QuaternionEKF_Init:00000000 IMU_QuaternionEKF_Init
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1410   .text.IMU_QuaternionEKF_Init:000000c0 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1422   .text.IMU_QuaternionEKF_Update:00000000 $t
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1428   .text.IMU_QuaternionEKF_Update:00000000 IMU_QuaternionEKF_Update
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1951   .text.IMU_QuaternionEKF_Update:00000330 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1976   .bss.IMU_QuaternionEKF_H:00000000 IMU_QuaternionEKF_H
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1983   .bss.IMU_QuaternionEKF_K:00000000 IMU_QuaternionEKF_K
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2116   .data.IMU_QuaternionEKF_P:00000000 IMU_QuaternionEKF_P
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2158   .rodata.IMU_QuaternionEKF_F:00000000 IMU_QuaternionEKF_F
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1990   .bss.QEKF_INS:00000000 QEKF_INS
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1972   .bss.IMU_QuaternionEKF_H:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1979   .bss.IMU_QuaternionEKF_K:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1986   .bss.QEKF_INS:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1993   .bss.accelInvNorm.0:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:1997   .bss.accelInvNorm.0:00000000 accelInvNorm.0
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2000   .bss.doubleq0.12:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2004   .bss.doubleq0.12:00000000 doubleq0.12
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2007   .bss.doubleq1.11:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2011   .bss.doubleq1.11:00000000 doubleq1.11
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2014   .bss.doubleq2.10:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2018   .bss.doubleq2.10:00000000 doubleq2.10
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2021   .bss.doubleq3.9:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2025   .bss.doubleq3.9:00000000 doubleq3.9
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2028   .bss.halfgxdt.3:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2032   .bss.halfgxdt.3:00000000 halfgxdt.3
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2035   .bss.halfgydt.2:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2039   .bss.halfgydt.2:00000000 halfgydt.2
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2042   .bss.halfgzdt.1:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2046   .bss.halfgzdt.1:00000000 halfgzdt.1
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2049   .bss.q0.16:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2053   .bss.q0.16:00000000 q0.16
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2056   .bss.q0.8:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2060   .bss.q0.8:00000000 q0.8
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2063   .bss.q1.15:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2067   .bss.q1.15:00000000 q1.15
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2070   .bss.q1.7:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2074   .bss.q1.7:00000000 q1.7
+ARM GAS  C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s 			page 62
 
 
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2214   .bss.q1.7:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2218   .bss.q1.7:00000000 q1.7
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2221   .bss.q2.14:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2225   .bss.q2.14:00000000 q2.14
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2228   .bss.q2.6:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2232   .bss.q2.6:00000000 q2.6
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2235   .bss.q3.13:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2239   .bss.q3.13:00000000 q3.13
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2242   .bss.q3.5:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2246   .bss.q3.5:00000000 q3.5
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2249   .bss.qInvNorm.4:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2253   .bss.qInvNorm.4:00000000 qInvNorm.4
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2256   .data.IMU_QuaternionEKF_P:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccbSzuda.s:2298   .rodata.IMU_QuaternionEKF_F:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2077   .bss.q2.14:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2081   .bss.q2.14:00000000 q2.14
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2084   .bss.q2.6:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2088   .bss.q2.6:00000000 q2.6
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2091   .bss.q3.13:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2095   .bss.q3.13:00000000 q3.13
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2098   .bss.q3.5:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2102   .bss.q3.5:00000000 q3.5
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2105   .bss.qInvNorm.4:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2109   .bss.qInvNorm.4:00000000 qInvNorm.4
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2112   .data.IMU_QuaternionEKF_P:00000000 $d
+C:\Users\86152\AppData\Local\Temp\ccaWqWY9.s:2154   .rodata.IMU_QuaternionEKF_F:00000000 $d
 
 UNDEFINED SYMBOLS
 memcpy
@@ -3858,5 +3646,3 @@ memset
 Kalman_Filter_Init
 arm_mat_init_f32
 Kalman_Filter_Update
-atan2f
-asinf

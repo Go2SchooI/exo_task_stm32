@@ -1,12 +1,11 @@
 #include "ins_task.h"
 #include "QuaternionAHRS.h"
-#include "includes.h"
 #include "exo_controller.h"
 #include "QuaternionEKF.h"
 #include "dm_imu.h"
+#include "arm_math.h"
 #include "tim.h"
 
-INS_t INS;
 QuaternionBuf_t QuaternionBuffer;
 PID_t TempCtrl = {0};
 
@@ -21,6 +20,7 @@ float RefTemp = 40;
 
 static void IMU_Param_Correction(imu_cali_param_t *param, float gyro[3], float accel[3]);
 static void get_INS_from_imu(INS_t *ins, float *accel, float *gyro);
+static void get_INS_from_imu2(INS_t *ins, float *accel, float *gyro);
 
 void INS_Init(void)
 {
@@ -41,6 +41,15 @@ void INS_Init(void)
     exo_controller.xzy_shoulder.INS_shoulder.imu_cali_param.Roll = 0;
     exo_controller.xzy_shoulder.INS_shoulder.imu_cali_param.flag = 1;
 
+    exo_controller.INS_torso.imu_cali_param.scale[X] = 1;
+    exo_controller.INS_torso.imu_cali_param.scale[Y] = 1;
+    exo_controller.INS_torso.imu_cali_param.scale[Z] = 1;
+
+    exo_controller.INS_torso.imu_cali_param.Yaw = 0;
+    exo_controller.INS_torso.imu_cali_param.Pitch = 0;
+    exo_controller.INS_torso.imu_cali_param.Roll = 0;
+    exo_controller.INS_torso.imu_cali_param.flag = 1;
+
     IMU_QuaternionEKF_Init(10, 0.001, 1000000 * 10, 0.9996 * 0 + 1, 0);
     // imu heat init
     PID_Init(&TempCtrl, 2000, 300, 0, 1000, 20, 0, 0, 0, 0, 0, 0, 0);
@@ -58,12 +67,7 @@ void INS_Task(void)
     if ((count % 1) == 0)
     {
         BMI088_Read(&BMI088);
-        // INS.Accel[X] = -BMI088.Accel[Y];
-        // INS.Accel[Y] = -BMI088.Accel[Z];
-        // INS.Accel[Z] = BMI088.Accel[X];
-        // INS.Gyro[X] = -BMI088.Gyro[Y];
-        // INS.Gyro[Y] = -BMI088.Gyro[Z];
-        // INS.Gyro[Z] = BMI088.Gyro[X];
+        get_INS_from_imu2(&exo_controller.INS_torso, BMI088.Accel, BMI088.Gyro);
 
         if (exo_controller.xzy_shoulder.dm_imu.send_reg == 0x01)
             exo_controller.xzy_shoulder.dm_imu.send_reg = 0x02; // 0x01:accel, 0x02:gyro, 0x03:euler, 0x04:quaternion
@@ -72,6 +76,26 @@ void INS_Task(void)
         IMU_RequestData(&hcan2, 0x01, exo_controller.xzy_shoulder.dm_imu.send_reg);
         get_INS_from_imu(&exo_controller.xzy_shoulder.INS_shoulder,
                          exo_controller.xzy_shoulder.dm_imu.accel, exo_controller.xzy_shoulder.dm_imu.gyro);
+
+        // 创建结构体实例
+        Quaternion torso_q_struct;
+        Quaternion humerus_q_struct;
+        EulerAnglesXZY result_angles_struct;
+
+        // 将数组数据填充到结构体中
+        torso_q_struct.w = exo_controller.INS_torso.q[0];
+        torso_q_struct.x = exo_controller.INS_torso.q[1];
+        torso_q_struct.y = exo_controller.INS_torso.q[2];
+        torso_q_struct.z = exo_controller.INS_torso.q[3];
+        humerus_q_struct.w = exo_controller.xzy_shoulder.INS_shoulder.q[0];
+        humerus_q_struct.x = exo_controller.xzy_shoulder.INS_shoulder.q[1];
+        humerus_q_struct.y = exo_controller.xzy_shoulder.INS_shoulder.q[2];
+        humerus_q_struct.z = exo_controller.xzy_shoulder.INS_shoulder.q[3];
+
+        get_shoulder_angles_wrt_torso(&torso_q_struct, &humerus_q_struct, &exo_controller.shoulder_xzy_angle_wrt_torso);
+        exo_controller.shoulder_xzy_angle_wrt_torso.phi_x *= RADIAN_COEF;
+        exo_controller.shoulder_xzy_angle_wrt_torso.psi_z *= RADIAN_COEF;
+        exo_controller.shoulder_xzy_angle_wrt_torso.theta_y *= RADIAN_COEF;
     }
 
     // temperature control
@@ -108,6 +132,7 @@ static void get_INS_from_imu(INS_t *ins, float *accel, float *gyro)
     IMU_QuaternionEKF_Update(ins->Gyro[X], ins->Gyro[Y], ins->Gyro[Z], ins->Accel[X], ins->Accel[Y], ins->Accel[Z], dt);
 
     float *q = QEKF_INS.q;
+    memcpy(ins->q, QEKF_INS.q, sizeof(QEKF_INS.q));
     ins->xzy_order_angle[1] = -asinf(2 * (q[1] * q[2] - q[0] * q[3])) * 57.295779513f;
     ins->xzy_order_angle[2] = atan2f(2.0f * (q[1] * q[3] + q[0] * q[2]), 1 - 2.0f * (q[2] * q[2] + q[3] * q[3])) * 57.295779513f;
     ins->xzy_order_angle[0] = atan2f(2.0f * (q[0] * q[1] + q[2] * q[3]), 1 - 2.0f * (q[1] * q[1] - q[3] * q[3])) * 57.295779513f;
@@ -117,7 +142,52 @@ static void get_INS_from_imu(INS_t *ins, float *accel, float *gyro)
     BodyFrameToEarthFrame(zb, ins->zn, ins->q);
 
     float gravity_b[3];
-    EarthFrameToBodyFrame(gravity, gravity_b, INS.q);
+    EarthFrameToBodyFrame(gravity, gravity_b, ins->q);
+    for (uint8_t i = 0; i < 3; i++)
+        ins->MotionAccel_b[i] = (ins->Accel[i] - gravity_b[i]) * dt / (ins->AccelLPF + dt) + ins->MotionAccel_b[i] * ins->AccelLPF / (ins->AccelLPF + dt);
+    BodyFrameToEarthFrame(ins->MotionAccel_b, ins->MotionAccel_n, ins->q);
+
+    memcpy(ins->Gyro, QEKF_INS.Gyro, sizeof(QEKF_INS.Gyro));
+    memcpy(ins->Accel, QEKF_INS.Accel, sizeof(QEKF_INS.Accel));
+    memcpy(ins->q, QEKF_INS.q, sizeof(QEKF_INS.q));
+    ins->Yaw = QEKF_INS.Yaw;
+    ins->Pitch = QEKF_INS.Pitch;
+    // ins->Roll = QEKF_INS.Roll;
+    ins->YawTotalAngle = QEKF_INS.YawTotalAngle;
+
+    InsertQuaternionFrame(&QuaternionBuffer, ins->q, ins->MotionAccel_n, INS_GetTimeline());
+
+    // Get_EulerAngle(AHRS.q);
+}
+
+static void get_INS_from_imu2(INS_t *ins, float *accel, float *gyro)
+{
+    ins->Accel[X] = -accel[Z];
+    ins->Accel[Y] = accel[Y];
+    ins->Accel[Z] = accel[X];
+    ins->Gyro[X] = -gyro[Z];
+    ins->Gyro[Y] = gyro[Y];
+    ins->Gyro[Z] = gyro[X];
+
+    IMU_Param_Correction(&ins->imu_cali_param, ins->Gyro, ins->Accel);
+    ins->atanxz = -atan2f(ins->Accel[X], ins->Accel[Z]) * 180 / PI;
+    ins->atanyz = atan2f(ins->Accel[Y], ins->Accel[Z]) * 180 / PI;
+
+    // Quaternion_AHRS_UpdateIMU(ins->Gyro[X], ins->Gyro[Y], ins->Gyro[Z], ins->Accel[X], ins->Accel[Y], ins->Accel[Z], 0, 0, 0, dt);
+    IMU_QuaternionEKF_Update(ins->Gyro[X], ins->Gyro[Y], ins->Gyro[Z], ins->Accel[X], ins->Accel[Y], ins->Accel[Z], dt);
+
+    float *q = QEKF_INS.q;
+    memcpy(ins->q, QEKF_INS.q, sizeof(QEKF_INS.q));
+    ins->xzy_order_angle[1] = -asinf(2 * (q[1] * q[2] - q[0] * q[3])) * 57.295779513f;
+    ins->xzy_order_angle[2] = atan2f(2.0f * (q[1] * q[3] + q[0] * q[2]), 1 - 2.0f * (q[2] * q[2] + q[3] * q[3])) * 57.295779513f;
+    ins->xzy_order_angle[0] = atan2f(2.0f * (q[0] * q[1] + q[2] * q[3]), 1 - 2.0f * (q[1] * q[1] - q[3] * q[3])) * 57.295779513f;
+
+    BodyFrameToEarthFrame(xb, ins->xn, ins->q);
+    BodyFrameToEarthFrame(yb, ins->yn, ins->q);
+    BodyFrameToEarthFrame(zb, ins->zn, ins->q);
+
+    float gravity_b[3];
+    EarthFrameToBodyFrame(gravity, gravity_b, ins->q);
     for (uint8_t i = 0; i < 3; i++)
         ins->MotionAccel_b[i] = (ins->Accel[i] - gravity_b[i]) * dt / (ins->AccelLPF + dt) + ins->MotionAccel_b[i] * ins->AccelLPF / (ins->AccelLPF + dt);
     BodyFrameToEarthFrame(ins->MotionAccel_b, ins->MotionAccel_n, ins->q);
@@ -323,4 +393,83 @@ void IMU_Temperature_Ctrl(void)
     PID_Calculate(&TempCtrl, BMI088.Temperature, 40 + 0 * float_constrain(BMI088.TempWhenCali, 37, 42));
 
     TIM_Set_PWM(&htim10, TIM_CHANNEL_1, float_constrain(float_rounding(TempCtrl.Output), 0, UINT32_MAX));
+}
+
+/**
+ * @brief 计算四元数的共轭。
+ * @param[in]   q_in    输入的四元数
+ * @param[out]  q_out   存储共轭结果的四元数
+ */
+static void quaternion_conjugate(const Quaternion *q_in, Quaternion *q_out)
+{
+    q_out->w = q_in->w;
+    q_out->x = -q_in->x;
+    q_out->y = -q_in->y;
+    q_out->z = -q_in->z;
+}
+
+/**
+ * @brief 计算两个四元数的乘法 (result = q1 * q2)。
+ * @param[in]   q1      左侧的四元数
+ * @param[in]   q2      右侧的四元数
+ * @param[out]  result  存储乘法结果的四元数
+ */
+static void quaternion_multiply(const Quaternion *q1, const Quaternion *q2, Quaternion *result)
+{
+    result->w = q1->w * q2->w - q1->x * q2->x - q1->y * q2->y - q1->z * q2->z;
+    result->x = q1->w * q2->x + q1->x * q2->w + q1->y * q2->z - q1->z * q2->y;
+    result->y = q1->w * q2->y - q1->x * q2->z + q1->y * q2->w + q1->z * q2->x;
+    result->z = q1->w * q2->z + q1->x * q2->y - q1->y * q2->x + q1->z * q2->w;
+}
+
+/**
+ * @brief 主函数：从躯干和肱骨的姿态四元数计算肩关节的相对旋转欧拉角。
+ */
+void get_shoulder_angles_wrt_torso(const Quaternion *q_torso, const Quaternion *q_humerus, EulerAnglesXZY *angles)
+{
+    // --- 步骤 1: 计算肩关节的相对旋转四元数 (无变化) ---
+    Quaternion q_torso_conj;
+    Quaternion q_shoulder;
+
+    quaternion_conjugate(q_torso, &q_torso_conj);
+    quaternion_multiply(&q_torso_conj, q_humerus, &q_shoulder);
+
+    // --- 步骤 2: 将相对旋转四元数转换为 X-Z-Y 欧拉角 (已更新) ---
+    float w = q_shoulder.w; // 对应您的 q
+    float x = q_shoulder.x; // 对应您的 q[1]
+    float y = q_shoulder.y; // 对应您的 q[2]
+    float z = q_shoulder.z; // 对应您的 q[3]
+
+    // 根据您的Z轴公式 `asinf(2*(w*z - x*y))` 来确定万向节死锁条件
+    float test_val = 2.0f * (w * z - x * y);
+    const float GIMBAL_LOCK_THRESHOLD = 0.99999f;
+
+    if (fabsf(test_val) > GIMBAL_LOCK_THRESHOLD)
+    {
+        // --- 万向节死锁情况 ---
+        // 当绕Z轴旋转接近 +/- 90度时发生
+        angles->psi_z = (test_val > 0.0f) ? (PI / 2.0f) : (-PI / 2.0f); // Z轴旋转
+        angles->phi_x = 2.0f * atan2f(x, w);                            // X轴旋转 (使用稳健的计算方式)
+        angles->theta_y = 0.0f;                                         // Y轴旋转 (按惯例设为0)
+    }
+    else
+    {
+        // --- 正常情况：使用您提供的公式 ---
+
+        // Z轴旋转 (psi)，对应您的 angle[1]
+        // 您的公式: -asinf(2 * (x * y - w * z))
+        // 等价于:    asinf(2 * (w * z - x * y))
+        angles->psi_z = asinf(test_val);
+
+        // Y轴旋转 (theta)，对应您的 angle[2]
+        // 您的公式: atan2f(2.0f * (x * z + w * y), 1 - 2.0f * (y * y + z * z))
+        angles->theta_y = atan2f(2.0f * (x * z + w * y), 1.0f - 2.0f * (y * y + z * z));
+
+        // X轴旋转 (phi)，对应您的 angle
+        // 您的公式: atan2f(2.0f * (w * x + y * z), 1 - 2.0f * (x * x - z * z))
+        angles->phi_x = atan2f(2.0f * (w * x + y * z), 1.0f - 2.0f * (x * x - z * z));
+    }
+    // ins->xzy_order_angle[1] = -asinf(2 * (q[1] * q[2] - q[0] * q[3])) * 57.295779513f;
+    // ins->xzy_order_angle[2] = atan2f(2.0f * (q[1] * q[3] + q[0] * q[2]), 1 - 2.0f * (q[2] * q[2] + q[3] * q[3])) * 57.295779513f;
+    // ins->xzy_order_angle[0] = atan2f(2.0f * (q[0] * q[1] + q[2] * q[3]), 1 - 2.0f * (q[1] * q[1] - q[3] * q[3])) * 57.295779513f;
 }

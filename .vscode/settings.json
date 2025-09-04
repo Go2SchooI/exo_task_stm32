@@ -22,6 +22,7 @@
         "ssm_kinematics.h": "c",
         "type_traits": "c",
         "arm_math.h": "c",
-        "exo_dynamics.h": "c"
+        "exo_dynamics.h": "c",
+        "quaternionekf.h": "c"
     }
 }

@@ -64,7 +64,22 @@ typedef struct
     uint16_t LatestNum;
 } QuaternionBuf_t;
 
-extern INS_t INS;
+typedef struct
+{
+    float32_t w;
+    float32_t x;
+    float32_t y;
+    float32_t z;
+} Quaternion;
+
+// 定义X-Z-Y欧拉角结构体
+typedef struct
+{
+    float32_t phi_x;   // 绕X轴旋转 (rad)
+    float32_t psi_z;   // 绕Z轴旋转 (rad)
+    float32_t theta_y; // 绕Y轴旋转 (rad)
+} EulerAnglesXZY;
+
 extern float RefTemp;
 extern QuaternionBuf_t QuaternionBuffer;
 
@@ -79,5 +94,6 @@ void InsertQuaternionFrame(QuaternionBuf_t *qBuf, float *q, float *motion_acc_n,
 uint16_t FindTimeMatchFrame(QuaternionBuf_t *qBuf, uint32_t match_time_stamp_ms);
 void BodyFrameToEarthFrame(const float *vecBF, float *vecEF, float *q);
 void EarthFrameToBodyFrame(const float *vecEF, float *vecBF, float *q);
+void get_shoulder_angles_wrt_torso(const Quaternion *q_torso, const Quaternion *q_humerus, EulerAnglesXZY *angles);
 
 #endif
