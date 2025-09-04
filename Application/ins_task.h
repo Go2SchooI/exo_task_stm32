@@ -3,6 +3,7 @@
 
 #include "stdint.h"
 #include "includes.h"
+#include "QuaternionEKF.h"
 
 #define INS_TASK_PERIOD 1
 
@@ -48,6 +49,8 @@ typedef __packed struct
 
     imu_cali_param_t imu_cali_param;
     float xzy_order_angle[3]; // xzy order angle
+
+    QEKF_INS_t qekf_ins;
 } INS_t;
 
 typedef struct

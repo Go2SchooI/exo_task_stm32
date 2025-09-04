@@ -23,6 +23,7 @@
         "type_traits": "c",
         "arm_math.h": "c",
         "exo_dynamics.h": "c",
-        "quaternionekf.h": "c"
+        "quaternionekf.h": "c",
+        "kalman_filter.h": "c"
     }
 }

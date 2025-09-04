@@ -1,7 +1,6 @@
 #include "ins_task.h"
 #include "QuaternionAHRS.h"
 #include "exo_controller.h"
-#include "QuaternionEKF.h"
 #include "dm_imu.h"
 #include "arm_math.h"
 #include "tim.h"
@@ -41,6 +40,8 @@ void INS_Init(void)
     exo_controller.xzy_shoulder.INS_shoulder.imu_cali_param.Roll = 0;
     exo_controller.xzy_shoulder.INS_shoulder.imu_cali_param.flag = 1;
 
+    IMU_QuaternionEKF_Init(&exo_controller.xzy_shoulder.INS_shoulder.qekf_ins, 10, 0.001, 1000000 * 10, 0.9996 * 0 + 1, 0);
+
     exo_controller.INS_torso.imu_cali_param.scale[X] = 1;
     exo_controller.INS_torso.imu_cali_param.scale[Y] = 1;
     exo_controller.INS_torso.imu_cali_param.scale[Z] = 1;
@@ -50,7 +51,7 @@ void INS_Init(void)
     exo_controller.INS_torso.imu_cali_param.Roll = 0;
     exo_controller.INS_torso.imu_cali_param.flag = 1;
 
-    IMU_QuaternionEKF_Init(10, 0.001, 1000000 * 10, 0.9996 * 0 + 1, 0);
+    IMU_QuaternionEKF_Init(&exo_controller.INS_torso.qekf_ins, 10, 0.001, 1000000 * 10, 0.9996 * 0 + 1, 0);
     // imu heat init
     PID_Init(&TempCtrl, 2000, 300, 0, 1000, 20, 0, 0, 0, 0, 0, 0, 0);
     HAL_TIM_PWM_Start(&htim10, TIM_CHANNEL_1);
@@ -129,10 +130,10 @@ static void get_INS_from_imu(INS_t *ins, float *accel, float *gyro)
     ins->atanyz = atan2f(ins->Accel[Y], ins->Accel[Z]) * 180 / PI;
 
     // Quaternion_AHRS_UpdateIMU(ins->Gyro[X], ins->Gyro[Y], ins->Gyro[Z], ins->Accel[X], ins->Accel[Y], ins->Accel[Z], 0, 0, 0, dt);
-    IMU_QuaternionEKF_Update(ins->Gyro[X], ins->Gyro[Y], ins->Gyro[Z], ins->Accel[X], ins->Accel[Y], ins->Accel[Z], dt);
+    IMU_QuaternionEKF_Update(&ins->qekf_ins, ins->Gyro[X], ins->Gyro[Y], ins->Gyro[Z], ins->Accel[X], ins->Accel[Y], ins->Accel[Z], dt);
 
-    float *q = QEKF_INS.q;
-    memcpy(ins->q, QEKF_INS.q, sizeof(QEKF_INS.q));
+    float *q = &ins->qekf_ins.q;
+    memcpy(ins->q, ins->qekf_ins.q, sizeof(ins->qekf_ins.q));
     ins->xzy_order_angle[1] = -asinf(2 * (q[1] * q[2] - q[0] * q[3])) * 57.295779513f;
     ins->xzy_order_angle[2] = atan2f(2.0f * (q[1] * q[3] + q[0] * q[2]), 1 - 2.0f * (q[2] * q[2] + q[3] * q[3])) * 57.295779513f;
     ins->xzy_order_angle[0] = atan2f(2.0f * (q[0] * q[1] + q[2] * q[3]), 1 - 2.0f * (q[1] * q[1] - q[3] * q[3])) * 57.295779513f;
@@ -147,13 +148,13 @@ static void get_INS_from_imu(INS_t *ins, float *accel, float *gyro)
         ins->MotionAccel_b[i] = (ins->Accel[i] - gravity_b[i]) * dt / (ins->AccelLPF + dt) + ins->MotionAccel_b[i] * ins->AccelLPF / (ins->AccelLPF + dt);
     BodyFrameToEarthFrame(ins->MotionAccel_b, ins->MotionAccel_n, ins->q);
 
-    memcpy(ins->Gyro, QEKF_INS.Gyro, sizeof(QEKF_INS.Gyro));
-    memcpy(ins->Accel, QEKF_INS.Accel, sizeof(QEKF_INS.Accel));
-    memcpy(ins->q, QEKF_INS.q, sizeof(QEKF_INS.q));
-    ins->Yaw = QEKF_INS.Yaw;
-    ins->Pitch = QEKF_INS.Pitch;
-    // ins->Roll = QEKF_INS.Roll;
-    ins->YawTotalAngle = QEKF_INS.YawTotalAngle;
+    memcpy(ins->Gyro, ins->qekf_ins.Gyro, sizeof(ins->qekf_ins.Gyro));
+    memcpy(ins->Accel, ins->qekf_ins.Accel, sizeof(ins->qekf_ins.Accel));
+    memcpy(ins->q, ins->qekf_ins.q, sizeof(ins->qekf_ins.q));
+    ins->Yaw = ins->qekf_ins.Yaw;
+    ins->Pitch = ins->qekf_ins.Pitch;
+    // ins->Roll = ins->qekf_ins.Roll;
+    ins->YawTotalAngle = ins->qekf_ins.YawTotalAngle;
 
     InsertQuaternionFrame(&QuaternionBuffer, ins->q, ins->MotionAccel_n, INS_GetTimeline());
 
@@ -174,10 +175,10 @@ static void get_INS_from_imu2(INS_t *ins, float *accel, float *gyro)
     ins->atanyz = atan2f(ins->Accel[Y], ins->Accel[Z]) * 180 / PI;
 
     // Quaternion_AHRS_UpdateIMU(ins->Gyro[X], ins->Gyro[Y], ins->Gyro[Z], ins->Accel[X], ins->Accel[Y], ins->Accel[Z], 0, 0, 0, dt);
-    IMU_QuaternionEKF_Update(ins->Gyro[X], ins->Gyro[Y], ins->Gyro[Z], ins->Accel[X], ins->Accel[Y], ins->Accel[Z], dt);
+    IMU_QuaternionEKF_Update(&ins->qekf_ins, ins->Gyro[X], ins->Gyro[Y], ins->Gyro[Z], ins->Accel[X], ins->Accel[Y], ins->Accel[Z], dt);
 
-    float *q = QEKF_INS.q;
-    memcpy(ins->q, QEKF_INS.q, sizeof(QEKF_INS.q));
+    float *q = &ins->qekf_ins.q;
+    memcpy(ins->q, ins->qekf_ins.q, sizeof(ins->qekf_ins.q));
     ins->xzy_order_angle[1] = -asinf(2 * (q[1] * q[2] - q[0] * q[3])) * 57.295779513f;
     ins->xzy_order_angle[2] = atan2f(2.0f * (q[1] * q[3] + q[0] * q[2]), 1 - 2.0f * (q[2] * q[2] + q[3] * q[3])) * 57.295779513f;
     ins->xzy_order_angle[0] = atan2f(2.0f * (q[0] * q[1] + q[2] * q[3]), 1 - 2.0f * (q[1] * q[1] - q[3] * q[3])) * 57.295779513f;
@@ -192,13 +193,13 @@ static void get_INS_from_imu2(INS_t *ins, float *accel, float *gyro)
         ins->MotionAccel_b[i] = (ins->Accel[i] - gravity_b[i]) * dt / (ins->AccelLPF + dt) + ins->MotionAccel_b[i] * ins->AccelLPF / (ins->AccelLPF + dt);
     BodyFrameToEarthFrame(ins->MotionAccel_b, ins->MotionAccel_n, ins->q);
 
-    memcpy(ins->Gyro, QEKF_INS.Gyro, sizeof(QEKF_INS.Gyro));
-    memcpy(ins->Accel, QEKF_INS.Accel, sizeof(QEKF_INS.Accel));
-    memcpy(ins->q, QEKF_INS.q, sizeof(QEKF_INS.q));
-    ins->Yaw = QEKF_INS.Yaw;
-    ins->Pitch = QEKF_INS.Pitch;
-    // ins->Roll = QEKF_INS.Roll;
-    ins->YawTotalAngle = QEKF_INS.YawTotalAngle;
+    memcpy(ins->Gyro, ins->qekf_ins.Gyro, sizeof(ins->qekf_ins.Gyro));
+    memcpy(ins->Accel, ins->qekf_ins.Accel, sizeof(ins->qekf_ins.Accel));
+    memcpy(ins->q, ins->qekf_ins.q, sizeof(ins->qekf_ins.q));
+    ins->Yaw = ins->qekf_ins.Yaw;
+    ins->Pitch = ins->qekf_ins.Pitch;
+    // ins->Roll = ins->qekf_ins.Roll;
+    ins->YawTotalAngle = ins->qekf_ins.YawTotalAngle;
 
     InsertQuaternionFrame(&QuaternionBuffer, ins->q, ins->MotionAccel_n, INS_GetTimeline());
 

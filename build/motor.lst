@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
   10:Application/motor.c **** 
   11:Application/motor.c ****     if (motor->Direction != NEGATIVE)
   47              		.loc 1 11 5 is_stmt 1 view .LVU4
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 2
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 2
 
 
   48              		.loc 1 11 14 is_stmt 0 view .LVU5
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
   90 004e B4F90C30 		ldrsh	r3, [r4, #12]
   91 0052 07EE903A 		vmov	s15, r3	@ int
   14:Application/motor.c ****     // ???????
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 3
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 3
 
 
   92              		.loc 1 14 62 view .LVU24
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  140 001c FFF7FEFF 		bl	float_constrain
  141              	.LVL8:
  142              		.loc 1 25 19 view .LVU37
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 4
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 4
 
 
  143 0020 84ED180A 		vstr.32	s0, [r4, #96]
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  191 0022 FFF7FEFF 		bl	Motor_Speed_Calculate
  192              	.LVL13:
   34:Application/motor.c ****     motor->Output = float_constrain(motor->Output, -motor->max_out, motor->max_out);
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 5
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 5
 
 
  193              		.loc 1 34 5 view .LVU47
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  235              		.cfi_offset 4, -8
  236              		.cfi_offset 14, -4
  237 0002 0446     		mov	r4, r0
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 6
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 6
 
 
   49:Application/motor.c ****     // ???C620???????
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  279 003e C4ED047A 		vstr.32	s15, [r4, #16]
   62:Application/motor.c ****     ptr->Temperature = aData[6];
  280              		.loc 1 62 5 is_stmt 1 view .LVU77
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 7
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 7
 
 
  281              		.loc 1 62 22 is_stmt 0 view .LVU78
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
   77:Application/motor.c ****     ptr->total_angle = ptr->round_cnt * 8192 + ptr->RawAngle - ptr->offset_angle;
  321              		.loc 1 77 5 is_stmt 1 view .LVU95
  322              		.loc 1 77 27 is_stmt 0 view .LVU96
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 8
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 8
 
 
  323 0080 636C     		ldr	r3, [r4, #68]
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  363 00ae B6E7     		b	.L11
  364              	.L12:
   67:Application/motor.c ****         ptr->round_cnt++;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 9
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 9
 
 
  365              		.loc 1 67 10 is_stmt 1 view .LVU116
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  411              		.loc 1 86 23 is_stmt 0 view .LVU128
  412 000a C363     		str	r3, [r0, #60]
   87:Application/motor.c **** }
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 10
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 10
 
 
  413              		.loc 1 87 1 view .LVU129
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  451              	.LVL21:
  452              		.loc 1 105 18 view .LVU137
  453 000e 4FF40072 		mov	r2, #512
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 11
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 11
 
 
  454              	.LVL22:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  118:Application/motor.c ****     CAN_Send_Data[7] = c4;
  496              		.loc 1 118 5 is_stmt 1 view .LVU160
  497              		.loc 1 118 22 is_stmt 0 view .LVU161
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 12
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 12
 
 
  498 0046 D471     		strb	r4, [r2, #7]
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  546 0008 BDF91840 		ldrsh	r4, [sp, #24]
  127:Application/motor.c ****     static CAN_TxHeaderTypeDef TX_MSG;
  547              		.loc 1 127 5 is_stmt 1 view .LVU168
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 13
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 13
 
 
  128:Application/motor.c ****     static uint8_t CAN_Send_Data[8];
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  589              		.loc 1 140 5 is_stmt 1 view .LVU191
  590              		.loc 1 140 22 is_stmt 0 view .LVU192
  591 003e 5371     		strb	r3, [r2, #5]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 14
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 14
 
 
  141:Application/motor.c ****     CAN_Send_Data[6] = (c4 >> 8);
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  639              		.cfi_def_cfa_offset 8
  640              		.cfi_offset 4, -8
  641              		.cfi_offset 14, -4
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 15
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 15
 
 
  642 0002 0446     		mov	r4, r0
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  684              		.loc 1 161 23 view .LVU222
  685 0042 07EE903A 		vmov	s15, r3	@ int
  686 0046 F8EEE77A 		vcvt.f32.s32	s15, s15
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 16
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 16
 
 
  687 004a C4ED047A 		vstr.32	s15, [r4, #16]
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  729              		.loc 1 173 5 is_stmt 1 view .LVU241
  730              		.loc 1 173 27 is_stmt 0 view .LVU242
  731 008c 636C     		ldr	r3, [r4, #68]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 17
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 17
 
 
  732              		.loc 1 173 39 view .LVU243
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  772 00ba 5B42     		rsbs	r3, r3, #0
  773 00bc 07EE903A 		vmov	s15, r3	@ int
  158:Application/motor.c ****     }
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 18
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 18
 
 
  774              		.loc 1 158 69 view .LVU263
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  181:Application/motor.c ****     ptr->RawAngle = (uint16_t)(aData[7] << 8 | aData[6]);
  820              		.loc 1 181 5 view .LVU271
  821              		.loc 1 181 37 is_stmt 0 view .LVU272
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 19
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 19
 
 
  822 0000 CA79     		ldrb	r2, [r1, #7]	@ zero_extendqisi2
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  863              	.LCFI14:
  864              		.cfi_def_cfa_offset 24
  865 0004 0546     		mov	r5, r0
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 20
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 20
 
 
  866 0006 1446     		mov	r4, r2
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  905              		.loc 1 211 22 is_stmt 0 view .LVU304
  906 0028 3441     		asrs	r4, r4, r6
  907 002a C470     		strb	r4, [r0, #3]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 21
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 21
 
 
  212:Application/motor.c ****     CAN_Send_Data[4] = c3;
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  952              	.L48:
  953              		.loc 1 221 12 view .LVU325
  954 0060 0024     		movs	r4, #0
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 22
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 22
 
 
  955 0062 00E0     		b	.L40
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  241:Application/motor.c **** 
  242:Application/motor.c ****     /* Check Tx Mailbox 2 status */
  243:Application/motor.c ****     else if ((_hcan->Instance->TSR & CAN_TSR_TME2) != 0U)
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 23
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 23
 
 
  244:Application/motor.c ****     {
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  1029 00ac 0423     		movs	r3, #4
  1030 00ae 0193     		str	r3, [sp, #4]
  1031 00b0 E9E7     		b	.L43
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 24
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 24
 
 
  1032              	.L50:
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  1071              	.LVL49:
  1072              		.loc 1 265 18 view .LVU360
  1073 000c 0B60     		str	r3, [r1]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 25
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 25
 
 
  266:Application/motor.c ****     TX_MSG.IDE = CAN_ID_STD;
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  280:Application/motor.c ****     // while (!((_hcan->State == HAL_CAN_STATE_READY) || (_hcan->State == HAL_CAN_STATE_LISTENING))
  281:Application/motor.c ****     // {
  282:Application/motor.c ****     //     count++;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 26
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 26
 
 
  283:Application/motor.c ****     //     if (count > 10000)
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  1142              	.LFB182:
  311:Application/motor.c **** 
  312:Application/motor.c **** int16_t LK8008_Current_Solver(float torque)
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 27
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 27
 
 
  313:Application/motor.c **** {
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  1181 0000 70B5     		push	{r4, r5, r6, lr}
  1182              	.LCFI20:
  1183              		.cfi_def_cfa_offset 16
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 28
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 28
 
 
  1184              		.cfi_offset 4, -16
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  345:Application/motor.c ****     else
  346:Application/motor.c ****         return 1; // ?????????
  1224              		.loc 1 346 16 view .LVU413
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 29
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 29
 
 
  1225 0020 0120     		movs	r0, #1
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  356:Application/motor.c ****     return 0;
  357:Application/motor.c **** }
  1264              		.loc 1 357 1 view .LVU424
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 30
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 30
 
 
  1265 0044 70BD     		pop	{r4, r5, r6, pc}
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  1312              		.align	1
  1313              		.global	uint_to_float
  1314              		.syntax unified
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 31
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 31
 
 
  1315              		.thumb
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  1355              	.LFE184:
  1357              		.section	.text.float_to_uint,"ax",%progbits
  1358              		.align	1
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 32
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 32
 
 
  1359              		.global	float_to_uint
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  1398 0026 7047     		bx	lr
  1399              		.cfi_endproc
  1400              	.LFE185:
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 33
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 33
 
 
  1402              		.section	.text.Send_DM_MIT_Command,"ax",%progbits
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  1443 0016 F0EE618A 		vmov.f32	s17, s3
  1444 001a B0EE428A 		vmov.f32	s16, s4
  403:Application/motor.c ****     static CAN_TxHeaderTypeDef TX_MSG;
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 34
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 34
 
 
  1445              		.loc 1 403 5 is_stmt 1 view .LVU462
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  1492              	.LVL91:
  411:Application/motor.c ****     kd_tmp = float_to_uint(_KD, KD_MIN, KD_MAX, 12);
  1493              		.loc 1 411 5 is_stmt 1 view .LVU480
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 35
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 35
 
 
  1494              		.loc 1 411 14 is_stmt 0 view .LVU481
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  1538              		.loc 1 421 22 is_stmt 0 view .LVU499
  1539 00a4 3B09     		lsrs	r3, r7, #4
  1540 00a6 9370     		strb	r3, [r2, #2]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 36
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 36
 
 
  422:Application/motor.c ****     CAN_Send_Data[3] = ((vel_tmp & 0xF) << 4) | (kp_tmp >> 8);
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  450:Application/motor.c ****     //     send_mail_box = CAN_TX_MAILBOX1;
  451:Application/motor.c ****     // }
  452:Application/motor.c **** 
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 37
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 37
 
 
  453:Application/motor.c ****     // /* Check Tx Mailbox 2 status */
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  462:Application/motor.c **** {
  1614              		.loc 1 462 1 is_stmt 1 view -0
  1615              		.cfi_startproc
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 38
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 38
 
 
  1616              		@ args = 0, pretend = 0, frame = 0
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  1666 002c 47EA0317 		orr	r7, r7, r3, lsl #4
  1667              		.loc 1 466 23 view .LVU538
  1668 0030 A760     		str	r7, [r4, #8]
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 39
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 39
 
 
  467:Application/motor.c ****     ptr->raw_torque = ((aData[4] & 0xF) << 8) | aData[5];
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  1716              	.LVL111:
  1717              		.loc 1 473 30 view .LVU557
  1718 007c 3846     		mov	r0, r7
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 40
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 40
 
 
  1719 007e FFF7FEFF 		bl	uint_to_float
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  1768              		@ frame_needed = 0, uses_anonymous_args = 0
  1769              		@ link register save eliminated.
  481:Application/motor.c ****     ptr->dm_raw_angle = (aData[1] << 8) | aData[2];
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 41
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 41
 
 
  1770              		.loc 1 481 5 view .LVU567
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  1828 0000 00000000 		.space	8
  1828      00000000 
  1829              		.section	.bss.CAN_Send_Data.8,"aw",%nobits
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 42
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 42
 
 
  1830              		.align	2
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  1877 0000 00000000 		.space	24
  1877      00000000 
  1877      00000000 
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 43
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 43
 
 
  1877      00000000 
@@ -2561,92 +2561,92 @@ ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 1
  1914              		.file 9 "Components/Controller/controller.h"
  1915              		.file 10 "Application/motor.h"
  1916              		.file 11 "<built-in>"
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 44
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 44
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 motor.c
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:20     .text.Motor_Torque_Calculate:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:26     .text.Motor_Torque_Calculate:00000000 Motor_Torque_Calculate
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:104    .text.Motor_Speed_Calculate:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:110    .text.Motor_Speed_Calculate:00000000 Motor_Speed_Calculate
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:152    .text.Motor_Angle_Calculate:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:158    .text.Motor_Angle_Calculate:00000000 Motor_Angle_Calculate
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:218    .text.Get_Motor_Info:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:224    .text.Get_Motor_Info:00000000 Get_Motor_Info
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:379    .text.Get_Motor_Info:000000c0 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:387    .text.Get_Motor_Offset:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:393    .text.Get_Motor_Offset:00000000 Get_Motor_Offset
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:419    .text.Send_Motor_Current_1_4:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:425    .text.Send_Motor_Current_1_4:00000000 Send_Motor_Current_1_4
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:515    .text.Send_Motor_Current_1_4:00000054 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:521    .text.Send_Motor_Current_5_8:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:527    .text.Send_Motor_Current_5_8:00000000 Send_Motor_Current_5_8
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:617    .text.Send_Motor_Current_5_8:00000054 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:623    .text.Get_LK_Info:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:629    .text.Get_LK_Info:00000000 Get_LK_Info
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:798    .text.Get_LK_Info:000000e8 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:806    .text.Get_LK_Offset:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:812    .text.Get_LK_Offset:00000000 Get_LK_Offset
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:841    .text.Send_LK_Current:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:847    .text.Send_LK_Current:00000000 Send_LK_Current
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1035   .text.Send_LK_Current:000000b4 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1041   .text.Send_LK_Current_Single:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1047   .text.Send_LK_Current_Single:00000000 Send_LK_Current_Single
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1128   .text.Send_LK_Current_Single:00000044 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1134   .text.LK8008_Current_Solver:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1140   .text.LK8008_Current_Solver:00000000 LK8008_Current_Solver
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1162   .text.LK8008_Current_Solver:00000014 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1167   .text.DM_CANx_SendStdData:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1173   .text.DM_CANx_SendStdData:00000000 DM_CANx_SendStdData
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1303   .text.DM_CANx_SendStdData:00000070 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1312   .text.uint_to_float:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1318   .text.uint_to_float:00000000 uint_to_float
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1358   .text.float_to_uint:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1364   .text.float_to_uint:00000000 float_to_uint
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1403   .text.Send_DM_MIT_Command:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1409   .text.Send_DM_MIT_Command:00000000 Send_DM_MIT_Command
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1595   .text.Send_DM_MIT_Command:000000d4 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1605   .text.Get_DM_Info:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1611   .text.Get_DM_Info:00000000 Get_DM_Info
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1749   .text.Get_DM_Info:000000a4 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1756   .text.Get_DM_Offset:00000000 $t
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1762   .text.Get_DM_Offset:00000000 Get_DM_Offset
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1903   .data.Data_Save_zero:00000000 Data_Save_zero
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1896   .data.Data_Failure:00000000 Data_Failure
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1889   .data.Data_Enable:00000000 Data_Enable
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1882   .bss.debugNum:00000000 debugNum
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1795   .bss.CAN_Send_Data.0:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1799   .bss.CAN_Send_Data.0:00000000 CAN_Send_Data.0
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1802   .bss.CAN_Send_Data.10:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1806   .bss.CAN_Send_Data.10:00000000 CAN_Send_Data.10
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1809   .bss.CAN_Send_Data.2:00000000 $d
-ARM GAS  C:\Users\86152\AppData\Local\Temp\ccGFHry8.s 			page 45
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:20     .text.Motor_Torque_Calculate:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:26     .text.Motor_Torque_Calculate:00000000 Motor_Torque_Calculate
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:104    .text.Motor_Speed_Calculate:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:110    .text.Motor_Speed_Calculate:00000000 Motor_Speed_Calculate
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:152    .text.Motor_Angle_Calculate:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:158    .text.Motor_Angle_Calculate:00000000 Motor_Angle_Calculate
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:218    .text.Get_Motor_Info:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:224    .text.Get_Motor_Info:00000000 Get_Motor_Info
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:379    .text.Get_Motor_Info:000000c0 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:387    .text.Get_Motor_Offset:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:393    .text.Get_Motor_Offset:00000000 Get_Motor_Offset
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:419    .text.Send_Motor_Current_1_4:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:425    .text.Send_Motor_Current_1_4:00000000 Send_Motor_Current_1_4
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:515    .text.Send_Motor_Current_1_4:00000054 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:521    .text.Send_Motor_Current_5_8:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:527    .text.Send_Motor_Current_5_8:00000000 Send_Motor_Current_5_8
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:617    .text.Send_Motor_Current_5_8:00000054 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:623    .text.Get_LK_Info:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:629    .text.Get_LK_Info:00000000 Get_LK_Info
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:798    .text.Get_LK_Info:000000e8 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:806    .text.Get_LK_Offset:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:812    .text.Get_LK_Offset:00000000 Get_LK_Offset
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:841    .text.Send_LK_Current:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:847    .text.Send_LK_Current:00000000 Send_LK_Current
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1035   .text.Send_LK_Current:000000b4 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1041   .text.Send_LK_Current_Single:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1047   .text.Send_LK_Current_Single:00000000 Send_LK_Current_Single
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1128   .text.Send_LK_Current_Single:00000044 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1134   .text.LK8008_Current_Solver:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1140   .text.LK8008_Current_Solver:00000000 LK8008_Current_Solver
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1162   .text.LK8008_Current_Solver:00000014 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1167   .text.DM_CANx_SendStdData:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1173   .text.DM_CANx_SendStdData:00000000 DM_CANx_SendStdData
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1303   .text.DM_CANx_SendStdData:00000070 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1312   .text.uint_to_float:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1318   .text.uint_to_float:00000000 uint_to_float
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1358   .text.float_to_uint:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1364   .text.float_to_uint:00000000 float_to_uint
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1403   .text.Send_DM_MIT_Command:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1409   .text.Send_DM_MIT_Command:00000000 Send_DM_MIT_Command
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1595   .text.Send_DM_MIT_Command:000000d4 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1605   .text.Get_DM_Info:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1611   .text.Get_DM_Info:00000000 Get_DM_Info
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1749   .text.Get_DM_Info:000000a4 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1756   .text.Get_DM_Offset:00000000 $t
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1762   .text.Get_DM_Offset:00000000 Get_DM_Offset
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1903   .data.Data_Save_zero:00000000 Data_Save_zero
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1896   .data.Data_Failure:00000000 Data_Failure
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1889   .data.Data_Enable:00000000 Data_Enable
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1882   .bss.debugNum:00000000 debugNum
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1795   .bss.CAN_Send_Data.0:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1799   .bss.CAN_Send_Data.0:00000000 CAN_Send_Data.0
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1802   .bss.CAN_Send_Data.10:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1806   .bss.CAN_Send_Data.10:00000000 CAN_Send_Data.10
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1809   .bss.CAN_Send_Data.2:00000000 $d
+ARM GAS  C:\Users\86152\AppData\Local\Temp\cchWW7sK.s 			page 45
 
 
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1813   .bss.CAN_Send_Data.2:00000000 CAN_Send_Data.2
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1816   .bss.CAN_Send_Data.4:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1820   .bss.CAN_Send_Data.4:00000000 CAN_Send_Data.4
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1823   .bss.CAN_Send_Data.6:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1827   .bss.CAN_Send_Data.6:00000000 CAN_Send_Data.6
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1830   .bss.CAN_Send_Data.8:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1834   .bss.CAN_Send_Data.8:00000000 CAN_Send_Data.8
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1837   .bss.TX_MSG.1:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1841   .bss.TX_MSG.1:00000000 TX_MSG.1
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1844   .bss.TX_MSG.11:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1848   .bss.TX_MSG.11:00000000 TX_MSG.11
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1851   .bss.TX_MSG.3:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1855   .bss.TX_MSG.3:00000000 TX_MSG.3
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1858   .bss.TX_MSG.5:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1862   .bss.TX_MSG.5:00000000 TX_MSG.5
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1865   .bss.TX_MSG.7:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1869   .bss.TX_MSG.7:00000000 TX_MSG.7
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1872   .bss.TX_MSG.9:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1876   .bss.TX_MSG.9:00000000 TX_MSG.9
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1879   .bss.debugNum:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1885   .data.Data_Enable:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1892   .data.Data_Failure:00000000 $d
-C:\Users\86152\AppData\Local\Temp\ccGFHry8.s:1899   .data.Data_Save_zero:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1813   .bss.CAN_Send_Data.2:00000000 CAN_Send_Data.2
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1816   .bss.CAN_Send_Data.4:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1820   .bss.CAN_Send_Data.4:00000000 CAN_Send_Data.4
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1823   .bss.CAN_Send_Data.6:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1827   .bss.CAN_Send_Data.6:00000000 CAN_Send_Data.6
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1830   .bss.CAN_Send_Data.8:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1834   .bss.CAN_Send_Data.8:00000000 CAN_Send_Data.8
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1837   .bss.TX_MSG.1:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1841   .bss.TX_MSG.1:00000000 TX_MSG.1
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1844   .bss.TX_MSG.11:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1848   .bss.TX_MSG.11:00000000 TX_MSG.11
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1851   .bss.TX_MSG.3:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1855   .bss.TX_MSG.3:00000000 TX_MSG.3
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1858   .bss.TX_MSG.5:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1862   .bss.TX_MSG.5:00000000 TX_MSG.5
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1865   .bss.TX_MSG.7:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1869   .bss.TX_MSG.7:00000000 TX_MSG.7
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1872   .bss.TX_MSG.9:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1876   .bss.TX_MSG.9:00000000 TX_MSG.9
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1879   .bss.debugNum:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1885   .data.Data_Enable:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1892   .data.Data_Failure:00000000 $d
+C:\Users\86152\AppData\Local\Temp\cchWW7sK.s:1899   .data.Data_Save_zero:00000000 $d
 
 UNDEFINED SYMBOLS
 PID_Calculate

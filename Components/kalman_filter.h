@@ -24,7 +24,7 @@
 
 #include "stm32f407xx.h"
 #include "arm_math.h"
-//#include "dsp/matrix_functions.h"
+// #include "dsp/matrix_functions.h"
 #include "math.h"
 #include "stdint.h"
 #include "stdlib.h"
@@ -56,10 +56,10 @@ typedef struct kf_t
     uint8_t UseAutoAdjustment;
     uint8_t MeasurementValidNum;
 
-    uint8_t *MeasurementMap;      // Á¿²âÓë×´Ì¬µÄ¹ØÏµ how measurement relates to the state
-    float *MeasurementDegree;     // ²âÁ¿Öµ¶ÔÓ¦H¾ØÕóÔªËØÖµ elements of each measurement in H
-    float *MatR_DiagonalElements; // Á¿²â·½²î variance for each measurement
-    float *StateMinVariance;      // ×îÐ¡·½²î ±ÜÃâ·½²î¹ý¶ÈÊÕÁ² suppress filter excessive convergence
+    uint8_t *MeasurementMap;      // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½Ä¹ï¿½Ïµ how measurement relates to the state
+    float *MeasurementDegree;     // ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Ó¦Hï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½Öµ elements of each measurement in H
+    float *MatR_DiagonalElements; // ï¿½ï¿½ï¿½â·½ï¿½ï¿½ variance for each measurement
+    float *StateMinVariance;      // ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â·½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ suppress filter excessive convergence
     uint8_t *temp;
     uint8_t SkipEq1, SkipEq2, SkipEq3, SkipEq4, SkipEq5;
 
@@ -86,6 +86,7 @@ typedef struct kf_t
     void (*User_Func4_f)(struct kf_t *kf);
     void (*User_Func5_f)(struct kf_t *kf);
     void (*User_Func6_f)(struct kf_t *kf);
+    void *User_Data;
 
     float *xhat_data, *xhatminus_data;
     float *u_data;
